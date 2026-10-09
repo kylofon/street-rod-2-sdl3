@@ -98,19 +98,27 @@ PTR_TABLES = [
 ]
 # Interrupt handlers installed with _dos_setvect / INT 21h AH=25h (found by hand, RE_GUIDE.md).
 HANDLERS = [
-    # SR2: filled in S1.5 (SR1 equivalents via port/sr2_sr1_matches.csv)
+    0x02256,    # 0001:2246 timer INT 8, PIT divisor 4000h = 72.8 Hz (installed in 0001:19e8)
+    0x02632,    # 0001:2622 timer INT 8 while driving (race_isr, set by 0001:20a0)
+    0x03024,    # 0001:3014 keyboard INT 9 (installed by 0001:3175)
+    0x0192a,    # 0001:191a critical error INT 24h (_harderr in 0001:19e8)
+    0x2f27b,    # 2f1b:00cb music timer INT 8 (installed by 2f1b:0069, chains to the game ISR)
+    0x03255,    # 0001:3245 kbd_inject_scancode (called from the INT 9 handler 0001:3014)
+    0x2d5e2,    # 2c57:1072 unreferenced AdLib effect stub
+    0x2d626,    # 2c57:10b6 unreferenced AdLib effect stub
 ]
 seeds.update(HANDLERS)
 # Far code pointers kept in DGROUP tables (relocated seg:off pairs): the graphics driver vector
 # sources copied to DS:78A2 (platform.md 2.8, video.md 4.1): (table, entries).
-FAR_TABLES = []   # SR2: filled in S1.5 (SR1: DS:5BD0, 5B04, 5B8A)
+FAR_TABLES = [(0x7A40, 20), (0x7ADC, 20), (0x7B38, 20),
+              (0x530A, 25), (0x73C2, 25)]   # 7A40 CGA/Herc (2719:01a6), 7ADC Tandy (2f32:0906), 7B38 EGA/VGA (2f32:111c) -> DS:A0AE; 530A/73C2 sound vectors in 2c57
 for tbl, n in FAR_TABLES:
     for k in range(n):
         o, sg = struct.unpack_from('<HH', img, DS_BASE + tbl + 4 * k)
         if (o or sg) and sg * 16 + o < DS_BASE:
             seeds.add(sg * 16 + o)
 # Far code pointers loaded as immediates that the automatic scan misses (video.md, Index additions).
-seeds.update([])   # SR2: filled in S1.5 (SR1: 2595:0004, 2634:000a)
+seeds.update([0x3345 * 16 + 0x000c, 0x33e5 * 16 + 0x0002])   # rows_mask_or, rows_mask_blend
 for sg, tbl, n, where in PTR_TABLES:
     base = DS_BASE if where == 'ds' else sg * 16
     for k in range(n):
