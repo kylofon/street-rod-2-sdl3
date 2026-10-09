@@ -1,6 +1,7 @@
 /* game_flow: start-up chain (title sequence, title_and_setup), the random generator and the data files SR2_data and
  * hall_dat — port/spec/game_flow.md, FORMATS.md "SR2_DATA" (0001:3cc4, 1a21:0e82, 1a21:6180, 1a21:6e6a-71cc). */
 #include "game/flow.h"
+#include "game/race.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -65,7 +66,7 @@ s16 title_and_setup(void)
         if (copy_protection() == 0) platform_exit();
         cursor_ctl(-4);
     }
-    road_seed_init(1);                                /* new road seed, stored at DS:A9F8 */
+    track_build_all(1);                                /* new road seed, stored at DS:A9F8 */
     DSB(DS_save_name) = 0;
     DSB(DS_player_name) = 0;
     DSW(DS_demo) = DSW(DS_sw_demo);

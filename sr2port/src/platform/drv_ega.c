@@ -38,10 +38,9 @@ typedef s16  (*FnAnimStep)(u16);
 typedef s16  (*FnBlinds)(FarPtr, FarPtr);
 typedef void (*FnSlide)(s16, s16, s16, s16, s16, FarPtr, FarPtr);
 typedef void (*FnLine)(s16, s16, s16, s16, s16);
-typedef void (*FnHspan)(s16, s16, s16, s16);
+typedef void (*FnHspan)(s16, s16, s16);
 typedef void (*FnFillRows)(s16, s16);
 typedef void (*FnSetColour)(s16);
-typedef void (*FnPoly)(u16, s16, s16);
 
 u16  drv_blit(FarPtr src, FarPtr dst, const Rect *r, u8 flags) { return ((FnBlit)drv_slot(0))(src, dst, r, flags); }
 void drv_blit_shifted(FarPtr src, FarPtr dst, const Rect *r) { ((FnBlitShifted)drv_slot(1))(src, dst, r); }
@@ -65,36 +64,12 @@ void drv_slide_sprite(s16 top, s16 bottom, s16 x, s16 from, s16 to, FarPtr spr, 
     ((FnSlide)drv_slot(11))(top, bottom, x, from, to, spr, alt);
 }
 void drv_line(s16 x0, s16 y0, s16 x1, s16 y1, s16 colour) { ((FnLine)drv_slot(12))(x0, y0, x1, y1, colour); }
-void drv_hspan(s16 x0, s16 x1, s16 y, s16 colour) { ((FnHspan)drv_slot(13))(x0, x1, y, colour); }
+void drv_hspan(s16 x1, s16 x2, s16 y) { ((FnHspan)drv_slot(13))(x1, x2, y); }
 void drv_fill_rows(s16 y, s16 colour) { ((FnFillRows)drv_slot(14))(y, colour); }
 void drv_set_colour(s16 colour) { ((FnSetColour)drv_slot(17))(colour); }
-void drv_poly_fill(u16 pts, s16 n, s16 fill_colour) { ((FnPoly)drv_slot(18))(pts, n, fill_colour); }
 
-/* PORT: slots 13-16, 18 and 19 point into race_render (0dcb:043c hspan, 04e6 fill_rows, b8c8 pixel shrink,
- * bd12 road helper, 0dcb:0006 plot points) and the new polygon fill (33f8:01ca): the road renderer, S5.3.
- * Until it is ported they are registered with a stop that names the slot. */
-static void slot_not_ported(void)
-{
-    host_fatal("driver slot not ported yet (race_render / polygon fill, S5.3)");
-}
-
-/* 0dcb:0006 plot_points_ega (slot 19): plots n points {x, y} (x + xoff; y is not offset) with set/reset colour into the planar
- * page buf (40 bytes a row); points outside the clip box DS:7E12..7E18 are skipped. PORT: race_render owns it (S5.3) but the
- * gas station LEDs (2925:1e08) need it; the rotation about the centre (DS:9E70 != 0, road renderer only) is not ported yet. */
-void plot_points_ega(FarPtr buf, s16 xoff, const s16 *pts, s16 n, s16 colour)
-{
-    outw(0x3CE, (u16)((u8)colour << 8 | 0));
-    outw(0x3CE, 0x0F01);
-    outw(0x3CE, (u16)((DSW(DS_g_gc3) & 0xFF00) | 3));
-    for (s16 i = 0; i < n; i++) {
-        s16 x = (s16)(xoff + pts[2 * i]), y = pts[2 * i + 1];
-        if (x < DSS(DS_clip_xmin) || x > DSS(DS_clip_xmax) || y < DSS(DS_clip_ymin) || y > DSS(DS_clip_ymax)) continue;
-        u16 o = (u16)(buf.off + (u16)y * 0x28 + ((u16)x >> 3));
-        outw(0x3CE, (u16)((u8)(0x80 >> (x & 7)) << 8 | 8));
-        vwr(buf.seg, o, vrd(buf.seg, o));
-    }
-    outw(0x3CE, 0xFF08);
-}
+/* Slots 13-16, 18 and 19 point into race_render (0dcb:043c hline, 04e6 fill_rows, b8c8 shrink, bd12 rotate,
+ * 0006 plot points; game/race_gfx.c, game/race_aq.c) and the polygon fill 33f8:01ca (game/race_gfx.c). */
 
 /* The 20 targets of the EGA template DS:7B38 (checked against the loaded image: the far pointers stored
  * there are exactly these addresses). */
@@ -113,12 +88,12 @@ void video_register_codeptrs(void)
     codeptr_register(FN_ega_blinds,       (CodeFn)ega_blinds);         /* slot 10 2f32:17f5 */
     codeptr_register(FN_ega_slide_sprite, (CodeFn)ega_slide_sprite);   /* slot 11 2f32:2ab2 */
     codeptr_register(FN_ega_line,         (CodeFn)ega_line);           /* slot 12 2f32:2540 */
-    codeptr_register(FN_ega_hline,        (CodeFn)slot_not_ported);    /* slot 13 0dcb:043c (S5.3) */
-    codeptr_register(FN_ega_fill_rows,    (CodeFn)slot_not_ported);    /* slot 14 0dcb:04e6 (S5.3) */
-    codeptr_register(FN_pic_shrink_planar,(CodeFn)slot_not_ported);    /* slot 15 0dcb:b8c8 (S5.3) */
-    codeptr_register(FN_pic_rotate_planar,(CodeFn)slot_not_ported);    /* slot 16 0dcb:bd12 (S5.3) */
+    codeptr_register(FN_ega_hline,        (CodeFn)ega_hline);          /* slot 13 0dcb:043c */
+    codeptr_register(FN_ega_fill_rows,    (CodeFn)ega_fill_rows);      /* slot 14 0dcb:04e6 */
+    codeptr_register(FN_pic_shrink_planar,(CodeFn)pic_shrink_planar);  /* slot 15 0dcb:b8c8 */
+    codeptr_register(FN_pic_rotate_planar,(CodeFn)pic_rotate_planar);  /* slot 16 0dcb:bd12 */
     codeptr_register(FN_ega_set_colour,   (CodeFn)ega_set_colour);     /* slot 17 2f32:1932 */
-    codeptr_register(FN_poly_fill,        (CodeFn)slot_not_ported);    /* slot 18 33f8:01ca (S5.3) */
+    codeptr_register(FN_poly_fill,        (CodeFn)poly_fill);          /* slot 18 33f8:01ca */
     codeptr_register(FN_plot_points_ega,  (CodeFn)plot_points_ega);    /* slot 19 0dcb:0006 */
 }
 

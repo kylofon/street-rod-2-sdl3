@@ -3,6 +3,7 @@
 #include "modules.h"
 #include "game/ui.h"
 #include "game/events.h"
+#include "game/race.h"
 
 #include <stdio.h>
 
@@ -16,7 +17,7 @@ static void nop_s16(s16 v) { (void)v; }
 
 void modules_init(void)
 {
-    modules.race_phys_step = nop;                 /* S5.3 */
+    race_register_hooks();                        /* race_phys_step (race_isr from 0001:28fa) */
 
     modules.snd_state_init = nop;                 /* S5.4 */
     modules.adlib_timbres_load = nop;

@@ -6,7 +6,7 @@
  *   1a21:xxxx       graphics library: gfx_init, palette, rectangles, bitmaps, rect helpers, pictures,
  *                   the mouse pointer (cursor_init / cursor_redraw)
  *   2f32:xxxx       the EGA/VGA driver (slots 0-12, 17), 26c0 / 26b3 / 3298 / 32a5 / 3345 / 33e5 helpers
- *   not yet:        slots 13-16, 18, 19 (race_render and the polygon fill, S5.3)
+ *   game/race_gfx.c slots 13-15, 18, 19 (race_render and the polygon fill), game/race_aq.c slot 16
  *
  * Conventions: see platform.h. Descriptors are far pointers (FarPtr) to 18-byte records in mem[];
  * the screen pages have their planes in video memory (segments A000h-AFFFh, the register model).
@@ -66,12 +66,18 @@ s16  drv_anim_step(u16 anim);                                              /* sl
 s16  drv_blinds(FarPtr dst, FarPtr src);                                   /* slot 10 [A0D6] 2f32:17f5 */
 void drv_slide_sprite(s16 top, s16 bottom, s16 x, s16 from, s16 to, FarPtr spr, FarPtr alt); /* slot 11 [A0DA] 2f32:2ab2 */
 void drv_line(s16 x0, s16 y0, s16 x1, s16 y1, s16 colour);                 /* slot 12 [A0DE] 2f32:2540 */
-void drv_hspan(s16 x0, s16 x1, s16 y, s16 colour);                         /* slot 13 [A0E2] 0dcb:043c (S5.3) */
-void drv_fill_rows(s16 y, s16 colour);                                     /* slot 14 [A0E6] 0dcb:04e6 (S5.3) */
+void drv_hspan(s16 x1, s16 x2, s16 y);                                     /* slot 13 [A0E2] 0dcb:043c: colour of drv_set_colour */
+void drv_fill_rows(s16 y, s16 colour);                                     /* slot 14 [A0E6] 0dcb:04e6 */
 void drv_set_colour(s16 colour);                                           /* slot 17 [A0F2] 2f32:1932 */
-void drv_poly_fill(u16 pts, s16 n, s16 fill_colour);                       /* slot 18 [A0F6] 33f8:01ca (S5.3) */
 
 /* Registers the 20 slot targets (and the other video code pointers) in codeptr; called once at start. */
+/* slot targets owned by race_render (game/race_gfx.c, game/race_aq.c) */
+void   ega_hline(s16 x1, s16 x2, s16 y);                                   /* 0dcb:043c (slot 13) */
+void   ega_fill_rows(s16 y, s16 colour);                                   /* 0dcb:04e6 (slot 14) */
+FarPtr pic_shrink_planar(FarPtr src, u8 mask);                             /* 0dcb:b8c8 (slot 15) */
+FarPtr pic_rotate_planar(FarPtr pic, s16 angle, s16 mode, s8 *ax, s8 *ay, s16 pivot);   /* 0dcb:bd12 (slot 16) */
+void   poly_fill(const s16 *pts, s16 n, s16 fill_colour, s16 edge_colour); /* 33f8:01ca (slot 18) */
+void   plot_points_ega(FarPtr buf, s16 xoff, const s16 *pts, s16 n, s16 colour);  /* 0dcb:0006 (slot 19) */
 void video_register_codeptrs(void);
 
 /* ======================================================= EGA driver, segment 2f32 */

@@ -96,8 +96,6 @@ void hall_unscramble(void);            /* 1a21:710c */
 /* ---- functions of other slices that this slice calls */
 void msg_box(s16 id);                  /* 0001:3db4 (UI slice) */
 void wait_ticks(s16 n);                /* 0001:3d80 (UI slice): returns after n ticks or on input */
-void road_seed_init(s16 fresh);        /* 0dcb:2866 (race_render): 1 new road, seed -> DS:A9F8; 0 regenerate from DS:A9F8 */
-void road_set_param(s16 v);            /* 0dcb:24d8 (race_render): 100 on a new game, DS:7DFE on load */
 
 /* MS C 5.1 runtime helpers on DGROUP strings (flow_util.c); all arguments are DS offsets */
 void fl_strcpy(u16 dst, u16 src);                  /* strcpy */

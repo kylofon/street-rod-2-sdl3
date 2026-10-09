@@ -3,6 +3,7 @@
  * Replaces the placeholder game_main of game/flow_stub.c. */
 #include "game/game.h"
 #include "game/events.h"
+#include "game/race.h"
 #include "game/ds_events.h"
 
 #include "game/flow.h"
@@ -201,6 +202,7 @@ int game_main(int argc, char **argv)
 {
     platform_main_init(argc, argv);
     if (game_run_ms > 0) SDL_AddTimer((Uint32)game_run_ms, run_ms_expired, NULL);   /* PORT: developer aid */
+    race_debug_main();                                /* PORT: developer aid SR_DEBUG_RACE (game/race_debug.c) */
     wait_click_or_key(1);
     game_loop();
     platform_exit();

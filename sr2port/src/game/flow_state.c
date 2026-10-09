@@ -1,6 +1,7 @@
 /* game_flow: player objects, checks and the new-game set-up — port/spec/game_flow.md, garage.md
  * (0001:3e08-4250, 0001:0e94, 0001:51f8-550e, 0001:68e2). Delta port of SR1 flow_state.c. */
 #include "game/flow.h"
+#include "game/race.h"
 
 #include "game/records.h"
 #include "game/ui.h"
@@ -167,8 +168,8 @@ void new_game(void)
     DSSL(DS_money) = (s32)DSW(DS_demo) * 40000 + 0x4B0;       /* $1200; demo $41200 (SR1 $750 / $10000) */
     DSB(DS_skill_b) = 1;
     DSB(DS_skill_a) = 1;
-    road_seed_init(1);
-    road_set_param(100);
+    track_build_all(1);
+    track_build_course(100);
     opponents_init();
     DSL(DS_game_clock) = 0;
     DSL(DS_rt_base) = DSL(DS_rt_ticks);

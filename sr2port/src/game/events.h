@@ -1,9 +1,9 @@
 #pragma once
 /* The game loop's event trips (port/spec/game_flow.md): the gas station (event15, game_loop code 15), Grudge Night
- * (event17, code 17) and the race-module entry points game_flow calls (stubbed in race_stub.c until S5.3).
+ * (event17, code 17) and the race-module entry points game_flow calls (game/race_*.c).
  *
  * Implemented in game/flow_loop.c (game_loop, game_main), event15.c (2925:1ab8-2104), event17.c (2925:000e-1970,
- * the bracket logic) and event17_screens.c (2925:0522-16c8, the framed screens), race_stub.c (S5.3 stubs). */
+ * the bracket logic) and event17_screens.c (2925:0522-16c8, the framed screens), game/race_*.c (race module). */
 #include "types.h"
 #include "mem.h"
 
@@ -37,9 +37,8 @@ void bitmap_remap_colors(FarPtr b, s16 from1, u16 to1, s16 from2, u16 to2);  /* 
 s16  clip_rect_split(const s16 *clip, const s16 *r, s16 *out1, s16 *out2);   /* 2925:0c4c: r / outN are s16[10] */
 void panel_wipe(u16 mode, FarPtr bmp, s16 x, s16 y, const s16 *clip);       /* 2925:0d02 */
 
-/* ================================================================================ race module stubs
- * PORT: S5.3 stubs (race_stub.c), declared under their port/symbols.csv names. The real ones are the race
- * module's (port/spec/race.md); the stubs return a plausible "no race / lost" result and change neither money nor time. */
+/* ================================================================================ race module entry points
+ * (port/spec/race.md; implemented in game/race_*.c, more in game/race.h) */
 void drive_to_event(void);                     /* 0001:8c68: the cruise scene to / from an event (location DS:1BC8) */
 void opp_palette_set(s16 idx);                 /* 0001:8d0a: opponent car colour in palette registers 6/7 (-1 = restore) */
 void bob_drive_in(void);                       /* 0001:a626: Burger's Drive-In (street race, Mulholland, Aqueduct, the King) */

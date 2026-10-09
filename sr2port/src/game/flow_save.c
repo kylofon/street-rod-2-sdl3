@@ -9,6 +9,7 @@
  * the file is zero / non-zero), so files are byte-identical to the original's for the same state, and a loaded game lands
  * at the same DGROUP addresses (pools reset, records allocated in file order). */
 #include "game/flow.h"
+#include "game/race.h"
 
 #include "game/garage.h"
 #include "game/garage_screens.h"
@@ -184,8 +185,8 @@ s16 load_game_screen(void)
             rd_ok(fd, DS_road_param, 2) && rd_ok(fd, DS_garage_block, 0x80)) {
             dos_close(fd);
             if (DSW(DS_cur_car)) set_paint_palette((s16)(s8)DSB((u16)(DSW(DS_cur_car) + CR_COLOUR)));
-            road_seed_init(0);                        /* regenerate the road from the saved seed DS:A9F8 */
-            road_set_param(DSS(DS_road_param));
+            track_build_all(0);                        /* regenerate the road from the saved seed DS:A9F8 */
+            track_build_course(DSS(DS_road_param));
             DSL(DS_rt_base) = DSL(DS_rt_ticks) - DSL(FLOW_STK_ELAPSED);
             cursor_ctl(-2);
             return 0;
