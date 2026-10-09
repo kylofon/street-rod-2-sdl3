@@ -1,0 +1,236 @@
+kind,address,name,type,notes
+func,0001:0a68,classifieds_open,"void(int *list,int first_row)",SR2 new; spec: new
+func,0001:0ac8,classifieds_run,int(void),SR2 changed; SR1 0000:09cb classifieds_run (order 0.38); spec: changed
+func,0001:0efe,classifieds_add_car_row,"void(int id,int row,char *item)",SR2 new; spec: new
+func,0001:0f7e,classifieds_roll_ads,"int(int row,char *items)",SR2 new; spec: new
+func,0001:1048,classifieds_rebuild_ads,"int(int row,char *items)",SR2 new; spec: new
+func,0001:107c,classifieds_add_engines,"int(int row,char *items)",SR2 new; spec: new
+func,0001:10b6,classifieds_add_transmissions,"int(int row,char *items)",SR2 new; spec: new
+func,0001:10f2,classifieds_add_manifolds,"int(int row,char *items)",SR2 new; spec: new
+func,0001:112e,classifieds_add_misc_parts,"int(int row,char *items)",SR2 new; spec: new
+func,0001:11a2,classifieds,"void(int section,int reroll)",SR2 new; spec: new
+func,0001:3e30,newspaper_front,void(void),SR2 changed; SR1 0000:3b33 newspaper_front (order 0.47); spec: changed
+func,0001:3f5a,sell_spare_parts,void(void),"SR2 new; spec: changed; claimed from module vote ""game_flow"""
+func,0001:423a,car_alloc,CAR*(void),SR2 changed; SR1 0000:3fb1 car_alloc (calls 0.50); spec: = SR1 with DS remap
+func,0001:4250,car_release,void(CAR*),SR2 changed; SR1 0000:3fd4 car_release (order 1.00); spec: = SR1 with DS remap
+func,0001:426c,spare_add,"void(int type,int value)",SR2 changed; SR1 0000:3ff0 spare_add (order 0.40); spec: = SR1 with DS remap
+func,0001:42aa,car_new,"CAR*(int model,int value,CAR *reuse)",SR2 changed; SR1 0000:4036 car_new (calls 0.50); spec: changed
+func,0001:46f0,part_release,int(PART*),SR2 changed; SR1 0000:4386 part_release (calls 0.50); spec: changed
+func,0001:4716,car_free,int(CAR*),SR2 new; spec: new
+func,0001:478e,how_about,int(uint *offer),SR2 changed; SR1 0000:4940 how_about (order 0.54); spec: changed
+func,0001:4804,car_flags,uint(CAR*),SR2 changed; SR1 0000:49a2 car_flags (order 0.36); spec: changed
+func,0001:4852,your_cars,int(void),SR2 new; spec: changed
+func,0001:4d90,message_at,"void(int id,int x,int y)",SR2 same; SR1 0000:4ffa message_at (code 1.00); spec: = SR1 with DS remap
+func,0001:51f8,opponent_init,"void(int i,int *pool)",SR2 changed; SR1 0000:542e opponent_init (calls 0.50); spec: changed
+func,0001:534c,opponents_init,void(void),SR2 changed; SR1 0000:5584 opponents_init (order 0.38); spec: changed
+func,0001:5400,new_game,void(void),SR2 changed; SR1 0000:56a9 new_game (order 0.35); spec: changed
+func,0001:54ba,trim_trailing_spaces,int(char *s),SR2 new; spec: new
+func,0001:550e,new_game_prompt,int(void),SR2 changed; SR1 0000:570c new_game_prompt (calls 0.50); spec: changed
+func,0001:63e0,day_index,int(void),SR2 changed; SR1 0000:6476 day_index (globals 1.00); spec: = SR1 with DS remap
+func,0001:640e,classified_week,int(void),SR2 new; spec: new
+func,0001:6426,clock_hm,"void(int *h,int *m)",SR2 changed; SR1 0000:64a3 clock_hm (globals 0.86); spec: = SR1 with DS remap
+func,0001:64a2,summer_over_check,void(void),SR2 changed; SR1 0000:6529 summer_over_check (order 0.40); spec: = SR1 with DS remap
+func,0001:64b2,month_of_day,"int(int day,int *dom)",SR2 changed; SR1 0000:653c month_of_day (order 0.40); spec: = SR1 with DS remap
+func,0001:650a,calendar_show,void(int quick),SR2 changed; SR1 0000:65af calendar_show (order 0.40); spec: = SR1 with DS remap
+func,0001:66ae,date_print,void(int y),SR2 changed; SR1 0000:6750 date_print (loose 0.75); spec: = SR1 with DS remap
+func,0001:672c,set_paint_palette,void(int colour),SR2 changed; SR1 0000:67cf set_paint_palette (calls 0.50); spec: = SR1 with DS remap
+func,0001:6796,garage_hotspots_nocar,void(void),SR2 new; spec: changed
+func,0001:67b8,garage_hotspots_car,"void(int model,int x,int y)",SR2 changed; SR1 0000:68e8 garage_hotspots_car (calls 0.50); spec: changed
+func,0001:68c0,garage_name_clear,void(void),SR2 changed; SR1 0000:6aa6 garage_name_clear (calls 0.50); spec: = SR1 with DS remap
+func,0001:68e2,broke_check,int(void),SR2 changed; SR1 0000:6ad8 broke_check (order 0.40); spec: changed
+func,0001:6912,garage_screen,int(int mode),SR2 changed; SR1 0000:6b06 garage_screen (string 1.00); spec: changed
+func,0001:6d5e,paint_job,void(void),SR2 changed; SR1 0000:6f6b paint_job (order 0.53); spec: changed
+func,0001:6edc,customize,void(int what),SR2 changed; SR1 0000:711a customize (order 0.36); spec: changed
+func,0001:70d2,spares_collect,"void(int cat,PART **nodes,char *wear,int n0,int *count)",SR2 changed; SR1 0000:76a7 spares_collect (order 0.62); spec: changed
+func,0001:715a,part_install,"void(PART *p,PART **slot)",SR2 changed; SR1 0000:7741 part_install (calls 0.50); spec: changed
+func,0001:7196,part_uninstall,void(PART **slot),SR2 changed; SR1 0000:7789 part_uninstall (calls 0.50); spec: changed
+func,0001:71be,spare_unlink,PART*(PART *p),SR2 changed; SR1 0000:77b7 spare_unlink (order 0.41); spec: = SR1 with DS remap
+func,0001:71f6,change_tires,void(void),SR2 changed; SR1 0000:7800 change_tires (order 0.45); spec: changed
+func,0001:72f2,car_info_sr2,void(void),"SR2 new; spec: new; claimed from module vote ""game_flow"""
+func,0001:75b8,change_transmission,void(void),SR2 changed; SR1 0000:7aa4 change_transmission (order 0.45); spec: changed
+func,0001:7a44,car_runnable,"int(CAR*,int full)",SR2 changed; SR1 0000:7ee6 car_runnable (order 0.40); spec: changed
+func,0001:7aec,ignition_tune,void(CAR*),"SR2 new; spec: new; claimed from module vote ""sound"""
+func,0001:80a8,engine_bay,void(CAR*),SR2 changed; SR1 0000:81ab engine_bay (order 0.43); spec: changed
+func,1a21:1954,text_width,int(const char *s),SR2 new; spec: new
+func,1a21:2018,dialog_msg,void(const char *text),SR2 changed; SR1 0f38:239c dialog_msg (loose 0.62); spec: changed
+func,1a21:204c,fatal_message,void(const char *text),SR2 changed; SR1 0f38:23ce fatal_message (order 0.40); spec: changed
+func,1a21:2530,msg_draw,void(int id),SR2 changed; SR1 0f38:28a4 msg_draw (order 0.43); spec: changed
+func,1a21:274e,msg_draw_at,"void(int id,int x,int y)",SR2 changed; SR1 0f38:2a62 msg_draw_at (order 0.46); spec: changed
+func,1a21:27d2,msg_close,void(void),"SR2 new; spec: new; claimed from module vote ""video"""
+func,1a21:2888,present_back_page,void(void),SR2 new; spec: new
+func,1a21:2d90,cursor_ctl,void(int a),SR2 new; spec: changed
+func,1a21:2e92,trans_bolt_draw,"void(int tight,int bolt)",SR2 changed; SR1 0f38:3074 trans_bolt_draw (loose 0.75); spec: = SR1 with DS remap
+func,1a21:2fc4,trans_bolt_remove_anim,void(int bolt),SR2 changed; SR1 0f38:31a5 trans_bolt_remove_anim (loose 0.73); spec: = SR1 with DS remap
+func,1a21:30f2,trans_slide_anim,"void(int pic,int reject)",SR2 changed; SR1 0f38:32ce trans_slide_anim (loose 0.61); spec: = SR1 with DS remap
+func,1a21:322e,trans_remove_anim,void(void),SR2 changed; SR1 0f38:3404 trans_remove_anim (order 0.40); spec: changed
+func,1a21:328c,trans_screen_draw,"void(int pic,char *bolts,...)",SR2 changed; SR1 0f38:345b trans_screen_draw (loose 0.64); spec: = SR1 with DS remap
+func,1a21:332e,bay_engine_idx,int(void),SR2 changed; SR1 0f38:34fb bay_engine_idx (order 0.40); spec: changed
+func,1a21:334a,bay_carb_pos,"int(int *x,int *y)",SR2 changed; SR1 0f38:351c bay_carb_pos (order 0.42); spec: changed
+func,1a21:33aa,bay_part_pos,"void(int *x,int *y)",SR2 changed; SR1 0f38:3589 bay_part_pos (calls 0.50); spec: changed
+func,1a21:33fe,bay_bolt_pos,"void(int *x,int *y)",SR2 changed; SR1 0f38:35e4 bay_bolt_pos (calls 0.50); spec: changed
+func,1a21:34a2,bay_bolt_draw,void(int tight),SR2 changed; SR1 0f38:3697 bay_bolt_draw (calls 0.50); spec: changed
+func,1a21:369a,bay_bolt_remove_anim,void(void),SR2 changed; SR1 0f38:37fc bay_bolt_remove_anim (order 0.37); spec: changed
+func,1a21:381e,bay_part_in_anim,"void(int pic,int reject)",SR2 changed; SR1 0f38:3a58 bay_part_in_anim (order 0.46); spec: changed
+func,1a21:39a4,bay_part_out_anim,void(void),SR2 changed; SR1 0f38:3c19 bay_part_out_anim (order 0.46); spec: changed
+func,1a21:3a5a,bay_connector_draw,void(void),SR2 changed; SR1 0f38:3d1c bay_connector_draw (calls 0.50); spec: changed
+func,1a21:3b34,bay_draw_car,void(CAR*),SR2 changed; SR1 0f38:3e35 bay_draw_car (order 0.46); spec: changed
+func,1a21:3c14,bay_draw_parts,"void(int own,int clank)",SR2 changed; SR1 0f38:3f2d bay_draw_parts (order 0.45); spec: changed
+func,1a21:3d10,bay_hotspots,"void(int *ctx_tbl,int *side_tbl)",SR2 new; spec: new
+func,1a21:4284,ui_bounds,"void(int screen,int *x,int *y,int *w,int *h)",SR2 changed; SR1 0f38:4c1a ui_bounds (calls 0.50); spec: = SR1 with DS remap
+func,1a21:434a,ui_save_bg,"FarPtr(int screen,int *x,int *y,int kind)",SR2 changed; SR1 0f38:4d10 ui_save_bg (calls 0.50); spec: changed
+func,1a21:4798,ui_redraw_element,void(UIEL*),SR2 new; spec: new
+func,1a21:4b96,ui_push,void(int screen),SR2 changed; SR1 0f38:4a66 ui_push (order 0.42); spec: changed
+func,1a21:4cac,ui_pop,void(int all),SR2 changed; SR1 0f38:4ba1 ui_pop (order 0.38); spec: changed
+func,1a21:4d7c,ui_sort_screen,void(int screen),SR2 changed; SR1 0f38:4f4f list_box (order 0.40); spec: changed
+func,1a21:4e0c,wear_text,char*(int pct),SR2 changed; SR1 0f38:4fc1 wear_text (string 0.50); spec: = SR1 with DS remap
+func,1a21:4e56,list_row,"void(int x,int y,const char *text,int right,int show_wear,int pct)",SR2 new; spec: new
+func,1a21:4ebc,list_box_run,"int(int screen,int sel,const char **texts,const char *wear,int n)",SR2 changed; SR1 0f38:500e list_box_run (order 0.44); spec: changed
+func,1a21:55ea,list_box,"int(int screen,int sel,const char **texts,const char *wear,int n)",SR2 new; spec: changed
+func,1a21:565c,slot_list_edit,"int(int screen,int sel,const char **texts,int n)",SR2 new; spec: new
+func,1a21:5c52,edit_begin,"void(int x,int y,char *buf,int maxlen)",SR2 new; spec: new
+func,1a21:5d5e,edit_key,void(void),SR2 new; spec: new
+func,1a21:5f16,edit_blink,void(void),SR2 new; spec: new
+func,1a21:5f90,edit_end,void(void),SR2 new; spec: new
+func,1a21:5fb8,edit_run,"int(int x,int y,char *buf,int maxlen)",SR2 new; spec: new
+func,1a21:6056,edit_number,"int(int *v,char *buf)",SR2 changed; SR1 0f38:5da7 edit_number (loose 0.73); spec: = SR1 with DS remap
+func,1a21:60d2,ui_edit_number,"int(int screen,int *v)",SR2 changed; SR1 0f38:5e1e ui_edit_number (loose 0.60); spec: = SR1 with DS remap
+func,1a21:8268,pump_overlay,"void(int x,int y0,int w,int h,FarPtr dst,int idx)",SR2 changed; SR1 0f38:872e pump_overlay (calls 0.50); spec: changed
+func,1a21:831c,car_strip_setup,"void(FarPtr strip,FarPtr *bgsrc,int smoke_pic,FarPtr *bg,int top,int h,u16 *ov)",SR2 changed; SR1 0f38:84be car_strip_setup (loose 0.63); spec: changed
+func,1a21:8546,car_compose,"void(FarPtr *frames,int model,int flags,int driver,int *tyre_pics,int smoke,int n)",SR2 changed; SR1 0f38:8866 car_compose (order 0.38); spec: changed
+func,1a21:89fa,car_draw,"void(int mode,int model,uint flags,int driver,int y,int *tyre_pics)",SR2 changed; SR1 0f38:8e48 car_draw (loose 0.65); spec: changed
+func,1a21:9216,walker_anim,"void(FarPtr pic,int sx,int sy,int w,int h,int dx,int y,int base,int unused)",SR2 changed; SR1 0f38:975b walker_anim (order 0.40); spec: changed
+func,1a21:92f2,carhop_frames,"void(FarPtr *frames,int mode)",SR2 changed; SR1 0f38:985c carhop_frames (order 0.40); spec: changed
+func,1a21:939a,carhop_strip,void(FarPtr *d),SR2 changed; SR1 0f38:990f carhop_strip (loose 0.60); spec: changed
+func,1a21:945a,carhop_anim,"void(int mode,int opp)",SR2 changed; SR1 0f38:99d9 carhop_anim (loose 0.67); spec: changed
+func,1a21:98e2,town_bg_save,void(void),SR2 changed; SR1 0f38:9e5d town_bg_save (loose 1.00); spec: changed
+func,1a21:9b26,arena_release_levels,void(void),SR2 new; spec: new
+func,1a21:9b40,arena_free_low,void(int n),SR2 new; spec: new
+func,1a21:9b56,arena_free_high,void(int n),SR2 new; spec: new
+func,1a21:a016,anim_ring_reverse,void(ANIM*),SR2 changed; SR1 0f38:a5a5 anim_ring_reverse (order 0.40); spec: = SR1 with DS remap
+func,1a21:a0d4,anim_phase_set,"void(ANIM*,int i,int count,int dx,int dy)",SR2 changed; SR1 0f38:a65d anim_phase_set (order 0.41); spec: = SR1 with DS remap
+func,1a21:a11e,anim_phases,"void(ANIM*,int mode,int d1,int d2,int d3,int dist,int p1,int p2)",SR2 changed; SR1 0f38:a6ad anim_phases (order 0.39); spec: = SR1 with DS remap
+func,1a21:a25e,anim_script,"void(ANIM*,int mode,int dist)",SR2 changed; SR1 0f38:a7ee anim_script (order 0.40); spec: = SR1 with DS remap
+func,1a21:b16e,tc_wheel_strip,FarPtr(int wheel_x),SR2 changed; SR1 0f38:b632 tc_wheel_strip (loose 0.70); spec: changed
+func,1a21:b358,tc_wheel_swap,"void(int x,int *old_pics,int *new_pics)",SR2 changed; SR1 0f38:b82c tc_wheel_swap (order 0.40); spec: changed
+func,1a21:b9bc,tire_change_anim,"void(int *old_pics,int *new_pics)",SR2 changed; SR1 0f38:be93 tire_change_anim (loose 0.60); spec: changed
+func,2925:2b26,under_car_slide_in,void(void),"SR2 new; spec: new; claimed from module vote ""video"""
+func,2925:2e60,under_car_draw,void(void),"SR2 new; spec: new; claimed from module vote ""video"""
+func,2925:2ff8,under_car_part_pic,"void(int cat,int type)","SR2 new; spec: new; claimed from module vote ""video"""
+func,2925:3174,under_car_menu,int(void),"SR2 new; spec: new; claimed from module vote ""video"""
+global,DS:A9FC,money,i32,bankroll; SR1 7EAA
+global,DS:AA02,cur_car,CAR*,car in the garage; SR1 7EB0
+global,DS:AA04,other_cars,CAR*,other owned cars; SR1 7EB2
+global,DS:AA06,car_free_list,CAR*,SR1 7EB4
+global,DS:AA08,cars_used,i16,limit 16; SR1 7EB6
+global,DS:AA0A,spares,PART*,spare-part list; SR1 7EB8
+global,DS:AA0C,part_free_list,PART*,SR1 7EBA
+global,DS:AA0E,parts_used,i16,limit 181 (pool 190); SR1 7EBC
+global,DS:AEC2,car_pool,CAR[16],0x2A-byte records; SR1 83B0
+global,DS:B1BE,part_pool,PART[190],8-byte nodes; SR1 866A
+global,DS:1F6A,game_clock,u32,0x222 = 1 h; SR1 05FC
+global,DS:1F6E,tick_clock,u32,SR1 0600
+global,DS:1F72,clock_origin,u32,SR1 0604
+global,DS:1BC6,end_flags,u16,"bit0 summer over, bit4 broke; SR1 0282"
+global,DS:1BC8,location,u16,1 garage 2 street 3 gas 4 event17 5 newspaper 6 Bobs drive-in; SR1 0284
+global,DS:9730,demo_flag,u16,copy of DS:B8D0; SR1 0610
+global,DS:A9E8,player_name,char[16],licence name
+global,DS:4C54,switch_old,CAR*,SR1 4F46
+global,DS:4C56,switch_new,CAR*,SR1 4F48
+global,DS:AD5C,car_x,i16,SR1 825E
+global,DS:AD5E,car_y,i16,SR1 8260
+global,DS:AD60,car_h,i16,SR1 8262
+global,DS:AD62,gascap_x,i16,SR1 826E
+global,DS:AD64,gascap_y,i16,SR1 8270
+global,DS:AD6E,garage_car_pic,i16,SR1 827A
+global,DS:AD70,garage_car_colour,i16,SR1 827C
+global,DS:AD72,garage_car_tyre,i16,SR1 827E
+global,DS:AD74,garage_car_driver,i16,SR1 8280
+global,DS:AD76,garage_car_model,i16,SR1 8282
+global,DS:AD78,garage_car_flags,u16,SR1 8284
+global,DS:220A,garage_title,char[44],SR1 29FF
+global,DS:4D8A,blank_title,char[32],SR1 5094
+global,DS:5304,music_on,i16,juke box; SR1 58D0
+global,DS:9B40,ad_week,u16,"classified week (0xFFFF none); SR2 new, saved in games"
+global,DS:9B42,ad_ids,u8[26],"ids, 0xFF end, 0x80 sold"
+global,DS:9B5C,ad_cool,u8[42],per-id counters
+global,DS:9B86,ad_pool,u16,ids with counter 0
+global,DS:9B88,ad_part_row,u16,first part row
+global,DS:9B8A,ad_price,u16[27],price per car row
+global,DS:9F2C,ad_lines,i16[],"[0] row count, [i] text lines"
+global,DS:A61C,list_text,char*[],near text pointers of the current list (SR1 49E0)
+global,DS:1EC8,page_first_row,i16,classified page
+global,DS:1ECA,page_last_row,i16,
+global,DS:1ECC,page_list,int*,=DS:9F2C
+global,DS:1ECE,page_paper,FarPtr,paper picture 0x3F5
+global,DS:1ED2,page_redraw,u8,
+global,DS:4502,PARTS,PARTDEF[64],"part catalogue, 10 bytes; SR1 4806"
+global,DS:478C,INIT_WEAR,i16[8],SR1 4966
+global,DS:4E6E,CARBS_PER_MANIFOLD,i16[9],SR1 5126
+global,DS:4D1E,PAINT,u8[6][3],SR1 50C2
+global,DS:4D30,TYRE_PICS,i16[3][4],SR1 5030
+global,DS:483A,TRANS_PICS,i16[4],SR1 49D2
+global,DS:4C5A,NEWS_PICS,i16[12],headline photos by week
+global,DS:4D48,CAL_X0,i16,33
+global,DS:4D4A,CAL_Y0,i16[4],
+global,DS:4D52,CAL_ROW0,i16[4],
+global,DS:47A8,MANIFOLD_FITS,u8[3][9],SR1 4978
+global,DS:47C4,CARB_FITS,u8[9][3],SR1 4988
+global,DS:47E0,BAY_PICS,i16[5][9],SR1 4998
+global,DS:47F2,bay_manifold0_pic,i16,runtime 0x429/0x42A (BAY_PICS[1][0])
+global,DS:4E80,BOLTS_PER_LAYER,i16[6],SR1 5130
+global,DS:4E8C,BOLT_CTX,i16[7],SR1 5184
+global,DS:4E9A,BOLT_SIDE,i16[7],SR1 5198
+global,DS:4EA8,LAYER_CAT,i16[5],SR1 513C
+global,DS:4EB4,BAY_LAYOUT,i16[9][3],SR1 5148
+global,DS:209C,FIRST_CARB_CTX,u8[9],first carburettor layout code per manifold grade; SR1 078C
+global,DS:208A,CTX_SLOT,u8[],bay context -> slot (index = ctx); SR1 077E
+global,DS:201A,TRANS_BOLT_Y,i16[2],SR1 06FE
+global,DS:201E,ENGINE_SEAT,i16[3][2],SR1 0702
+global,DS:202A,ENGINE_BOLT,i16[3][2],SR1 070E
+global,DS:2036,CONNECTOR_POS,i16[3][2],SR1 071A
+global,DS:204E,CARB_SEAT,i16[13][2],ctx 4..16; SR1 0742
+global,DS:2082,CARB_BOLT_OFS,i16[3][2],SR1 076A
+global,DS:2092,BOLT_RECTS,Rect[4],20 bytes per tightness
+global,DS:2018,bay_animate,u8,SR1 06FC
+global,DS:AD84,bay_slot_pic,i16[5],SR1 8290
+global,DS:AD8E,bay_bolt_pic,i16[6],tightness; SR1 829A
+global,DS:AD9A,bay_connector_pic,i16,SR1 82AC
+global,DS:AD9C,bay_ctx,i16,SR1 82AE
+global,DS:ADA0,bay_side,i16,SR1 82B2
+global,DS:AD18,bay_bitmap,FarPtr,SR1 8232
+global,DS:AD7A,trans_pic,i16,SR1 8286
+global,DS:9872,MODEL_HOTSPOTS,u8[22][20],SR1 70E4
+global,DS:9BF4,MODEL_LAYOUT,u8[22][12],SR1 7682
+global,DS:BAAC,MODEL_OVERLAYS,OVERLAY[22],SR1 8DF0
+global,DS:A80C,MODELS,MODEL[22],SR1 7D86
+global,DS:AB7E,PEOPLE,PERSON[22],SR1 7FF8
+global,DS:A542,forsale_head,u16,SR1 7D16
+global,DS:11EA,MSG_TABLE,"{box,line1,line2}[122]",message table
+global,DS:1E46,MSG_BOXES,BOX[3],18-byte box records
+global,DS:1E7C,msg_saved_bg,FarPtr,open box background
+global,DS:881A,msg_box_rec,BOX*,
+global,DS:3AD8,SCREENS,UIEL*[36],screen element arrays
+global,DS:9DC6,SCHEME,ptr,"colour scheme records, 5 bytes"
+global,DS:B874,ui_stack,i16[],screen stack
+global,DS:B87C,ui_depth,i16,
+global,DS:B894,ui_cur,UIEL*,
+global,DS:B888,ui_row0,UIEL*,first list row element
+global,DS:B88A,ui_rows,i16,
+global,DS:B88E,ui_sel,i16,selected list row (0-based)
+global,DS:B890,ui_field,UIEL*,title/edit element
+global,DS:B898,ui_hover,i16,
+global,DS:7906,car_strip,FarPtr,car_draw strip bitmap; SR1 5A0A
+global,DS:7916,car_pass,i16,two-pass state; SR1 5A24
+global,DS:1BD0,LOC_ROWS,i16[7],SR1 0298
+global,DS:1BDE,LOC_YOFF,i16[7],SR1 02A6
+global,DS:1BFA,LOC_COLOUR_EGA,i16[7],SR1 02C2
+global,DS:1BEC,LOC_COLOUR,i16[7],SR1 02B4
+global,DS:50F2,PUMP_X,i16[2],
+global,DS:50F8,PUMP_W,i16[6],
+global,DS:5104,PUMP_SX,i16[6],
+global,DS:5070,CARHOP_COLS,rec14[7],Bobs background columns; SR1 533E
+global,DS:7918,CARHOP_FRAMES,rec6[2],SR1 5A26
+global,DS:79E6,JACK_PICS,i16[3],SR1 5AAA
+global,DS:4F1C,TIMING_FLASH,i8[][10],ignition flash pattern (index ign*5+k)
+global,DS:4E54,CARINFO_INDENT,i16[10],SR1 50CE
+global,DS:822A,UNDERCAR_PICS,i16[7],"exhaust manifold {1203,1204}, muffler {1205,1206}, differential {1200..1202}"

@@ -62,12 +62,14 @@ def read_lib(path):
             raw = w * h * depth // 8
             tokens = d[p + 6:p + 22]
             off, size = struct.unpack_from('<IH', d, p + 22)
-        out.append(dict(index=i, w=w, h=h, raw=raw, masked=masked, tokens=tokens,
+        out.append(dict(index=i, w=w, h=h, raw=raw, masked=masked, tokens=tokens, sr2=rec == 28,
                         data=d[base + off:base + off + size + 1]))
     return out
 
 
-def unpack(data, tokens, raw):
+def unpack(data, tokens, raw, sr2=False):
+    """sr2: `00 00` / `FF 00` stand for the literal token bytes tokens[0] / tokens[1] (pic_unpack,
+    port/spec/video.md); SR1 decodes them as one 00 / FF."""
     assert data[0] == 0xBC, 'missing BC marker'
     tok = {t: k for k, t in enumerate(tokens) if t}   # zero entries = unused (LIB1 #0)
     out = bytearray()
@@ -76,7 +78,11 @@ def unpack(data, tokens, raw):
     while i < len(src):
         b = src[i]; i += 1
         if b in (0x00, 0xFF):
-            out += bytes([b]) * (src[i] + 1); i += 1
+            if sr2 and src[i] == 0:
+                out.append(tokens[0] if b == 0 else tokens[1])
+            else:
+                out += bytes([b]) * (src[i] + 1)
+            i += 1
         elif b in tok:
             k = tok[b]
             out += bytes([RUN_VALUE[k]]) * RUN_COUNT[k]
@@ -125,7 +131,7 @@ def main():
         pal = game_palette(0x1DC8 if pal_name == 'game' else int(pal_name, 16))   # or a DS offset in hex
     sheet = []
     for p in pics:
-        pix = unpack(p['data'], p['tokens'], p['raw'])
+        pix = unpack(p['data'], p['tokens'], p['raw'], p['sr2'])
         idx = to_indices(p, pix, cga)
         rgb = bytearray()
         for c in idx:

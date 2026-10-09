@@ -63,7 +63,7 @@ number. Loaded by `1a21:75ea` (sets named by id lists at DS:4BD6 / 4BEE / 4C16 /
 terminated, chosen by `DS:ADD6`) with `1a21:7304` (format A, sets 0..22) or, in mode 8, `1a21:7446`
 (format B, sets 23..25; first id `DS:81DA` = 23, count `DS:81DC` = 3). Both open `?:sr2_shp`
 (DS:4BC0, first char = drive) once, `lib_seek` to the offset and read the set. Drawn by
-`shape_draw` 1dcb:4154 (x, y, lod, set ptr, mirror).
+`shape_draw` 0dcb:4154 (x, y, lod, set ptr, mirror; format A; LOD = clamp(9 − depth, 0, 6)); format B (Aqueduct, road mode 8) by 0dcb:8288, where the 7 "LODs" are 7 pre-rotated versions chosen by the roll angle (`port/spec/race_render.md`).
 
 ```
 format A set:  u16 n_lods | u16 ptr_off | u16 ptr_seg   (last two are runtime pointers, file junk)
@@ -72,7 +72,7 @@ format A set:  u16 n_lods | u16 ptr_off | u16 ptr_seg   (last two are runtime po
 format B set:  u16 n_groups | u16 lods_per_group (=7) | u16,u16 runtime | n_groups x u32 runtime far ptrs
                n_groups x lods_per_group x 16-byte LOD record | span data      (set 25 has 9 groups, 23/24 one)
 LOD record:    6 x {u8 colour, u8 count}  (stops at count 0; colour = EGA palette register 0..15)
-               u16 pad, u32 runtime pointer to this LOD's span data (+12)
+               u32 runtime pointer to this LOD's span data (+12); 12 + 4 = 16 bytes, no pad
 span data:     for each LOD record in order, for each (colour, count): count x {i8 x, i8 y, i8 w}
                = horizontal line from x to x+w at row y, relative to the object origin
                  (x mirrored when the mirror flag is <= 0)
@@ -102,8 +102,8 @@ file (they are plain strings in the exe, referenced by direct DS pointers instea
 | 4 | 0x528 | 440 | 9872 | 22 × 20 five hot-spot rectangles per model (`0001:a270`) | 4 |
 | 5 | 0x6E0 | 2 | A542 | head of the for-sale chain (0) | 7 |
 | 6 | 0x6E2 | 88 | BBF4 | 44 × u16 offsets into the text pool: [0..21] ad text of car i, [22..43] name of person i | (text block 6) |
-| 7 | 0x73A | 396 | 8E3C | road graphics: 6 entries × 3 bitmaps × 22 bytes | new |
-| 8 | 0x8C6 | 84 | AA9E | road graphics table 6 × 14: `{u16 id×3, u16 ptr, u16 ptr, u16 id, u16 ptr}` (LIB3 ids 2001.., ptrs set by loader) | new |
+| 7 | 0x73A | 396 | 8E3C | opponent sprite **shrink masks**: 18 records × 22 bytes = 7 viewing angles (DS:7FBE, −45°..+45° in 15° steps) × 3 size steps + 1 pad; normal races use the 0° masks (bytes 9..11), the Aqueduct all angles (0dcb:ad40). See `port/spec/race_render.md` §1.7 | new |
+| 8 | 0x8C6 | 84 | AA9E | opponent sprite table (SR1 DS:5E14) 6 × 14: `{u16 side id, u16 rear-3/4 id, u16 rear id, u16 mask ptr A, u16 mask ptr B, u16 front id, u16 mask ptr C}` (LIB3 ids 2001..2082; ptrs set by the loader to 8E3C + 66·i (+22, +44)); row = opponent model's block-2 byte 0, row 5 = police | SR1 table in exe |
 | – | 0x91A | 1277 | 8860 | text pool: NUL-terminated strings, `+` prefix = continuation line, backtick = space | – |
 
 Car record (DS:A80C + 20·i; 21 cars + #21 = the King's car):
@@ -130,7 +130,7 @@ Car record (DS:A80C + 20·i; 21 cars + #21 = the King's car):
 form the seller/car pair of the used-car ads (0 = "Phil", "1951 Ford Victoria").
 
 Reading functions: `hot_data_load` 1a21:6e6a (all); `car_new` 0001:42aa, `classifieds_run` 0001:0ac8;
-`opponent_init` 0001:51f8 / `opponents_init` 0001:534c; hot-spots 0001:a270; road graphics 0dcb:37ce, 0dcb:ad40.
+`opponent_init` 0001:51f8 / `opponents_init` 0001:534c; hot-spots 0001:a270; opponent sprites 0dcb:37ce, 0dcb:ad40.
 
 ## `SR2_END` — ending animation — `tools/sr2data.py`
 
@@ -193,6 +193,5 @@ Messages: "No saved games found !", "Cannot read that game !", "Disk error durin
 ## Still to decode
 - Meaning of the raw engine-bay / compatibility tables (47A8..4EB4) and of the 0x80-byte save block at DS:9B40.
 - Save header fields (money, counters), the 12 bytes at DS:479C, car record flag word `+18` in SR2_DATA.
-- Format of the road graphics bitmaps (SR2_DATA block 7) and what they depict.
 - SR1 sticker table and top-speed tables (not located in SR2).
 - Sound driver playback (S3.2).

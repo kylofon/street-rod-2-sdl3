@@ -1,0 +1,241 @@
+kind,address,name,type,notes
+func,0001:01ea,sound_options_menu,int near (void),"SR2 new; text menu, 0=AdLib 1=speaker"
+func,0001:1728,music_stop,void far (void),"SR1 0000:0d99; device-aware, jukebox button via DS:3AD8"
+func,0001:1784,music_resume,void far (void),SR1 0000:0dd8; device-aware
+func,0001:2002,tune_start,"void far (int word_off,int delay)","SR1 music_start 0000:1a05; voted game_flow, claimed by sound; rep starts at 1"
+func,0001:208a,tune_rewind,void far (void),SR1 music_rewind 0000:1a7c; now only stop+gate off
+func,0001:20a0,race_isr_enter,void far (void),SR1 drive_isr_install 0000:1aad; sound part (platform owns the rest)
+func,0001:2164,music_resume_after_race,void far (void),SR2 new; restores music switched off by race_isr_enter
+func,0001:2176,race_isr_leave,void far (void),SR1 drive_isr_remove 0000:1b27; sound part
+func,2c57:0002,song_select,"void far (u16 song,u16 loop_tbl,u16 vib_tbl)",SR1 0f38:6f0a rewritten; speaker only
+func,2c57:00b8,vib_set,"void far (int row,int period,int depth,int step)","SR1 0f38:6fbd; dead, no callers"
+func,2c57:00f6,music_mute,void far (int mute),SR1 0f38:7001 recompiled; speaker slot 22
+func,2c57:0140,spk_set_vib_amount,void far (u16),SR2 new; dead
+func,2c57:014c,spk_set_engine_note,"void far (u16 amount,u16 div)",SR2 new; dead; partner of note-6000 override
+func,2c57:016a,spk_set_vib_step,void far (u16),SR2 new; dead
+func,2c57:017a,spk_set_vib_row_period,"void far (u16 row,u16 period)",SR2 new; dead
+func,2c57:0194,spk_set_note_div,void far (u16),SR2 new; dead
+func,2c57:01a2,sound_stop,void far (void),SR2 new; speaker slots 20 and 21
+func,2c57:01ae,snd_calibrate_delay,int far (int n),SR1 0f38:703e recompiled; DS:58E2->742A
+func,2c57:0234,spk_set_hz,void far (long hz),SR1 0f38:70d5 recompiled
+func,2c57:025c,fx_tone,"void far (long hz,u16 d)",SR1 0f38:714c recompiled
+func,2c57:0278,fx_burst,"void far (int lo,int hi,u16 d,int n)",SR1 0f38:7169 recompiled
+func,2c57:02b8,fx_sweep_down,"void far (int from,int to,int step,u16 d)",SR1 0f38:71b2 recompiled
+func,2c57:02e6,fx_warble,"void far (int c,int dev,int step,u16 d,int n)",SR1 0f38:71e4 recompiled
+func,2c57:0374,pwm_up,void far (...),SR1 0f38:7292 recompiled; dead
+func,2c57:03de,pwm_down,void far (...),SR1 0f38:7306 recompiled; dead
+func,2c57:0448,ramp_fill,int far (...),SR1 0f38:737a recompiled; dead
+func,2c57:048e,pwm_swell,void far (...),SR1 0f38:73ed recompiled; dead
+func,2c57:0506,fx_noise,"void far (int range,int ormask,int n)",= SR1 0f38:7464; index class new; gate off via slot 23
+func,2c57:0544,fx_noise_down,"void far (int a,int b,int sub,int step,int n)",= SR1 0f38:74b0
+func,2c57:0578,fx_noise_up,"void far (int a,int b,int sub,int step,int n)",= SR1 0f38:74fc
+func,2c57:05ac,spk_vec_off,void far (void),"SR1 spk_off 0f38:713d; speaker slot 23; port61&=FC, DS:3BD6=0"
+func,2c57:05ba,spk_vec_on,void far (void),"speaker slot 24; port61|=3, DS:3BD6=1; unlike SR1 spk_on no 25 kHz"
+func,2c57:05c8,speaker_sound_init,void far (void),"SR2 new; copies DS:530A to BB8C, calibrates delay"
+func,2c57:0608,spk_loop_putt,void far (int on),speaker slot 0; song 5544
+func,2c57:0634,spk_slot_nop,void far (void),speaker slot 1 (retf)
+func,2c57:0636,spk_loop_hum100,void far (int on),speaker slot 3; song 5524; no caller
+func,2c57:0662,spk_loop_hum150,void far (int on),speaker slot 2; song 5534
+func,2c57:068e,spk_loop_tick,void far (int on),speaker slot 4; song 5490
+func,2c57:06ba,spk_loop_blips,void far (int on),speaker slot 7; song 54BC
+func,2c57:06e6,spk_loop_pulse,void far (int on),speaker slot 6; song 5500
+func,2c57:0712,spk_loop_spray,void far (int on),speaker slot 5; song 5570
+func,2c57:073e,spk_loop_wrench,void far (int on),speaker slot 10; song 54DC
+func,2c57:076a,spk_bg_tune,void far (void),speaker slot 18
+func,2c57:0780,spk_jingle_tune,void far (void),speaker slot 19; song 6E48
+func,2c57:0796,siren_set,void far (int on),= SR1 0f38:7728; speaker slot 11; DS:72E2
+func,2c57:07a6,fx_click,void far (void),= SR1 0f38:77ba; speaker slot 12
+func,2c57:07d2,fx_chirp_hi,void far (void),= SR1 0f38:77e1; speaker slot 13
+func,2c57:080a,fx_chirp_lo,void far (void),= SR1 0f38:7817; speaker slot 14
+func,2c57:0836,fx_clank,void far (void),= SR1 0f38:7841; speaker slot 8
+func,2c57:085c,fx_clank2,void far (void),= SR1 0f38:7841 (second copy); speaker slot 9
+func,2c57:0882,fx_crash,void far (void),SR1 0f38:7863 recompiled; speaker slot 15
+func,2c57:0930,fx_hit,void far (void),= SR1 0f38:790f; speaker slot 16
+func,2c57:09a0,fx_thud,void far (void),= SR1 0f38:7973; speaker slot 17
+func,2c57:09ca,mus_file_load,"void far (const char *name,int slot)",SR2 new; loads a .MUS file into descriptor/data slot
+func,2c57:0aa2,snd_bank_and_intro_load,void far (void),SR2 new; MSR.SND + MSRBEG.MUS
+func,2c57:0ade,mus_songs_load,void far (void),SR2 new; MSR2/MSR24/MSR21/PAUSE .MUS
+func,2c57:0b2c,adlib_engine_on,void far (int on),AdLib engine drone voice 3
+func,2c57:0ba6,adlib_engine_set,"void far (u16 bend,u16 vol)",engine drone pitch/volume
+func,2c57:0bd2,adlib_engine2_on,void far (int on),second drone voice 4 (tune screen)
+func,2c57:0c5c,adlib_engine2_set,"void far (u16 bend,u16 vol)",second drone pitch/volume
+func,2c57:0c88,adlib_fx_putt,void far (int on),AdLib slot 0
+func,2c57:0cd8,adlib_fx_tyre,void far (int on),AdLib slot 1; sets DS:72EE
+func,2c57:0d2c,adlib_fx_hum,void far (int on),AdLib slot 3; no caller
+func,2c57:0d7c,adlib_fx_tick,void far (int on),AdLib slot 4
+func,2c57:0dcc,adlib_fx_spray,void far (int on),AdLib slot 2
+func,2c57:0e1c,adlib_fx_lugnut,void far (int on),AdLib slot 7; timbre turn1
+func,2c57:0e6c,adlib_fx_clank,void far (void),AdLib slot 8; timbre hitcar
+func,2c57:0ea4,adlib_fx_clank2,void far (void),AdLib slot 9; timbre hitcar
+func,2c57:0edc,adlib_fx_bolt,void far (int on),AdLib slot 5
+func,2c57:0f2c,adlib_fx_airwrench,void far (int on),AdLib slot 6
+func,2c57:0f7c,adlib_fx_slide,void far (int on),AdLib slot 10
+func,2c57:0fcc,adlib_fx_siren,void far (int on),AdLib slot 11; timbre police
+func,2c57:1050,adlib_siren_bend,void far (int x),"siren pitch step, bend 0x1FFF*x+0x2000"
+func,2c57:1072,adlib_fx_piano_a,void far (void),dead; timbre piano1 note 3Ch
+func,2c57:10b6,adlib_fx_piano_b,void far (void),dead; timbre piano1 note 43h
+func,2c57:10fa,adlib_fx_click,void far (void),AdLib slot 12; timbre piano1
+func,2c57:113e,adlib_fx_chirp_hi,void far (void),"AdLib slot 13; timbre turn, random note"
+func,2c57:118e,adlib_fx_chirp_lo,void far (void),AdLib slot 14; timbre turn
+func,2c57:11c6,adlib_fx_crash,void far (void),AdLib slot 15; hitcar+crash
+func,2c57:1246,adlib_fx_hit,void far (void),"AdLib slot 16; hitcar+turn, restarts engine drone"
+func,2c57:12e0,adlib_fx_thud,void far (void),AdLib slot 17; timbre turn1
+func,2c57:1318,adlib_music_list_a,void far (void),AdLib slot 18; song list DS:73A0
+func,2c57:1356,adlib_music_list_b,void far (void),AdLib slot 19; song list DS:73B0
+func,2c57:1394,adlib_garage_timbres_load,void far (void),loads paint (v4) and part (v5)
+func,2c57:13c4,adlib_slot_nop,void far (void),AdLib slot 22 (retf)
+func,2c57:13c6,adlib_music_stop_slot,void far (void),AdLib slot 20
+func,2c57:13cc,adlib_music_shutdown,void far (void),AdLib slot 21
+func,2c57:13d8,adlib_sound_init,void far (void),"SR2 new; copies DS:73C2 to BB8C, starts timer, loads bank"
+func,2c57:1406,delay,void far (u16 n),SR1 2196:0002 same; DS:58E2->742A
+func,2c57:1421,pulse3_play,void far (u16 *list),SR1 2196:001d; dead
+func,2c57:14aa,snd_bank_load,u16 *far (const char *name),"opens MSR.SND, returns 6-byte block"
+func,2c57:151b,snd_bank_init,int far (u16 *blk),reads whole MSR.SND into memory
+func,2c57:15c9,snd_timbre_lookup,"int far (name,idx*,out56,blk)","wrapper, checks loaded flag"
+func,2c57:15fb,snd_timbre_find,"int far (name,idx*,out56,blk)",by name or index
+func,2c57:16c6,adlib_delay_init,void far (void),"DS:788C=3, DS:788E=12"
+func,2c57:16e1,adlib_write,"void far (u8 reg,u8 val)",OPL register write via DS:7830
+func,2c57:1733,adlib_detect,int far (void),standard timer-status detection
+func,2c57:17ef,adlib_voice_clear,void far (int v),"A0+v,B0+v = 0"
+func,2c57:1825,adlib_set_freq,"void far (int v,int note,int key)",writes A0/B0
+func,2c57:18c4,adlib_slot_wave_write,void far (int slot),reg E0+off
+func,2c57:1914,adlib_bd_write,void far (void),reg BD
+func,2c57:195d,adlib_slot_reg20,void far (int slot),reg 20+off
+func,2c57:19d0,adlib_slot_reg80,void far (int slot),reg 80+off
+func,2c57:1a1a,adlib_slot_reg60,void far (int slot),reg 60+off
+func,2c57:1a64,adlib_slot_regC0,void far (int slot),"reg C0+voice, modulator slots only"
+func,2c57:1abb,adlib_reg08_write,void far (void),reg 08
+func,2c57:1ae2,adlib_slot_level_write,void far (int slot),"reg 40+off, carrier volume formula"
+func,2c57:1b6a,adlib_slot_write_all,void far (int slot),all registers of one operator
+func,2c57:1bc5,adlib_slot_param_apply,"void far (int slot,int param)",dead; jump table
+func,2c57:1c6c,adlib_slot_load,"void far (int slot,u16 *words13,int wave)","store parameters, write registers"
+func,2c57:1cc7,adlib_slot_load_bytes,void far (...),dead
+func,2c57:1d0c,adlib_slot_set_param,"void far (int slot,int param,int val)",dead
+func,2c57:1d40,adlib_bend_calc,"void far (int v,u16 bend)",half tones + fnum row for a bend value
+func,2c57:1e1f,adlib_calc_prem_fnum,"long far (int num,int den)",F-number base value
+func,2c57:1e8e,adlib_fnum_row,"void far (u16 *row,int num,int den)",one 12-entry fnum row
+func,2c57:1f06,adlib_tables_init,void far (void),"fnum table, note/octave tables, per-voice state"
+func,2c57:1fae,adlib_relvol_init,void far (void),rel_vol[18]=7F
+func,2c57:1fd6,adlib_voice_off,void far (int v),key off
+func,2c57:2024,adlib_note_on,"void far (int v,int note)","key on, rhythm-mode aware"
+func,2c57:20cf,adlib_pitch_bend,"void far (int v,u16 bend)",
+func,2c57:2128,adlib_set_volume,"void far (int v,u16 vol,int store)",carrier level
+func,2c57:21b1,adlib_vec_off,void far (void),AdLib slot 23
+func,2c57:21f0,adlib_vec_on,void far (void),AdLib slot 24
+func,2c57:22bc,adlib_voice_timbre,"void far (int v,u8 *buf56)",apply a 56-byte timbre to a voice
+func,2c57:237f,adlib_set_depths,"void far (u8 am,u8 vib,u8 notesel)","only called with 0,0,0"
+func,2c57:23aa,adlib_set_bend_range,void far (u16 range),clamp 1..12
+func,2c57:23e3,adlib_wave_select,void far (int on),reg 01 and E0 regs
+func,2c57:2439,adlib_set_perc_mode,void far (u8 mode),rhythm mode + tom/snare presets
+func,2c57:24ad,adlib_reset,void far (void),chip + driver state reset
+func,2c57:2514,adlib_set_port,void far (u16 port),then adlib_reset
+func,2c57:252e,mus_timer_remove_wrap,void far (void),calls 2f1b:00a7
+func,2c57:2542,mus_set_tempo,"void far (u16 tempo,u16 tick_beat)",PIT divisor from tempo
+func,2c57:25aa,mus_stop,void far (void),"stop song, voices off, divisor 4000h"
+func,2c57:25f0,mus_resume,void far (void),resume at saved position
+func,2c57:2677,mus_wait_end,void far (void),dead
+func,2c57:26b9,adlib_music_init,void far (void),"port 388, reset, hook INT 8"
+func,2c57:26d9,mus_play,"void far (u16 desc,far ptr,u16 bank)",start a song
+func,2c57:27a0,mus_set_bank,"void far (u16 desc,u16 bank)",set current descriptor and bank
+func,2c57:27e5,adlib_play_timbre,"void far (int v,int vol,const char *name)",load a named timbre into a voice
+func,2c57:2837,mus_skip_unknown,void far (void),resync after an unknown status byte
+func,2c57:2875,mus_tick,int far (void),MIDI-like interpreter; returns ticks to next call
+func,2f1b:0027,pit_set_divisor,void far (AX=div),register call
+func,2f1b:0036,irq_flag_set,void far (int on),dead cli/sti
+func,2f1b:0045,mus_timer_set_divisor,void far (u16 div),sets cs:[8] and PIT ch0
+func,2f1b:0069,mus_timer_install,void far (void),hooks INT 8
+func,2f1b:00a7,mus_timer_remove,void far (void),"restores BIOS INT 8, 18.2 Hz"
+func,2f1b:00bc,mus_set_countdown,void far (u16 n),cs:[24]=n
+func,2f1b:00cb,mus_timer_isr,void interrupt (void),INT 8 handler while AdLib is active
+global,DS:004E,snd_state,u16,"0 off,1 init,2 song started"
+global,DS:0050,snd_device,u16,"0 AdLib,1 speaker,666 unset"
+global,DS:2002,vib_countdown,u16,speaker vibrato countdown (SR1 06E2)
+global,DS:2004,siren_count,u16,SR1 06E4
+global,DS:200A,squeal_phase,u8,SR1 06EA
+global,DS:22FA,lbl_squelch,char[],Squelch it !
+global,DS:2308,lbl_tunes,char[],Catch some tunes
+global,DS:3BD5,snd_enabled,u8,SR1 47CE
+global,DS:3BD6,snd_gate,u8,SR1 47CF
+global,DS:52FE,music_cur,u16,near ptr to active SongState18 (SR1 58D2)
+global,DS:5300,music_mode,u16,"1 bg tune,2 loop/tune screen (SR1 58D4)"
+global,DS:5302,music_hold,u16,"duration freeze flag, new"
+global,DS:5304,music_enabled,u16,SR1 58D0
+global,DS:5306,music_enabled_saved,s16,SR1 58D6
+global,DS:5308,music_muted,u16,SR1 58D8
+global,DS:530A,spk_vec_init,far*[25],speaker slot table
+global,DS:536E,vib_wave,s16[3][8],SR1 57F6
+global,DS:539E,vib_rec,s16[12][5],SR1 5826
+global,DS:540C,bg_loop_tbl,s16[15],SR1 5858 (+1)
+global,DS:542A,jingle_loop_tbl,s16[2],"{3,-1}"
+global,DS:542E,fx_loop_tbl,s16[2],"{1,-1}"
+global,DS:5432,bg_vib_tbl,s16[27],SR1 5882
+global,DS:5468,fx_vib_tbls,s16[],5468..548E small index tables
+global,DS:5490,spk_loop_songs,u16[],5490..5593 loop songs
+global,DS:5594,spk_bg_song,u16[],background tune 5594..6E47
+global,DS:6E48,spk_jingle_song,u16[],jingle 6E48..72DF
+global,DS:72E0,squeal_on,u16,tyre squeal flag (SR1 58DA)
+global,DS:72E2,siren_on,u16,SR1 58DC
+global,DS:72EC,adlib_vol_enable,u16,constant 1
+global,DS:72EE,tyre_noise_on,u16,AdLib tyre noise keyed
+global,DS:72F0,name_msr_snd,char[],msr.snd; song names 72F8..7328
+global,DS:7334,timbre_names,char[],SFX timbre names 7334..73BC
+global,DS:73A0,song_list_a,s16[8],"1,1,5,2,5,3,3,-1"
+global,DS:73B0,song_list_b,s16[3],"4,4,-2"
+global,DS:73C2,adlib_vec_init,far*[25],AdLib slot table
+global,DS:7426,pulse3_ptr,u16,dead
+global,DS:7428,pulse3_delay,u16,dead
+global,DS:742A,delay_scale,u16,SR1 58E2
+global,DS:782C,perc_mask,u8[11],voice 6..10 masks; ISR stack top
+global,DS:7830,opl_port,u16,0x388
+global,DS:7838,voice_slot_tab,u8[28],voice->operator slots
+global,DS:7854,slot_reg_off,u8[18],operator register offsets
+global,DS:7866,slot_is_carrier,u8[18],carrier flags
+global,DS:7878,slot_voice,u8[18],operator -> voice
+global,DS:788A,mus_playing,u8,song running
+global,DS:788C,io_delay_index,u16,3
+global,DS:788E,io_delay_data,u16,12
+global,DS:7890,voice_vol_cache,u16[11],write-only
+global,DS:78AA,bend_cache_v,s32,init 0000FFFF
+global,DS:78AE,empty_name,char[],empty name for index lookups
+global,DS:78AF,fmt_timbre_nf,char[],format: Timbre not found: %d
+global,DS:9162,am_depth,u8,BD bit 7
+global,DS:9163,perc_mode,u8,rhythm mode
+global,DS:9164,half_tab,s16[11],per voice half-tone offset
+global,DS:917A,note_sel,u8,reg 08 bit 6
+global,DS:917C,bend_step,s16,range*25
+global,DS:917E,note_in_oct,u8[96],i%12
+global,DS:91DE,wave_sel_en,u16,20h when enabled
+global,DS:91E0,oct_tab,u8[96],i/12
+global,DS:9240,vib_depth,u8,BD bit 6
+global,DS:9242,row_ptr,u16[11],fnum row per voice
+global,DS:9258,drum_bits,u8,BD bits 0-4
+global,DS:925A,last_note,u8[11],last raw note per voice
+global,DS:9266,slot_param,u8[18][14],operator parameters
+global,DS:9362,fnum_tab,u16[25][12],F-number table
+global,DS:95BA,bend_range,u16,1..12
+global,DS:95BC,key_flag,u8[11],last key flag per voice
+global,DS:95C8,rel_vol,u8[18],operator relative volume
+global,DS:95DA,bend_cache_row,u16,cached fnum row
+global,DS:95DC,bend_cache_half,u16,cached half tones
+global,DS:986E,mus_ptr,far*,MUS read pointer
+global,DS:9A3A,vib_enabled,u16,SR1 72EC
+global,DS:9A7E,mus_running_status,u8,MUS running status
+global,DS:9AE4,list_start,u16,playlist start
+global,DS:9AE6,list_cur,u16,playlist cursor
+global,DS:9AE8,list_single,u16,never nonzero
+global,DS:9B08,engine_vib_amount,u16,dead helper
+global,DS:9BE8,mus_size_words,u16[6],data size low word per song slot
+global,DS:9DAA,fx_song,SongState18,SR1 79C6
+global,DS:9DEC,bg_song,SongState18,SR1 79AA
+global,DS:A7CE,mus_elapsed,u32,never read
+global,DS:A7DC,vel_cache,u8[11],last note-on velocity per voice
+global,DS:A9C4,engine_note_div,u16,dead
+global,DS:AB2A,bank_block,u16*,MSR.SND control block
+global,DS:ADD2,vib_rec_ptr,u16,SR1 82C4
+global,DS:B192,mus_desc,u16,current song descriptor
+global,DS:B19E,mus_delay,u16,current delay
+global,DS:B86E,bank_handle,u16,bank block used by timbre lookups
+global,DS:B870,vib_amount,u16,SR1 6C52
+global,DS:B8EA,mus_desc_tab,u8[6][70],song headers
+global,DS:BA94,mus_data_tab,far*[6],song data
+global,DS:BB8C,snd_vec,far*[25],active slot table

@@ -25,14 +25,16 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 | U2 | DOSBox-X reference setup, see U2 below | U3, U5 | 15 min |
 | U3 | Reference captures, see U3 below | S2.x checks | 30 min |
 | U5 | Look at `work\lib1\_sheet.png`, `work\lib2\_sheet.png`, `work\lib3\_sheet.png`: pictures intact? colours right for title/garage screens? (car pictures may use other palettes) | S2.1 | 5 min |
-| U5 | Look at `work\shp\_sheet.png` (road shapes, 7 distance levels per row) and `work\shp_B.png`..`25_B.png`: plausible objects, colours, nothing mirrored oddly? | S2.2 | 5 min |
+| U5 | Look at `work\shp\_sheet.png` (road shapes, 7 distance levels per row) and `work\shp\23_B.png`..`25_B.png`: plausible objects, colours, nothing mirrored oddly? | S2.2 | 5 min |
 | U5 | Listen to `work\sound\msrbeg.wav` (title) and `msr2.wav` against the game in DOSBox (or `title.dro`): instruments, tempo, drums OK? | S2.4 | 5 min |
+| U5 | DOSBox, AdLib: let the title music play > 3 min. Does a long silence (~2 min) follow the first song before the next starts? (sound.md §9) | S3.2 | 5 min |
+| U5 | DOSBox: at the copy-protection question, cancel instead of answering. Does the game crash/hang? (game_flow.md) | S3.3 | 2 min |
 | U7 | Decisions (defaults apply if unanswered), see U7 below | plan | 5 min |
 
 ## Status
 
-- **Done:** S0.1 (repo), S1.1–S1.4 (unpacked, indexed, matched with SR1, Ghidra: `port/RE_GUIDE.md` §1–2); S1.5 (what changed, `RE_GUIDE.md` §3); S2.3, S2.5 (`FORMATS.md`); S2.1, S2.2, S2.4 waiting for your U5 checks.
-- **Next:** S3.1 (Sonnet), phase 3 delta specs. Your tasks: **User to-do** above.
+- **Done:** S0.1 (repo), S1.1–S1.4 (unpacked, indexed, matched with SR1, Ghidra: `port/RE_GUIDE.md` §1–2); S1.5 (what changed, `RE_GUIDE.md` §3); S2.3, S2.5 (`FORMATS.md`); S2.1, S2.2, S2.4 waiting for your U5 checks. Phase 3: all delta specs (`port/spec/*.md`, 913/913 functions, `tools/sr2_coverage.py`).
+- **Next:** S4.1 (Sonnet), phase 4 skeleton. Your tasks: **User to-do** above.
 - Escalation rule: a subtask that fails twice on Sonnet → new Opus session with a 5-line note
   (symptom, file, what was tried). Never carry an old transcript over.
 
@@ -115,19 +117,24 @@ Notes:
 - S2.1: SR2 directory records are 28 bytes (FORMATS.md); LIB1 4, LIB2 212, LIB3 83 pictures, CGA variants too.
 - S2.4: `tools/sr2snd.py` (Ad Lib toolkit player re-implemented); speaker-music deltas still open (S3.2). The bank also carries AdLib sound effects.
 
-### Phase 3 — Delta specs (output: `port/spec/<module>.md`, gate: `tools/spec_coverage.py` 100 %)
+### Phase 3 — Delta specs (output: `port/spec/<module>.md`, gate: `tools/sr2_coverage.py` 100 %)
 SR1 modules and specs (`../StreetRod/port/spec/`) are the base. Per module: `same` functions get a
 one-line reference to the SR1 spec section; only `changed` and `new` functions get full text. One
 session per row; written so that a Sonnet session can port a function from its section alone.
 | Id | Module | Model | Size |
 |---|---|---|---|
-| S3.1 | platform + video: MSC 6.0 runtime, startup, menus, timer, input, files, graphics library deltas | S | M |
-| S3.2 | sound: AdLib driver + `.MUS` sequencer (new), speaker/Tandy deltas | S | M |
-| S3.3 | game_flow: title, calendar, money, save/load, endings (`SR2_END`), demo | S | M |
-| S3.4 | garage: shops, parts (incl. automatic transmissions), newspaper, customising | S | L |
-| S3.5 | race: physics, gear box, damage, police, opponent AI deltas | O | L |
-| S3.6 | race_render: road, cockpit, `SR2_SHP` objects | O | M |
-| S3.7 | Coverage gate, symbols merge, `port/symbols.csv` final | H | S |
+| S3.1 | platform + video: MSC 6.0 runtime, startup, menus, timer, input, files, graphics library deltas | S | done 2026-10-09 |
+| S3.2 | sound: AdLib driver + `.MUS` sequencer (new), speaker/Tandy deltas | S | done 2026-10-09 |
+| S3.3 | game_flow: title, calendar, money, save/load, endings (`SR2_END`), demo | S | done 2026-10-09 |
+| S3.4 | garage: shops, parts (incl. automatic transmissions), newspaper, customising | S | done 2026-10-09 |
+| S3.5 | race: physics, gear box, damage, police, opponent AI deltas | O | done 2026-10-09 |
+| S3.6 | race_render: road, cockpit, `SR2_SHP` objects | O | done 2026-10-09 |
+| S3.7 | Coverage gate, symbols merge, `port/symbols.csv` final | H | done 2026-10-09 |
+
+Notes:
+- S3.1–S3.6 ran as parallel agents (race_render in 5 parts, merged); S3.7: `tools/sr2_dedupe.py` (one owner per function: SR1 module for matched, fullest text for new; second copies marked "Secondary view"), 18 gap functions added, `tools/sr2_merge_symbols.py` → `port/symbols.csv` 913 functions + 654 globals, 0 clashes.
+- Findings: road modes `DS:ADD6` 0 cruise, 1 street drag, 2/4 Grudge Night strip, 8 Aqueduct, 0x10 Mulholland; integer physics, 64 sub-steps per segment; 20-slot driver table with polygon fill; LIB unpack escape `00 00`/`FF 00` (fixed in `tools/srlib.py`); playlists MSRBEG,MSRBEG,PAUSE,MSR2,PAUSE,MSR24,MSR24 / MSR21×2, MSR20 unused; `tools/sr2snd.py` should adopt sound.md §7 items 1, 3, 5–11.
+- Suspected original bugs to reproduce (check in DOSBox when convenient): zero-width road on roadworks segments, hill-peak table overrun, uninitialised sprite width in af98 (race_render.md); stock-car garbage fields (race.md).
 
 ### Phase 4 — `sr2port/` skeleton
 | Id | Task | Model | Size |
@@ -248,6 +255,7 @@ Several bugs in one message; one session then fixes them in a batch.
 4. **Shared code**: copy `srport` code into `sr2port` (independent repo, fixes ported by hand) rather
    than a shared library with SR1. Default: copy.
 5. **GitHub**: create a remote when you want one; default: local only until the S6.2 release.
+6. **Game tick while AdLib music plays**: the original runs the game ISR at 68.6 Hz (tempo 120) / 60 Hz (tempo 60) instead of 72.8 Hz, because the music ISR chains it with the remainder discarded (sound.md §9). Reproduce it (faithful)? Default: yes.
 
 ## Decisions
 (Settled answers from U7 go here, dated.)

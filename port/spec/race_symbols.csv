@@ -1,0 +1,176 @@
+kind,address,name,type,notes
+func,0001:2610,race_ctrl_reset,far void(void),changed; SR1 race_stop_inputs 0000:2374 without steps_at_stop
+func,0001:8c68,drive_to_event,far void(void),new; replaces SR1 drive_to 0000:8d26; ALSO in game_flow_symbols.csv as drive_to_event (S3.7 keeps one)
+func,0001:8d0a,opp_palette_set,far void(int idx),"same; SR1 0000:8d9c, colour table 4D1E stride 3"
+func,0001:8d9e,drive_run,far int(void),"changed; SR1 0000:8e2d (new body, trip skip)"
+func,0001:8ef4,race_logic,far uint(void),changed; SR1 0000:8ea8 + drag-strip tree and bracket starts
+func,0001:9432,waitress_toggle,"near int(int mode,int arg,int pct_in,int pct_out)","changed; SR1 0000:914c, gate DS:502E"
+func,0001:9506,str_drop_last_word,near void(char*),same; SR1 0000:9256
+func,0001:953c,opponent_show,near void(int mode),changed; SR1 0000:92a4
+func,0001:975e,king_status,near int(void),"changed; SR1 0000:9556, codes 0..6, Grudge Night win needed"
+func,0001:9802,king_chance,near int(void),"changed; SR1 0000:95f1, model test 0x15"
+func,0001:9848,opp_sort,near void(int all),"changed; SR1 0000:9646, no demo injection"
+func,0001:999a,pick_opponent,"near int(int pct_king,int all)",same; SR1 0000:984e
+func,0001:9a02,opponent_load,far void(int i),"changed; SR1 0000:98ba, person records, no sticker"
+func,0001:9b26,opponent_select,"near void(int i,int mode,int flag)",changed; SR1 0000:9a27
+func,0001:9b78,opp_known_list,"near void(int *names,int *idx,int *count)",changed; SR1 0000:9a83
+func,0001:9be0,opponent_search,near int(int mode),changed; SR1 0000:9af4
+func,0001:9c8e,challenge_accept,near int(int bet),"changed; SR1 0000:9bc5, rating formula rewritten"
+func,0001:9e3c,challenge,near int(int king),"changed; SR1 0000:9d6d, 3 race kinds, King stages, $150 bet"
+func,0001:a270,bob_hotspots,near void(int opp_present),changed; SR1 0000:a0f8
+func,0001:a3ba,opponent_car_view,near void(void),changed; SR1 0000:a265
+func,0001:a588,bob_screen_draw,near void(void),changed; matcher said dancing_girl (wrong); SR1 load_screen(0x445) inline
+func,0001:a626,bob_drive_in,far void(void),changed; SR1 0000:ab8b
+func,0001:a9fc,jail,far int(void),changed; SR1 0000:b08c
+func,0001:ac68,tires_replace,near int(void),"changed; SR1 0000:bed4, tyre type 0x32"
+func,0001:ad36,text_draw_clipped,"far void(int x,int y,char *s,int maxw)",new
+func,0001:adc0,ticket_show,near void(void),changed; SR1 0000:bf94
+func,0001:af0a,crash_show,near void(void),"changed; SR1 0000:c1d8, per-dash pictures"
+func,0001:b1b2,finish_stats,far void(void),"changed; SR1 0000:c407 (integer, tenths)"
+func,0001:b256,race_msg,near void(void),changed; SR1 0000:c497 (integer %d.%d)
+func,0001:b46e,engine_blown,near void(int msg),changed; SR1 0000:c52c
+func,0001:b4da,trans_blown,near void(int msg),changed; SR1 0000:c5ac
+func,0001:b538,patch_dollar_amount,"far void(char *text,int amount)",new
+func,0001:b584,race_results,near uint(void),changed; SR1 0000:c613
+func,0001:bc88,phys_reset,near void(phys_t *p),"changed; SR1 0000:cdaf, start/finish by race kind"
+func,0001:be82,race_start,near void(void),changed; SR1 0000:d031
+func,0001:c02c,car_perf,near long(car_t *c),new; integer performance factor (SR1 perf inlined)
+func,0001:c294,car_setup,"near void(car_t *c,phys_t *p)","changed; SR1 0000:dcbe, integer, exhaust/muffler/diff"
+func,0001:c5d8,model_car_setup,"near void(int model,phys_t *p)",changed; SR1 0000:e0e2
+func,0001:c6f6,car_max_speed,far int(int model),"changed; SR1 0000:e218, integer"
+func,0001:c866,drivetrain_rating,near int(int model),changed; SR1 model_class3 0000:9524 (new meaning)
+func,0001:ca28,opponent_setup,far void(void),changed; SR1 0000:cf5c
+func,0001:cb00,opp_gear,"far void(int v,phys_t *p)","same; SR1 0000:d1de, now far"
+func,0001:cb98,opp_ai,near void(void),changed; SR1 0000:d29d
+func,0001:ce9c,speed_to_step,far int(int mph),"changed; SR1 0000:d544, 64ths, table DS:8016"
+func,0001:cee0,player_advance,near void(void),changed; SR1 0000:d624
+func,0001:cf9a,opp_dodge_street,"near int(int x,int dx,int seg)",new; street-race obstacle avoidance
+func,0001:d4cc,opp_advance_steer,near void(void),changed; SR1 0000:d67d
+func,0001:d85c,police_spawn,near void(void),"changed; SR1 0000:d992, model 0x15"
+func,0001:d908,race_step,far void(void),changed; SR1 0000:da25
+func,1a21:0008,dash_restore_rect,"near void(int x,int y,int w,int h,int kind)",changed; SR1 0f38:000a
+func,1a21:00b2,dash_copy_rect,"near void(int x,int y,int w,int h,int kind)",changed; SR1 0f38:0098
+func,1a21:015c,speedo_points,"near void(int v,int *x0,int *y0,int *x1,int *y1)","changed; SR1 0f38:0137, 3 dash types"
+func,1a21:02ac,speedo_init,far void(int mph),changed; SR1 0f38:01d2
+func,1a21:038e,tach_points,"near void(int rpm,int *x0,int *y0,int *x1,int *y1)",changed; SR1 0f38:02ae
+func,1a21:0484,tach_init,far void(int rpm),changed; SR1 0f38:0349
+func,1a21:055e,needle_update,"far int(int new,int old,int tach)",changed; SR1 0f38:0425
+func,1a21:070e,clock_draw,far void(void),changed; SR1 0f38:05f2 (integer); body ends 1a21:0da5
+func,1a21:1174,wheel_load,far void(void),changed; SR1 0f38:0f53
+func,1a21:11f6,wheel_knob_crash,far void(int pos),changed; SR1 0f38:1094
+func,1a21:1288,wheel_draw,"far void(int new,int old,page)",changed; SR1 0f38:1130
+func,1a21:13fe,shifter_draw,"far void(int automatic,int ngears)","changed; SR1 0f38:12f7, LIB3 pictures"
+func,1a21:1614,shifter_knob,"far void(page,phys_t*)","same; SR1 0f38:14f2, remapped"
+func,1a21:77f4,race_run,far int(void),changed; SR1 0f38:7b22
+func,1a21:9b0e,race_view_reset,far void(void),new
+global,DS:A100,player_phys,phys_t,SR1 DS:78E0
+global,DS:A1E4,opp_phys,phys_t,SR1 DS:79E2
+global,DS:A1C0,bet_kind,i16,SR1 DS:79A2
+global,DS:A1C2,bet_amount,i16,SR1 DS:79A4
+global,DS:A1C4,race_state,i16,SR1 DS:79A6
+global,DS:ADD6,race_kind,i16,SR1 DS:7EC0 race_type
+global,DS:9AE2,start_seg,i16,new
+global,DS:A2AA,track_end,i16,SR1 DS:6CAA
+global,DS:A2A8,opp_green,i16,new
+global,DS:B8E4,opp_vmax,i16,SR1 DS:6CAC
+global,DS:A5F8,opp_slack,i16,SR1 DS:6CAE
+global,DS:A2B0,opp_v80,i16,SR1 DS:6CB0
+global,DS:A33C,opp_v70,i16,SR1 DS:6CB2
+global,DS:9700,opp_skill,i16,SR1 DS:6CB4
+global,DS:9702,opp_lat_target,i16,SR1 DS:6CB6
+global,DS:9704,opp_band_tmp,i16,SR1 DS:6CB8
+global,DS:9706,opp_shift_rpm,i16,SR1 DS:6CBA
+global,DS:523C,ai_steps_done,i16,SR1 DS:54D0
+global,DS:523E,ai_yield_toggle,i16,SR1 DS:54D2
+global,DS:8012,ai_side,i16,SR1 DS:54D4
+global,DS:B19C,ai_recentre,i16,SR1 DS:8648
+global,DS:8014,ai_curve_braked,i16,SR1 DS:54D6
+global,DS:809C,alongside_count,i16,SR1 DS:54D8
+global,DS:809E,ai_brake,i16,SR1 DS:54DA
+global,DS:809A,aq_obstacle_latch,i16,new
+global,DS:5240,holeshot_decided,i16,new
+global,DS:AA10,holeshot,i16,new
+global,DS:B18E,timerun_ref_steps,i16,new
+global,DS:9DC4,tires_blown,u8,SR1 DS:787C
+global,DS:72E0,squeal,u16,SR1 DS:58DA
+global,DS:A55E,seg,i16,SR1 DS:7D30
+global,DS:A560,seg_frac64,i16,SR1 DS:7D32
+global,DS:A562,seg_step,i16,SR1 DS:7D34
+global,DS:A564,lat,i16,SR1 DS:7D36
+global,DS:A56A,heading,i16,SR1 DS:7D3C
+global,DS:A56E,vs_king,i16,SR1 DS:7D40
+global,DS:A9C6,opp_seg,i16,SR1 DS:7E8A
+global,DS:A9C8,opp_seg_frac64,i16,SR1 DS:7E8C
+global,DS:A9CA,opp_seg_step,i16,SR1 DS:7E8E
+global,DS:A9CC,opp_lat,i16,SR1 DS:7E90
+global,DS:A33E,lat_last_opp_step,i16,new
+global,DS:AB2C,police_state,i16,SR1 DS:7F88
+global,DS:9ACA,police_seg,i16,SR1 DS:755A
+global,DS:5148,stats_done,i16,SR1 DS:53E6
+global,DS:B168,player_ahead,i16,SR1 DS:8632
+global,DS:ADAE,distance,i32,SR1 DS:82BC
+global,DS:9ADE,avg_speed,i16,SR1 DS:7644
+global,DS:B8C2,race_time10,i16,SR1 DS:8BC4 (float)
+global,DS:ADDA,pct_covered,i16,SR1 DS:82C8
+global,DS:9B3E,player_won,i16,SR1 DS:7676
+global,DS:9124,cruise_gain,i16,SR1 DS:6C82
+global,DS:9118,bracket_p_state,i16,new
+global,DS:911A,bracket_p_time,u32,new
+global,DS:911E,bracket_o_state,i16,new
+global,DS:9120,bracket_o_time,u32,new
+global,DS:9ADC,opp_dialin,i16,new
+global,DS:ADA8,player_dialin,i16,new
+global,DS:9B0A,opp_model,i16,SR1 DS:7648
+global,DS:A80A,opp_rec,near*,SR1 DS:7D84
+global,DS:A7AA,opp_model_ptr,near*,SR1 DS:7D7A
+global,DS:AB00,opp_index,i16,SR1 DS:7F82
+global,DS:AB02,opp_present,i16,SR1 DS:7F86
+global,DS:AD6E,opp_car_pic,i16,SR1 DS:827A
+global,DS:AD70,opp_paint,i16,SR1 DS:827C
+global,DS:AD72,opp_tyre_grade,i16,SR1 DS:827E
+global,DS:AD74,opp_face,i16,SR1 DS:8280
+global,DS:9128,cand_count,i16,SR1 DS:6C86
+global,DS:912A,cand,i16[21],SR1 DS:6C8A
+global,DS:5034,last_pick,i16,SR1 DS:51F8
+global,DS:9126,carhop_state,i16,SR1 DS:6C84
+global,DS:502E,carhop_gate,i16,new
+global,DS:7916,king_no_time,i16,new
+global,DS:9154,bob_first_visit,i16,SR1 DS:6CA2
+global,DS:AD66,bet_button,i16,SR1 DS:8278
+global,DS:479C,races_total,i16,SR1 DS:4970
+global,DS:479E,drag_wins,i16,SR1 DS:4972
+global,DS:47A0,mulholland_wins,i16,SR1 DS:4974
+global,DS:47A2,aqueduct_wins,i16,new
+global,DS:47A4,grudge_wins,i16,new
+global,DS:47A6,king_stage,i16,SR1 DS:4976
+global,DS:AA00,player_win_rating,i8,new
+global,DS:AA01,player_holeshot_rating,i8,new
+global,DS:AD03,king_ready,u8,SR1 DS:817D
+global,DS:AD6C,grudge_round,i16,new
+global,DS:90C8,grudge_opp_entry,i16,new
+global,DS:9106,grudge_player_entry,i16,new
+global,DS:90CA,grudge_field,entry[10],new
+global,DS:20EC,bob_races_started,i16,new
+global,DS:1FFC,in_challenge_race,i16,new
+global,DS:A7A2,start_lights,i16,SR1 DS:7D66
+global,DS:B164,gear_label_cache,i16,SR1 DS:8630
+global,DS:9DCC,has_clock,i16,SR1 DS:58E6
+global,DS:AB28,dash_type,i16,new
+global,DS:B7B2,start_panel,i16,new
+global,DS:ADD0,wheel_shown,i16,SR1 DS:82C2
+global,DS:8806,speedo_cx,i16,new
+global,DS:8808,speedo_cy,i16,new
+global,DS:880E,tach_cx,i16,new
+global,DS:8810,tach_cy,i16,new
+global,DS:1C3A,needle_colour,i16,SR1 DS:02D2
+global,DS:8816,shifter_rec,near*,new
+global,DS:8818,shifter_knob_cache,i16,new
+global,DS:1CB2,wheel_pic_cache,i16,new
+global,DS:9156,gas_nozzle_spots,i16,new
+global,DS:9158,gas_pump_spots,i16,new
+global,DS:915A,gas_meter_pic,far*,new
+global,DS:915E,gas_meter_shown,u16,new
+global,DS:9160,gas_meter_count,u16,new
+global,DS:B89A,gas_pump_sheet,far*,new
+global,DS:9A4A,gas_pump_save_a,far*[2],new
+global,DS:9ACC,gas_pump_save_b,far*[2],new

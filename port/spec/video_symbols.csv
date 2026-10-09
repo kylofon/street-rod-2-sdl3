@@ -1,0 +1,229 @@
+kind,address,name,type,notes
+func,0001:3c60,vram_pool_alloc,,SR2 changed; = SR1 0000:3967 vram_pool_alloc
+func,0001:a4aa,dancer_blit,,SR2 new (matcher paired it with SR1 bitmap_blit_at by mistake)
+func,1a21:1048,gfx_screen_mode,,SR2 changed; SR1 0f38:0dbd gfx_screen_mode
+func,1a21:17cc,far_memset,,SR2 changed; = SR1 0f38:1640 far_memset
+func,1a21:17ee,clip_rect,,SR2 changed; = SR1 0f38:1680 clip_rect
+func,1a21:18e2,wait_vretraces,,SR2 changed; = SR1 0f38:177d wait_vretraces
+func,1a21:1924,pace_ticks,far void (int ticks),SR2 new (matcher paired it with SR1 font_string_width by mistake); delay in ticks
+func,1a21:198a,pal_load,,SR2 new semantics (SR1 0f38:180c pal_reg12_13 set register 12 only)
+func,1a21:19aa,pal_shadow_patch,,SR2 changed; SR1 0f38:181c pal_shadow_patch
+func,1a21:19c6,pal_shadow_swap,,SR2 changed; = SR1 0f38:182c pal_shadow_swap
+func,1a21:19f0,gfx_init,,SR2 changed; SR1 0f38:1859 gfx_init
+func,1a21:1b9a,ega_set_palreg,,SR2 changed; = SR1 0f38:1f4b ega_set_palreg
+func,1a21:1bee,ega_set_palette,,SR2 changed; = SR1 0f38:1fa4 ega_set_palette
+func,1a21:1c5a,status_init,,SR2 changed; = SR1 0f38:2022 status_init
+func,1a21:1f5e,gear_label,,SR2 changed; = SR1 0f38:22e9 gear_label
+func,1a21:1f8e,screen_fill_rect,,SR2 changed; = SR1 0f38:231a screen_fill_rect
+func,1a21:21be,show_picture,,SR2 changed; SR1 0f38:2554 show_picture
+func,1a21:22a8,show_picture_at,,SR2 changed; = SR1 0f38:2638 show_picture_at
+func,1a21:22c6,screen_text,,SR2 changed; SR1 0f38:2656 screen_text
+func,1a21:231c,screen_hline,,SR2 changed; = SR1 0f38:26a4 screen_hline
+func,1a21:236e,screen_save_rect,,SR2 changed; SR1 0f38:26f2 screen_save_rect
+func,1a21:246c,screen_put_bitmap,,SR2 changed; = SR1 0f38:27ef screen_put_bitmap
+func,1a21:24d8,screen_put_bitmap_mirror,,SR2 changed; = SR1 0f38:2853 screen_put_bitmap_mirror
+func,1a21:28dc,cursor_shape_offset,,SR2 changed; = SR1 0f38:2b1c cursor_shape_offset
+func,1a21:28e8,cursor_init,,SR2 changed; SR1 0f38:2b28 cursor_init
+func,1a21:2b44,cursor_redraw,,SR2 changed; SR1 0f38:2e8b cursor_redraw
+func,1a21:3e84,fill_rect,,SR2 changed; = SR1 0f38:4302 fill_rect
+func,1a21:3f43,vline,,SR2 changed; = SR1 0f38:439c vline
+func,1a21:3fba,hline,,SR2 changed; = SR1 0f38:43ff hline
+func,1a21:3ff6,draw_frame3,,SR2 changed; = SR1 0f38:4432 draw_frame3
+func,1a21:41f0,draw_box1,,SR2 changed; = SR1 0f38:45d7 draw_box1
+func,1a21:6ac6,pic_info,,SR2 changed; SR1 0f38:67ff pic_info
+func,1a21:6b04,pic_get,,SR2 changed; SR1 0f38:683e pic_get
+func,1a21:7f5c,ega_blit_4planes,,SR2 changed; = SR1 0f38:8126 ega_blit_4planes
+func,1a21:7fc6,ega_vram_cache_strips,,SR2 changed; = SR1 0f38:819a ega_vram_cache_strips
+func,1a21:80ec,strip_cache_ram,,"SR2 changed; SR1 0f38:8336 (unnamed); non-VGA strip cache, not ported (VGA only)"
+func,1a21:9a68,arena_bitmap_alloc,,SR2 changed; SR1 0f38:9fce arena_bitmap_alloc
+func,1a21:9bec,rect_intersect,,SR2 changed; = SR1 0f38:a0fa rect_intersect
+func,1a21:9c74,rect_clip_to_view,,SR2 changed; = SR1 0f38:a198 rect_clip_to_view
+func,1a21:9ccc,rect_clip_make,,SR2 changed; = SR1 0f38:a1ee rect_clip_make
+func,1a21:9d38,sprite_scene_setup,,SR2 changed; SR1 0f38:a273 sprite_scene_setup
+func,1a21:9f42,rect_subtract_edge,,SR2 changed; SR1 0f38:a4b9 rect_subtract_edge
+func,1a21:a2f2,slide_sprite_generic,"far void (int top, int bottom, int x, int from, int to, Desc far *sprite, ...)","SR2 changed; SR1 0f38:a87e (unnamed); CGA/Tandy slot 11, not ported (VGA only)"
+func,1a21:a4bc,sprite_anim_advance,,SR2 changed; SR1 0f38:aa37 sprite_anim_advance
+func,1a21:a528,sprite_hspan_clip,,SR2 changed; SR1 0f38:aac2 sprite_hspan_clip
+func,1a21:a59c,bitmap_copy_into,,SR2 changed; = SR1 0f38:ab50 bitmap_copy_into
+func,1a21:a624,bitmap_opaque_extent,,SR2 changed; = SR1 0f38:abc2 bitmap_opaque_extent
+func,1a21:a758,bitmap_make_shifted,,SR2 changed; = SR1 0f38:acbf bitmap_make_shifted
+func,1a21:a9ac,bitmap_blit_masked_shift,,SR2 changed; = SR1 0f38:af50 bitmap_blit_masked_shift
+func,1a21:ab52,bitmap_composite_behind,,SR2 changed; = SR1 0f38:b0f2 bitmap_composite_behind
+func,1a21:ad48,bitmap_blit_at,"far void (Desc far *dst, Desc far *src, int x, int y, int flags)",SR2 changed; = SR1 0f38:b31f bitmap_blit_at
+func,1a21:ad92,pic_blit_at,,SR2 changed; SR1 0f38:b360 pic_blit_at
+func,1a21:ade2,bitmap_blit_masked_at,"far void (Desc far *dst, Desc far *src, int x, int y, int flags)",SR2 new (masked variant of bitmap_blit_at)
+func,1a21:ae2c,pic_draw_masked,,SR2 changed; = SR1 0f38:b3b4 pic_draw_masked
+func,1a21:ae94,mask_and_rect,,SR2 changed; = SR1 0f38:b41b mask_and_rect
+func,1a21:af7a,far_memcpy,,SR2 changed; = SR1 0f38:b502 far_memcpy
+func,1a21:af96,bitmap_extract,,SR2 changed; = SR1 0f38:b51e bitmap_extract
+func,1a21:b09e,bitmap_clear,far void (Desc far *d),SR2 new
+func,1a21:b0f6,pic_get_padded,"far Desc far * (int id, int pool)",SR2 new
+func,26b3:000c,pic_unpack,,SR2 changed; SR1 0e92:0006 pic_unpack
+func,26c0:0002,tdy_draw_cursor,,not ported (VGA only)
+func,26c0:00c1,cga_draw_cursor,,not ported (VGA only)
+func,26c0:0175,ega_draw_cursor,,SR2 same; SR1 0e6c:0175 ega_draw_cursor
+func,2719:000a,cga_helper_000a,,not ported (VGA only)
+func,2719:003a,cga_helper_003a,,not ported (VGA only)
+func,2719:00c2,cga_helper_00c2,,not ported (VGA only)
+func,2719:01a6,cga_install_vectors,,not ported (VGA only)
+func,2719:01b8,cga_draw_text,,not ported (VGA only)
+func,2719:0700,cga_recolour_rect,,not ported (VGA only)
+func,2719:0d02,cga_copy_page,,not ported (VGA only)
+func,2719:0d58,cga_blinds,,not ported (VGA only)
+func,2719:0e58,cga_helper_0e58,,not ported (VGA only)
+func,2719:0e7a,cga_pal_black,,not ported (VGA only)
+func,2719:0ea2,cga_pal_normal,,not ported (VGA only)
+func,2719:0eca,cga_helper_0eca,,not ported (VGA only)
+func,2719:0fbb,cga_helper_0fbb,,not ported (VGA only)
+func,2719:1092,cga_blit_masked,,not ported (VGA only)
+func,2719:115e,cga_helper_115e,,not ported (VGA only)
+func,2719:11fe,cga_blit,,not ported (VGA only)
+func,2719:1384,cga_helper_1384,,not ported (VGA only)
+func,2719:138c,cga_helper_138c,,not ported (VGA only)
+func,2719:13e6,cga_helper_13e6,,not ported (VGA only)
+func,2719:14a8,cga_helper_14a8,,not ported (VGA only)
+func,2719:1566,cga_blit_shifted,,not ported (VGA only)
+func,2719:1702,cga_helper_1702,,not ported (VGA only)
+func,2719:176c,cga_helper_176c,,not ported (VGA only)
+func,2719:17ca,cga_anim_step,,not ported (VGA only)
+func,2719:1c38,cga_pixel_addr,,not ported (VGA only)
+func,2719:1c60,cga_set_colour,,not ported (VGA only)
+func,2719:1c7c,cga_line,,not ported (VGA only)
+func,2719:1f19,cga_hspan,,not ported (VGA only)
+func,2719:2040,cga_fill_rows,,not ported (VGA only)
+func,2719:20bd,cga_helper_20bd,,not ported (VGA only)
+func,2f32:0002,ega_wait_vretrace,,SR2 same; = SR1 21a0:0006 ega_wait_vretrace
+func,2f32:0010,ega_set_split,,SR2 same; = SR1 21a0:0014 ega_set_split
+func,2f32:00a8,tdy_helper_00a8,,not ported (VGA only)
+func,2f32:019d,tdy_helper_019d,,not ported (VGA only)
+func,2f32:022a,tdy_helper_022a,,not ported (VGA only)
+func,2f32:0364,tdy_blit_masked,,not ported (VGA only)
+func,2f32:04a2,tdy_blit,,not ported (VGA only)
+func,2f32:0672,tdy_helper_0672,,not ported (VGA only)
+func,2f32:0700,tdy_helper_0700,,not ported (VGA only)
+func,2f32:0788,tdy_blit_shifted,,not ported (VGA only)
+func,2f32:0906,tdy_install_vectors,,not ported (VGA only)
+func,2f32:0918,tdy_draw_text,,not ported (VGA only)
+func,2f32:09da,tdy_recolour_rect,,not ported (VGA only)
+func,2f32:0b80,tdy_copy_page,,not ported (VGA only)
+func,2f32:0b9c,tdy_blinds,,not ported (VGA only)
+func,2f32:0c56,tdy_helper_0c56,,not ported (VGA only)
+func,2f32:0cbe,tdy_anim_step,,not ported (VGA only)
+func,2f32:111c,ega_install_vectors,,SR2 changed; = SR1 21a0:1128 ega_install_vectors
+func,2f32:112e,ega_draw_text,,SR2 changed; = SR1 21a0:113a ega_draw_text
+func,2f32:1571,ega_recolour_rect,,SR2 changed; = SR1 21a0:1508 ega_recolour_rect
+func,2f32:17a4,ega_copy_page,,SR2 changed; = SR1 21a0:16dc ega_copy_page
+func,2f32:17f5,ega_blinds,,SR2 changed; = SR1 21a0:1722 ega_blinds
+func,2f32:1932,ega_set_colour,far void (int colour),SR2 new
+func,2f32:1956,ega_show_page,,SR2 changed; = SR1 21a0:182e ega_show_page
+func,2f32:198a,ega_blit,,SR2 changed; = SR1 21a0:1862 ega_blit
+func,2f32:1bf6,ega_sprite_over_bg,,SR2 changed; = SR1 21a0:1ae9 ega_sprite_over_bg
+func,2f32:1dd8,ega_blit_masked,,SR2 changed; = SR1 21a0:1cd5 ega_blit_masked
+func,2f32:1f32,ega_save_rect,,SR2 changed; = SR1 21a0:1e2d ega_save_rect
+func,2f32:1fbf,shift_row,,SR2 changed; SR1 21a0:1ea2 shift_row
+func,2f32:2068,ega_put_shifted_row,,SR2 changed; SR1 21a0:1f8d ega_put_shifted_row
+func,2f32:230f,ega_blit_shifted,,SR2 changed; SR1 21a0:223b ega_blit_shifted
+func,2f32:2540,ega_line,,SR2 same; = SR1 21a0:23bc ega_line
+func,2f32:26b2,ega_pixel_addr,,SR2 changed; = SR1 21a0:252e ega_pixel_addr
+func,2f32:26ec,anim_restore_rect,,SR2 changed; SR1 21a0:2568 anim_restore_rect
+func,2f32:2754,ega_anim_step,,SR2 changed; SR1 21a0:25d9 ega_anim_step
+func,2f32:2ab2,ega_slide_sprite,,SR2 changed; SR1 21a0:28ec ega_slide_sprite
+func,3210:0000,tdy_pic_helper_0000,,not ported (VGA only)
+func,3210:005a,tdy_pic_unpack_a,,not ported (VGA only)
+func,3210:0120,tdy_pic_unpack_b,,not ported (VGA only)
+func,3210:01ab,tdy_pic_helper_01ab,,not ported (VGA only)
+func,3210:01f4,tdy_pic_helper_01f4,,not ported (VGA only)
+func,3210:023c,tdy_pic_make_mask,,not ported (VGA only)
+func,3236:000c,tdy_pixel_addr,,not ported (VGA only)
+func,3236:0038,tdy_line,,not ported (VGA only)
+func,3236:025f,tdy_hspan,,not ported (VGA only)
+func,3236:0307,tdy_fill_rows,,not ported (VGA only)
+func,3236:0371,tdy_set_colour,,not ported (VGA only)
+func,326e:000a,tdy_blit_helper_000a,,not ported (VGA only)
+func,326e:00d3,tdy_blit_helper_00d3,,not ported (VGA only)
+func,3288:000c,tdy_blit_helper_000c,,not ported (VGA only)
+func,3288:004f,tdy_blit_helper_004f,,not ported (VGA only)
+func,3298:0000,ega_latch_copy,,SR2 same; = SR1 24e7:0008 ega_latch_copy
+func,3298:0083,ega_latch_copy_to40,,SR2 changed; = SR1 24e7:008b ega_latch_copy_to40
+func,32a5:0002,rows_composite,,SR2 changed; = SR1 24f4:000a rows_composite
+func,3345:000c,rows_mask_or,,SR2 changed; = SR1 2595:0004 rows_mask_or
+func,33e5:0002,rows_mask_blend,,SR2 same; = SR1 2634:000a rows_mask_blend
+func,33e5:00b9,make_mask_plane,,SR2 changed; = SR1 2634:00c1 make_mask_plane
+func,33f6:0000,poly_pixel_addr,"near asm (BX = x, AX = y) -> BX, ES, CL, AH",SR2 new
+func,33f8:0060,poly_edge_setup,near asm (DI = Edge*),SR2 new
+func,33f8:0100,poly_edge_advance,near asm (DI = Edge*) -> CF,SR2 new
+func,33f8:014a,poly_next_vertex,near asm (SI = vertex ptr) -> SI,SR2 new
+func,33f8:0157,poly_prev_vertex,near asm (SI = vertex ptr) -> SI,SR2 new
+func,33f8:0164,poly_span_fill,"near asm (SI, DI = Edge*)",SR2 new
+func,33f8:01ca,poly_fill,"far void (Point near *pts, int n, int fill_colour, int edge_colour)  /* driver slot 18, [DS:A0F6] */",SR2 new
+func,3422:009e,cga_poly_edge_setup,,not ported (VGA only)
+func,3422:013e,cga_poly_edge_advance,,not ported (VGA only)
+func,3422:01aa,cga_poly_next_vertex,,not ported (VGA only)
+func,3422:01b7,cga_poly_prev_vertex,,not ported (VGA only)
+func,3422:01c4,cga_poly_span_fill,,not ported (VGA only)
+func,3422:025d,cga_poly_fill,,not ported (VGA only)
+func,3458:00a6,tdy_poly_edge_setup,,not ported (VGA only)
+func,3458:0146,tdy_poly_edge_advance,,not ported (VGA only)
+func,3458:01a0,tdy_poly_next_vertex,,not ported (VGA only)
+func,3458:01ad,tdy_poly_prev_vertex,,not ported (VGA only)
+func,3458:0228,tdy_poly_fill,,not ported (VGA only)
+func,3488:000e,pixel_decimate_planes,"far void (src far, int wb, int h, dst far, u8 row_pat, u8 col_pat, u8 bits)",SR2 new
+func,3488:00bf,cga_pixel_decimate_planes,,not ported (VGA only)
+func,3488:01f3,tdy_pixel_decimate_planes,,not ported (VGA only)
+global,DS:AD0C,race_front,far ptr,race-mode front page (set by the road renderer; used by `cursor_redraw` when `racing`)
+global,DS:ADA2,race_back,far ptr,race-mode back page (VGA)
+global,DS:AD10,g_front,far Desc*,"visible page descriptor (DS:AD10 off, AD12 seg); SR1 DS:822A"
+global,DS:AD14,g_back,far Desc*,"back page descriptor drawn into (AD14, AD16); SR1 DS:822E"
+global,DS:AD18,g_aux_a,u16,cleared by `gfx_init`; SR1 DS:8232
+global,DS:AD1A,g_aux_b,u16,cleared by `gfx_init`; SR1 DS:8234
+global,DS:AD1C,driver_id,i16,"-2 EGA/VGA, -4 Hercules, -6 Tandy (CGA: type byte FDh in the page descriptor, id stays whatever `driver_select` set); SR1 DS:8236"
+global,DS:AD1E,g_nplanes,u16,"4 on EGA/VGA, 1 on CGA/Herc/Tandy; SR1 DS:8238"
+global,DS:AD20,g_px_shift,u16,pixel -> byte shift (3 on EGA/VGA); SR1 DS:823A
+global,DS:AD22,g_px_factor,u16,"1 (EGA/VGA), 2 (CGA), 4 (Tandy); SR1 DS:823C"
+global,DS:AD24,g_x_align,i16,x alignment mask: 0xFFF8 on EGA/VGA; SR1 DS:823E
+global,DS:AD26,g_mirror,u16,1 = also copy drawing from the back page to the front page (double buffering); SR1 DS:8240
+global,DS:AD28,g_text_fg,u8,text foreground (scheme colours); `AD29` = background; SR1 DS:8242 / 8243
+global,DS:AD2A,g_fill_col,u8,fill colour; `AD2B` = line colour; SR1 DS:8244 / 8245
+global,DS:AD2C,g_frame_style,u8,"0 none, 1 single, 2 double, 3 solid; SR1 DS:8246"
+global,DS:AD2D,g_ui_level,u8,"UI level (1 after `gfx_init`, 2 after `cursor_init`); SR1 DS:8247"
+global,DS:AD2E,g_overscan,u8,overscan (border) register value for `ega_set_palette`; SR1 DS:8248
+global,DS:AD2F,g_pal_visible,u8,"0 after `pal_black`, 1 after `pal_normal`; SR1 DS:8249"
+global,DS:AD32,g_text_end_x,i16,end x of the last `draw_text` (AD34 = y); SR1 DS:824C / 824E
+global,DS:AD36,status_w,u16,"status line parameters set by `status_init` (AD36 = 0x58, AD38 = y + 1, AD3A = 0xA0, AD3C, AD3E); SR1 DS:8254.. 8258"
+global,DS:AD40,ui_colours,u16[12],**new**: UI palette indices set by `gfx_init` (`AD40` .. `AD56`; see `gfx_init`); SR1 DS:8266 / 8268 / 7644..
+global,DS:AD58,view_rect_ptr,u16*,pointer to the view rect; `AD5C/AD5E/AD60` its corner coordinates (`rect_clip_to_view`); SR1 DS:825A..8262
+global,DS:ADD8,slow_machine,u16,see platform.md; SR1 DS:82C6
+global,DS:9A82,g_page,far Desc*[4],"page table: `9A82` page 0, `9A86` page 1, `9A8A` page 2, `9A8E` page 3; SR1 DS:7316..7322"
+global,DS:9BC0,g_draw_off,u16,offset part of the line/fill target (`fill_rect`); SR1 DS:767C
+global,DS:9DC2,g_draw_seg,u16,segment of the line/fill/poly target (`DS:9DC2`); SR1 DS:787A
+global,DS:9DC6,g_scheme,u8*,colour scheme table in use: `0x1D06` (EGA/VGA/Tandy) or `0x1D56` (CGA); scheme n = 5 bytes at `+5n`... status scheme 11 at `+0x37`; SR1 DS:787E (0x3A0 / 0x3F0)
+global,DS:A0AE,drv_vec,far ptr[20],"**driver vector table, 20 slots** (see below); `A0CE` = slot 8, `A0DE` = slot 12, `A0F6` = slot 18; SR1 DS:78A2 (15 slots)"
+global,DS:7A40,vec_cga,far ptr[20],CGA/Hercules driver template; SR1 DS:5B04
+global,DS:7ADC,vec_tandy,far ptr[20],Tandy driver template; SR1 DS:5B8A
+global,DS:7B38,vec_ega,far ptr[20],EGA/VGA driver template; SR1 DS:5BD0
+global,DS:7B88,g_blinds_rows,u16[5],`ega_blinds` pass offsets `0 50 A0 28 78`; SR1 DS:5C0C
+global,DS:7B91,g_lmask,u8[9],left masks `00 80 C0 E0 F0 F8 FC FE FF`; `DS:7B99` = right-mask view; SR1 DS:5C15
+global,DS:86EA,g_font_seg,u16,font segment (26E6); glyph `c` at offset `c*9 - 0x11A`; SR1 DS:691A (seg 0E9F)
+global,DS:1C48,g_saved_back,far Desc*,"pages remembered by `gfx_screen_mode(0)` (`1C48` back, `1C4C` front); SR1 DS:02E6 / 02EA"
+global,DS:1D06,scheme_ega,u8[],colour scheme table (5 bytes per scheme) for EGA/VGA; `DS:1D56` = CGA table; SR1 DS:03A0 / 03F0
+global,DS:1DA6,pal_live,u8[17],"live palette register table (16 + overscan); loaded by `pal_load`, applied by `pal_normal`; SR1 DS:0440"
+global,DS:1DB8,pal_black_tab,u8[17],all zero; SR1 DS:0452
+global,DS:1DC8,pal_game,u8[17],game palette `00 00 08 07 0F 07 09 0B 03 02 04 0C 05 0A 06 0E 00` (= SR1 `DS:0440`); `DS:1E2E` copy; SR1 DS:0440
+global,DS:1DDA,pal_menu,u8[17],palette `00 00 08 0D 0F 07 00 00 01 02 09 0C 05 0A 06 0E 00` used by menus/garage/jail (`pal_load(0x1DDA)`)
+global,DS:1DEC,pal_identity2,u8[17],identity with register 10 = 0 (`FUN_0001_a51c`)
+global,DS:1DFE,pal_alt,u8[17],alternate palette `09 01 08 00 0F 07 0B 03 0E 02 04 0C 0D 0A 06 0E 00` (swapped by `pal_shadow_swap`); SR1 DS:0462
+global,DS:1E1E,gear_labels,near*[],gear label string pointers (`gear_label`); SR1 DS:0482
+global,DS:1E40,pic_origin_x,i16,"`show_picture_at` origin x, `1E42` y, `1E44` clip/clear height (200); SR1 DS:04BE / 04C0 / 04C2"
+global,DS:1BC8,event_id,i16,"current event / trip id (2 Bob's, 3 event 15, 4/6 other); selects tile lists in `ega_anim_step`; SR1 DS:0284"
+global,DS:1BCC,anim_w,u16,sprite w/h cache of `sprite_anim_advance` (`1BCE` = h); SR1 DS:0288 / 028A
+global,DS:1C08,g_anim_yoff,i16,sprite height reduction used by the animation code; SR1 DS:02D0
+global,DS:50CC,tiles6,u16[12],"6 tile pairs `{x, w}` for event 6 animations; `DS:50E4` = 3 pairs for event 15; SR1 DS:539A"
+global,DS:A2BA,g_ptr_save,far Desc*,pointer save-under descriptor (`A2BA`); cursor state block `A2BA..A2E0`; SR1 DS:7AEC
+global,DS:A2D8,cursor_state,i8,"0 off, 1 on, <0 restoring; SR1 DS:7B0A"
+global,DS:A544,scene_ptr,Anim*,sprite scene header (`sprite_scene_setup` return) with fields `A546..A556`; SR1 DS:7D18
+global,DS:A5FC,page_nodes,PageNode[2],animation page ring (16-byte nodes); SR1 DS:7D42
+global,DS:9D1A,scene_sprites,sprite rec[],12-byte sprite records of the scene; SR1 DS:77BA
+global,DS:977E,strip_descs,u8[18*n],car strip descriptors (non-VGA); SR1 DS:6E68
+global,DS:B7AE,racing,u8,non-zero while a race / event screen is active (redirects the pointer to the race pages); SR1 DS:8ACA
+global,DS:B87C,gfx_aux,u16,cleared by `gfx_init`
+func,1a21:b028,page_copy_rect,"far void (Desc far *src, Desc far *dst, int x0, int y0, int x1, int y1)",SR2 changed; SR1 0f38:b5aa page_copy_rect (S3.7)

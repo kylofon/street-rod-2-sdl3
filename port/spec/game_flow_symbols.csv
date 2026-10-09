@@ -1,0 +1,148 @@
+kind,address,name,type,notes
+func,0001:07b0,main,"void far (int argc, char **argv)","changed; SR1 0000:066f; switches, order, rnd(-1), no halloc"
+func,0001:0e94,cheapest_ad_price,int far (void),new; min price over the ad list DS:9B42 (broke_check)
+func,0001:17ea,input_reset,void far (void),changed; SR1 0000:0e24; no timer queue
+func,0001:18ce,platform_exit,void far (void),changed; SR1 0000:0fea
+func,0001:1d02,ui_wait,int far (int ticks_max),"changed; SR1 0000:1417; no tq, demo_step hook, juke key"
+func,0001:3245,kbd_inject_scancode,void far (void),changed; SR1 0000:2e93; keypad mouse emulation
+func,0001:3378,copy_protection,int far (void),"changed; SR1 0000:2fc8; manual lookup, never checks the answer"
+func,0001:348a,game_over_menu,int far (void),changed; SR1 0000:315b; menu 0x20
+func,0001:35e8,hall_is_slower,int near (int i),changed; SR1 0000:32d0
+func,0001:360c,hall_insert,void near (int i),changed; SR1 0000:32f4
+func,0001:3682,hall_score,long near (void),same; SR1 0000:3375
+func,0001:36ac,hall_of_fame_screen,void far (int won),changed; SR1 0000:339f; pic 0x4B9
+func,0001:3934,pools_init,void near (int full),changed; SR1 0000:3614; claimed from garage vote
+func,0001:3cc4,title_and_setup,int near (void),changed; SR1 0000:39c0; protection called
+func,0001:3d80,wait_ticks,void far (int n),changed; SR1 0000:3a83
+func,0001:3db4,msg_box,void far (int id),changed; SR1 0000:3ab8; table DS:11EA
+func,0001:3e08,garage_full_check,int near (void),changed; SR1 0000:3b0c; limits 16 / 0xB5; claimed from garage vote
+func,0001:3f28,part_alloc,int near (void),changed; SR1 0000:3c1b; claimed from garage vote
+func,0001:3f3e,part_free,void near (int p),changed; SR1 0000:3c3e; claimed from garage vote
+func,0001:4dd6,game_loop,int near (void),changed; SR1 0000:503f; event trips 2/15/17
+func,0001:5494,str_is_blank,int near (char *s),same; SR1 0000:5eb3
+func,0001:55b0,save_part_chain,"int near (int fd, u16 p)",changed; SR1 0000:5795
+func,0001:55fa,load_part_chain,"int near (int fd, u16 *head)",changed; SR1 0000:57dc
+func,0001:56a4,save_car_chain,"int near (int fd, u16 c, int one)","changed; SR1 0000:586e; 0x2A record, 10 chains"
+func,0001:5776,load_car_chain,"int near (int fd, u16 *head, int one)","changed; SR1 0000:590f; 0x2A record, 10 chains"
+func,0001:58b2,save_slots_scan,"void near (int for_save, int *count)","changed; SR1 0000:59f6; slots 0..14, 0x38 header"
+func,0001:59e2,load_game_screen,int near (void),changed; SR1 0000:5b4a
+func,0001:5d82,save_game_screen,void near (void),changed; SR1 0000:5eea; matcher class new
+func,0001:630e,quit_menu,int near (void),"changed; SR1 0000:641e; confirm menu 0x23, clock compensation"
+func,0001:a51c,ending_trigger,void near (void),"new; ending front (pic 0x43B, music, calls ending_anim)"
+func,0001:b2ea,tournament_time_text,"void far (int t, int msg)",new; patches 'xx.d' into message text
+func,0001:b356,tournament_result_message,void near (int mode),new; Grudge Night round / qualifier messages
+func,1a21:0dca,wait_click_or_key,void far (int ticks),changed; SR1 0f38:0b51
+func,1a21:0e82,title_sequence,void far (void),changed; SR1 0f38:0bf0; third wait 600
+func,1a21:0fe8,summer_over_screen,void far (void),changed; SR1 0f38:0d62; msg 0x60
+func,1a21:1cde,status_print,"void far (int x, char *s, int w)",changed; SR1 0f38:20a1 (matcher: video)
+func,1a21:1df4,money_add,void far (int delta),changed; SR1 0f38:21c0
+func,1a21:1e50,pay_or_msg,"int far (unsigned price, int msg)","new; pays or shows msg, returns 0/1"
+func,1a21:1e86,status_label,void far (char *s),changed; SR1 0f38:2213 (matcher: video)
+func,1a21:43dc,hotspot_find,"void far (int x, int y)",new; SR1 0f38:4dad; element under cursor + cached rect
+func,1a21:4806,demo_step,void near (void),new; demo mode cursor-driven autoplay
+func,1a21:4cf4,ui_menu,int far (int n),changed; SR1 0f38:4f14; ui_wait(16000)
+func,1a21:4d26,ui_dialog,int far (int n),changed; SR1 0f38:4ec1
+func,1a21:610c,ui_edit,"int far (int menu, int maxlen, char *buf)",changed; SR1 0f38:5e54
+func,1a21:6180,rnd,int far (int n),new generator (LCG 0x015A4E35); SR1 rnd 0f38:5eb6 was Wichmann-Hill
+func,1a21:6e6a,hot_data_load,void far (void),changed; SR1 0f38:6b79; 9 blocks + text pool
+func,1a21:7052,data_disk_check,char far (void),changed; SR1 data_disk
+func,1a21:70fc,hall_scramble,void near (void),changed; SR1 0f38:6ccf
+func,1a21:710c,hall_unscramble,void near (void),changed; SR1 0f38:6cec
+func,1a21:711c,hall_load,void far (void),changed; SR1 0f38:6d09
+func,1a21:71cc,hall_save,void far (void),changed; SR1 0f38:6dd2
+func,2925:000e,tournament_pick_field,void near (void),new; 9 nearest-speed unbeaten opponents -> DS:90CA; task-assigned (race vote)
+func,2925:00fa,tournament_seed,void near (void),new; dial-in times + sort; task-assigned (race vote)
+func,2925:01fa,tournament_next_round,void near (void),new; bracket pairing per round; task-assigned (race vote)
+func,2925:0522,panel_frame_draw,"void near (bitmap *dst, bitmap *border)",new; bevel frame for photo/face
+func,2925:0812,bitmap_remap_colors,"void near (bitmap *b, int f1, uint t1, int f2, uint t2)",new; EGA plane colour remap
+func,2925:0a0c,tournament_screen_build,void near (int with_photo),new
+func,2925:0c4c,clip_rect_split,"int near (rect *clip, rect *r, rect *o1, rect *o2)",new
+func,2925:0d02,panel_wipe,"void near (uint mode, bitmap *b, int x, int y, rect *clip)",new; 4 slide-in effects
+func,2925:12f2,tournament_round_header,void near (void),new; 'ROUND n' + opponent + dial-in difference
+func,2925:13d0,tournament_entrants_list,void near (void),new; 10 names + 'Prepare to set your breakout time'
+func,2925:14b6,tournament_standings,void near (int *ids),new; FINAL STANDINGS table
+func,2925:1642,tournament_intro_screen,void near (void),new
+func,2925:16c8,tournament_round_screen,void near (void),new
+func,2925:1786,tournament_finish,void near (void),"new; placings, prize 150/100/50, standings"
+func,2925:193e,event17_leave,void near (int last_result),new; drive back
+func,2925:1970,event17_run,void far (void),"new; Grudge Night, game_loop code 17; task-assigned (race vote)"
+func,2925:1ab8,gas_hotspots_clear,void near (void),new; SR1 gas_hotspots_clear b456
+func,2925:1ad2,gas_hotspot_enable,void near (int code),new; SR1 gas_hotspots_apply b425 (guess)
+func,2925:1af0,gas_hotspot_set,"void near (int code, int x, int y, int w, int h)",new; SR1 gas_hotspot_set b49c
+func,2925:1b28,gas_hotspots_a,void near (void),new; SR1 gas_hotspots_a b4de
+func,2925:1b84,gas_hotspots_b,void near (void),new; SR1 gas_hotspots_b b525
+func,2925:1bba,gas_hotspots_c,void near (int pump),new; SR1 gas_hotspots_c/d b552/b59b
+func,2925:1c06,gas_hotspots_none,void near (void),new; SR1 gas_hotspots_none b617
+func,2925:1c10,pump_dial_anim,void far (void),new
+func,2925:1cae,pump_strip_draw,"void far (void *page, int k)",new; also called by tdy/ega anim code
+func,2925:1d00,nozzle_draw,"void near (void *P, int pic)",new
+func,2925:1e08,counters_draw,void far (int pump),new; LED gallons / dollars
+func,2925:1f38,gas_leave,void near (void *P),new
+func,2925:20be,fuel_sound,"void far (int pump, int op)",new
+func,2925:2104,event15_run,void far (void),"new; gas station, game_loop code 15; task-assigned (race vote)"
+func,2925:2714,end_data_load,void near (void),new; loads SR2_end
+func,2925:27da,ending_anim,void far (void),new; SR2_end script player
+global,DS:A9D8,save_name,char[16],header +00; slot label (SR1 7E9A was the only name)
+global,DS:A9E8,player_name,char[16],header +10; driver name (SR1 7E9A)
+global,DS:A9F8,road_seed,u32,header +20; NEW
+global,DS:A9FC,money,i32,header +24; SR1 7EAA
+global,DS:AA00,skill_a,u8,header +28; NEW 1..8
+global,DS:AA01,skill_b,u8,header +29; NEW 1..8
+global,DS:AA02,cur_car,u16,header +2A; SR1 7EB0
+global,DS:AA04,car_list,u16,header +2C; SR1 7EB2
+global,DS:AA06,car_freelist,u16,header +2E; SR1 7EB4
+global,DS:AA08,car_count,i16,header +30; SR1 7EB6
+global,DS:AA0A,spare_parts,u16,header +32; SR1 7EB8
+global,DS:AA0C,part_freelist,u16,header +34; SR1 7EBA
+global,DS:AA0E,part_count,i16,header +36; SR1 7EBC; limit 0xB5
+global,DS:AA10,start_flag,u16,"runtime; set by race code, steers skill_b in Grudge Night"
+global,DS:AEC2,car_pool,16 x 0x2A,SR1 83B0
+global,DS:B1BE,part_pool,0xBE x 8,SR1 866A
+global,DS:479C,counters,6 x u16,"SR1 4970; 479C races, 47A0 road wins, 47A2 drag wins, 47A4 Grudge Night wins"
+global,DS:AB7E,people,22 x 0x12,SR1 7FF8
+global,DS:1F6A,game_clock,u32,SR1 05FC
+global,DS:1F72,rt_base,u32,SR1 0604
+global,DS:1F6E,rt_ticks,u32,SR1 0600
+global,DS:1F66,ticks,u32,SR1 05F8
+global,DS:7DFE,road_param,u16,SR1 5E0C
+global,DS:9B40,garage_block,0x80 bytes,NEW saved block (ad list etc.; garage spec)
+global,DS:1BC6,game_over,u16,SR1 0282
+global,DS:1BC8,location,i16,"SR1 0284; 1 garage, 2 Burger's, 3 gas, 4 Grudge Night, 6 jail"
+global,DS:1F3A,wait_until,u32,SR1 05CC
+global,DS:1F3E,wait_any_key,u16,SR1 05D0
+global,DS:1F40,last_key,u16,SR1 05D2
+global,DS:1F4A,msg_ticks,i16,SR1 05DC (0x15E)
+global,DS:1F4C,click_returns,u16,SR1 05DE
+global,DS:9730,demo,u16,SR1 0610
+global,DS:B8D0,sw_demo,u16,SR1 8BCE
+global,DS:986C,title_resident,u16,SR1 70E2
+global,DS:5304,music_on,u16,SR1 58D0
+global,DS:4C58,game_over_cache_flag,u16,SR1 4F4A
+global,DS:A61C,list_entries,u16[16],SR1 49E0
+global,DS:8FC8,slot_labels,15 x 16,SR1 4618
+global,DS:90B8,slot_present,u8[15],SR1 4FC2; 0xFF = absent
+global,DS:22EA,save_name_edit,char[16],SR1 2A2E
+global,DS:9AE0,hall_count,i16,SR1 7646
+global,DS:ADDC,hall,10 x 23,SR1 82CA
+global,DS:8842,hall_new_score,i16,SR1 6C5E
+global,DS:4922,resident_pics,u16[176],SR1 4C28
+global,DS:491A,title_pics,u16[4],SR1 4C20
+global,DS:4878,protection_table,24 x 4,"entries {n,page,line,letter}"
+global,DS:11EA,msg_table,6 bytes per id,"message table {box, line1, line2}"
+global,DS:20EA,demo_target_x,i16,"-1 clicked, -2 choose next"
+global,DS:B196,demo_target_y,i16,
+global,DS:2110,demo_used,u16[17],garage shuffle bag flags
+global,DS:20EE,demo_garage_codes,u16[17],shuffle bag codes
+global,DS:2132,demo_bag_left,u16,17
+global,DS:90CA,tourn_table,10 x 6,"{id,state,time}"
+global,DS:90C8,tourn_opp,i16,opponent index this round
+global,DS:9106,tourn_player,i16,player index
+global,DS:9B3E,tourn_alive,i16,1 alive / qualified
+global,DS:AD6C,tourn_round,i16,"-1 qualifier, 0..3"
+global,DS:B8C2,tourn_time,i16,tenths of a second
+global,DS:ADA8,tourn_dialin,i16,player dial-in
+global,DS:9ADC,tourn_opp_dialin,i16,
+global,DS:4FB6,tourn_prizes,u16[3],"150,100,50"
+func,1a21:44a8,draw_element,far int (UIEL *el),SR2 new; dialog item renderer (S3.7)
+func,1a21:473e,draw_screen,far void (UIEL *els),SR2 new; item list walker + bounding box (S3.7)
+func,0001:a4ea,bob_sign_draw,far void (void),SR2 new; LIB2 pic 0x47D + dancer_blit (S3.7)

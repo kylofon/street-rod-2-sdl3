@@ -1,0 +1,323 @@
+kind,address,name,type,notes
+func,0001:d2a8,aq_lane_target,"far int(int x,int dx,int seg,int opp_x,int opp_seg)",new; Aqueduct autopilot/AI lane step (AQ flags 0x10/0x80)
+func,0dcb:0006,plot_points_ega,"far void(u8 far *buf,int xoff,Point *pts,int n,int colour)",new; EGA driver slot 19 (DS:7B84 -> A0FA)
+func,0dcb:0108,plot_points_cga,"far void(u8 far *buf,int xoff,Point *pts,int n,int colour)","new; CGA slot 19 (DS:7A8C), parked"
+func,0dcb:01da,plot_points_tdy,"far void(u8 far *buf,int xoff,Point *pts,int n,int colour)","new; Tandy slot 19 (DS:7B28), parked"
+func,0dcb:02b4,sin256,near int(int deg),new; table DS:1504
+func,0dcb:031a,sin256_far,far int(int deg),new; gauges
+func,0dcb:0327,line_x_at_y,"near int(int x1,int y1,int x2,int y2,int Y)",new
+func,0dcb:0350,line_y_at_x,"near int(int x1,int y1,int x2,int y2,int X)",new
+func,0dcb:0379,rotate_about_centre,"near void(int x,int y,int *ox,int *oy)",new
+func,0dcb:03cc,rotate_vec,"near void(int x,int y,int *ox,int *oy)",new; no callers
+func,0dcb:0410,road_fillmode_begin,far void(),same SR1 2645:0008
+func,0dcb:0425,road_fillmode_end,far void(),same SR1 2645:001d
+func,0dcb:043c,ega_hline,"far void(int x1,int x2,int y)",changed: no colour arg (set_colour slot A0F2)
+func,0dcb:04e6,ega_fill_rows,"far void(int y,int colour)",same SR1 2645:00e7
+func,0dcb:054a,rr_pixel_addr,near (AX=y;BX=x) -> ES:BX;CL,same SR1 2645:014b
+func,0dcb:056a,road_set_seg_ptrs,near void(int seg),"changed; SR1 2645:171d; +BL/BR/LANE ptrs, drag-strip arrays and +0xC0 in modes 2/4"
+func,0dcb:062c,road_proj_x,"far int(int z,int x,int dx)",changed; SR1 2645:176f; cam x clamped 0x564..0xD5C in mode 8
+func,0dcb:0684,road_proj_y,"far int(int z,int y,int dy)","changed; SR1 2645:17b1; hill term halved, + DS:9A56"
+func,0dcb:06ba,road_proj_x_mirror,"far int(int z,int x,int dx)",changed; SR1 2645:17ed; mode-8 cam x clamp
+func,0dcb:070e,road_proj_y_mirror,"far int(int z,int y,int dy)",same; SR1 2645:1828
+func,0dcb:0736,road_state_init,far void(),changed; SR1 2645:185d
+func,0dcb:07e4,road_project_front,far void(),"changed; SR1 2645:18fb; 11 shared row tables, banks, new z rule"
+func,0dcb:0ce4,road_project_mirror,far void(),changed; SR1 2645:1bcc; writes the front tables (rows 0..7)
+func,0dcb:11fc,road_frame,far void(),"changed; SR1 2645:1e9e; project/draw per view, mode-8 path, pace 8 ticks"
+func,0dcb:12ca,road_advance_segment,far void(),"changed; SR1 2645:1efc; 64 substeps, finish DS:A2AA, mode-8 lane AI"
+func,0dcb:1470,track_lane_x,far int(int seg),new; LANE[seg]*0x70+0x5DC (was assigned race)
+func,0dcb:148a,road_edge_collision,far int(),"changed; SR1 2645:206b; banks, Mulholland fall-off, drag-strip wall (was assigned sound)"
+func,0dcb:1758,road_nudge_heading,far void(int dir),same; SR1 2645:2126
+func,0dcb:1774,road_step,far void(),changed; SR1 2645:213d; in race calls 7da2/a1c0
+func,0dcb:18ec,aq_project_front,far void(void),"mode 8 (aqueduct) front row projection, 15 rows; replaces road_project_front"
+func,0dcb:1b02,aq_project_mirror,far void(void),"mode 8 mirror row projection, 8 rows; centre x uses +BA8E (quirk)"
+func,0dcb:1cd2,aq_wall_collision,far int(),new; Aqueduct wall hit -> DS:B8C8 (was assigned sound)
+func,0dcb:1d04,feat_curve_left,near void(int n),changed; SR1 2645:017a; step n+DS:96AC; mask 0x9811
+func,0dcb:1dfa,feat_curve_right,near void(int n),changed; SR1 2645:0293
+func,0dcb:1eea,feat_s_bend_left,near void(int n),changed; SR1 2645:03a8
+func,0dcb:2034,feat_s_bend_right,near void(int n),changed; SR1 2645:0539
+func,0dcb:217e,feat_roadworks_right,near void(),"changed; SR1 2645:091a; only where BL!=BR, 5 segs"
+func,0dcb:2282,feat_narrow_bridge,near void(),"changed; SR1 2645:09f0; banks -500, scenery cleared"
+func,0dcb:2350,not_a_function_inside_2282,-,bogus entry inside 0dcb:2282; callers are near calls to 0001:2350
+func,0dcb:23d4,feat_roadworks_left,near void(),"changed; SR1 2645:0abb; only where BL!=BR, 5 segs"
+func,0dcb:24d8,track_build_course,far void(int arg),"changed; SR1 2645:0b91; 13 features, height deltas DS:7D42, drag-strip copies"
+func,0dcb:2866,track_build_all,far void(int full),"changed; SR1 2645:0d48; pages, town (full only), race road from seed DS:A9F8 (was assigned game_flow)"
+func,0dcb:33ac,aq_build,far void(),new; Aqueduct flag array 3726:4E62 and reversed copy 3726:628E
+func,0dcb:3516,road_pages_init,far void(),changed; SR1 2645:224e; VGA resets back=1/shown=2
+func,0dcb:354e,road_page_flip,near void(),same as SR1 2645:2288 with DS remap
+func,0dcb:35c4,blit_clip_y,near void(Rect *r),same SR1 2645:22fc
+func,0dcb:3602,blit_clip_xy,near void(Rect *r),changed: bottom clip h = ymax-dsty+1
+func,0dcb:3664,road_vline,"near void(int colour,int x,int y1,int y2)",same SR1 2645:2381
+func,0dcb:36ce,clip_set_ymin0,far void(),same SR1 2645:23f0
+func,0dcb:36d6,clip_set_mirror,near void(),changed: x 0xF0..0x13F
+func,0dcb:36f0,clip_set_view,far void(),same SR1 2645:2410
+func,0dcb:370a,mirror_bg_prepare,near void(int with_sky),"new: pre-blit LIB3 2005 mirror (+2037/2063 mirror sky) into page ADA2 at (232,102)"
+func,0dcb:37ce,road_load_graphics,far void(void),"changed SR1 2645:2429: LIB3 ids, Mulholland bg 2056, sprites from SR2_DATA blocks 8/7, police row DS:AAFA"
+func,0dcb:3cca,road_draw_sky_mulholland,near void(void),"new: mode 0x10 sky panorama + fall fill, sets 975E/9856"
+func,0dcb:3e66,road_draw_sky,near void(void),"changed: SR1 2645:2982; relative dy, hy clamp 0x12..0x52, conditional wrap blit, fill top >= 0x12"
+func,0dcb:4154,shape_draw,"far void(int x,int y,int lod,ShpSet far *set,int side)","changed: SR2_SHP format A, colour runs, mirror if side<=0"
+func,0dcb:4268,slope16,"near int(int xa,int ya,int xb,int yb)",same SR1 2645:2cfc
+func,0dcb:4294,quad_fill,"near void(int c,int xa,int xb,int ya0,int yb0,int yb1,int ya1)",changed: SR1 2645:2d20 replaced by polygon fill 7f30 + A0F6
+func,0dcb:42fe,rr_sign,near int(int v),same SR1 2645:2f2b
+func,0dcb:4322,road_draw_band_front,far void(int row),"changed: SR1 2645:2f48; grass, Mulholland rails/terrain, Grudge Night start dashes"
+func,0dcb:4852,road_draw_band_mirror,far void(void),"changed: SR1 2645:324d; grass 0xF0..0x13F, white band from seg 0x169"
+func,0dcb:4c1c,town_walls_front,"near void(int a,int b,int c,int d,int e,int f,int left)","= SR1 2645:34da, quad via 4294"
+func,0dcb:4e70,town_walls_mirror,"near void(int a,int b,int c,int d,int e,int f,int left)","= SR1 2645:37af, quad via 4294"
+func,0dcb:504a,town_walls_front_left,near void(void),= SR1 2645:39de
+func,0dcb:507a,town_walls_front_right,near void(void),= SR1 2645:3a0d (matcher said 3a86 mirror_right: wrong)
+func,0dcb:50a8,road_draw_row_front,near void(int row),= SR1 2645:3a3b
+func,0dcb:50c4,town_walls_mirror_left,near void(void),= SR1 2645:3a57
+func,0dcb:50f4,town_walls_mirror_right,near void(void),= SR1 2645:3a86 (matcher said 3a0d front_right: wrong)
+func,0dcb:5122,road_draw_row_mirror,near void(void),= SR1 2645:3ab4
+func,0dcb:512e,shape_draw_dot,"far void(int x,int y)",changed: set DS:7E94
+func,0dcb:5158,scenery_draw_shape,"near void(int x,int y,int depth,int side,int type,int noclamp)","changed: far table DS:8172, noclamp arg"
+func,0dcb:51aa,scenery_draw_hydrant,"near void(int x,int y,int depth,int side)","= SR1 2645:3b3a, set DS:817A"
+func,0dcb:51e0,scenery_draw_bush_group,"near void(int x,int y,int depth,int side)",new
+func,0dcb:52e2,scenery_draw_sign_picture,"near void(int x,int y,int depth,int align,int xclip,int kind)",changed: sources 9BC2/ADA2/96AE/96B2
+func,0dcb:5404,scenery_draw_truss,"near void(int xl1,int xr1,int yt1,int yb1,int xl2,int xr2,int yt2,int yb2,int parity,int near_flag)",new; mode 0x10
+func,0dcb:555e,scenery_draw_truss_end,"near void(int xl,int xr,int ytop,int ybot)",new
+func,0dcb:55ce,scenery_draw_banner,"near void(int xl,int xr,int ytop,int ybot,int depth,int xclip,uint flags)",= SR1 2645:3ccc + set_colour/hline API
+func,0dcb:56e8,road_draw_cockpit_overlay,near void(),"changed: only LIB3 #2003 at (0,18)"
+func,0dcb:573e,road_draw_hood_overlay,near void(),changed/renamed (SR1 match mirror_draw_background wrong); table DS:78E0
+func,0dcb:57a6,mirror_draw_backdrop,near void(void),new: mirror backdrop blits from page 2 (mode 8: 85a0)
+func,0dcb:58f4,road_poly_fill,"near void(int x0,int y0,int x1,int y1,int x2,int y2,int x3,int y3,int x4,int y4,int x5,int y5,int n,int colour)",new: polygon via 7f30 + A0F6
+func,0dcb:597e,road_draw_barrier_walls,"near void(int phase_seg,int n,int row)","new: drag-strip (mode 2/4) edge walls, colour 0xB/4 per 5 segments"
+func,0dcb:5a2c,mirror_finish,near void(void),new: mirror frame vlines + copy to page 0 (SR1 43fd tail)
+func,0dcb:5aee,road_draw_mirror,near void(void),new: SR1 2645:43fd successor; 7 mirror rows
+func,0dcb:69d4,obstacle_hit_test,"near int(int x,int w,int y)",new: -1/0/+1 obstacle over wheel columns
+func,0dcb:6a32,road_draw_front,far void(void),new: SR1 2645:4b8c successor; 14 front rows
+func,0dcb:7da2,road_fall_off_edge,far void(int dir),new; Mulholland fall animation 8 frames
+func,0dcb:7de4,clip_line,"far void(int x1,int y1,int x2,int y2,int colour)",new
+func,0dcb:7f30,clip_polygon,"far int(Point *in,int n,Point *out,int *nout)","new; Sutherland-Hodgman, 16-point buffers"
+func,0dcb:8288,shp_b_draw,"far void(int x,int y,int group,ShpSetB far *set)","SR2_SHP format-B group, variant DS:AD68 (roll); steep roll -> rotated span lines"
+func,0dcb:8482,aq_draw_row_shape,"near void(int x,int y,int row,int set)",group=(row+1)>>1 front / (row>>1)+6 mirror; set ptr DS:81CE[set]
+func,0dcb:84c4,aq_draw_night_sky,near void(void),stars DS:7F2E(18)/7F76(6) + SR2_SHP sets 23/24
+func,0dcb:85a0,aq_draw_mirror_stars,near void(void),mirror stars DS:7F8E(9)/7FB2(3); called by 0dcb:57a6
+func,0dcb:862a,poly_straddles_bottom,"near int(int x,int *pts,int n)",points on row 0x65 both left and right of x
+func,0dcb:8674,poly_bottom_hit_bits,"near uint(int *pts,int n)",0x20/0x40/0x60 from bottom-row points vs x<0x50 / x>0x13F
+func,0dcb:86d2,anchor_scale_rows,"near void(int row,int n,const u8 *masks)",new: anchor tables DS:9E08/9E94[13][7] rows row+1..row+n = row*popcount/8
+func,0dcb:8774,rot_shrink_max_size,"near int(Pic far *pic,u8 mask)","new: max bytes of rotate(-45..0)+shrink, for the low-stack reserve"
+func,0dcb:8840,race_load_graphics_rot,far void(void),"new: ADD6==8 loader; rotated opponent sprites at 7 angles, anchors"
+func,0dcb:8b16,aq_draw_sky,near void(void),"fill sky colour 1, star scroll DS:96FA, night sky"
+func,0dcb:8b5c,aq_draw_box,"near void(int p[16],int solid)","rotated 8-corner box, faces via poly_fill; collision bits to DS:A7D2"
+func,0dcb:8ece,aq_wall_opening_quad,"near int(int k,uint flags,int q[8],int enable)","wall opening quad between rows k,k+1 (flags 0x104 left / 0x208 right)"
+func,0dcb:905c,aq_draw_scene,far void(void),"mode 8 channel/trough/features/opponent drawer, front (N=14) and mirror (N=7)"
+func,0dcb:9ce8,aq_draw_mirror,far void(void),"mode 8 mirror: rotate 8 rows, bg 57a6, scene, frame 5a2c"
+func,0dcb:9d9c,aq_climb_left,near void(void),"car on left wall: roll, channel deformation, nudges DS:A564"
+func,0dcb:9e4e,aq_climb_right,near void(void),"car on right wall: roll, deformation, nudges DS:A564/A56A"
+func,0dcb:9f08,aq_trough_bump,near void(void),"car over centre trough: roll +-4, speed DS:A100 -2"
+func,0dcb:9f9a,aq_roll_update,near void(void),"roll += spin, shape variant AD68, pitch B7B0"
+func,0dcb:a094,aq_draw_front,far void(void),"mode 8 front: save deformation, roll, sin/cos, rotate 15 rows, sky, scene"
+func,0dcb:a1c0,aq_wall_bounce,far void(int dir),new; Aqueduct wall bounce animation
+func,0dcb:a2d8,aq_collide_probe,far uint(uint flags),race query (0001:cee0): box/pillar footprint vs bottom row; overwrites rows 0-1
+func,0dcb:a5aa,start_props_load,near void(void),"new: start panel DS:B7B2 (2067/2069/2070), 4-size object DS:9A2A, DS:AB24"
+func,0dcb:a746,road_draw_starter_slide,near void(),new
+func,0dcb:a85c,starter_draw_mirror,"near void(int x,int y,int row)",start-line figure DS:9A2A[lod] in the mirror (normal modes)
+func,0dcb:a92a,starter_draw_mirror_aq,near void(int row),"mode 8 start-line figure in the mirror, rotated"
+func,0dcb:aab0,road_draw_start_tree,"near void(int x,int ybase,int row)",new
+func,0dcb:ad40,opp_sprite_aq,"far Pic far *(int s,int v)",mode 8 opponent sprite: fixed pics or shrunk with SR2_DATA block 8/7 masks
+func,0dcb:ae9c,opp_bank_variant,near int(void),"opponent bank angle DS:A55C, variant 0..6 or -1"
+func,0dcb:af98,opponent_draw,far void(void),"SR1 opponent_draw 2645:3f8d grown: 1/64 distances, contact, mode 8 variants"
+func,0dcb:b7da,popcount8,near int(u8 m),= SR1 2645:528c
+func,0dcb:b7fa,pic_alloc_shrunk,"far Pic far*(int w,int h,int masked,u8 ymask,u8 xmask)","changed SR1 2645:52b7: w/h args, mode 2 alloc"
+func,0dcb:b8c8,pic_shrink_planar,"far Pic far*(Pic far *src,u8 mask)",= SR1 2645:5407 via 3488:000e; driver slot 15 EGA/VGA (DS:A0EA)
+func,0dcb:b984,cga_expand_bits,"near void(u8 m,u8 *hi,u8 *lo)",= SR1 2645:55f8
+func,0dcb:b9e0,pic_shrink_cga,"far Pic far*(Pic far *src,u8 mask)",= SR1 2645:5670 via 3488:00bf; driver slot 15 CGA
+func,0dcb:ba72,pic_shrink_tandy,"far Pic far*(Pic far *src,u8 mask)",= SR1 2645:5885 via 3488:01f3; driver slot 15 Tandy
+func,0dcb:bb22,rot_alloc,"far Pic far*(int angle,Pic far *src,int mode,int *u0,int *v0,s8 *ax,s8 *ay,int pivot_x,int setup)",new: rotated bbox alloc + inverse-map start + anchor
+func,0dcb:bd12,pic_rotate_planar,"far Pic far*(Pic far *src,int angle,int mode,s8 *ax,s8 *ay,int pivot_x)","new: driver slot 16 (DS:A0EE) EGA/VGA, nearest-neighbour rotation"
+func,0dcb:c09a,pic_rotate_cga,"far Pic far*(Pic far *src,int angle,int mode,s8 *ax,s8 *ay,int pivot_x)",new: driver slot 16 CGA
+func,0dcb:c342,pic_rotate_tandy,"far Pic far*(Pic far *src,int angle,int mode,s8 *ax,s8 *ay,int pivot_x)",new: driver slot 16 Tandy; does not restore sin/cos
+func,1a21:7304,shp_read_block_a,"near void far*(int id,void far *dst)",new; claimed from platform
+func,1a21:7446,shp_read_block_b,"near void far*(int i,void far *dst)",new; claimed from platform
+func,1a21:75ea,shp_load_set,far void(),new; claimed from platform
+func,1a21:9b96,heap_free,far int(void),new: bytes between high and low mark stacks (platform)
+func,1a21:9bac,bitmap_bytes,"far int(int w,int h,unsigned flags)",new: size arena_bitmap_alloc would take (platform/video)
+func,1a21:a6e8,bitmap_visible_width,far int(Pic far *p),"width minus transparent right margin (mask), / DS:AD22"
+xref,1a21:1924,pace_ticks,far void(int n),"owned by video; NOT race_render coverage: correct name of the routine misnamed font_string_width in port/symbols.csv (wait until DS:1F66 tick counter passes deadline DS:1D02, then set the next deadline n ticks later)"
+global,DS:1504,sin_table,u8[91],sin 0..90 deg x255
+global,DS:4BBE,shp_handle,u16,SR2_SHP DOS handle
+global,DS:4BC0,shp_name,char[10],"""?:sr2_shp"""
+global,DS:4BD6,shp_ids_mode0,s16[],set ids mode 0 (-1 term)
+global,DS:4BEE,shp_ids_mode1,s16[],set ids mode 1
+global,DS:4C16,shp_ids_mode2_4,s16[],set ids modes 2/4
+global,DS:4C30,shp_ids_mode16,s16[],set ids mode 0x10
+global,DS:78E0,hood_pics,"{u16 id,x,y}[6]",hood overlay per dash type
+global,DS:7B9C,fall_dir,s16,Mulholland fall-off request
+global,DS:7B9E,nudge_right_latch,u16,SR1 5E10
+global,DS:7BA0,nudge_left_latch,u16,SR1 5E12
+global,DS:7BA2,on_shoulder,u16,SR1 5E0E
+global,DS:7C1C,hill_profile_17,s16[17],SR1 5C98
+global,DS:7C3E,course_layouts,s16[10][13],SR1 5CBC
+global,DS:7D42,course_height_deltas,s16[61],HGT delta per 10 segs from 0x17C
+global,DS:7DDA,page1_desc,Pic18,SR1 5DAC
+global,DS:7DEC,page2_desc,Pic18,SR1 5DDC
+global,DS:7DFE,course_layout,s16,0..9 saved (SR1 5E0C)
+global,DS:7E02,back_page,s16,SR1 5E3E
+global,DS:7E04,shown_page,s16,SR1 5E40
+global,DS:7E06,view_copy_rect,Rect,SR1 5E42
+global,DS:7E12,clip_xmin,s16,SR1 5E4E
+global,DS:7E14,clip_ymin,s16,SR1 5E50
+global,DS:7E16,clip_ymax,s16,SR1 5E52
+global,DS:7E18,clip_xmax,s16,SR1 5E54
+global,DS:7E1A,sign_sheet_ids,u16[5],2047 2033 2032 2034
+global,DS:7E1E,hill_peak_tab,s16[],Mulholland hillside peak widths/heights (read up to DS:7E72)
+global,DS:7E52,dash_width,s16[25],"dash width per row (front 7E6E=row14, mirror 7E7A=row7) (SR1 5E6A/5E84)"
+global,DS:7E84,dot_lod,LodRec,dot shape LOD record
+global,DS:7E94,dot_shape,ShpSet,"{1, far DS:7E84} (SR1 60A0)"
+global,DS:7E9A,bush_group_dx,s16[13][2],bush group spacing
+global,DS:7ECE,bush_group_hw,s16[13][2],bush group h/w
+global,DS:7F02,sign_sizes,"{s16 srcx,w,h}[7]",SR1 5E9C
+global,DS:7FBE,rot_angles,i16[7],-45 -30 -15 0 15 30 45
+global,DS:7FCE,aq_bounce_flag,u16,set by a1c0
+global,DS:7FD0,tree_lamp_dx,s16[3],start tree lamp x
+global,DS:7FD6,tree_lamp_w,s16[3],start tree lamp w
+global,DS:7FDC,tree_lamp_h,s16[9],start tree lamp h
+global,DS:7FEE,tree_lamp_sy,s16[9],start tree lamp srcy
+global,DS:8000,tree_lamp_dy,s16[9],start tree lamp dsty
+global,DS:80A0,rot_into_scratch,i16,rot_alloc builds into DS:AB24
+global,DS:80A2,shp_dir,"{u32 off,u16 size,u16}[26]",SR2_SHP directory
+global,DS:8172,shp_sets_a,ShpSet far*[23],format A sets by id (SR1 6078)
+global,DS:81CE,shp_sets_b,void far*[3],format B sets 23..25
+global,DS:81DA,shp_b_first,s16,23
+global,DS:81DC,shp_b_count,s16,3
+global,DS:86EC,seg3726_words,u16[19],86EC..8710 and 871E = 0x3726 (SR1 6A2C..)
+global,DS:8E3C,rot_shrink_masks,u8[18][22],SR2_DATA block 7: 7 angles x 3 shrink masks + pad
+global,DS:96A8,build_yaw,s16,SR1 6DFE
+global,DS:96AA,build_seg,s16,SR1 6E00
+global,DS:96AC,build_yaw_step,s16,"5 slow / 6, plus n (SR1 6E02)"
+global,DS:96AE,billboard_pics,Pic far*[2],2049 2050
+global,DS:96B6,rp_xl,s16*,XL[p] row pointer (SR1 6E08)
+global,DS:96B8,rp_xol,s16*,XOL[p] (SR1 6E0A)
+global,DS:96BA,rp_ye,s16*,YE[p] (SR1 6E0C)
+global,DS:96BC,rp_xor,s16*,XOR[p] (SR1 6E0E)
+global,DS:96BE,rq_xl,s16*,XL[q] (SR1 6E10)
+global,DS:96C0,rq_xol,s16*,XOL[q] (SR1 6E12)
+global,DS:96C2,rq_ye,s16*,YE[q] (SR1 6E14)
+global,DS:96C4,rq_xor,s16*,XOR[q] (SR1 6E16)
+global,DS:96C6,rp_xfl,s16*,far-left x [p]
+global,DS:96C8,rp_xfr,s16*,far-right x [p]
+global,DS:96CA,rq_xfr,s16*,far-right x [q]
+global,DS:96CC,rq_yt1,s16*,left terrain y [q]
+global,DS:96CE,rp_xr,s16*,XR[p] (SR1 6E18)
+global,DS:96D0,rp_y,s16*,Y[p] (SR1 6E1A)
+global,DS:96D2,rp_y79e,s16*,y at world height 0x79E [p]
+global,DS:96D4,rq_xr,s16*,XR[q] (SR1 6E1C)
+global,DS:96D6,rq_y79e,s16*,y at world height 0x79E [q]
+global,DS:96D8,rq_y,s16*,Y[q] (SR1 6E1E)
+global,DS:96DA,rp_yt1,s16*,left terrain y [p]
+global,DS:96DC,rp_yt2,s16*,right terrain y [p]
+global,DS:96DE,rq_yt2,s16*,right terrain y [q]
+global,DS:96E0,rq_xfl,s16*,far-left x [q]
+global,DS:96E2,left_ptr,far u16*,&L of the row (SR1 6E20)
+global,DS:96E6,right_ptr,far u16*,&R of the row (SR1 6E24)
+global,DS:96EA,x6_ptr,far s16*,&X6 obstacle lateral position of the row
+global,DS:96EE,dash_ptr,s16*,&dash_width[row] (SR1 6E28)
+global,DS:96F0,centre_ptr,far u16*,&C of the row (SR1 8B82)
+global,DS:96F4,rail_phase_seg,s16,start_seg or first rail-start segment; phase of rail posts / wall colours
+global,DS:96F6,aq_flag_ptr,far ptr,"segment flags, row k at -2k (3726:4E62 front, reversed copy mirror)"
+global,DS:96FA,aq_star_scroll,i16,(heading*2)%320
+global,DS:96FC,tree_lamp_right,s16,lamp state 0..2 / -1
+global,DS:96FE,tree_lamp_left,s16,lamp state 0..2 / -1
+global,DS:9708,rot_saved,i16[4],saved A540 A7A8 A7CC BA90
+global,DS:9732,aq_rot_floor_lx,i16[15],"rotated floor-left x, reversed (y at 9760)"
+global,DS:9754,seg_lane_ptr,far s16*,&LANE[seg] (3726:665A)
+global,DS:975E,ground_top_y,s16,top row of the ground fill (SR1 6E04)
+global,DS:9856,top_band_row,s16,highest road row drawn (SR1 6E06)
+global,DS:985C,ai_edge_left,s16,SR1 70C0
+global,DS:985E,aq_def_floor_h,i16,"channel deformation for next projection (also A2B8,A7A6,A5FA,9A5A,9B14)"
+global,DS:9862,opp_variant,i16,last bank variant
+global,DS:986A,aq_dy,i16,projection dy (BA8E = dx)
+global,DS:9A2A,start_obj_sizes,Pic far*[4],4 distance sizes of a start object
+global,DS:9A3C,seg_left_ptr,far u16*,SR1 72EE
+global,DS:9A40,start_panel_pic,Pic far*,DS:B7B2 picture
+global,DS:9A44,aq_flags_ptr,far u16*,&AQ[seg] / &AQM[0x171-seg]
+global,DS:9A48,opp_contact,i16,rear-end contact (SR1 72F2)
+global,DS:9A52,pic_pillar,Pic far*,LIB3 #2003 (SR1 72F4)
+global,DS:9A56,view_bounce_y,s16,added by road_proj_y
+global,DS:9A5C,row_xl,s16[15],SR1 72F8
+global,DS:9A80,opp_sprite_prev,i16,previous sprite (SR1 6E2A)
+global,DS:9A92,mirror_row_seg,s16,seg-row of the mirror row being drawn
+global,DS:9A94,police_sprites,Pic far*[13],police levels 0..12 (SR1 7526)
+global,DS:9AC8,aq_car_xl,i16,player car left world x (9A58 right)
+global,DS:9AD8,seg_yaw_ptr,far s16*,SR1 7560
+global,DS:9B0C,rooftops_pic,Pic far*,2004 (stale after release)
+global,DS:9B10,seg_bank_l_ptr,far s16*,&BL[seg] (3726:5146)
+global,DS:9BC0,draw_off,u16,SR1 767C
+global,DS:9BC2,page0_ptr,far Pic*,SR1 7678
+global,DS:9BC6,aq_rot_top_lx,i16[15],"rotated wall-top-left x, reversed (y at 9CFC)"
+global,DS:9BE4,horizon_pic,Pic far*,2055 or 2056
+global,DS:9DC2,draw_seg,u16,SR1 787A
+global,DS:9DC8,seg_hgt_ptr,far s16*,SR1 7880
+global,DS:9DCE,aq_rot_top_rx,i16[15],"rotated wall-top-right x, reversed (y at 9F0E)"
+global,DS:9E04,rot_side,Pic far*,mode 8 side view
+global,DS:9E08,anchor_x,s8[13][7],sprite anchor x per level/angle
+global,DS:9E64,rot_r34,Pic far*,mode 8 rear 3/4
+global,DS:9E70,rot_enable,u16,plot_points rotation on
+global,DS:9E72,rot_rear,Pic far*[7],rear at 7 angles
+global,DS:9E8E,seg_bank_r_ptr,far s16*,&BR[seg] (3726:5902)
+global,DS:9E94,anchor_y,s8[13][7],sprite anchor y from bottom per level/angle
+global,DS:9EF0,row_y,s16[15],SR1 7884
+global,DS:A1C6,rot_rear5,Pic far*[7],level-5 at 7 angles
+global,DS:A2B4,start_light_pos,s16,SR1 7AAE (now +4/frame)
+global,DS:A2B6,aq_car_sxl,i16,car left screen x at z=4 (A55A right)
+global,DS:A2E2,row_xr,s16[15],SR1 7ACE (shared front/mirror)
+global,DS:A300,row_yeye,s16[15],SR1 7AB0
+global,DS:A320,rot_front,Pic far*[7],front at 7 angles
+global,DS:A540,rot_sin,s16,sin x256
+global,DS:A558,ai_edge_right,s16,SR1 7D2E
+global,DS:A55C,opp_bank,i16,opponent bank angle (degrees)
+global,DS:A55E,seg,s16,current segment (SR1 7D30)
+global,DS:A560,substep,s16,0..63 (SR1 7D32 0..7)
+global,DS:A562,step_per_frame,s16,SR1 7D34 x8
+global,DS:A564,cam_x,s16,SR1 7D36
+global,DS:A566,cam_y,s16,SR1 7D38
+global,DS:A568,cam_unused,s16,SR1 7D3A
+global,DS:A56A,heading,s16,SR1 7D3C
+global,DS:A56C,cur_height,s16,SR1 7D3E
+global,DS:A5A8,row_ybank_l,s16[15],y of 0x7D0-BL
+global,DS:A79E,seg_centre_ptr,far u16*,SR1 7D62
+global,DS:A7A4,front_row_seg,s16,seg+row of the front row being drawn
+global,DS:A7A8,rot_cx,s16,rotation centre x
+global,DS:A7AC,start_active,i16,start panel active
+global,DS:A7AE,row_ybank_r,s16[15],y of 0x7D0-BR
+global,DS:A7CC,rot_cy,s16,rotation centre y
+global,DS:A7D2,aq_hit_bits,u16,"1/4 wall openings, 0x20/0x40 floor obstacles"
+global,DS:A7D4,opp_sprite,i16,current opponent sprite (SR1 7D7C)
+global,DS:A7DA,edge_left,s16,SR1 7D82
+global,DS:A7EA,row_ykerb,s16[15],y of world 0x79E
+global,DS:A9F8,race_road_seed,u32,RNG state after the town build
+global,DS:AA9C,aq_saved_floor_h,i16,"this frame's deformation copy (also B8BE,BB8A,B8E6)"
+global,DS:AA9E,opp_sprite_sets,Row[6] (14 bytes),"SR2_DATA block 8: {side,r34,rear ids; recA,recB ptrs; front id; recC ptr}"
+global,DS:AAF8,opp_last_sx,i16,last opponent screen x
+global,DS:AAFA,police_sprite_set,near Row*,= 0xAAE4 (row 5)
+global,DS:AB24,start_pic2,Pic far*,2068/2071/extract of 2069; rotator scratch when DS:80A0
+global,DS:AB28,dash_overlay_idx,i16,block 2 byte 1 of the player model
+global,DS:AB2E,row_xol,s16[15],SR1 7F8A
+global,DS:AB5E,row_xor,s16[15],SR1 7FD8
+global,DS:AD0C,page1_ptr,far Pic*,SR1 8188
+global,DS:AD68,aq_shape_variant,i16,SR2_SHP format-B variant 0..6
+global,DS:ADA2,page2_ptr,far Pic*,SR1 82B4
+global,DS:ADA6,aq_trough_near_y,i16,9EF0[0] (B162 = far y)
+global,DS:ADB2,row_xfar_l,s16[15],x of -(w-0x177)*4
+global,DS:ADD4,obstacle14_hit,s16,-1/0/+1 shape-0x14 obstacle in row 1 over wheels
+global,DS:ADD6,road_mode,u16,"0 town,1 drag race,2/4 Grudge Night strip,8 Aqueduct,0x10 Mulholland"
+global,DS:B16A,seg_right_ptr,far u16*,SR1 8634
+global,DS:B16E,aq_trough_near_xl,i16,trough left edge at nearest row (B872 right)
+global,DS:B170,aq_rot_floor_rx,i16[15],"rotated floor-right x, reversed (y at B1A0)"
+global,DS:B190,aq_roll_abs,i16,abs(roll)
+global,DS:B194,aq_rows,s16,14 front / 7 mirror for a094/9ce8
+global,DS:B198,opp_pic,far ptr,sprite drawn last
+global,DS:B7B0,aq_pitch,i16,roll-rate pitch subtracted from projection dy
+global,DS:B7B2,start_panel_id,u16,2067 / 2069 / 2070
+global,DS:B7B6,opp_sprites,Pic far*[13],opponent sprite levels 0..12 (SR1 8ACE)
+global,DS:B7EA,aq_trough_far_xl,i16,trough left edge at farthest row (B8D8 right)
+global,DS:B89E,row_xfar_r,s16[15],x of (w+0x339)*4
+global,DS:B8BC,wall_hit_shift,s16,view shift during wall bounce
+global,DS:B8C0,opp_alongside,i16,alongside flag (SR1 8BC2)
+global,DS:B8C6,opp_last_d,i16,last opponent distance (1/64 seg)
+global,DS:B8C8,aq_wall_hit,s16,Aqueduct wall side +-1
+global,DS:B8CC,pic_hood,Pic far*,hood overlay picture (SR1 8BCA)
+global,DS:B8D2,edge_right,s16,SR1 8BD0
+global,DS:BA90,rot_cos,s16,cos x256
+global,DS:BA92,rot_tmp_live,i16,ad40 temp shrink pending pop
+global,DS:BB88,rock_hit,s16,-1/0/+1 rock in row 1 over left/right wheels (Mulholland)

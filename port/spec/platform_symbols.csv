@@ -1,0 +1,293 @@
+kind,address,name,type,notes
+func,0000:0000,dos_print_line,"near void (char *s, int indent)",SR2 new
+func,0001:00c0,video_menu,,SR2 changed; SR1 0000:0082 video_menu
+func,0001:02ee,vga_detect,,SR2 changed; = SR1 0000:018b vga_detect
+func,0001:0330,bios_set_mode,,SR2 changed; = SR1 0000:01d1 bios_set_mode
+func,0001:034e,cga_set_palette,,SR2 changed; = SR1 0000:01f2 cga_set_palette
+func,0001:037c,video_detect_menu,,SR2 changed; SR1 0000:0226 video_detect_menu
+func,0001:046e,driver_select,,SR2 changed; SR1 0000:0316 driver_select
+func,0001:070c,cpu_speed_calibrate,,SR2 changed; = SR1 0000:05c6 cpu_speed_calibrate
+func,0001:079a,slow_flag_set,,SR2 changed; = SR1 0000:0659 slow_flag_set
+func,0001:0e74,hotspots_reset,,SR2 changed; = SR1 0000:0d58 hotspots_reset
+func,0001:191a,crit_err_handler,,SR2 changed; SR1 0000:105b crit_err_handler
+func,0001:1bea,kbd_remap_restore,,SR2 changed; SR1 0000:1391 kbd_remap_restore
+func,0001:2f6c,bios_mode_b_set,,SR2 same; = SR1 0000:2bad bios_mode_b_set
+func,0001:2f92,bios_mode_b_apply,,SR2 same; = SR1 0000:2be2 bios_mode_b_apply
+func,0001:2fb4,bios_mode_a_apply,,SR2 changed; = SR1 0000:2bc0 bios_mode_a_apply
+func,0001:2fd6,kbd_text_mode_on,,SR2 same; = SR1 0000:2c04 kbd_text_mode_on
+func,0001:2ffd,kbd_text_mode_off,,SR2 changed; = SR1 0000:2c2b kbd_text_mode_off
+func,0001:3014,kbd_isr,,SR2 changed; SR1 0000:2c42 kbd_isr
+func,0001:3168,key_read,,SR2 changed; = SR1 0000:2db6 key_read
+func,0001:3175,kbd_install,,SR2 same; = SR1 0000:2dc3 kbd_install
+func,0001:3194,kbd_restore,,SR2 same; = SR1 0000:2de2 kbd_restore
+func,0001:31a6,joy_read,,SR2 same; = SR1 0000:2df4 joy_read
+func,0001:399e,get_ds,,SR2 same; = SR1 0000:36a8 get_ds
+func,0001:39b4,mem_pools_init,,SR2 same; = SR1 0000:36be mem_pools_init
+func,0001:39de,far_alloc,,SR2 changed; = SR1 0000:3709 far_alloc
+func,0001:3a42,bitmap_alloc,,SR2 changed; SR1 0000:376b bitmap_alloc
+func,0001:3b70,bitmap_make,,SR2 changed; SR1 0000:3880 bitmap_make
+func,0001:3bfa,bitmap_init,,SR2 changed; SR1 0000:3904 bitmap_init
+func,0001:8c2c,input_poll_any,near void (void),SR2 new
+func,0001:c8d2,herc_mem_alias,,SR2 changed; = SR1 0000:e56a herc_mem_alias
+func,0001:c8ec,herc_detect,,SR2 same; = SR1 0000:e584 herc_detect
+func,0001:c92b,equip_is_mono,,SR2 changed; = SR1 0000:e5c3 equip_is_mono
+func,0001:c93a,herc_graphics_on,,SR2 same; = SR1 0000:e5d2 herc_graphics_on
+func,0001:c978,video_restore,,SR2 same; = SR1 0000:e610 video_restore
+func,0001:c997,ega_vga_detect,,SR2 changed; = SR1 0000:e62f ega_vga_detect
+func,1a21:0da6,pal_black,,SR2 changed; SR1 0f38:0b2d pal_black
+func,1a21:0db8,pal_normal,,SR2 changed; SR1 0f38:0b3f pal_normal
+func,1a21:6220,bad_file_format,far void (void) noreturn,SR2 new
+func,1a21:6244,copy_all_files,far void (void) noreturn,SR2 new
+func,1a21:6256,lib_seek,,SR2 changed; = SR1 0f38:6016 lib_seek
+func,1a21:629a,pic_index,,SR2 changed; SR1 0f38:6057 pic_index
+func,1a21:62c4,lib_select,,SR2 changed; SR1 0f38:6089 lib_select
+func,1a21:6432,lib_read_dir,,SR2 changed; SR1 0f38:61ab lib_read_dir
+func,1a21:652a,pic_load,,SR2 changed; SR1 0f38:62ba pic_load
+func,1a21:67e8,pic_free,,SR2 changed; SR1 0f38:655e pic_free
+func,1a21:683a,pic_decode,,SR2 changed; SR1 0f38:65ae pic_decode
+func,1a21:6b50,pic_park_list,,SR2 changed; SR1 0f38:6887 pic_park_list
+func,1a21:6b80,pic_load_list,,SR2 changed; SR1 0f38:68ca pic_load_list
+func,1a21:6bc0,pic_free_list,,SR2 changed; SR1 0f38:6915 pic_free_list
+func,1a21:6be0,lib_open_all,,SR2 changed; SR1 0f38:6943 lib_open_all
+func,1a21:769c,mouse_reset,,SR2 changed; = SR1 0f38:799a mouse_reset
+func,1a21:76d6,mouse_buttons,,SR2 changed; = SR1 0f38:79d7 mouse_buttons
+func,1a21:7708,mouse_motion,,SR2 changed; = SR1 0f38:7a14 mouse_motion
+func,1a21:7738,mouse_poll,,SR2 changed; = SR1 0f38:7a47 mouse_poll
+func,1a21:9940,arena_clear,,SR2 changed; SR1 0f38:9ebc arena_clear
+func,1a21:995c,arena_init,,SR2 changed; SR1 0f38:9ee9 arena_init
+func,1a21:99b0,arena_free_all,far void (void),SR2 new (matcher paired it with SR1 arena_low_shrink); frees both arenas at exit
+func,1a21:99d2,arena_alloc,,SR2 changed; SR1 0f38:9f2c arena_alloc
+func,320d:0004,far_memmem,,SR2 changed; = SR1 2460:0002 far_memmem
+func,34b0:0018,_astart,,MSC 6.0 runtime; SR2 changed; SR1 1e16:001e
+func,34b0:0110,_cinit,,MSC 6.0 runtime; SR2 changed; SR1 1e16:00e4
+func,34b0:01d5,exit,,MSC 6.0 runtime; SR2 new
+func,34b0:01dc,_exit,,MSC 6.0 runtime; SR2 new
+func,34b0:01e4,_cexit,,MSC 6.0 runtime; SR2 new
+func,34b0:01ee,_c_exit,,MSC 6.0 runtime; SR2 new
+func,34b0:0258,_ctermsub,,MSC 6.0 runtime; SR2 same; SR1 1e16:0206
+func,34b0:0285,_initterm,,MSC 6.0 runtime; SR2 same; SR1 1e16:0233
+func,34b0:0298,_FF_MSGBANNER,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0246
+func,34b0:02c0,_chkstk,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0270
+func,34b0:02e4,_nullcheck,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0294
+func,34b0:0308,_setargv,,MSC 6.0 runtime; SR2 changed; SR1 1e16:02ba
+func,34b0:049a,_setenvp,,MSC 6.0 runtime; SR2 changed; SR1 1e16:044c
+func,34b0:0518,_NMSG_TEXT,,MSC 6.0 runtime; SR2 same; SR1 1e16:04ba
+func,34b0:0543,_NMSG_WRITE,,MSC 6.0 runtime; SR2 changed; SR1 1e16:04e5
+func,34b0:057a,_myalloc,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0510
+func,34b0:05c2,_maperror,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0572
+func,34b0:05c8,_dosmaperr,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0578
+func,34b0:05f6,fwrite,,MSC 6.0 runtime; SR2 new
+func,34b0:06fc,_flsbuf,,MSC 6.0 runtime; SR2 new
+func,34b0:07e0,_getbuf,,MSC 6.0 runtime; SR2 new
+func,34b0:0824,_stbuf,,MSC 6.0 runtime; SR2 new
+func,34b0:0897,_ftbuf,,MSC 6.0 runtime; SR2 new
+func,34b0:08d6,fflush,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0a0e
+func,34b0:0952,_flushall,,MSC 6.0 runtime; SR2 new
+func,34b0:09ae,_output,,MSC 6.0 runtime; SR2 new
+func,34b0:0db9,_output_getint,,MSC 6.0 runtime; SR2 new
+func,34b0:0dc1,_output_getlong,,MSC 6.0 runtime; SR2 new
+func,34b0:0dcd,_output_getarg,,MSC 6.0 runtime; SR2 new
+func,34b0:0dea,_output_putc,,MSC 6.0 runtime; SR2 new
+func,34b0:0e14,_output_pad,,MSC 6.0 runtime; SR2 new
+func,34b0:0e32,_output_write,,MSC 6.0 runtime; SR2 new
+func,34b0:0e4e,_output_cltoa,,MSC 6.0 runtime; SR2 new
+func,34b0:0e86,lseek,,MSC 6.0 runtime; SR2 changed; SR1 1e16:136e
+func,34b0:0f00,_open_stub,,MSC 6.0 runtime; SR2 new
+func,34b0:0f1a,open,,MSC 6.0 runtime; SR2 new
+func,34b0:10ab,_nop_stub,,MSC 6.0 runtime; SR2 new
+func,34b0:10bc,read,,MSC 6.0 runtime; SR2 new
+func,34b0:11a6,write,,MSC 6.0 runtime; SR2 changed; SR1 1e16:13e8
+func,34b0:125a,_write_chunk,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1490
+func,34b0:12e6,stackavail,,MSC 6.0 runtime; SR2 same; SR1 1e16:1512
+func,34b0:12fa,_nmalloc_stub,,MSC 6.0 runtime; SR2 new
+func,34b0:1300,_heap_mark_free,,MSC 6.0 runtime; SR2 new
+func,34b0:1321,_nmalloc,,MSC 6.0 runtime; SR2 new
+func,34b0:134a,_ffree,,MSC 6.0 runtime; SR2 new
+func,34b0:135d,_fmalloc,,MSC 6.0 runtime; SR2 new
+func,34b0:13da,_heap_init_seg,,MSC 6.0 runtime; SR2 new
+func,34b0:140e,_heap_link_seg,,MSC 6.0 runtime; SR2 new
+func,34b0:1444,_heap_search,,MSC 6.0 runtime; SR2 new
+func,34b0:14c0,_heap_grow,,MSC 6.0 runtime; SR2 new
+func,34b0:154c,_heap_resize_seg,,MSC 6.0 runtime; SR2 new
+func,34b0:159d,_heap_find_end,,MSC 6.0 runtime; SR2 new
+func,34b0:15be,_heap_new_seg,,MSC 6.0 runtime; SR2 new
+func,34b0:1602,strlen,,MSC 6.0 runtime; SR2 same; SR1 1e16:18b2
+func,34b0:161e,strncpy,,MSC 6.0 runtime; SR2 same; SR1 1e16:18ce
+func,34b0:1646,strncmp,,MSC 6.0 runtime; SR2 same; SR1 1e16:18f6
+func,34b0:1680,atoi,,MSC 6.0 runtime; SR2 new
+func,34b0:1684,atoi_nul,,MSC 6.0 runtime; SR2 new
+func,34b0:1688,atol,,MSC 6.0 runtime; SR2 same; SR1 1e16:197c
+func,34b0:16dc,itoa,,MSC 6.0 runtime; SR2 same; SR1 1e16:19d0
+func,34b0:16f8,ltoa_stub,,MSC 6.0 runtime; SR2 changed; SR1 1e16:19ec
+func,34b0:1702,getenv,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1a78
+func,34b0:1762,kbhit,,MSC 6.0 runtime; SR2 new
+func,34b0:1788,getch,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1b82
+func,34b0:17b0,int86,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1b9a
+func,34b0:1830,puts,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1c1a
+func,34b0:18aa,sprintf,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1c8e
+func,34b0:1904,cprintf,,MSC 6.0 runtime; SR2 new
+func,34b0:192c,_cprint,,MSC 6.0 runtime; SR2 new
+func,34b0:1d37,_cprint_getint,,MSC 6.0 runtime; SR2 new
+func,34b0:1d3f,_cprint_getlong,,MSC 6.0 runtime; SR2 new
+func,34b0:1d4b,_cprint_getarg,,MSC 6.0 runtime; SR2 new
+func,34b0:1d68,_cprint_putc,,MSC 6.0 runtime; SR2 new
+func,34b0:1d7f,_cprint_pad,,MSC 6.0 runtime; SR2 new
+func,34b0:1d9d,_cprint_write,,MSC 6.0 runtime; SR2 new
+func,34b0:1db9,_cprint_cltoa,,MSC 6.0 runtime; SR2 new
+func,34b0:1df0,int86x,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1ce8
+func,34b0:1e86,intdos,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1d7e
+func,34b0:1ece,movedata,,MSC 6.0 runtime; SR2 same; SR1 1e16:1dc8
+func,34b0:1eec,segread,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1de6
+func,34b0:1f04,putch,,MSC 6.0 runtime; SR2 new
+func,34b0:1f22,time,,MSC 6.0 runtime; SR2 same; SR1 1e16:1dfc
+func,34b0:1f76,__tzset_once,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1e50
+func,34b0:1f88,tzset,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1e60
+func,34b0:2030,_isindst,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1f1a
+func,34b0:20fa,_loctotime,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1fe4
+func,34b0:21fc,strrchr,,MSC 6.0 runtime; SR2 same; SR1 1e16:2106
+func,34b0:2226,stricmp,,MSC 6.0 runtime; SR2 same; SR1 1e16:2130
+func,34b0:2268,strcspn,,MSC 6.0 runtime; SR2 same; SR1 1e16:2172
+func,34b0:22c2,memmove,,MSC 6.0 runtime; SR2 same; SR1 1e16:21cc
+func,34b0:230a,memcpy,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2240
+func,34b0:2396,srand,,MSC 6.0 runtime; SR2 new
+func,34b0:23a8,rand,,MSC 6.0 runtime; SR2 new
+func,34b0:23d0,remove,,MSC 6.0 runtime; SR2 changed; SR1 1e16:22de
+func,34b0:23de,_bios_equiplist,,MSC 6.0 runtime; SR2 changed; SR1 1e16:22ec
+func,34b0:23e2,_dos_close,,MSC 6.0 runtime; SR2 changed; SR1 1e16:22f0
+func,34b0:23f0,_dos_creatnew_stub,,MSC 6.0 runtime; SR2 changed; SR1 1e16:22fe
+func,34b0:23f7,_dos_creat,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2305
+func,34b0:241a,_dos_getvect,,MSC 6.0 runtime; SR2 same; SR1 1e16:231e
+func,34b0:242c,_dos_open,,MSC 6.0 runtime; SR2 same; SR1 1e16:2330
+func,34b0:2444,_dos_read,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2348
+func,34b0:244b,_dos_write,,MSC 6.0 runtime; SR2 changed; SR1 1e16:234f
+func,34b0:2474,_dos_setvect,,MSC 6.0 runtime; SR2 same; SR1 1e16:236c
+func,34b0:248a,_dos_getdrive,,MSC 6.0 runtime; SR2 same; SR1 1e16:2382
+func,34b0:249e,_harderr,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2396
+func,34b0:24ed,_hardresume,,MSC 6.0 runtime; SR2 changed; SR1 1e16:23e3
+func,34b0:24f6,_aFldiv,,MSC 6.0 runtime; SR2 changed; SR1 1e16:23ec
+func,34b0:2590,_aFlmul,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2488
+func,34b0:25c2,_aFlrem,,MSC 6.0 runtime; SR2 changed; SR1 1e16:24bc
+func,34b0:2662,_aFaldiv,,MSC 6.0 runtime; SR2 changed; SR1 1e16:307e
+func,34b0:2682,_aFalmul,,MSC 6.0 runtime; SR2 changed; SR1 1e16:31a8
+func,371c:0000,page0_desc,data,"data, not code"
+func,371c:0012,page1_desc_static,data,"data, not code"
+func,371c:0024,page2_desc_static,data,"data, not code"
+func,3720:0000,page3_desc,data,"data, not code"
+func,3722:0000,scratch_pad,data,"data, not code"
+func,3722:0002,scratch_desc,data,"data, not code"
+func,3723:0000,race_page_desc,data,"data, not code"
+global,DS:01FC,ega_present,u16,"EGA/VGA card found by `ega_vga_detect` (1 = EGA BIOS answered, 2 = colour CRTC only); SR1 DS:0250"
+global,DS:01FE,ega_lowres_sw,u16,EGA info CL says switches 1/14 (set -> `ega_present = 1`); SR1 DS:0252
+global,DS:0200,g_vga,u16,1 = VGA (EGA driver with VGA split-screen); set by `video_detect_menu`/`driver_select`; SR1 DS:0254
+global,DS:020E,mouse_enabled,u16,0 = `nomouse` switch (see `main`); SR1 DS:0262
+global,DS:0210,no_ega_park,u16,1 = `nouemem` switch: `pic_park_list` does nothing; SR1 DS:0280
+global,DS:0113,recommended_text,char[],"""Recommended mode: #"""
+global,DS:0127,video_menu_title,char[],"""STREET ROD II:  Video Options"" + 2 newlines (text menu strings `0127 / 0147 / 016F`, menu line table `DS:01A2..01AC`); SR1 DS:019B .."
+global,DS:0202,str_Tandy,char[],"""Tandy"" (BIOS ROM signature, `0208` = ""TANDY""); SR1 DS:0256"
+global,DS:1D02,wait_last,u32,`wait_ticks` completion time of the previous call (DS:1D02/1D04)
+global,DS:1F50,mouse_dx,i16,scaled mouse delta x (`mouse_poll`); SR1 DS:05E2
+global,DS:1F52,mouse_dy,i16,scaled mouse delta y; SR1 DS:05E4
+global,DS:1F54,mouse_acc_x,i16,mickey accumulator x; SR1 DS:05E6
+global,DS:1F56,mouse_acc_y,i16,mickey accumulator y; SR1 DS:05E8
+global,DS:1F58,mouse_shift_x,u16,mickey -> pixel shift x; SR1 DS:05EA
+global,DS:1F5A,mouse_shift_y,u16,mickey -> pixel shift y (changed by `race_isr_enter/leave`); SR1 DS:05EC
+global,DS:1F5C,mouse_left,u16,left button (INT 33h AX=3); SR1 DS:05EE
+global,DS:1F5E,mouse_right,u16,right button; SR1 DS:05F0
+global,DS:1F60,mouse_present,u8,non-zero when a mouse driver answered (`input_poll_any` polls it)
+global,DS:1F66,ticks,u32,tick counter (72.8 Hz timer ISR; DS:1F66/1F68); SR1 DS:05F8
+global,DS:1FBE,kbd_saved_pairs,u8[],"saved `{scan, old key}` pairs of the per-screen key remap, 0-terminated (`DS:1FBE` = first scan code, 0 = no remap); SR1 DS:0650 (+ flag DS:064E)"
+global,DS:3B20,joy_x,i16[4],"joystick centre / axis words (`joy_read`, calibration); SR1 DS:4718"
+global,DS:3B24,joy_buttons,u8,"joystick buttons (bits 4-5 of port 201h, inverted); SR1 DS:471C"
+global,DS:3B25,joy_present,u8,joystick detected / enabled; SR1 DS:471D
+global,DS:3B32,cursor_x,i16,pointer x (0..319); SR1 DS:472A
+global,DS:3B34,cursor_y,i16,pointer y (0..199); SR1 DS:472C
+global,DS:3B36,kbd_dir_x,i8,"sum of held direction keys, x; SR1 DS:472E"
+global,DS:3B37,kbd_dir_y,i8,"sum of held direction keys, y; SR1 DS:472F"
+global,DS:3B38,kbd_last_dir,i8[2],last direction pair; SR1 DS:4730
+global,DS:3B39,kbd_dir_aux,u8,cleared by `kbd_remap_restore`; SR1 DS:4731
+global,DS:3B3A,click_held,u8,"bit 0 key, bit 1 joystick, bit 2 mouse button held; SR1 DS:4732"
+global,DS:3B3B,cursor_visible,i8,pointer show/hide nesting counter (`cursor_ctl`); SR1 DS:4733
+global,DS:3B3E,click_code,u8,"pending primary click code (1 mouse, 0x1F key, joy buttons); SR1 DS:4736"
+global,DS:3B3F,click2_code,u8,pending secondary click code (0x1E); SR1 DS:4737
+global,DS:3B40,click_x,i16,position of the pending click; SR1 DS:4738
+global,DS:3B42,click_y,i16,; SR1 DS:473A
+global,DS:3B44,click2_x,i16,position of the secondary click; SR1 DS:473C
+global,DS:3B46,click2_y,i16,; SR1 DS:473E
+global,DS:3B48,kbd_dir_lock,i16,interrupt-side lock byte (only cleared by the ISR in SR2); SR1 DS:4740
+global,DS:3B4A,cursor_hot_x,u16,pointer hot spot x (set by `cursor_ctl`); SR1 DS:4742
+global,DS:3B4C,cursor_hot_y,u16,pointer hot spot y; SR1 DS:4744
+global,DS:3B4E,race_saved_cursor_x,i16,saved pointer position (`cursor_init` clears); SR1 DS:4746
+global,DS:3B50,race_saved_cursor_y,i16,; SR1 DS:4748
+global,DS:3B6E,kbd_xlat,u8[0x57],"scan code -> key code table (patched per screen); `+0x33/+0x34` = `,` `.` entries toggled by `kbd_text_mode_on/off`; SR1 DS:4766"
+global,DS:3BD4,click_edge,u8,set with every primary click key press; SR1 DS:47CD
+global,DS:3BD5,sound_on,u8,toggled by Ctrl (scan 1Dh); SR1 DS:47CE
+global,DS:3BD6,sound_gate,u8,sound routines run only when non-zero; SR1 DS:47CF
+global,DS:3BD7,key,u8,"the one-byte key ""queue"" (`key_read` read-and-clear); SR1 DS:47D0"
+global,DS:3BDC,old_int9,far ptr,previous INT 9 vector (`kbd_install`); SR1 DS:47D4/47D6
+global,DS:3BE0,kbd_held_flags_a,u8[16],cleared by `kbd_remap_restore`; SR1 DS:47D8
+global,DS:3BF0,kbd_held_flags,u8[],"held flags of the direction keys, indexed by (-k); also `joy_saved_sp` (word at `DS:3BF0`); SR1 DS:47E8"
+global,DS:3BF2,bios_mode_vars,u8[4],dead code (`bios_mode_*_set/apply`); SR1 DS:47EA..47ED
+global,DS:3BF6,click_seen,u16,"""any click / Esc"" flag set by `kbd_isr`, `input_poll_any`, polled by wait loops; SR1 DS:47EE"
+global,DS:4846,status_label_text,char[],status label string used by `gfx_screen_mode(3)`; SR1 DS:49DE
+global,DS:4912,g_vram_pool_used,u16[4],"bytes used in each of the four VRAM picture-cache pools; base far pointer `DS:490E:4910` (A000:0000), pools start at +0x7D00; SR1 DS:4C18 / 4C14"
+global,DS:4B50,lib1_handle,u16,LIB1 file handle (0 = closed); SR1 DS:4ED8
+global,DS:4B52,lib2_handle,u16,LIB2 file handle; SR1 DS:4EDA
+global,DS:4B54,lib3_handle,u16,**LIB3 file handle (new)**
+global,DS:4B56,lib_names,char*[6],"name pointers `?:lib1`, `?:lib1c`, `?:lib2`, `?:lib2c`, `?:lib3`, `?:lib3c`; SR1 DS:4EDC..4EE2 (4 names)"
+global,DS:4B62,crit_err_off,u16,non-zero -> `crit_err_handler` returns at once; only ever cleared (by `lib_open_all`)
+global,DS:4B66,msg_insert_disk,char*,"""Insert disk ? into drive ?"" (`[0xC]` disk number char, `[0x19]` drive letter patched); SR1 DS:4EE4"
+global,DS:4B68,msg_copy_files,char*,"""Copy all files to current directory"""
+global,DS:4B6A,msg_bad_format,char*,"""Bad file format""; SR1 DS:4EE8"
+global,DS:4B6C,msg_not_found,char*,"""File not found: "" (+ name copied to offset 0x10 by `file_not_found`); SR1 DS:4EEC"
+global,DS:4B70,msg_no_memory,char*,"""Not enough memory to run Street Rod !""; SR1 DS:4BEE"
+global,DS:4BBE,shp_handle,u16,`sr2_shp` file handle (0 = not open)
+global,DS:4BC0,shp_name,char[],"""?:sr2_shp"" (drive letter patched by `shp_load_set`)"
+global,DS:4B72,run_counts,u8[16],`pic_unpack` run lengths of the 16 tokens; SR1 DS:4EEE
+global,DS:4B82,run_values,u8[16],`pic_unpack` run values (00 or FF); SR1 DS:4EFE
+global,DS:79E0,arena2_used,u16,bytes already used in arena 2 by `arena_bitmap_alloc(pool -1)`
+global,DS:80A2,shp_directory,u32+u16+u16[26],"`SR2_SHP` directory, 26 x 8 bytes `{u32 offset, u16 size, u16 0}`"
+global,DS:81CE,shp_b_ptrs,far ptr[3],destination pointers of the format-B shape sets (index relative to `DS:81DA`)
+global,DS:81DA,shp_b_first,u16,first format-B set id (23); `DS:81DC` = count (3)
+global,DS:8172,shp_a_ptrs,far ptr[23],destination pointers of the format-A shape sets (index = set id)
+global,DS:8844,dgroup_seg,u16,DGROUP segment value (`get_ds`); `far_alloc` rejects blocks in it; SR1 DS:6C60
+global,DS:8846,cur_drive,u16,"DOS drive at start-up (1 = A:, 3 = C:); SR1 DS:6C68"
+global,DS:8848,cur_lib_count,u16*,pointer to the entry count of the current library (`DS:B8CA / B8D6 / B8DA`); SR1 DS:6C6A
+global,DS:884A,cur_lib_handle,u16*,pointer to the handle of the current library; SR1 DS:6C6C
+global,DS:884C,cur_lib_name,char*,pointer to the path of the current library; SR1 DS:6C6E
+global,DS:884E,prev_lib_handle,u16*,handle pointer of the previously selected library (closed on a switch); SR1 DS:6C70
+global,DS:86E2,picdir_seg,u16,segment of the picture directory (0x3726); entries of 0x22 bytes; SR1 DS:691C (seg 389B)
+global,DS:849E,amblksiz,u16,"C heap growth chunk (set 0x800 by `mem_pools_init`, 0x400 by `_myalloc`); SR1 DS:64A6"
+global,DS:95F2,arena1,far ptr,65000-byte work arena 1; SR1 DS:6CD0
+global,DS:9E6C,arena2,far ptr,**second arena (new)**: `DS:A9D6` bytes (45000 VGA); `arena_bitmap_alloc(-1)` and shape sets
+global,DS:9860,floppy_drives,u16,number of usable floppy drives (1 or 2) from `lib_open_all`
+global,DS:A0FE,arena_top,u16,end of the top (mode 3) region of arena 1 (65000); SR1 DS:78DE
+global,DS:A31E,arena_low_depth,u16,depth of the low stack (mode 1); SR1 DS:7B14
+global,DS:A7D8,arena_top_index,u16,"index of the top stack (mode 2), starts 0x3C; SR1 DS:7D80"
+global,DS:A9D6,arena2_size,u16,size of arena 2 (45000 / 62800 / 40000)
+global,DS:ADD6,road_mode,u16,"shape-set list selector (0, 1, 2, 4, 8, 0x10)"
+global,DS:ADD8,slow_machine,u16,1 when `cpu_speed < 4`; SR1 DS:82C6
+global,DS:B7B4,cpu_speed,u16,"`cpu_speed_calibrate` result (polls per 55 ms tick / 950, minimum 1); SR1 DS:8ACC"
+global,DS:B7EC,arena_w,u16[],arena allocation table W (W[0x3C] = `DS:B864`); SR1 DS:8B02
+global,DS:BC4C,arena_perm,u16,permanent bump pointer of arena 1; SR1 DS:8F00
+global,DS:B8CA,lib1_count,u16,LIB1 picture count (4); SR1 DS:8BC8
+global,DS:B8D6,lib2_count,u16,LIB2 picture count (0xD4); SR1 DS:8DD2
+global,DS:B8DA,lib3_count,u16,"**LIB3 picture count (0x53, new)**"
+global,DS:B8DE,lib1_path,char*,pointer to the LIB1 path string (`?:lib1` / `?:lib1c`); SR1 DS:8DD4
+global,DS:B8E2,lib2_path,char*,LIB2 path string; SR1 DS:8DD6
+global,DS:B8E8,lib3_path,char*,**LIB3 path string (new)**
+global,DS:B864,arena_w_top,u16,W[0x3C]; SR1 DS:8B7A
+global,DS:AD2D,ui_level,u8,2 = after `cursor_init` (SR1: used by menus); SR1 DS:8247
+func,0001:0090,set_text_cursor,"near void (int col, int row)",SR2 new; INT 10h AH=2 helper (S3.7)
+func,0001:0628,video_mode_init,near void (int mode),SR2 new; BIOS mode set per video choice (S3.7)
+func,0001:07ae,empty_stub,far void (void),SR2 new; bare retf (S3.7)
+func,0001:1708,click_clear,far void (void),SR2 changed; SR1 0000:0d78 click_clear (S3.7)
+func,0001:189e,timer_restore,far void (void),SR2 changed; SR1 0000:0fb7 timer_restore (S3.7)
+func,0001:19e8,platform_install,far void (void),SR2 changed; SR1 0000:1111 platform_install (S3.7)
+func,0001:1c5c,kbd_hotspot_refresh,far void (void),SR2 new; rebuilds DS:3B6E hot-key remap (S3.7)
+func,0001:2222,sign,far int (int v),SR2 new (S3.7)
+func,0001:2246,timer_isr,void interrupt (void),SR2 changed; SR1 0000:1fe2 timer_isr (S3.7)
+func,0001:2622,race_isr,void interrupt (void),SR2 changed; SR1 0000:238c race_isr (S3.7)
+func,0001:2f7f,bios_mode_a_set,"far void (u8 equip, u8 mode)",SR2 new in index; = SR1 0000:2b9a bios_mode_a_set (S3.7)
+func,0001:39cc,far_free,far void (void far *p),SR2 new; _ffree wrapper (S3.7)
+func,1a21:61e2,file_not_found,far void (char *name),SR2 new; noreturn (S3.7)
+func,1a21:6232,out_of_memory,far void (void),SR2 new; noreturn (S3.7)

@@ -1,471 +1,1568 @@
 kind,address,name,type,owner,other_names,notes
-func,0001:00c0,video_menu,,platform,,"SR1 0000:0082, changed by calls 0.50"
-func,0001:01ea,sound_options_menu,,sound,,"SR2 new, S1.5"
-func,0001:02ee,vga_detect,,platform,,"SR1 0000:018b, changed by calls 0.50"
-func,0001:0330,bios_set_mode,,platform,,"SR1 0000:01d1, changed by order 0.40"
-func,0001:034e,cga_set_palette,,platform,,"SR1 0000:01f2, changed by order 0.40"
-func,0001:037c,video_detect_menu,,platform,,"SR1 0000:0226, changed by string 1.00"
-func,0001:046e,driver_select,,platform,,"SR1 0000:0316, changed by calls 0.50"
-func,0001:070c,cpu_speed_calibrate,,platform,,"SR1 0000:05c6, changed by loose 0.65"
-func,0001:079a,slow_flag_set,,platform,,"SR1 0000:0659, changed by calls 0.50"
-func,0001:07b0,main,,platform,,"SR1 0000:066f, changed by string 0.75"
-func,0001:0ac8,classifieds_run,,garage,,"SR1 0000:09cb, changed by order 0.38"
-func,0001:0e74,hotspots_reset,,platform,,"SR1 0000:0d58, changed by code 0.80"
-func,0001:1708,click_clear,,platform,,"SR1 0000:0d78, changed by order 0.50"
-func,0001:1728,music_stop,,platform,,"SR1 0000:0d99, changed by order 0.40"
-func,0001:1784,music_resume,,platform,,"SR1 0000:0dd8, changed by order 0.40"
-func,0001:17ea,input_reset,,platform,,"SR1 0000:0e24, changed by globals 0.59"
-func,0001:189e,timer_restore,,platform,,"SR1 0000:0fb7, changed by calls 0.50"
-func,0001:18ce,platform_exit,,platform,,"SR1 0000:0fea, changed by string 1.00"
-func,0001:191a,crit_err_handler,,platform,,"SR1 0000:105b, changed by string 1.00"
-func,0001:19e8,platform_install,,platform,,"SR1 0000:1111, changed by order 0.50"
-func,0001:1bea,kbd_remap_restore,,platform,,"SR1 0000:1391, changed by globals 0.75"
-func,0001:1d02,ui_wait,,platform,,"SR1 0000:1417, changed by order 0.41"
-func,0001:2002,tune_start,,platform,,"SR1 0000:1a05, changed by order 0.38"
-func,0001:208a,tune_rewind,,platform,,"SR1 0000:1a7c, changed by order 0.40"
-func,0001:20a0,race_isr_enter,,platform,,"SR1 0000:1aad, changed by globals 0.41"
-func,0001:2176,race_isr_leave,,platform,,"SR1 0000:1b27, changed by order 0.40"
-func,0001:2246,timer_isr,,platform,,"SR1 0000:1fe2, changed by order 0.48"
-func,0001:2610,race_ctrl_reset,,platform,,"SR1 0000:2374, changed by order 1.00"
-func,0001:2622,race_isr,,platform,,"SR1 0000:238c, changed by order 0.55"
-func,0001:2f6c,bios_mode_b_set,,platform,,"SR1 0000:2bad, same by code 1.00"
-func,0001:2f92,bios_mode_b_apply,,platform,,"SR1 0000:2be2, same by code 1.00"
-func,0001:2fb4,bios_mode_a_apply,,platform,,"SR1 0000:2bc0, changed by loose 1.00"
-func,0001:2fd6,kbd_text_mode_on,,platform,,"SR1 0000:2c04, same by code 1.00"
-func,0001:2ffd,kbd_text_mode_off,,platform,,"SR1 0000:2c2b, changed by globals 1.00"
-func,0001:3014,kbd_isr,,platform,,"SR1 0000:2c42, changed by code 0.88"
-func,0001:3168,key_read,,platform,,"SR1 0000:2db6, changed by order 0.40"
-func,0001:3175,kbd_install,,platform,,"SR1 0000:2dc3, same by code 1.00"
-func,0001:3194,kbd_restore,,platform,,"SR1 0000:2de2, same by code 1.00"
-func,0001:31a6,joy_read,,platform,,"SR1 0000:2df4, same by code 1.00"
-func,0001:3245,kbd_inject_scancode,,game_flow,,"SR1 0000:2e93, changed by code 0.94"
-func,0001:3378,copy_protection,,game_flow,,"SR1 0000:2fc8, changed by order 0.40"
-func,0001:348a,game_over_menu,,game_flow,,"SR1 0000:315b, changed by globals 0.46"
-func,0001:35e8,hall_is_slower,,game_flow,,"SR1 0000:32d0, changed by order 0.40"
-func,0001:360c,hall_insert,,game_flow,,"SR1 0000:32f4, changed by order 0.40"
-func,0001:3682,hall_score,,game_flow,,"SR1 0000:3375, same by code 1.00"
-func,0001:36ac,hall_of_fame_screen,,game_flow,,"SR1 0000:339f, changed by order 0.40"
-func,0001:3934,pools_init,,game_flow,,"SR1 0000:3614, changed by calls 0.50"
-func,0001:399e,get_ds,,platform,,"SR1 0000:36a8, same by code 1.00"
-func,0001:39b4,mem_pools_init,,platform,,"SR1 0000:36be, same by code 1.00"
-func,0001:39de,far_alloc,,platform,,"SR1 0000:3709, changed by globals 1.00"
-func,0001:3a42,bitmap_alloc,,platform,,"SR1 0000:376b, changed by globals 1.00"
-func,0001:3b70,bitmap_make,,platform,,"SR1 0000:3880, changed by order 0.40"
-func,0001:3bfa,bitmap_init,,platform,,"SR1 0000:3904, changed by order 0.40"
-func,0001:3c60,vram_pool_alloc,,platform,,"SR1 0000:3967, changed by order 0.40"
-func,0001:3cc4,title_and_setup,,game_flow,,"SR1 0000:39c0, changed by order 0.40"
-func,0001:3d80,wait_ticks,,game_flow,,"SR1 0000:3a83, changed by globals 1.00"
-func,0001:3db4,msg_box,,game_flow,,"SR1 0000:3ab8, changed by globals 1.00"
-func,0001:3e08,garage_full_check,,game_flow,,"SR1 0000:3b0c, changed by order 0.39"
-func,0001:3e30,newspaper_front,,game_flow,,"SR1 0000:3b33, changed by order 0.47"
-func,0001:3f28,part_alloc,,game_flow,,"SR1 0000:3c1b, changed by calls 0.50"
-func,0001:3f3e,part_free,,game_flow,,"SR1 0000:3c3e, changed by order 1.00"
-func,0001:423a,car_alloc,,garage,,"SR1 0000:3fb1, changed by calls 0.50"
-func,0001:4250,car_release,,garage,,"SR1 0000:3fd4, changed by order 1.00"
-func,0001:426c,spare_add,,garage,,"SR1 0000:3ff0, changed by order 0.40"
-func,0001:42aa,car_new,,garage,,"SR1 0000:4036, changed by calls 0.50"
-func,0001:46f0,part_release,,garage,,"SR1 0000:4386, changed by calls 0.50"
-func,0001:478e,how_about,,garage,,"SR1 0000:4940, changed by order 0.54"
-func,0001:4804,car_flags,,garage,,"SR1 0000:49a2, changed by order 0.36"
-func,0001:4d90,message_at,,garage,,"SR1 0000:4ffa, same by code 1.00"
-func,0001:4dd6,game_loop,,game_flow,,"SR1 0000:503f, changed by calls 0.50"
-func,0001:51f8,opponent_init,,garage,,"SR1 0000:542e, changed by calls 0.50"
-func,0001:534c,opponents_init,,garage,,"SR1 0000:5584, changed by order 0.38"
-func,0001:5400,new_game,,garage,,"SR1 0000:56a9, changed by order 0.35"
-func,0001:550e,new_game_prompt,,garage,,"SR1 0000:570c, changed by calls 0.50"
-func,0001:55b0,save_part_chain,,game_flow,,"SR1 0000:5795, changed by order 0.41"
-func,0001:55fa,load_part_chain,,game_flow,,"SR1 0000:57dc, changed by order 0.47"
-func,0001:56a4,save_car_chain,,game_flow,,"SR1 0000:586e, changed by order 0.40"
-func,0001:5776,load_car_chain,,game_flow,,"SR1 0000:590f, changed by order 0.45"
-func,0001:58b2,save_game_screen,,game_flow,,"SR1 0000:5eea, changed by string 1.00"
-func,0001:59e2,load_game_screen,,game_flow,,"SR1 0000:5b4a, changed by loose 0.61"
-func,0001:630e,quit_menu,,game_flow,,"SR1 0000:641e, changed by order 0.40"
-func,0001:63e0,day_index,,garage,,"SR1 0000:6476, changed by globals 1.00"
-func,0001:6426,clock_hm,,garage,,"SR1 0000:64a3, changed by globals 0.86"
-func,0001:64a2,summer_over_check,,garage,,"SR1 0000:6529, changed by order 0.40"
-func,0001:64b2,month_of_day,,garage,,"SR1 0000:653c, changed by order 0.40"
-func,0001:650a,calendar_show,,garage,,"SR1 0000:65af, changed by order 0.40"
-func,0001:66ae,date_print,,garage,,"SR1 0000:6750, changed by loose 0.75"
-func,0001:672c,set_paint_palette,,garage,,"SR1 0000:67cf, changed by calls 0.50"
-func,0001:67b8,garage_hotspots_car,,garage,,"SR1 0000:68e8, changed by calls 0.50"
-func,0001:68c0,garage_name_clear,,garage,,"SR1 0000:6aa6, changed by calls 0.50"
-func,0001:68e2,broke_check,,garage,,"SR1 0000:6ad8, changed by order 0.40"
-func,0001:6912,garage_screen,,garage,,"SR1 0000:6b06, changed by string 1.00"
-func,0001:6d5e,paint_job,,garage,,"SR1 0000:6f6b, changed by order 0.53"
-func,0001:6edc,customize,,garage,,"SR1 0000:711a, changed by order 0.36"
-func,0001:70d2,spares_collect,,garage,,"SR1 0000:76a7, changed by order 0.62"
-func,0001:715a,part_install,,garage,,"SR1 0000:7741, changed by calls 0.50"
-func,0001:7196,part_uninstall,,garage,,"SR1 0000:7789, changed by calls 0.50"
-func,0001:71be,spare_unlink,,garage,,"SR1 0000:77b7, changed by order 0.41"
-func,0001:71f6,change_tires,,garage,,"SR1 0000:7800, changed by order 0.45"
-func,0001:72f2,car_info_sr2,,game_flow,,"SR2 new, S1.5"
-func,0001:75b8,change_transmission,,garage,,"SR1 0000:7aa4, changed by order 0.45"
-func,0001:7a44,car_runnable,,garage,,"SR1 0000:7ee6, changed by order 0.40"
-func,0001:80a8,engine_bay,,garage,,"SR1 0000:81ab, changed by order 0.43"
-func,0001:8c68,drive_to_event,,race,,"SR2 new, S1.5"
-func,0001:8d0a,opp_palette_set,,race,,"SR1 0000:8d9c, changed by loose 0.68"
-func,0001:8ef4,race_logic,,race,,"SR1 0000:8ea8, changed by string 0.50"
-func,0001:9432,waitress_toggle,,race,,"SR1 0000:914c, changed by order 0.39"
-func,0001:9506,str_drop_last_word,,race,,"SR1 0000:9256, changed by calls 0.50"
-func,0001:953c,opponent_show,,race,,"SR1 0000:92a4, changed by order 0.43"
-func,0001:975e,king_status,,race,,"SR1 0000:9556, changed by calls 0.50"
-func,0001:9802,king_chance,,race,,"SR1 0000:95f1, changed by calls 0.50"
-func,0001:9848,opp_sort,,race,,"SR1 0000:9646, changed by calls 0.50"
-func,0001:999a,pick_opponent,,race,,"SR1 0000:984e, changed by order 0.56"
-func,0001:9a02,opponent_load,,race,,"SR1 0000:98ba, changed by order 0.39"
-func,0001:9b26,opponent_select,,race,,"SR1 0000:9a27, changed by calls 0.50"
-func,0001:9b78,opp_known_list,,race,,"SR1 0000:9a83, changed by calls 0.50"
-func,0001:9be0,opponent_search,,race,,"SR1 0000:9af4, changed by order 0.47"
-func,0001:9c8e,challenge_accept,,race,,"SR1 0000:9bc5, changed by calls 0.50"
-func,0001:9e3c,challenge,,race,,"SR1 0000:9d6d, changed by order 0.44"
-func,0001:a270,bob_hotspots,,race,,"SR1 0000:a0f8, changed by calls 0.50"
-func,0001:a3ba,opponent_car_view,,race,,"SR1 0000:a265, changed by order 0.51"
-func,0001:a4aa,bitmap_blit_at,,video,,"SR1 0f38:b31f, changed by loose 0.68"
-func,0001:a588,dancing_girl,,race,,"SR1 0000:a416, changed by calls 0.50"
-func,0001:a626,bob_drive_in,,race,,"SR1 0000:ab8b, changed by order 0.44"
-func,0001:a9fc,jail,,race,,"SR1 0000:b08c, changed by order 0.50"
-func,0001:ac68,tires_replace,,race,,"SR1 0000:bed4, changed by calls 0.50"
-func,0001:adc0,ticket_show,,race,,"SR1 0000:bf94, changed by order 0.49"
-func,0001:af0a,crash_show,,race,,"SR1 0000:c1d8, changed by order 0.48"
-func,0001:b46e,engine_blown,,race,,"SR1 0000:c52c, changed by order 0.44"
-func,0001:b4da,trans_blown,,race,,"SR1 0000:c5ac, changed by order 0.46"
-func,0001:b584,race_results,,race,,"SR1 0000:c613, changed by string 1.00"
-func,0001:be82,race_start,,race,,"SR1 0000:d031, changed by order 0.49"
-func,0001:c5d8,model_car_setup,,race,,"SR1 0000:e0e2, changed by order 0.41"
-func,0001:c6f6,car_max_speed,,race,,"SR1 0000:e218, changed by order 0.40"
-func,0001:c866,model_class3,,race,,"SR1 0000:9524, changed by calls 0.50"
-func,0001:c8d2,herc_mem_alias,,platform,,"SR1 0000:e56a, changed by order 1.00"
-func,0001:c8ec,herc_detect,,platform,,"SR1 0000:e584, same by code 1.00"
-func,0001:c92b,equip_is_mono,,platform,,"SR1 0000:e5c3, changed by order 0.40"
-func,0001:c93a,herc_graphics_on,,platform,,"SR1 0000:e5d2, same by code 1.00"
-func,0001:c978,video_restore,,platform,,"SR1 0000:e610, same by code 1.00"
-func,0001:c997,ega_vga_detect,,platform,,"SR1 0000:e62f, changed by code 0.79"
-func,0dcb:0410,road_fillmode_begin,,race,,"SR1 2645:0008, same by code 1.00"
-func,0dcb:0425,road_fillmode_end,,race,,"SR1 2645:001d, same by code 1.00"
-func,0dcb:043c,ega_hline,,race,,"SR1 2645:0034, changed by code 0.89"
-func,0dcb:04e6,ega_fill_rows,,race,,"SR1 2645:00e7, same by code 1.00"
-func,0dcb:054a,ega_pixel_addr,,race,,"SR1 2645:014b, same by code 1.00"
-func,0dcb:056a,road_set_seg_ptrs,,race,,"SR1 2645:171d, changed by calls 0.50"
-func,0dcb:062c,road_proj_x,,race,,"SR1 2645:176f, changed by order 0.40"
-func,0dcb:0684,road_proj_y,,race,,"SR1 2645:17b1, changed by order 0.40"
-func,0dcb:06ba,road_proj_x_mirror,,race,,"SR1 2645:17ed, changed by order 0.40"
-func,0dcb:070e,road_proj_y_mirror,,race,,"SR1 2645:1828, changed by order 0.40"
-func,0dcb:0736,road_state_init,,race,,"SR1 2645:185d, changed by order 0.37"
-func,0dcb:07e4,road_project_front,,race,,"SR1 2645:18fb, changed by order 0.40"
-func,0dcb:0ce4,road_project_mirror,,race,,"SR1 2645:1bcc, changed by order 0.40"
-func,0dcb:11fc,road_frame,,race,,"SR1 2645:1e9e, changed by calls 0.50"
-func,0dcb:12ca,road_advance_segment,,race,,"SR1 2645:1efc, changed by calls 0.50"
-func,0dcb:1758,road_nudge_heading,,race,,"SR1 2645:2126, changed by calls 0.50"
-func,0dcb:1774,road_step,,race,,"SR1 2645:213d, changed by order 0.42"
-func,0dcb:354e,road_page_flip,,race,,"SR1 2645:2288, changed by order 0.51"
-func,0dcb:35c4,blit_clip_y,,race,,"SR1 2645:22fc, changed by calls 0.50"
-func,0dcb:3602,blit_clip_xy,,race,,"SR1 2645:2331, changed by calls 0.50"
-func,0dcb:3664,road_vline,,race,,"SR1 2645:2381, changed by order 0.55"
-func,0dcb:36ce,clip_set_ymin0,,race,,"SR1 2645:23f0, changed by order 0.40"
-func,0dcb:36d6,clip_set_mirror,,race,,"SR1 2645:23f7, changed by order 1.00"
-func,0dcb:36f0,clip_set_view,,race,,"SR1 2645:2410, changed by order 1.00"
-func,0dcb:37ce,road_load_graphics,,race,,"SR1 2645:2429, changed by order 0.44"
-func,0dcb:3e66,road_draw_sky,,race,,"SR1 2645:2982, changed by order 0.39"
-func,0dcb:4154,shape_draw,,race,,"SR1 2645:2c0a, changed by calls 0.50"
-func,0dcb:4268,slope16,,race,,"SR1 2645:2cfc, changed by calls 0.50"
-func,0dcb:42fe,sign,,race,,"SR1 2645:2f2b, changed by calls 0.50"
-func,0dcb:4322,road_draw_band_front,,race,,"SR1 2645:2f48, changed by order 0.46"
-func,0dcb:4852,road_draw_band_mirror,,race,,"SR1 2645:324d, changed by order 0.44"
-func,0dcb:4c1c,town_walls_front,,race,,"SR1 2645:34da, changed by calls 0.50"
-func,0dcb:4e70,town_walls_mirror,,race,,"SR1 2645:37af, changed by calls 0.50"
-func,0dcb:504a,town_walls_front_left,,race,,"SR1 2645:39de, same by code 1.00"
-func,0dcb:507a,town_walls_mirror_right,,race,,"SR1 2645:3a86, same by code 1.00"
-func,0dcb:50a8,road_draw_row_front,,race,,"SR1 2645:3a3b, changed by loose 0.67"
-func,0dcb:50c4,town_walls_mirror_left,,race,,"SR1 2645:3a57, changed by globals 0.86"
-func,0dcb:50f4,town_walls_front_right,,race,,"SR1 2645:3a0d, changed by globals 0.86"
-func,0dcb:5122,road_draw_row_mirror,,race,,"SR1 2645:3ab4, changed by order 0.40"
-func,0dcb:512e,shape_draw_dot,,race,,"SR1 2645:3abf, changed by loose 0.69"
-func,0dcb:5158,scenery_draw_shape,,race,,"SR1 2645:3aeb, changed by order 0.38"
-func,0dcb:52e2,scenery_draw_sign_picture,,race,,"SR1 2645:3b79, changed by order 0.41"
-func,0dcb:55ce,scenery_draw_banner,,race,,"SR1 2645:3ccc, changed by order 0.51"
-func,0dcb:56e8,road_draw_cockpit_overlay,,race,,"SR1 2645:3e3c, changed by loose 0.77"
-func,0dcb:573e,mirror_draw_background,,race,,"SR1 2645:3edb, changed by order 0.50"
-func,0dcb:b7da,popcount8,,race,,"SR1 2645:528c, changed by calls 0.50"
-func,0dcb:b7fa,pic_alloc_shrunk,,race,,"SR1 2645:52b7, changed by order 0.36"
-func,1a21:0008,dash_restore_rect,,race,,"SR1 0f38:000a, changed by loose 0.72"
-func,1a21:00b2,dash_copy_rect,,race,,"SR1 0f38:0098, changed by loose 0.70"
-func,1a21:015c,speedo_points,,race,,"SR1 0f38:0137, changed by order 0.40"
-func,1a21:02ac,speedo_init,,race,,"SR1 0f38:01d2, changed by order 0.40"
-func,1a21:038e,tach_points,,race,,"SR1 0f38:02ae, changed by order 0.40"
-func,1a21:0484,tach_init,,race,,"SR1 0f38:0349, changed by order 0.40"
-func,1a21:055e,needle_update,,race,,"SR1 0f38:0425, changed by order 0.40"
-func,1a21:0da6,pal_black,,video,,"SR1 0f38:0b2d, changed by order 0.40"
-func,1a21:0db8,pal_normal,,video,,"SR1 0f38:0b3f, changed by order 0.40"
-func,1a21:0dca,wait_click_or_key,,platform,,"SR1 0f38:0b51, changed by globals 0.88"
-func,1a21:0e82,title_sequence,,game_flow,,"SR1 0f38:0bf0, changed by loose 0.71"
-func,1a21:0fe8,summer_over_screen,,game_flow,,"SR1 0f38:0d62, changed by loose 0.70"
-func,1a21:1048,gfx_screen_mode,,video,,"SR1 0f38:0dbd, changed by order 0.40"
-func,1a21:1174,wheel_load,,race,,"SR1 0f38:0f53, changed by order 0.40"
-func,1a21:11f6,wheel_knob_crash,,race,,"SR1 0f38:1094, changed by order 0.40"
-func,1a21:1288,wheel_draw,,race,,"SR1 0f38:1130, changed by order 0.40"
-func,1a21:13fe,shifter_draw,,race,,"SR1 0f38:12f7, changed by loose 0.63"
-func,1a21:1614,shifter_knob,,race,,"SR1 0f38:14f2, changed by order 0.40"
-func,1a21:17cc,far_memset,,video,,"SR1 0f38:1640, changed by order 0.40"
-func,1a21:17ee,clip_rect,,video,,"SR1 0f38:1680, changed by order 0.40"
-func,1a21:18e2,wait_vretraces,,video,,"SR1 0f38:177d, changed by order 0.40"
-func,1a21:1924,font_string_width,,video,,"SR1 0f38:17c8, changed by order 0.40"
-func,1a21:198a,pal_reg12_13,,video,,"SR1 0f38:180c, changed by order 0.40"
-func,1a21:19aa,pal_shadow_patch,,video,,"SR1 0f38:181c, changed by order 0.40"
-func,1a21:19c6,pal_shadow_swap,,video,,"SR1 0f38:182c, changed by loose 0.71"
-func,1a21:19f0,gfx_init,,video,,"SR1 0f38:1859, changed by order 0.43"
-func,1a21:1b9a,ega_set_palreg,,video,,"SR1 0f38:1f4b, changed by loose 0.76"
-func,1a21:1bee,ega_set_palette,,video,,"SR1 0f38:1fa4, changed by order 0.40"
-func,1a21:1c5a,status_init,,video,,"SR1 0f38:2022, changed by globals 0.55"
-func,1a21:1cde,status_print,,video,,"SR1 0f38:20a1, changed by calls 0.50"
-func,1a21:1df4,money_add,,race,,"SR1 0f38:21c0, changed by calls 0.50"
-func,1a21:1e86,status_label,,video,,"SR1 0f38:2213, changed by code 0.78"
-func,1a21:1f5e,gear_label,,race,,"SR1 0f38:22e9, changed by globals 0.50"
-func,1a21:1f8e,screen_fill_rect,,video,,"SR1 0f38:231a, changed by order 0.40"
-func,1a21:2018,dialog_msg,,garage,,"SR1 0f38:239c, changed by loose 0.62"
-func,1a21:204c,fatal_message,,garage,,"SR1 0f38:23ce, changed by order 0.40"
-func,1a21:21be,show_picture,,video,,"SR1 0f38:2554, changed by loose 0.73"
-func,1a21:22a8,show_picture_at,,video,,"SR1 0f38:2638, changed by loose 0.67"
-func,1a21:22c6,screen_text,,video,,"SR1 0f38:2656, changed by order 0.40"
-func,1a21:231c,screen_hline,,video,,"SR1 0f38:26a4, changed by order 0.40"
-func,1a21:236e,screen_save_rect,,video,,"SR1 0f38:26f2, changed by order 0.40"
-func,1a21:246c,screen_put_bitmap,,video,,"SR1 0f38:27ef, changed by loose 0.60"
-func,1a21:24d8,screen_put_bitmap_mirror,,video,,"SR1 0f38:2853, changed by order 0.47"
-func,1a21:2530,msg_draw,,garage,,"SR1 0f38:28a4, changed by order 0.43"
-func,1a21:274e,msg_draw_at,,garage,,"SR1 0f38:2a62, changed by order 0.46"
-func,1a21:28dc,cursor_shape_offset,,video,,"SR1 0f38:2b1c, changed by calls 0.50"
-func,1a21:28e8,cursor_init,,video,,"SR1 0f38:2b28, changed by order 0.48"
-func,1a21:2b44,cursor_redraw,,video,,"SR1 0f38:2e8b, changed by order 0.55"
-func,1a21:2e92,trans_bolt_draw,,garage,,"SR1 0f38:3074, changed by loose 0.75"
-func,1a21:2fc4,trans_bolt_remove_anim,,garage,,"SR1 0f38:31a5, changed by loose 0.73"
-func,1a21:30f2,trans_slide_anim,,garage,,"SR1 0f38:32ce, changed by loose 0.61"
-func,1a21:322e,trans_remove_anim,,garage,,"SR1 0f38:3404, changed by order 0.40"
-func,1a21:328c,trans_screen_draw,,garage,,"SR1 0f38:345b, changed by loose 0.64"
-func,1a21:332e,bay_engine_idx,,garage,,"SR1 0f38:34fb, changed by order 0.40"
-func,1a21:334a,bay_carb_pos,,garage,,"SR1 0f38:351c, changed by order 0.42"
-func,1a21:33aa,bay_part_pos,,garage,,"SR1 0f38:3589, changed by calls 0.50"
-func,1a21:33fe,bay_bolt_pos,,garage,,"SR1 0f38:35e4, changed by calls 0.50"
-func,1a21:34a2,bay_bolt_draw,,garage,,"SR1 0f38:3697, changed by calls 0.50"
-func,1a21:369a,bay_bolt_remove_anim,,garage,,"SR1 0f38:37fc, changed by order 0.37"
-func,1a21:381e,bay_part_in_anim,,garage,,"SR1 0f38:3a58, changed by order 0.46"
-func,1a21:39a4,bay_part_out_anim,,garage,,"SR1 0f38:3c19, changed by order 0.46"
-func,1a21:3a5a,bay_connector_draw,,garage,,"SR1 0f38:3d1c, changed by calls 0.50"
-func,1a21:3b34,bay_draw_car,,garage,,"SR1 0f38:3e35, changed by order 0.46"
-func,1a21:3c14,bay_draw_parts,,garage,,"SR1 0f38:3f2d, changed by order 0.45"
-func,1a21:3e84,fill_rect,,video,,"SR1 0f38:4302, changed by globals 0.40"
-func,1a21:3f43,vline,,video,,"SR1 0f38:439c, changed by globals 0.40"
-func,1a21:3fba,hline,,video,,"SR1 0f38:43ff, changed by globals 1.00"
-func,1a21:3ff6,draw_frame3,,video,,"SR1 0f38:4432, changed by globals 1.00"
-func,1a21:41f0,draw_box1,,video,,"SR1 0f38:45d7, changed by order 0.47"
-func,1a21:4284,ui_bounds,,garage,,"SR1 0f38:4c1a, changed by calls 0.50"
-func,1a21:434a,ui_save_bg,,garage,,"SR1 0f38:4d10, changed by calls 0.50"
-func,1a21:4b96,ui_push,,garage,,"SR1 0f38:4a66, changed by order 0.42"
-func,1a21:4cac,ui_pop,,garage,,"SR1 0f38:4ba1, changed by order 0.38"
-func,1a21:4cf4,ui_menu,,garage,,"SR1 0f38:4f14, changed by calls 0.50"
-func,1a21:4d26,ui_dialog,,garage,,"SR1 0f38:4ec1, changed by loose 0.66"
-func,1a21:4d7c,list_box,,garage,,"SR1 0f38:4f4f, changed by order 0.40"
-func,1a21:4e0c,wear_text,,garage,,"SR1 0f38:4fc1, changed by string 0.50"
-func,1a21:4ebc,list_box_run,,garage,,"SR1 0f38:500e, changed by order 0.44"
-func,1a21:6056,edit_number,,garage,,"SR1 0f38:5da7, changed by loose 0.73"
-func,1a21:60d2,ui_edit_number,,garage,,"SR1 0f38:5e1e, changed by loose 0.60"
-func,1a21:610c,ui_edit,,garage,,"SR1 0f38:5e54, changed by loose 0.69"
-func,1a21:6256,lib_seek,,platform,,"SR1 0f38:6016, changed by loose 0.68"
-func,1a21:629a,pic_index,,platform,,"SR1 0f38:6057, changed by calls 0.50"
-func,1a21:62c4,lib_select,,platform,,"SR1 0f38:6089, changed by order 0.54"
-func,1a21:6432,lib_read_dir,,platform,,"SR1 0f38:61ab, changed by order 0.47"
-func,1a21:652a,pic_load,,platform,,"SR1 0f38:62ba, changed by order 0.57"
-func,1a21:67e8,pic_free,,platform,,"SR1 0f38:655e, changed by order 0.39"
-func,1a21:683a,pic_decode,,platform,,"SR1 0f38:65ae, changed by order 0.55"
-func,1a21:6ac6,pic_info,,platform,,"SR1 0f38:67ff, changed by calls 0.50"
-func,1a21:6b04,pic_get,,platform,,"SR1 0f38:683e, changed by order 0.44"
-func,1a21:6b50,pic_park_list,,platform,,"SR1 0f38:6887, changed by order 0.40"
-func,1a21:6b80,pic_load_list,,platform,,"SR1 0f38:68ca, changed by order 0.40"
-func,1a21:6bc0,pic_free_list,,platform,,"SR1 0f38:6915, changed by order 0.40"
-func,1a21:6be0,lib_open_all,,platform,,"SR1 0f38:6943, changed by order 0.47"
-func,1a21:6e6a,hot_data_load,,platform,,"SR1 0f38:6b79, changed by order 0.40"
-func,1a21:7052,data_disk_check,,platform,,"SR1 0f38:6c3d, changed by loose 0.62"
-func,1a21:70fc,hall_scramble,,platform,,"SR1 0f38:6ccf, changed by order 0.40"
-func,1a21:710c,hall_unscramble,,platform,,"SR1 0f38:6cec, changed by order 0.40"
-func,1a21:711c,hall_load,,platform,,"SR1 0f38:6d09, changed by string 1.00"
-func,1a21:71cc,hall_save,,platform,,"SR1 0f38:6dd2, changed by order 0.46"
-func,1a21:7304,shp_read_block_a,,platform,,"SR2 new, S1.5"
-func,1a21:7446,shp_read_block_b,,platform,,"SR2 new, S1.5"
-func,1a21:75ea,shp_load_set,,platform,,"SR2 new, S1.5"
-func,1a21:769c,mouse_reset,,platform,,"SR1 0f38:799a, changed by order 0.45"
-func,1a21:76d6,mouse_buttons,,platform,,"SR1 0f38:79d7, changed by globals 1.00"
-func,1a21:7708,mouse_motion,,platform,,"SR1 0f38:7a14, changed by calls 0.50"
-func,1a21:7738,mouse_poll,,platform,,"SR1 0f38:7a47, changed by globals 1.00"
-func,1a21:77f4,race_run,,race,,"SR1 0f38:7b22, changed by order 0.40"
-func,1a21:7f5c,ega_blit_4planes,,video,,"SR1 0f38:8126, changed by order 0.40"
-func,1a21:7fc6,ega_vram_cache_strips,,video,,"SR1 0f38:819a, changed by order 0.40"
-func,1a21:8268,pump_overlay,,garage,,"SR1 0f38:872e, changed by calls 0.50"
-func,1a21:831c,car_strip_setup,,garage,,"SR1 0f38:84be, changed by loose 0.63"
-func,1a21:8546,car_compose,,garage,,"SR1 0f38:8866, changed by order 0.38"
-func,1a21:89fa,car_draw,,garage,,"SR1 0f38:8e48, changed by loose 0.65"
-func,1a21:9216,walker_anim,,garage,,"SR1 0f38:975b, changed by order 0.40"
-func,1a21:92f2,carhop_frames,,garage,,"SR1 0f38:985c, changed by order 0.40"
-func,1a21:939a,carhop_strip,,garage,,"SR1 0f38:990f, changed by loose 0.60"
-func,1a21:945a,carhop_anim,,garage,,"SR1 0f38:99d9, changed by loose 0.67"
-func,1a21:98e2,town_bg_save,,garage,,"SR1 0f38:9e5d, changed by loose 1.00"
-func,1a21:9940,arena_clear,,platform,,"SR1 0f38:9ebc, changed by calls 0.50"
-func,1a21:995c,arena_init,,platform,,"SR1 0f38:9ee9, changed by order 0.48"
-func,1a21:99b0,arena_low_shrink,,platform,,"SR1 0f38:9f1a, changed by order 0.40"
-func,1a21:99d2,arena_alloc,,platform,,"SR1 0f38:9f2c, changed by calls 0.50"
-func,1a21:9a68,arena_bitmap_alloc,,video,,"SR1 0f38:9fce, changed by order 0.38"
-func,1a21:9bec,rect_intersect,,video,,"SR1 0f38:a0fa, changed by order 0.52"
-func,1a21:9c74,rect_clip_to_view,,video,,"SR1 0f38:a198, changed by order 0.48"
-func,1a21:9ccc,rect_clip_make,,video,,"SR1 0f38:a1ee, changed by order 0.46"
-func,1a21:9d38,sprite_scene_setup,,video,,"SR1 0f38:a273, changed by order 0.41"
-func,1a21:9f42,rect_subtract_edge,,video,,"SR1 0f38:a4b9, changed by order 0.40"
-func,1a21:a016,anim_ring_reverse,,garage,,"SR1 0f38:a5a5, changed by order 0.40"
-func,1a21:a0d4,anim_phase_set,,garage,,"SR1 0f38:a65d, changed by order 0.41"
-func,1a21:a11e,anim_phases,,garage,,"SR1 0f38:a6ad, changed by order 0.39"
-func,1a21:a25e,anim_script,,garage,,"SR1 0f38:a7ee, changed by order 0.40"
-func,1a21:a4bc,sprite_anim_advance,,video,,"SR1 0f38:aa37, changed by order 0.40"
-func,1a21:a528,sprite_hspan_clip,,video,,"SR1 0f38:aac2, changed by order 0.40"
-func,1a21:a59c,bitmap_copy_into,,video,,"SR1 0f38:ab50, changed by calls 0.50"
-func,1a21:a624,bitmap_opaque_extent,,video,,"SR1 0f38:abc2, changed by globals 0.67"
-func,1a21:a758,bitmap_make_shifted,,video,,"SR1 0f38:acbf, changed by globals 1.00"
-func,1a21:a9ac,bitmap_blit_masked_shift,,video,,"SR1 0f38:af50, changed by order 0.40"
-func,1a21:ab52,bitmap_composite_behind,,video,,"SR1 0f38:b0f2, changed by globals 0.60"
-func,1a21:ad92,pic_blit_at,,video,,"SR1 0f38:b360, changed by order 0.52"
-func,1a21:ae2c,pic_draw_masked,,video,,"SR1 0f38:b3b4, changed by loose 0.65"
-func,1a21:ae94,mask_and_rect,,video,,"SR1 0f38:b41b, changed by order 0.40"
-func,1a21:af7a,far_memcpy,,video,,"SR1 0f38:b502, changed by order 0.40"
-func,1a21:af96,bitmap_extract,,video,,"SR1 0f38:b51e, changed by loose 0.62"
-func,1a21:b028,page_copy_rect,,video,,"SR1 0f38:b5aa, changed by order 0.35"
-func,1a21:b16e,tc_wheel_strip,,garage,,"SR1 0f38:b632, changed by loose 0.70"
-func,1a21:b358,tc_wheel_swap,,garage,,"SR1 0f38:b82c, changed by order 0.40"
-func,1a21:b9bc,tire_change_anim,,garage,,"SR1 0f38:be93, changed by loose 0.60"
-func,26b3:000c,pic_unpack,,video,,"SR1 0e92:0006, changed by loose 0.65"
-func,26c0:0002,tdy_draw_cursor,,video,,"SR1 0e6c:0002, same by code 1.00"
-func,26c0:0175,ega_draw_cursor,,video,,"SR1 0e6c:0175, same by code 1.00"
-func,2925:12f2,tournament_round_header,,game_flow,,"SR2 new, S1.5"
-func,2925:14b6,tournament_standings,,game_flow,,"SR2 new, S1.5"
-func,2925:1970,event17_run,,race,,"SR2 new, S1.5"
-func,2925:1b84,gas_hotspots_b,,race,,"SR1 0000:b525, changed by loose 0.62"
-func,2925:2104,event15_run,,race,,"SR2 new, S1.5"
-func,2925:2714,end_data_load,,game_flow,,"SR2 new, S1.5"
-func,2925:2e60,video_options_menu2,,video,,"SR2 new, S1.5"
-func,2925:3174,stickers_menu_sr2,,video,,"SR2 new, S1.5"
-func,2c57:0002,song_select,,sound,,"SR1 0f38:6f0a, changed by order 0.38"
-func,2c57:00b8,vib_set,,sound,,"SR1 0f38:6fbd, changed by order 0.38"
-func,2c57:00f6,music_mute,,sound,,"SR1 0f38:7001, changed by order 0.55"
-func,2c57:01ae,snd_calibrate_delay,,sound,,"SR1 0f38:703e, changed by loose 0.63"
-func,2c57:0234,spk_set_hz,,sound,,"SR1 0f38:70d5, changed by calls 0.50"
-func,2c57:025c,fx_tone,,sound,,"SR1 0f38:714c, changed by calls 0.50"
-func,2c57:0278,fx_burst,,sound,,"SR1 0f38:7169, changed by order 0.53"
-func,2c57:02b8,fx_sweep_down,,sound,,"SR1 0f38:71b2, changed by order 0.40"
-func,2c57:02e6,fx_warble,,sound,,"SR1 0f38:71e4, changed by order 0.48"
-func,2c57:0374,pwm_up,,sound,,"SR1 0f38:7292, changed by calls 0.50"
-func,2c57:03de,pwm_down,,sound,,"SR1 0f38:7306, changed by calls 0.50"
-func,2c57:0448,ramp_fill,,sound,,"SR1 0f38:737a, changed by calls 0.50"
-func,2c57:048e,pwm_swell,,sound,,"SR1 0f38:73ed, changed by loose 0.62"
-func,2c57:05ac,spk_vec_off,,sound,,"SR2 new, S1.5"
-func,2c57:05ba,spk_vec_on,,sound,,"SR2 new, S1.5"
-func,2c57:05c8,speaker_sound_init,,sound,,"SR2 new, S1.5"
-func,2c57:0882,fx_crash,,sound,,"SR1 0f38:7863, changed by order 0.37"
-func,2c57:09ca,mus_file_load,,sound,,"SR2 new, S1.5"
-func,2c57:0aa2,snd_bank_and_intro_load,,sound,,"SR2 new, S1.5"
-func,2c57:0ade,mus_songs_load,,sound,,"SR2 new, S1.5"
-func,2c57:13d8,adlib_sound_init,,sound,,"SR2 new, S1.5"
-func,2c57:1406,delay,,sound,,"SR1 2196:0002, same by code 1.00"
-func,2c57:1421,pulse3_play,,sound,,"SR1 2196:001d, changed by code 0.93"
-func,2c57:14aa,snd_bank_load,,sound,,"SR2 new, S1.5"
-func,2c57:151b,snd_bank_init,,sound,,"SR2 new, S1.5"
-func,2c57:16c6,adlib_delay_init,,sound,,"SR2 new, S1.5"
-func,2c57:16e1,adlib_write,,sound,,"SR2 new, S1.5"
-func,2c57:1733,adlib_detect,,sound,,"SR2 new, S1.5"
-func,2c57:21b1,adlib_vec_off,,sound,,"SR2 new, S1.5"
-func,2c57:21f0,adlib_vec_on,,sound,,"SR2 new, S1.5"
-func,2c57:24ad,adlib_reset,,sound,,"SR2 new, S1.5"
-func,2c57:2514,adlib_set_port,,sound,,"SR2 new, S1.5"
-func,2c57:252e,mus_timer_remove_wrap,,sound,,"SR2 new, S1.5"
-func,2c57:2542,mus_set_tempo,,sound,,"SR2 new, S1.5"
-func,2c57:25aa,mus_stop,,sound,,"SR2 new, S1.5"
-func,2c57:25f0,mus_resume,,sound,,"SR2 new, S1.5"
-func,2c57:26b9,adlib_music_init,,sound,,"SR2 new, S1.5"
-func,2c57:26d9,mus_play,,sound,,"SR2 new, S1.5"
-func,2c57:2875,mus_tick,,sound,,"SR2 new, S1.5"
-func,2f1b:0027,pit_set_divisor,,sound,,"SR2 new, S1.5"
-func,2f1b:0045,mus_timer_set_divisor,,sound,,"SR2 new, S1.5"
-func,2f1b:0069,mus_timer_install,,sound,,"SR2 new, S1.5"
-func,2f1b:00a7,mus_timer_remove,,sound,,"SR2 new, S1.5"
-func,2f1b:00bc,mus_set_countdown,,sound,,"SR2 new, S1.5"
-func,2f1b:00cb,mus_timer_isr,,sound,,"SR2 new, S1.5"
-func,2f32:0002,ega_wait_vretrace,,video,,"SR1 21a0:0006, same by code 1.00"
-func,2f32:0010,ega_set_split,,video,,"SR1 21a0:0014, same by code 1.00"
-func,2f32:0364,tdy_blit_masked,,video,,"SR1 21a0:0358, changed by order 0.45"
-func,2f32:04a2,tdy_blit,,video,,"SR1 21a0:04ab, changed by order 0.43"
-func,2f32:0788,tdy_blit_shifted,,video,,"SR1 21a0:07ac, changed by order 0.43"
-func,2f32:0906,tdy_install_vectors,,video,,"SR1 21a0:0952, changed by order 0.50"
-func,2f32:0918,tdy_draw_text,,video,,"SR1 21a0:0964, changed by globals 1.00"
-func,2f32:09da,tdy_recolour_rect,,video,,"SR1 21a0:0a4f, changed by order 0.40"
-func,2f32:0b80,tdy_copy_page,,video,,"SR1 21a0:0c09, changed by loose 0.62"
-func,2f32:0b9c,tdy_blinds,,video,,"SR1 21a0:0c26, changed by globals 0.67"
-func,2f32:0cbe,tdy_anim_step,,video,,"SR1 21a0:0d62, changed by order 0.54"
-func,2f32:111c,ega_install_vectors,,video,,"SR1 21a0:1128, changed by order 0.50"
-func,2f32:112e,ega_draw_text,,video,,"SR1 21a0:113a, changed by globals 0.57"
-func,2f32:1571,ega_recolour_rect,,video,,"SR1 21a0:1508, changed by order 0.40"
-func,2f32:17a4,ega_copy_page,,video,,"SR1 21a0:16dc, changed by order 0.48"
-func,2f32:17f5,ega_blinds,,video,,"SR1 21a0:1722, changed by globals 0.50"
-func,2f32:1956,ega_show_page,,video,,"SR1 21a0:182e, changed by loose 0.73"
-func,2f32:198a,ega_blit,,video,,"SR1 21a0:1862, changed by order 0.40"
-func,2f32:1bf6,ega_sprite_over_bg,,video,,"SR1 21a0:1ae9, changed by loose 0.71"
-func,2f32:1dd8,ega_blit_masked,,video,,"SR1 21a0:1cd5, changed by order 0.40"
-func,2f32:1f32,ega_save_rect,,video,,"SR1 21a0:1e2d, changed by order 0.40"
-func,2f32:1fbf,shift_row,,video,,"SR1 21a0:1ea2, changed by order 0.40"
-func,2f32:2068,ega_put_shifted_row,,video,,"SR1 21a0:1f8d, changed by order 0.40"
-func,2f32:230f,ega_blit_shifted,,video,,"SR1 21a0:223b, changed by order 0.40"
-func,2f32:2540,ega_line,,video,,"SR1 21a0:23bc, same by code 1.00"
-func,2f32:26b2,ega_pixel_addr,,video,,"SR1 21a0:252e, changed by calls 0.50"
-func,2f32:26ec,anim_restore_rect,,video,,"SR1 21a0:2568, changed by order 0.40"
-func,2f32:2754,ega_anim_step,,video,,"SR1 21a0:25d9, changed by loose 0.66"
-func,2f32:2ab2,ega_slide_sprite,,video,,"SR1 21a0:28ec, changed by order 0.40"
-func,320d:0004,far_memmem,,platform,,"SR1 2460:0002, changed by loose 0.62"
-func,3298:0000,ega_latch_copy,,video,,"SR1 24e7:0008, same by code 1.00"
-func,3298:0083,ega_latch_copy_to40,,video,,"SR1 24e7:008b, changed by code 0.82"
-func,32a5:0002,rows_composite,,video,,"SR1 24f4:000a, changed by code 0.85"
-func,3345:000c,rows_mask_or,,video,,"SR1 2595:0004, changed by code 0.84"
-func,33e5:0002,rows_mask_blend,,video,,"SR1 2634:000a, same by code 1.00"
-func,33e5:00b9,make_mask_plane,,video,,"SR1 2634:00c1, changed by code 0.86"
-func,34b0:0018,_astart,,seed,,"SR1 1e16:001e, changed by globals 0.43"
-func,34b0:0110,_cinit,,seed,,"SR1 1e16:00e4, changed by globals 0.75"
-func,34b0:0258,_ctermsub,,seed,,"SR1 1e16:0206, same by code 1.00"
-func,34b0:0285,_initterm,,seed,,"SR1 1e16:0233, same by code 1.00"
-func,34b0:0298,_FF_MSGBANNER,,seed,,"SR1 1e16:0246, changed by globals 1.00"
-func,34b0:02c0,_chkstk,,seed,,"SR1 1e16:0270, changed by globals 1.00"
-func,34b0:02e4,_nullcheck,,seed,,"SR1 1e16:0294, changed by order 0.40"
-func,34b0:0308,_setargv,,seed,,"SR1 1e16:02ba, changed by code 0.80"
-func,34b0:0518,_NMSG_TEXT,,seed,,"SR1 1e16:04ba, same by code 1.00"
-func,34b0:0543,_NMSG_WRITE,,seed,,"SR1 1e16:04e5, changed by order 0.40"
-func,34b0:057a,_myalloc,,seed,,"SR1 1e16:0510, changed by order 0.40"
-func,34b0:05c8,_dosmaperr,,seed,,"SR1 1e16:0578, changed by loose 0.79"
-func,34b0:0e86,lseek,,seed,,"SR1 1e16:136e, changed by code 0.95"
-func,34b0:11a6,write,,seed,,"SR1 1e16:13e8, changed by code 0.75"
-func,34b0:12e6,stackavail,,seed,,"SR1 1e16:1512, same by code 1.00"
-func,34b0:1602,strlen,,seed,,"SR1 1e16:18b2, same by code 1.00"
-func,34b0:16dc,itoa,,seed,,"SR1 1e16:19d0, same by code 1.00"
-func,34b0:1788,getch,,platform,,"SR1 1e16:1b82, changed by order 0.38"
-func,34b0:17b0,int86,,platform,,"SR1 1e16:1b9a, changed by code 0.85"
-func,34b0:18aa,sprintf,,seed,,"SR1 1e16:1c8e, changed by loose 0.62"
-func,34b0:1df0,int86x,,platform,,"SR1 1e16:1ce8, changed by code 0.88"
-func,34b0:1e86,intdos,,platform,,"SR1 1e16:1d7e, changed by code 0.75"
-func,34b0:1ece,movedata,,platform,,"SR1 1e16:1dc8, same by code 1.00"
-func,34b0:1eec,segread,,platform,,"SR1 1e16:1de6, changed by order 1.00"
-func,34b0:1f22,time,,platform,,"SR1 1e16:1dfc, same by code 1.00"
-func,34b0:2226,stricmp,,seed,,"SR1 1e16:2130, same by code 1.00"
-func,34b0:230a,memset,,seed,,"SR1 1e16:2240, changed by loose 0.74"
-func,34b0:23d0,remove,,platform,,"SR1 1e16:22de, changed by order 1.00"
-func,34b0:23de,_bios_equiplist,,platform,,"SR1 1e16:22ec, changed by order 0.40"
-func,34b0:23e2,_dos_close,,platform,,"SR1 1e16:22f0, changed by order 1.00"
-func,34b0:23f7,_dos_creat,,platform,,"SR1 1e16:2305, changed by order 0.40"
-func,34b0:241a,_dos_getvect,,platform,,"SR1 1e16:231e, same by code 1.00"
-func,34b0:242c,_dos_open,,platform,,"SR1 1e16:2330, same by code 1.00"
-func,34b0:2444,_dos_read,,platform,,"SR1 1e16:2348, changed by order 0.40"
-func,34b0:244b,_dos_write,,platform,,"SR1 1e16:234f, changed by order 0.40"
-func,34b0:2474,_dos_setvect,,platform,,"SR1 1e16:236c, same by code 1.00"
-func,34b0:248a,_dos_getdrive,,seed,,"SR1 1e16:2382, same by code 1.00"
-func,34b0:249e,_harderr,,platform,,"SR1 1e16:2396, changed by code 0.85"
-func,34b0:24ed,_hardresume,,platform,,"SR1 1e16:23e3, changed by order 0.40"
-func,34b0:24f6,_aFldiv,,platform,,"SR1 1e16:23ec, changed by code 0.95"
-func,34b0:2590,_aFlmul,,seed,,"SR1 1e16:2488, changed by order 0.40"
+func,0000:0000,dos_print_line,"near void (char *s, int indent)",platform,,SR2 new
+func,0001:0090,set_text_cursor,"near void (int col, int row)",platform,,SR2 new; INT 10h AH=2 helper (S3.7)
+func,0001:00c0,video_menu,,platform,,SR2 changed; SR1 0000:0082 video_menu
+func,0001:01ea,sound_options_menu,int near (void),sound,,"SR2 new; text menu, 0=AdLib 1=speaker"
+func,0001:02ee,vga_detect,,platform,,SR2 changed; = SR1 0000:018b vga_detect
+func,0001:0330,bios_set_mode,,platform,,SR2 changed; = SR1 0000:01d1 bios_set_mode
+func,0001:034e,cga_set_palette,,platform,,SR2 changed; = SR1 0000:01f2 cga_set_palette
+func,0001:037c,video_detect_menu,,platform,,SR2 changed; SR1 0000:0226 video_detect_menu
+func,0001:046e,driver_select,,platform,,SR2 changed; SR1 0000:0316 driver_select
+func,0001:0628,video_mode_init,near void (int mode),platform,,SR2 new; BIOS mode set per video choice (S3.7)
+func,0001:070c,cpu_speed_calibrate,,platform,,SR2 changed; = SR1 0000:05c6 cpu_speed_calibrate
+func,0001:079a,slow_flag_set,,platform,,SR2 changed; = SR1 0000:0659 slow_flag_set
+func,0001:07ae,empty_stub,far void (void),platform,,SR2 new; bare retf (S3.7)
+func,0001:07b0,main,"void far (int argc, char **argv)",game_flow,,"changed; SR1 0000:066f; switches, order, rnd(-1), no halloc"
+func,0001:0a68,classifieds_open,"void(int *list,int first_row)",garage,,SR2 new; spec: new
+func,0001:0ac8,classifieds_run,int(void),garage,,SR2 changed; SR1 0000:09cb classifieds_run (order 0.38); spec: changed
+func,0001:0e74,hotspots_reset,,platform,,SR2 changed; = SR1 0000:0d58 hotspots_reset
+func,0001:0e94,cheapest_ad_price,int far (void),game_flow,,new; min price over the ad list DS:9B42 (broke_check)
+func,0001:0efe,classifieds_add_car_row,"void(int id,int row,char *item)",garage,,SR2 new; spec: new
+func,0001:0f7e,classifieds_roll_ads,"int(int row,char *items)",garage,,SR2 new; spec: new
+func,0001:1048,classifieds_rebuild_ads,"int(int row,char *items)",garage,,SR2 new; spec: new
+func,0001:107c,classifieds_add_engines,"int(int row,char *items)",garage,,SR2 new; spec: new
+func,0001:10b6,classifieds_add_transmissions,"int(int row,char *items)",garage,,SR2 new; spec: new
+func,0001:10f2,classifieds_add_manifolds,"int(int row,char *items)",garage,,SR2 new; spec: new
+func,0001:112e,classifieds_add_misc_parts,"int(int row,char *items)",garage,,SR2 new; spec: new
+func,0001:11a2,classifieds,"void(int section,int reroll)",garage,,SR2 new; spec: new
+func,0001:1708,click_clear,far void (void),platform,,SR2 changed; SR1 0000:0d78 click_clear (S3.7)
+func,0001:1728,music_stop,void far (void),sound,,"SR1 0000:0d99; device-aware, jukebox button via DS:3AD8"
+func,0001:1784,music_resume,void far (void),sound,,SR1 0000:0dd8; device-aware
+func,0001:17ea,input_reset,void far (void),game_flow,,changed; SR1 0000:0e24; no timer queue
+func,0001:189e,timer_restore,far void (void),platform,,SR2 changed; SR1 0000:0fb7 timer_restore (S3.7)
+func,0001:18ce,platform_exit,void far (void),game_flow,,changed; SR1 0000:0fea
+func,0001:191a,crit_err_handler,,platform,,SR2 changed; SR1 0000:105b crit_err_handler
+func,0001:19e8,platform_install,far void (void),platform,,SR2 changed; SR1 0000:1111 platform_install (S3.7)
+func,0001:1bea,kbd_remap_restore,,platform,,SR2 changed; SR1 0000:1391 kbd_remap_restore
+func,0001:1c5c,kbd_hotspot_refresh,far void (void),platform,,SR2 new; rebuilds DS:3B6E hot-key remap (S3.7)
+func,0001:1d02,ui_wait,int far (int ticks_max),game_flow,,"changed; SR1 0000:1417; no tq, demo_step hook, juke key"
+func,0001:2002,tune_start,"void far (int word_off,int delay)",sound,,"SR1 music_start 0000:1a05; voted game_flow, claimed by sound; rep starts at 1"
+func,0001:208a,tune_rewind,void far (void),sound,,SR1 music_rewind 0000:1a7c; now only stop+gate off
+func,0001:20a0,race_isr_enter,void far (void),sound,,SR1 drive_isr_install 0000:1aad; sound part (platform owns the rest)
+func,0001:2164,music_resume_after_race,void far (void),sound,,SR2 new; restores music switched off by race_isr_enter
+func,0001:2176,race_isr_leave,void far (void),sound,,SR1 drive_isr_remove 0000:1b27; sound part
+func,0001:2222,sign,far int (int v),platform,,SR2 new (S3.7)
+func,0001:2246,timer_isr,void interrupt (void),platform,,SR2 changed; SR1 0000:1fe2 timer_isr (S3.7)
+func,0001:2610,race_ctrl_reset,far void(void),race,,changed; SR1 race_stop_inputs 0000:2374 without steps_at_stop
+func,0001:2622,race_isr,void interrupt (void),platform,,SR2 changed; SR1 0000:238c race_isr (S3.7)
+func,0001:2f6c,bios_mode_b_set,,platform,,SR2 same; = SR1 0000:2bad bios_mode_b_set
+func,0001:2f7f,bios_mode_a_set,"far void (u8 equip, u8 mode)",platform,,SR2 new in index; = SR1 0000:2b9a bios_mode_a_set (S3.7)
+func,0001:2f92,bios_mode_b_apply,,platform,,SR2 same; = SR1 0000:2be2 bios_mode_b_apply
+func,0001:2fb4,bios_mode_a_apply,,platform,,SR2 changed; = SR1 0000:2bc0 bios_mode_a_apply
+func,0001:2fd6,kbd_text_mode_on,,platform,,SR2 same; = SR1 0000:2c04 kbd_text_mode_on
+func,0001:2ffd,kbd_text_mode_off,,platform,,SR2 changed; = SR1 0000:2c2b kbd_text_mode_off
+func,0001:3014,kbd_isr,,platform,,SR2 changed; SR1 0000:2c42 kbd_isr
+func,0001:3168,key_read,,platform,,SR2 changed; = SR1 0000:2db6 key_read
+func,0001:3175,kbd_install,,platform,,SR2 same; = SR1 0000:2dc3 kbd_install
+func,0001:3194,kbd_restore,,platform,,SR2 same; = SR1 0000:2de2 kbd_restore
+func,0001:31a6,joy_read,,platform,,SR2 same; = SR1 0000:2df4 joy_read
+func,0001:3245,kbd_inject_scancode,void far (void),game_flow,,changed; SR1 0000:2e93; keypad mouse emulation
+func,0001:3378,copy_protection,int far (void),game_flow,,"changed; SR1 0000:2fc8; manual lookup, never checks the answer"
+func,0001:348a,game_over_menu,int far (void),game_flow,,changed; SR1 0000:315b; menu 0x20
+func,0001:35e8,hall_is_slower,int near (int i),game_flow,,changed; SR1 0000:32d0
+func,0001:360c,hall_insert,void near (int i),game_flow,,changed; SR1 0000:32f4
+func,0001:3682,hall_score,long near (void),game_flow,,same; SR1 0000:3375
+func,0001:36ac,hall_of_fame_screen,void far (int won),game_flow,,changed; SR1 0000:339f; pic 0x4B9
+func,0001:3934,pools_init,void near (int full),game_flow,,changed; SR1 0000:3614; claimed from garage vote
+func,0001:399e,get_ds,,platform,,SR2 same; = SR1 0000:36a8 get_ds
+func,0001:39b4,mem_pools_init,,platform,,SR2 same; = SR1 0000:36be mem_pools_init
+func,0001:39cc,far_free,far void (void far *p),platform,,SR2 new; _ffree wrapper (S3.7)
+func,0001:39de,far_alloc,,platform,,SR2 changed; = SR1 0000:3709 far_alloc
+func,0001:3a42,bitmap_alloc,,platform,,SR2 changed; SR1 0000:376b bitmap_alloc
+func,0001:3b70,bitmap_make,,platform,,SR2 changed; SR1 0000:3880 bitmap_make
+func,0001:3bfa,bitmap_init,,platform,,SR2 changed; SR1 0000:3904 bitmap_init
+func,0001:3c60,vram_pool_alloc,,video,,SR2 changed; = SR1 0000:3967 vram_pool_alloc
+func,0001:3cc4,title_and_setup,int near (void),game_flow,,changed; SR1 0000:39c0; protection called
+func,0001:3d80,wait_ticks,void far (int n),game_flow,,changed; SR1 0000:3a83
+func,0001:3db4,msg_box,void far (int id),game_flow,,changed; SR1 0000:3ab8; table DS:11EA
+func,0001:3e08,garage_full_check,int near (void),game_flow,,changed; SR1 0000:3b0c; limits 16 / 0xB5; claimed from garage vote
+func,0001:3e30,newspaper_front,void(void),garage,,SR2 changed; SR1 0000:3b33 newspaper_front (order 0.47); spec: changed
+func,0001:3f28,part_alloc,int near (void),game_flow,,changed; SR1 0000:3c1b; claimed from garage vote
+func,0001:3f3e,part_free,void near (int p),game_flow,,changed; SR1 0000:3c3e; claimed from garage vote
+func,0001:3f5a,sell_spare_parts,void(void),garage,,"SR2 new; spec: changed; claimed from module vote ""game_flow"""
+func,0001:423a,car_alloc,CAR*(void),garage,,SR2 changed; SR1 0000:3fb1 car_alloc (calls 0.50); spec: = SR1 with DS remap
+func,0001:4250,car_release,void(CAR*),garage,,SR2 changed; SR1 0000:3fd4 car_release (order 1.00); spec: = SR1 with DS remap
+func,0001:426c,spare_add,"void(int type,int value)",garage,,SR2 changed; SR1 0000:3ff0 spare_add (order 0.40); spec: = SR1 with DS remap
+func,0001:42aa,car_new,"CAR*(int model,int value,CAR *reuse)",garage,,SR2 changed; SR1 0000:4036 car_new (calls 0.50); spec: changed
+func,0001:46f0,part_release,int(PART*),garage,,SR2 changed; SR1 0000:4386 part_release (calls 0.50); spec: changed
+func,0001:4716,car_free,int(CAR*),garage,,SR2 new; spec: new
+func,0001:478e,how_about,int(uint *offer),garage,,SR2 changed; SR1 0000:4940 how_about (order 0.54); spec: changed
+func,0001:4804,car_flags,uint(CAR*),garage,,SR2 changed; SR1 0000:49a2 car_flags (order 0.36); spec: changed
+func,0001:4852,your_cars,int(void),garage,,SR2 new; spec: changed
+func,0001:4d90,message_at,"void(int id,int x,int y)",garage,,SR2 same; SR1 0000:4ffa message_at (code 1.00); spec: = SR1 with DS remap
+func,0001:4dd6,game_loop,int near (void),game_flow,,changed; SR1 0000:503f; event trips 2/15/17
+func,0001:51f8,opponent_init,"void(int i,int *pool)",garage,,SR2 changed; SR1 0000:542e opponent_init (calls 0.50); spec: changed
+func,0001:534c,opponents_init,void(void),garage,,SR2 changed; SR1 0000:5584 opponents_init (order 0.38); spec: changed
+func,0001:5400,new_game,void(void),garage,,SR2 changed; SR1 0000:56a9 new_game (order 0.35); spec: changed
+func,0001:5494,str_is_blank,int near (char *s),game_flow,,same; SR1 0000:5eb3
+func,0001:54ba,trim_trailing_spaces,int(char *s),garage,,SR2 new; spec: new
+func,0001:550e,new_game_prompt,int(void),garage,,SR2 changed; SR1 0000:570c new_game_prompt (calls 0.50); spec: changed
+func,0001:55b0,save_part_chain,"int near (int fd, u16 p)",game_flow,,changed; SR1 0000:5795
+func,0001:55fa,load_part_chain,"int near (int fd, u16 *head)",game_flow,,changed; SR1 0000:57dc
+func,0001:56a4,save_car_chain,"int near (int fd, u16 c, int one)",game_flow,,"changed; SR1 0000:586e; 0x2A record, 10 chains"
+func,0001:5776,load_car_chain,"int near (int fd, u16 *head, int one)",game_flow,,"changed; SR1 0000:590f; 0x2A record, 10 chains"
+func,0001:58b2,save_slots_scan,"void near (int for_save, int *count)",game_flow,,"changed; SR1 0000:59f6; slots 0..14, 0x38 header"
+func,0001:59e2,load_game_screen,int near (void),game_flow,,changed; SR1 0000:5b4a
+func,0001:5d82,save_game_screen,void near (void),game_flow,,changed; SR1 0000:5eea; matcher class new
+func,0001:630e,quit_menu,int near (void),game_flow,,"changed; SR1 0000:641e; confirm menu 0x23, clock compensation"
+func,0001:63e0,day_index,int(void),garage,,SR2 changed; SR1 0000:6476 day_index (globals 1.00); spec: = SR1 with DS remap
+func,0001:640e,classified_week,int(void),garage,,SR2 new; spec: new
+func,0001:6426,clock_hm,"void(int *h,int *m)",garage,,SR2 changed; SR1 0000:64a3 clock_hm (globals 0.86); spec: = SR1 with DS remap
+func,0001:64a2,summer_over_check,void(void),garage,,SR2 changed; SR1 0000:6529 summer_over_check (order 0.40); spec: = SR1 with DS remap
+func,0001:64b2,month_of_day,"int(int day,int *dom)",garage,,SR2 changed; SR1 0000:653c month_of_day (order 0.40); spec: = SR1 with DS remap
+func,0001:650a,calendar_show,void(int quick),garage,,SR2 changed; SR1 0000:65af calendar_show (order 0.40); spec: = SR1 with DS remap
+func,0001:66ae,date_print,void(int y),garage,,SR2 changed; SR1 0000:6750 date_print (loose 0.75); spec: = SR1 with DS remap
+func,0001:672c,set_paint_palette,void(int colour),garage,,SR2 changed; SR1 0000:67cf set_paint_palette (calls 0.50); spec: = SR1 with DS remap
+func,0001:6796,garage_hotspots_nocar,void(void),garage,,SR2 new; spec: changed
+func,0001:67b8,garage_hotspots_car,"void(int model,int x,int y)",garage,,SR2 changed; SR1 0000:68e8 garage_hotspots_car (calls 0.50); spec: changed
+func,0001:68c0,garage_name_clear,void(void),garage,,SR2 changed; SR1 0000:6aa6 garage_name_clear (calls 0.50); spec: = SR1 with DS remap
+func,0001:68e2,broke_check,int(void),garage,,SR2 changed; SR1 0000:6ad8 broke_check (order 0.40); spec: changed
+func,0001:6912,garage_screen,int(int mode),garage,,SR2 changed; SR1 0000:6b06 garage_screen (string 1.00); spec: changed
+func,0001:6d5e,paint_job,void(void),garage,,SR2 changed; SR1 0000:6f6b paint_job (order 0.53); spec: changed
+func,0001:6edc,customize,void(int what),garage,,SR2 changed; SR1 0000:711a customize (order 0.36); spec: changed
+func,0001:70d2,spares_collect,"void(int cat,PART **nodes,char *wear,int n0,int *count)",garage,,SR2 changed; SR1 0000:76a7 spares_collect (order 0.62); spec: changed
+func,0001:715a,part_install,"void(PART *p,PART **slot)",garage,,SR2 changed; SR1 0000:7741 part_install (calls 0.50); spec: changed
+func,0001:7196,part_uninstall,void(PART **slot),garage,,SR2 changed; SR1 0000:7789 part_uninstall (calls 0.50); spec: changed
+func,0001:71be,spare_unlink,PART*(PART *p),garage,,SR2 changed; SR1 0000:77b7 spare_unlink (order 0.41); spec: = SR1 with DS remap
+func,0001:71f6,change_tires,void(void),garage,,SR2 changed; SR1 0000:7800 change_tires (order 0.45); spec: changed
+func,0001:72f2,car_info_sr2,void(void),garage,,"SR2 new; spec: new; claimed from module vote ""game_flow"""
+func,0001:75b8,change_transmission,void(void),garage,,SR2 changed; SR1 0000:7aa4 change_transmission (order 0.45); spec: changed
+func,0001:7a44,car_runnable,"int(CAR*,int full)",garage,,SR2 changed; SR1 0000:7ee6 car_runnable (order 0.40); spec: changed
+func,0001:7aec,ignition_tune,void(CAR*),garage,,"SR2 new; spec: new; claimed from module vote ""sound"""
+func,0001:80a8,engine_bay,void(CAR*),garage,,SR2 changed; SR1 0000:81ab engine_bay (order 0.43); spec: changed
+func,0001:8c2c,input_poll_any,near void (void),platform,,SR2 new
+func,0001:8c68,drive_to_event,far void(void),race,,new; replaces SR1 drive_to 0000:8d26; ALSO in game_flow_symbols.csv as drive_to_event (S3.7 keeps one)
+func,0001:8d0a,opp_palette_set,far void(int idx),race,,"same; SR1 0000:8d9c, colour table 4D1E stride 3"
+func,0001:8d9e,drive_run,far int(void),race,,"changed; SR1 0000:8e2d (new body, trip skip)"
+func,0001:8ef4,race_logic,far uint(void),race,,changed; SR1 0000:8ea8 + drag-strip tree and bracket starts
+func,0001:9432,waitress_toggle,"near int(int mode,int arg,int pct_in,int pct_out)",race,,"changed; SR1 0000:914c, gate DS:502E"
+func,0001:9506,str_drop_last_word,near void(char*),race,,same; SR1 0000:9256
+func,0001:953c,opponent_show,near void(int mode),race,,changed; SR1 0000:92a4
+func,0001:975e,king_status,near int(void),race,,"changed; SR1 0000:9556, codes 0..6, Grudge Night win needed"
+func,0001:9802,king_chance,near int(void),race,,"changed; SR1 0000:95f1, model test 0x15"
+func,0001:9848,opp_sort,near void(int all),race,,"changed; SR1 0000:9646, no demo injection"
+func,0001:999a,pick_opponent,"near int(int pct_king,int all)",race,,same; SR1 0000:984e
+func,0001:9a02,opponent_load,far void(int i),race,,"changed; SR1 0000:98ba, person records, no sticker"
+func,0001:9b26,opponent_select,"near void(int i,int mode,int flag)",race,,changed; SR1 0000:9a27
+func,0001:9b78,opp_known_list,"near void(int *names,int *idx,int *count)",race,,changed; SR1 0000:9a83
+func,0001:9be0,opponent_search,near int(int mode),race,,changed; SR1 0000:9af4
+func,0001:9c8e,challenge_accept,near int(int bet),race,,"changed; SR1 0000:9bc5, rating formula rewritten"
+func,0001:9e3c,challenge,near int(int king),race,,"changed; SR1 0000:9d6d, 3 race kinds, King stages, $150 bet"
+func,0001:a270,bob_hotspots,near void(int opp_present),race,,changed; SR1 0000:a0f8
+func,0001:a3ba,opponent_car_view,near void(void),race,,changed; SR1 0000:a265
+func,0001:a4aa,dancer_blit,,video,,SR2 new (matcher paired it with SR1 bitmap_blit_at by mistake)
+func,0001:a4ea,bob_sign_draw,far void (void),game_flow,,SR2 new; LIB2 pic 0x47D + dancer_blit (S3.7)
+func,0001:a51c,ending_trigger,void near (void),game_flow,,"new; ending front (pic 0x43B, music, calls ending_anim)"
+func,0001:a588,bob_screen_draw,near void(void),race,,changed; matcher said dancing_girl (wrong); SR1 load_screen(0x445) inline
+func,0001:a626,bob_drive_in,far void(void),race,,changed; SR1 0000:ab8b
+func,0001:a9fc,jail,far int(void),race,,changed; SR1 0000:b08c
+func,0001:ac68,tires_replace,near int(void),race,,"changed; SR1 0000:bed4, tyre type 0x32"
+func,0001:ad36,text_draw_clipped,"far void(int x,int y,char *s,int maxw)",race,,new
+func,0001:adc0,ticket_show,near void(void),race,,changed; SR1 0000:bf94
+func,0001:af0a,crash_show,near void(void),race,,"changed; SR1 0000:c1d8, per-dash pictures"
+func,0001:b1b2,finish_stats,far void(void),race,,"changed; SR1 0000:c407 (integer, tenths)"
+func,0001:b256,race_msg,near void(void),race,,changed; SR1 0000:c497 (integer %d.%d)
+func,0001:b2ea,tournament_time_text,"void far (int t, int msg)",game_flow,,new; patches 'xx.d' into message text
+func,0001:b356,tournament_result_message,void near (int mode),game_flow,,new; Grudge Night round / qualifier messages
+func,0001:b46e,engine_blown,near void(int msg),race,,changed; SR1 0000:c52c
+func,0001:b4da,trans_blown,near void(int msg),race,,changed; SR1 0000:c5ac
+func,0001:b538,patch_dollar_amount,"far void(char *text,int amount)",race,,new
+func,0001:b584,race_results,near uint(void),race,,changed; SR1 0000:c613
+func,0001:bc88,phys_reset,near void(phys_t *p),race,,"changed; SR1 0000:cdaf, start/finish by race kind"
+func,0001:be82,race_start,near void(void),race,,changed; SR1 0000:d031
+func,0001:c02c,car_perf,near long(car_t *c),race,,new; integer performance factor (SR1 perf inlined)
+func,0001:c294,car_setup,"near void(car_t *c,phys_t *p)",race,,"changed; SR1 0000:dcbe, integer, exhaust/muffler/diff"
+func,0001:c5d8,model_car_setup,"near void(int model,phys_t *p)",race,,changed; SR1 0000:e0e2
+func,0001:c6f6,car_max_speed,far int(int model),race,,"changed; SR1 0000:e218, integer"
+func,0001:c866,drivetrain_rating,near int(int model),race,,changed; SR1 model_class3 0000:9524 (new meaning)
+func,0001:c8d2,herc_mem_alias,,platform,,SR2 changed; = SR1 0000:e56a herc_mem_alias
+func,0001:c8ec,herc_detect,,platform,,SR2 same; = SR1 0000:e584 herc_detect
+func,0001:c92b,equip_is_mono,,platform,,SR2 changed; = SR1 0000:e5c3 equip_is_mono
+func,0001:c93a,herc_graphics_on,,platform,,SR2 same; = SR1 0000:e5d2 herc_graphics_on
+func,0001:c978,video_restore,,platform,,SR2 same; = SR1 0000:e610 video_restore
+func,0001:c997,ega_vga_detect,,platform,,SR2 changed; = SR1 0000:e62f ega_vga_detect
+func,0001:ca28,opponent_setup,far void(void),race,,changed; SR1 0000:cf5c
+func,0001:cb00,opp_gear,"far void(int v,phys_t *p)",race,,"same; SR1 0000:d1de, now far"
+func,0001:cb98,opp_ai,near void(void),race,,changed; SR1 0000:d29d
+func,0001:ce9c,speed_to_step,far int(int mph),race,,"changed; SR1 0000:d544, 64ths, table DS:8016"
+func,0001:cee0,player_advance,near void(void),race,,changed; SR1 0000:d624
+func,0001:cf9a,opp_dodge_street,"near int(int x,int dx,int seg)",race,,new; street-race obstacle avoidance
+func,0001:d2a8,aq_lane_target,"far int(int x,int dx,int seg,int opp_x,int opp_seg)",race_render,,new; Aqueduct autopilot/AI lane step (AQ flags 0x10/0x80)
+func,0001:d4cc,opp_advance_steer,near void(void),race,,changed; SR1 0000:d67d
+func,0001:d85c,police_spawn,near void(void),race,,"changed; SR1 0000:d992, model 0x15"
+func,0001:d908,race_step,far void(void),race,,changed; SR1 0000:da25
+func,0dcb:0006,plot_points_ega,"far void(u8 far *buf,int xoff,Point *pts,int n,int colour)",race_render,,new; EGA driver slot 19 (DS:7B84 -> A0FA)
+func,0dcb:0108,plot_points_cga,"far void(u8 far *buf,int xoff,Point *pts,int n,int colour)",race_render,,"new; CGA slot 19 (DS:7A8C), parked"
+func,0dcb:01da,plot_points_tdy,"far void(u8 far *buf,int xoff,Point *pts,int n,int colour)",race_render,,"new; Tandy slot 19 (DS:7B28), parked"
+func,0dcb:02b4,sin256,near int(int deg),race_render,,new; table DS:1504
+func,0dcb:031a,sin256_far,far int(int deg),race_render,,new; gauges
+func,0dcb:0327,line_x_at_y,"near int(int x1,int y1,int x2,int y2,int Y)",race_render,,new
+func,0dcb:0350,line_y_at_x,"near int(int x1,int y1,int x2,int y2,int X)",race_render,,new
+func,0dcb:0379,rotate_about_centre,"near void(int x,int y,int *ox,int *oy)",race_render,,new
+func,0dcb:03cc,rotate_vec,"near void(int x,int y,int *ox,int *oy)",race_render,,new; no callers
+func,0dcb:0410,road_fillmode_begin,far void(),race_render,,same SR1 2645:0008
+func,0dcb:0425,road_fillmode_end,far void(),race_render,,same SR1 2645:001d
+func,0dcb:043c,ega_hline,"far void(int x1,int x2,int y)",race_render,,changed: no colour arg (set_colour slot A0F2)
+func,0dcb:04e6,ega_fill_rows,"far void(int y,int colour)",race_render,,same SR1 2645:00e7
+func,0dcb:054a,rr_pixel_addr,near (AX=y;BX=x) -> ES:BX;CL,race_render,,same SR1 2645:014b
+func,0dcb:056a,road_set_seg_ptrs,near void(int seg),race_render,,"changed; SR1 2645:171d; +BL/BR/LANE ptrs, drag-strip arrays and +0xC0 in modes 2/4"
+func,0dcb:062c,road_proj_x,"far int(int z,int x,int dx)",race_render,,changed; SR1 2645:176f; cam x clamped 0x564..0xD5C in mode 8
+func,0dcb:0684,road_proj_y,"far int(int z,int y,int dy)",race_render,,"changed; SR1 2645:17b1; hill term halved, + DS:9A56"
+func,0dcb:06ba,road_proj_x_mirror,"far int(int z,int x,int dx)",race_render,,changed; SR1 2645:17ed; mode-8 cam x clamp
+func,0dcb:070e,road_proj_y_mirror,"far int(int z,int y,int dy)",race_render,,same; SR1 2645:1828
+func,0dcb:0736,road_state_init,far void(),race_render,,changed; SR1 2645:185d
+func,0dcb:07e4,road_project_front,far void(),race_render,,"changed; SR1 2645:18fb; 11 shared row tables, banks, new z rule"
+func,0dcb:0ce4,road_project_mirror,far void(),race_render,,changed; SR1 2645:1bcc; writes the front tables (rows 0..7)
+func,0dcb:11fc,road_frame,far void(),race_render,,"changed; SR1 2645:1e9e; project/draw per view, mode-8 path, pace 8 ticks"
+func,0dcb:12ca,road_advance_segment,far void(),race_render,,"changed; SR1 2645:1efc; 64 substeps, finish DS:A2AA, mode-8 lane AI"
+func,0dcb:1470,track_lane_x,far int(int seg),race_render,,new; LANE[seg]*0x70+0x5DC (was assigned race)
+func,0dcb:148a,road_edge_collision,far int(),race_render,,"changed; SR1 2645:206b; banks, Mulholland fall-off, drag-strip wall (was assigned sound)"
+func,0dcb:1758,road_nudge_heading,far void(int dir),race_render,,same; SR1 2645:2126
+func,0dcb:1774,road_step,far void(),race_render,,changed; SR1 2645:213d; in race calls 7da2/a1c0
+func,0dcb:18ec,aq_project_front,far void(void),race_render,,"mode 8 (aqueduct) front row projection, 15 rows; replaces road_project_front"
+func,0dcb:1b02,aq_project_mirror,far void(void),race_render,,"mode 8 mirror row projection, 8 rows; centre x uses +BA8E (quirk)"
+func,0dcb:1cd2,aq_wall_collision,far int(),race_render,,new; Aqueduct wall hit -> DS:B8C8 (was assigned sound)
+func,0dcb:1d04,feat_curve_left,near void(int n),race_render,,changed; SR1 2645:017a; step n+DS:96AC; mask 0x9811
+func,0dcb:1dfa,feat_curve_right,near void(int n),race_render,,changed; SR1 2645:0293
+func,0dcb:1eea,feat_s_bend_left,near void(int n),race_render,,changed; SR1 2645:03a8
+func,0dcb:2034,feat_s_bend_right,near void(int n),race_render,,changed; SR1 2645:0539
+func,0dcb:217e,feat_roadworks_right,near void(),race_render,,"changed; SR1 2645:091a; only where BL!=BR, 5 segs"
+func,0dcb:2282,feat_narrow_bridge,near void(),race_render,,"changed; SR1 2645:09f0; banks -500, scenery cleared"
+func,0dcb:2350,not_a_function_inside_2282,-,race_render,,bogus entry inside 0dcb:2282; callers are near calls to 0001:2350
+func,0dcb:23d4,feat_roadworks_left,near void(),race_render,,"changed; SR1 2645:0abb; only where BL!=BR, 5 segs"
+func,0dcb:24d8,track_build_course,far void(int arg),race_render,,"changed; SR1 2645:0b91; 13 features, height deltas DS:7D42, drag-strip copies"
+func,0dcb:2866,track_build_all,far void(int full),race_render,,"changed; SR1 2645:0d48; pages, town (full only), race road from seed DS:A9F8 (was assigned game_flow)"
+func,0dcb:33ac,aq_build,far void(),race_render,,new; Aqueduct flag array 3726:4E62 and reversed copy 3726:628E
+func,0dcb:3516,road_pages_init,far void(),race_render,,changed; SR1 2645:224e; VGA resets back=1/shown=2
+func,0dcb:354e,road_page_flip,near void(),race_render,,same as SR1 2645:2288 with DS remap
+func,0dcb:35c4,blit_clip_y,near void(Rect *r),race_render,,same SR1 2645:22fc
+func,0dcb:3602,blit_clip_xy,near void(Rect *r),race_render,,changed: bottom clip h = ymax-dsty+1
+func,0dcb:3664,road_vline,"near void(int colour,int x,int y1,int y2)",race_render,,same SR1 2645:2381
+func,0dcb:36ce,clip_set_ymin0,far void(),race_render,,same SR1 2645:23f0
+func,0dcb:36d6,clip_set_mirror,near void(),race_render,,changed: x 0xF0..0x13F
+func,0dcb:36f0,clip_set_view,far void(),race_render,,same SR1 2645:2410
+func,0dcb:370a,mirror_bg_prepare,near void(int with_sky),race_render,,"new: pre-blit LIB3 2005 mirror (+2037/2063 mirror sky) into page ADA2 at (232,102)"
+func,0dcb:37ce,road_load_graphics,far void(void),race_render,,"changed SR1 2645:2429: LIB3 ids, Mulholland bg 2056, sprites from SR2_DATA blocks 8/7, police row DS:AAFA"
+func,0dcb:3cca,road_draw_sky_mulholland,near void(void),race_render,,"new: mode 0x10 sky panorama + fall fill, sets 975E/9856"
+func,0dcb:3e66,road_draw_sky,near void(void),race_render,,"changed: SR1 2645:2982; relative dy, hy clamp 0x12..0x52, conditional wrap blit, fill top >= 0x12"
+func,0dcb:4154,shape_draw,"far void(int x,int y,int lod,ShpSet far *set,int side)",race_render,,"changed: SR2_SHP format A, colour runs, mirror if side<=0"
+func,0dcb:4268,slope16,"near int(int xa,int ya,int xb,int yb)",race_render,,same SR1 2645:2cfc
+func,0dcb:4294,quad_fill,"near void(int c,int xa,int xb,int ya0,int yb0,int yb1,int ya1)",race_render,,changed: SR1 2645:2d20 replaced by polygon fill 7f30 + A0F6
+func,0dcb:42fe,rr_sign,near int(int v),race_render,,same SR1 2645:2f2b
+func,0dcb:4322,road_draw_band_front,far void(int row),race_render,,"changed: SR1 2645:2f48; grass, Mulholland rails/terrain, Grudge Night start dashes"
+func,0dcb:4852,road_draw_band_mirror,far void(void),race_render,,"changed: SR1 2645:324d; grass 0xF0..0x13F, white band from seg 0x169"
+func,0dcb:4c1c,town_walls_front,"near void(int a,int b,int c,int d,int e,int f,int left)",race_render,,"= SR1 2645:34da, quad via 4294"
+func,0dcb:4e70,town_walls_mirror,"near void(int a,int b,int c,int d,int e,int f,int left)",race_render,,"= SR1 2645:37af, quad via 4294"
+func,0dcb:504a,town_walls_front_left,near void(void),race_render,,= SR1 2645:39de
+func,0dcb:507a,town_walls_front_right,near void(void),race_render,,= SR1 2645:3a0d (matcher said 3a86 mirror_right: wrong)
+func,0dcb:50a8,road_draw_row_front,near void(int row),race_render,,= SR1 2645:3a3b
+func,0dcb:50c4,town_walls_mirror_left,near void(void),race_render,,= SR1 2645:3a57
+func,0dcb:50f4,town_walls_mirror_right,near void(void),race_render,,= SR1 2645:3a86 (matcher said 3a0d front_right: wrong)
+func,0dcb:5122,road_draw_row_mirror,near void(void),race_render,,= SR1 2645:3ab4
+func,0dcb:512e,shape_draw_dot,"far void(int x,int y)",race_render,,changed: set DS:7E94
+func,0dcb:5158,scenery_draw_shape,"near void(int x,int y,int depth,int side,int type,int noclamp)",race_render,,"changed: far table DS:8172, noclamp arg"
+func,0dcb:51aa,scenery_draw_hydrant,"near void(int x,int y,int depth,int side)",race_render,,"= SR1 2645:3b3a, set DS:817A"
+func,0dcb:51e0,scenery_draw_bush_group,"near void(int x,int y,int depth,int side)",race_render,,new
+func,0dcb:52e2,scenery_draw_sign_picture,"near void(int x,int y,int depth,int align,int xclip,int kind)",race_render,,changed: sources 9BC2/ADA2/96AE/96B2
+func,0dcb:5404,scenery_draw_truss,"near void(int xl1,int xr1,int yt1,int yb1,int xl2,int xr2,int yt2,int yb2,int parity,int near_flag)",race_render,,new; mode 0x10
+func,0dcb:555e,scenery_draw_truss_end,"near void(int xl,int xr,int ytop,int ybot)",race_render,,new
+func,0dcb:55ce,scenery_draw_banner,"near void(int xl,int xr,int ytop,int ybot,int depth,int xclip,uint flags)",race_render,,= SR1 2645:3ccc + set_colour/hline API
+func,0dcb:56e8,road_draw_cockpit_overlay,near void(),race_render,,"changed: only LIB3 #2003 at (0,18)"
+func,0dcb:573e,road_draw_hood_overlay,near void(),race_render,,changed/renamed (SR1 match mirror_draw_background wrong); table DS:78E0
+func,0dcb:57a6,mirror_draw_backdrop,near void(void),race_render,,new: mirror backdrop blits from page 2 (mode 8: 85a0)
+func,0dcb:58f4,road_poly_fill,"near void(int x0,int y0,int x1,int y1,int x2,int y2,int x3,int y3,int x4,int y4,int x5,int y5,int n,int colour)",race_render,,new: polygon via 7f30 + A0F6
+func,0dcb:597e,road_draw_barrier_walls,"near void(int phase_seg,int n,int row)",race_render,,"new: drag-strip (mode 2/4) edge walls, colour 0xB/4 per 5 segments"
+func,0dcb:5a2c,mirror_finish,near void(void),race_render,,new: mirror frame vlines + copy to page 0 (SR1 43fd tail)
+func,0dcb:5aee,road_draw_mirror,near void(void),race_render,,new: SR1 2645:43fd successor; 7 mirror rows
+func,0dcb:69d4,obstacle_hit_test,"near int(int x,int w,int y)",race_render,,new: -1/0/+1 obstacle over wheel columns
+func,0dcb:6a32,road_draw_front,far void(void),race_render,,new: SR1 2645:4b8c successor; 14 front rows
+func,0dcb:7da2,road_fall_off_edge,far void(int dir),race_render,,new; Mulholland fall animation 8 frames
+func,0dcb:7de4,clip_line,"far void(int x1,int y1,int x2,int y2,int colour)",race_render,,new
+func,0dcb:7f30,clip_polygon,"far int(Point *in,int n,Point *out,int *nout)",race_render,,"new; Sutherland-Hodgman, 16-point buffers"
+func,0dcb:8288,shp_b_draw,"far void(int x,int y,int group,ShpSetB far *set)",race_render,,"SR2_SHP format-B group, variant DS:AD68 (roll); steep roll -> rotated span lines"
+func,0dcb:8482,aq_draw_row_shape,"near void(int x,int y,int row,int set)",race_render,,group=(row+1)>>1 front / (row>>1)+6 mirror; set ptr DS:81CE[set]
+func,0dcb:84c4,aq_draw_night_sky,near void(void),race_render,,stars DS:7F2E(18)/7F76(6) + SR2_SHP sets 23/24
+func,0dcb:85a0,aq_draw_mirror_stars,near void(void),race_render,,mirror stars DS:7F8E(9)/7FB2(3); called by 0dcb:57a6
+func,0dcb:862a,poly_straddles_bottom,"near int(int x,int *pts,int n)",race_render,,points on row 0x65 both left and right of x
+func,0dcb:8674,poly_bottom_hit_bits,"near uint(int *pts,int n)",race_render,,0x20/0x40/0x60 from bottom-row points vs x<0x50 / x>0x13F
+func,0dcb:86d2,anchor_scale_rows,"near void(int row,int n,const u8 *masks)",race_render,,new: anchor tables DS:9E08/9E94[13][7] rows row+1..row+n = row*popcount/8
+func,0dcb:8774,rot_shrink_max_size,"near int(Pic far *pic,u8 mask)",race_render,,"new: max bytes of rotate(-45..0)+shrink, for the low-stack reserve"
+func,0dcb:8840,race_load_graphics_rot,far void(void),race_render,,"new: ADD6==8 loader; rotated opponent sprites at 7 angles, anchors"
+func,0dcb:8b16,aq_draw_sky,near void(void),race_render,,"fill sky colour 1, star scroll DS:96FA, night sky"
+func,0dcb:8b5c,aq_draw_box,"near void(int p[16],int solid)",race_render,,"rotated 8-corner box, faces via poly_fill; collision bits to DS:A7D2"
+func,0dcb:8ece,aq_wall_opening_quad,"near int(int k,uint flags,int q[8],int enable)",race_render,,"wall opening quad between rows k,k+1 (flags 0x104 left / 0x208 right)"
+func,0dcb:905c,aq_draw_scene,far void(void),race_render,,"mode 8 channel/trough/features/opponent drawer, front (N=14) and mirror (N=7)"
+func,0dcb:9ce8,aq_draw_mirror,far void(void),race_render,,"mode 8 mirror: rotate 8 rows, bg 57a6, scene, frame 5a2c"
+func,0dcb:9d9c,aq_climb_left,near void(void),race_render,,"car on left wall: roll, channel deformation, nudges DS:A564"
+func,0dcb:9e4e,aq_climb_right,near void(void),race_render,,"car on right wall: roll, deformation, nudges DS:A564/A56A"
+func,0dcb:9f08,aq_trough_bump,near void(void),race_render,,"car over centre trough: roll +-4, speed DS:A100 -2"
+func,0dcb:9f9a,aq_roll_update,near void(void),race_render,,"roll += spin, shape variant AD68, pitch B7B0"
+func,0dcb:a094,aq_draw_front,far void(void),race_render,,"mode 8 front: save deformation, roll, sin/cos, rotate 15 rows, sky, scene"
+func,0dcb:a1c0,aq_wall_bounce,far void(int dir),race_render,,new; Aqueduct wall bounce animation
+func,0dcb:a2d8,aq_collide_probe,far uint(uint flags),race_render,,race query (0001:cee0): box/pillar footprint vs bottom row; overwrites rows 0-1
+func,0dcb:a5aa,start_props_load,near void(void),race_render,,"new: start panel DS:B7B2 (2067/2069/2070), 4-size object DS:9A2A, DS:AB24"
+func,0dcb:a746,road_draw_starter_slide,near void(),race_render,,new
+func,0dcb:a85c,starter_draw_mirror,"near void(int x,int y,int row)",race_render,,start-line figure DS:9A2A[lod] in the mirror (normal modes)
+func,0dcb:a92a,starter_draw_mirror_aq,near void(int row),race_render,,"mode 8 start-line figure in the mirror, rotated"
+func,0dcb:aab0,road_draw_start_tree,"near void(int x,int ybase,int row)",race_render,,new
+func,0dcb:ad40,opp_sprite_aq,"far Pic far *(int s,int v)",race_render,,mode 8 opponent sprite: fixed pics or shrunk with SR2_DATA block 8/7 masks
+func,0dcb:ae9c,opp_bank_variant,near int(void),race_render,,"opponent bank angle DS:A55C, variant 0..6 or -1"
+func,0dcb:af98,opponent_draw,far void(void),race_render,,"SR1 opponent_draw 2645:3f8d grown: 1/64 distances, contact, mode 8 variants"
+func,0dcb:b7da,popcount8,near int(u8 m),race_render,,= SR1 2645:528c
+func,0dcb:b7fa,pic_alloc_shrunk,"far Pic far*(int w,int h,int masked,u8 ymask,u8 xmask)",race_render,,"changed SR1 2645:52b7: w/h args, mode 2 alloc"
+func,0dcb:b8c8,pic_shrink_planar,"far Pic far*(Pic far *src,u8 mask)",race_render,,= SR1 2645:5407 via 3488:000e; driver slot 15 EGA/VGA (DS:A0EA)
+func,0dcb:b984,cga_expand_bits,"near void(u8 m,u8 *hi,u8 *lo)",race_render,,= SR1 2645:55f8
+func,0dcb:b9e0,pic_shrink_cga,"far Pic far*(Pic far *src,u8 mask)",race_render,,= SR1 2645:5670 via 3488:00bf; driver slot 15 CGA
+func,0dcb:ba72,pic_shrink_tandy,"far Pic far*(Pic far *src,u8 mask)",race_render,,= SR1 2645:5885 via 3488:01f3; driver slot 15 Tandy
+func,0dcb:bb22,rot_alloc,"far Pic far*(int angle,Pic far *src,int mode,int *u0,int *v0,s8 *ax,s8 *ay,int pivot_x,int setup)",race_render,,new: rotated bbox alloc + inverse-map start + anchor
+func,0dcb:bd12,pic_rotate_planar,"far Pic far*(Pic far *src,int angle,int mode,s8 *ax,s8 *ay,int pivot_x)",race_render,,"new: driver slot 16 (DS:A0EE) EGA/VGA, nearest-neighbour rotation"
+func,0dcb:c09a,pic_rotate_cga,"far Pic far*(Pic far *src,int angle,int mode,s8 *ax,s8 *ay,int pivot_x)",race_render,,new: driver slot 16 CGA
+func,0dcb:c342,pic_rotate_tandy,"far Pic far*(Pic far *src,int angle,int mode,s8 *ax,s8 *ay,int pivot_x)",race_render,,new: driver slot 16 Tandy; does not restore sin/cos
+func,1a21:0008,dash_restore_rect,"near void(int x,int y,int w,int h,int kind)",race,,changed; SR1 0f38:000a
+func,1a21:00b2,dash_copy_rect,"near void(int x,int y,int w,int h,int kind)",race,,changed; SR1 0f38:0098
+func,1a21:015c,speedo_points,"near void(int v,int *x0,int *y0,int *x1,int *y1)",race,,"changed; SR1 0f38:0137, 3 dash types"
+func,1a21:02ac,speedo_init,far void(int mph),race,,changed; SR1 0f38:01d2
+func,1a21:038e,tach_points,"near void(int rpm,int *x0,int *y0,int *x1,int *y1)",race,,changed; SR1 0f38:02ae
+func,1a21:0484,tach_init,far void(int rpm),race,,changed; SR1 0f38:0349
+func,1a21:055e,needle_update,"far int(int new,int old,int tach)",race,,changed; SR1 0f38:0425
+func,1a21:070e,clock_draw,far void(void),race,,changed; SR1 0f38:05f2 (integer); body ends 1a21:0da5
+func,1a21:0da6,pal_black,,platform,,SR2 changed; SR1 0f38:0b2d pal_black
+func,1a21:0db8,pal_normal,,platform,,SR2 changed; SR1 0f38:0b3f pal_normal
+func,1a21:0dca,wait_click_or_key,void far (int ticks),game_flow,,changed; SR1 0f38:0b51
+func,1a21:0e82,title_sequence,void far (void),game_flow,,changed; SR1 0f38:0bf0; third wait 600
+func,1a21:0fe8,summer_over_screen,void far (void),game_flow,,changed; SR1 0f38:0d62; msg 0x60
+func,1a21:1048,gfx_screen_mode,,video,,SR2 changed; SR1 0f38:0dbd gfx_screen_mode
+func,1a21:1174,wheel_load,far void(void),race,,changed; SR1 0f38:0f53
+func,1a21:11f6,wheel_knob_crash,far void(int pos),race,,changed; SR1 0f38:1094
+func,1a21:1288,wheel_draw,"far void(int new,int old,page)",race,,changed; SR1 0f38:1130
+func,1a21:13fe,shifter_draw,"far void(int automatic,int ngears)",race,,"changed; SR1 0f38:12f7, LIB3 pictures"
+func,1a21:1614,shifter_knob,"far void(page,phys_t*)",race,,"same; SR1 0f38:14f2, remapped"
+func,1a21:17cc,far_memset,,video,,SR2 changed; = SR1 0f38:1640 far_memset
+func,1a21:17ee,clip_rect,,video,,SR2 changed; = SR1 0f38:1680 clip_rect
+func,1a21:18e2,wait_vretraces,,video,,SR2 changed; = SR1 0f38:177d wait_vretraces
+func,1a21:1924,pace_ticks,far void (int ticks),video,,SR2 new (matcher paired it with SR1 font_string_width by mistake); delay in ticks
+func,1a21:1954,text_width,int(const char *s),garage,,SR2 new; spec: new
+func,1a21:198a,pal_load,,video,,SR2 new semantics (SR1 0f38:180c pal_reg12_13 set register 12 only)
+func,1a21:19aa,pal_shadow_patch,,video,,SR2 changed; SR1 0f38:181c pal_shadow_patch
+func,1a21:19c6,pal_shadow_swap,,video,,SR2 changed; = SR1 0f38:182c pal_shadow_swap
+func,1a21:19f0,gfx_init,,video,,SR2 changed; SR1 0f38:1859 gfx_init
+func,1a21:1b9a,ega_set_palreg,,video,,SR2 changed; = SR1 0f38:1f4b ega_set_palreg
+func,1a21:1bee,ega_set_palette,,video,,SR2 changed; = SR1 0f38:1fa4 ega_set_palette
+func,1a21:1c5a,status_init,,video,,SR2 changed; = SR1 0f38:2022 status_init
+func,1a21:1cde,status_print,"void far (int x, char *s, int w)",game_flow,,changed; SR1 0f38:20a1 (matcher: video)
+func,1a21:1df4,money_add,void far (int delta),game_flow,,changed; SR1 0f38:21c0
+func,1a21:1e50,pay_or_msg,"int far (unsigned price, int msg)",game_flow,,"new; pays or shows msg, returns 0/1"
+func,1a21:1e86,status_label,void far (char *s),game_flow,,changed; SR1 0f38:2213 (matcher: video)
+func,1a21:1f5e,gear_label,,video,,SR2 changed; = SR1 0f38:22e9 gear_label
+func,1a21:1f8e,screen_fill_rect,,video,,SR2 changed; = SR1 0f38:231a screen_fill_rect
+func,1a21:2018,dialog_msg,void(const char *text),garage,,SR2 changed; SR1 0f38:239c dialog_msg (loose 0.62); spec: changed
+func,1a21:204c,fatal_message,void(const char *text),garage,,SR2 changed; SR1 0f38:23ce fatal_message (order 0.40); spec: changed
+func,1a21:21be,show_picture,,video,,SR2 changed; SR1 0f38:2554 show_picture
+func,1a21:22a8,show_picture_at,,video,,SR2 changed; = SR1 0f38:2638 show_picture_at
+func,1a21:22c6,screen_text,,video,,SR2 changed; SR1 0f38:2656 screen_text
+func,1a21:231c,screen_hline,,video,,SR2 changed; = SR1 0f38:26a4 screen_hline
+func,1a21:236e,screen_save_rect,,video,,SR2 changed; SR1 0f38:26f2 screen_save_rect
+func,1a21:246c,screen_put_bitmap,,video,,SR2 changed; = SR1 0f38:27ef screen_put_bitmap
+func,1a21:24d8,screen_put_bitmap_mirror,,video,,SR2 changed; = SR1 0f38:2853 screen_put_bitmap_mirror
+func,1a21:2530,msg_draw,void(int id),garage,,SR2 changed; SR1 0f38:28a4 msg_draw (order 0.43); spec: changed
+func,1a21:274e,msg_draw_at,"void(int id,int x,int y)",garage,,SR2 changed; SR1 0f38:2a62 msg_draw_at (order 0.46); spec: changed
+func,1a21:27d2,msg_close,void(void),garage,,"SR2 new; spec: new; claimed from module vote ""video"""
+func,1a21:2888,present_back_page,void(void),garage,,SR2 new; spec: new
+func,1a21:28dc,cursor_shape_offset,,video,,SR2 changed; = SR1 0f38:2b1c cursor_shape_offset
+func,1a21:28e8,cursor_init,,video,,SR2 changed; SR1 0f38:2b28 cursor_init
+func,1a21:2b44,cursor_redraw,,video,,SR2 changed; SR1 0f38:2e8b cursor_redraw
+func,1a21:2d90,cursor_ctl,void(int a),garage,,SR2 new; spec: changed
+func,1a21:2e92,trans_bolt_draw,"void(int tight,int bolt)",garage,,SR2 changed; SR1 0f38:3074 trans_bolt_draw (loose 0.75); spec: = SR1 with DS remap
+func,1a21:2fc4,trans_bolt_remove_anim,void(int bolt),garage,,SR2 changed; SR1 0f38:31a5 trans_bolt_remove_anim (loose 0.73); spec: = SR1 with DS remap
+func,1a21:30f2,trans_slide_anim,"void(int pic,int reject)",garage,,SR2 changed; SR1 0f38:32ce trans_slide_anim (loose 0.61); spec: = SR1 with DS remap
+func,1a21:322e,trans_remove_anim,void(void),garage,,SR2 changed; SR1 0f38:3404 trans_remove_anim (order 0.40); spec: changed
+func,1a21:328c,trans_screen_draw,"void(int pic,char *bolts,...)",garage,,SR2 changed; SR1 0f38:345b trans_screen_draw (loose 0.64); spec: = SR1 with DS remap
+func,1a21:332e,bay_engine_idx,int(void),garage,,SR2 changed; SR1 0f38:34fb bay_engine_idx (order 0.40); spec: changed
+func,1a21:334a,bay_carb_pos,"int(int *x,int *y)",garage,,SR2 changed; SR1 0f38:351c bay_carb_pos (order 0.42); spec: changed
+func,1a21:33aa,bay_part_pos,"void(int *x,int *y)",garage,,SR2 changed; SR1 0f38:3589 bay_part_pos (calls 0.50); spec: changed
+func,1a21:33fe,bay_bolt_pos,"void(int *x,int *y)",garage,,SR2 changed; SR1 0f38:35e4 bay_bolt_pos (calls 0.50); spec: changed
+func,1a21:34a2,bay_bolt_draw,void(int tight),garage,,SR2 changed; SR1 0f38:3697 bay_bolt_draw (calls 0.50); spec: changed
+func,1a21:369a,bay_bolt_remove_anim,void(void),garage,,SR2 changed; SR1 0f38:37fc bay_bolt_remove_anim (order 0.37); spec: changed
+func,1a21:381e,bay_part_in_anim,"void(int pic,int reject)",garage,,SR2 changed; SR1 0f38:3a58 bay_part_in_anim (order 0.46); spec: changed
+func,1a21:39a4,bay_part_out_anim,void(void),garage,,SR2 changed; SR1 0f38:3c19 bay_part_out_anim (order 0.46); spec: changed
+func,1a21:3a5a,bay_connector_draw,void(void),garage,,SR2 changed; SR1 0f38:3d1c bay_connector_draw (calls 0.50); spec: changed
+func,1a21:3b34,bay_draw_car,void(CAR*),garage,,SR2 changed; SR1 0f38:3e35 bay_draw_car (order 0.46); spec: changed
+func,1a21:3c14,bay_draw_parts,"void(int own,int clank)",garage,,SR2 changed; SR1 0f38:3f2d bay_draw_parts (order 0.45); spec: changed
+func,1a21:3d10,bay_hotspots,"void(int *ctx_tbl,int *side_tbl)",garage,,SR2 new; spec: new
+func,1a21:3e84,fill_rect,,video,,SR2 changed; = SR1 0f38:4302 fill_rect
+func,1a21:3f43,vline,,video,,SR2 changed; = SR1 0f38:439c vline
+func,1a21:3fba,hline,,video,,SR2 changed; = SR1 0f38:43ff hline
+func,1a21:3ff6,draw_frame3,,video,,SR2 changed; = SR1 0f38:4432 draw_frame3
+func,1a21:41f0,draw_box1,,video,,SR2 changed; = SR1 0f38:45d7 draw_box1
+func,1a21:4284,ui_bounds,"void(int screen,int *x,int *y,int *w,int *h)",garage,,SR2 changed; SR1 0f38:4c1a ui_bounds (calls 0.50); spec: = SR1 with DS remap
+func,1a21:434a,ui_save_bg,"FarPtr(int screen,int *x,int *y,int kind)",garage,,SR2 changed; SR1 0f38:4d10 ui_save_bg (calls 0.50); spec: changed
+func,1a21:43dc,hotspot_find,"void far (int x, int y)",game_flow,,new; SR1 0f38:4dad; element under cursor + cached rect
+func,1a21:44a8,draw_element,far int (UIEL *el),game_flow,,SR2 new; dialog item renderer (S3.7)
+func,1a21:473e,draw_screen,far void (UIEL *els),game_flow,,SR2 new; item list walker + bounding box (S3.7)
+func,1a21:4798,ui_redraw_element,void(UIEL*),garage,,SR2 new; spec: new
+func,1a21:4806,demo_step,void near (void),game_flow,,new; demo mode cursor-driven autoplay
+func,1a21:4b96,ui_push,void(int screen),garage,,SR2 changed; SR1 0f38:4a66 ui_push (order 0.42); spec: changed
+func,1a21:4cac,ui_pop,void(int all),garage,,SR2 changed; SR1 0f38:4ba1 ui_pop (order 0.38); spec: changed
+func,1a21:4cf4,ui_menu,int far (int n),game_flow,,changed; SR1 0f38:4f14; ui_wait(16000)
+func,1a21:4d26,ui_dialog,int far (int n),game_flow,,changed; SR1 0f38:4ec1
+func,1a21:4d7c,ui_sort_screen,void(int screen),garage,,SR2 changed; SR1 0f38:4f4f list_box (order 0.40); spec: changed
+func,1a21:4e0c,wear_text,char*(int pct),garage,,SR2 changed; SR1 0f38:4fc1 wear_text (string 0.50); spec: = SR1 with DS remap
+func,1a21:4e56,list_row,"void(int x,int y,const char *text,int right,int show_wear,int pct)",garage,,SR2 new; spec: new
+func,1a21:4ebc,list_box_run,"int(int screen,int sel,const char **texts,const char *wear,int n)",garage,,SR2 changed; SR1 0f38:500e list_box_run (order 0.44); spec: changed
+func,1a21:55ea,list_box,"int(int screen,int sel,const char **texts,const char *wear,int n)",garage,,SR2 new; spec: changed
+func,1a21:565c,slot_list_edit,"int(int screen,int sel,const char **texts,int n)",garage,,SR2 new; spec: new
+func,1a21:5c52,edit_begin,"void(int x,int y,char *buf,int maxlen)",garage,,SR2 new; spec: new
+func,1a21:5d5e,edit_key,void(void),garage,,SR2 new; spec: new
+func,1a21:5f16,edit_blink,void(void),garage,,SR2 new; spec: new
+func,1a21:5f90,edit_end,void(void),garage,,SR2 new; spec: new
+func,1a21:5fb8,edit_run,"int(int x,int y,char *buf,int maxlen)",garage,,SR2 new; spec: new
+func,1a21:6056,edit_number,"int(int *v,char *buf)",garage,,SR2 changed; SR1 0f38:5da7 edit_number (loose 0.73); spec: = SR1 with DS remap
+func,1a21:60d2,ui_edit_number,"int(int screen,int *v)",garage,,SR2 changed; SR1 0f38:5e1e ui_edit_number (loose 0.60); spec: = SR1 with DS remap
+func,1a21:610c,ui_edit,"int far (int menu, int maxlen, char *buf)",game_flow,,changed; SR1 0f38:5e54
+func,1a21:6180,rnd,int far (int n),game_flow,,new generator (LCG 0x015A4E35); SR1 rnd 0f38:5eb6 was Wichmann-Hill
+func,1a21:61e2,file_not_found,far void (char *name),platform,,SR2 new; noreturn (S3.7)
+func,1a21:6220,bad_file_format,far void (void) noreturn,platform,,SR2 new
+func,1a21:6232,out_of_memory,far void (void),platform,,SR2 new; noreturn (S3.7)
+func,1a21:6244,copy_all_files,far void (void) noreturn,platform,,SR2 new
+func,1a21:6256,lib_seek,,platform,,SR2 changed; = SR1 0f38:6016 lib_seek
+func,1a21:629a,pic_index,,platform,,SR2 changed; SR1 0f38:6057 pic_index
+func,1a21:62c4,lib_select,,platform,,SR2 changed; SR1 0f38:6089 lib_select
+func,1a21:6432,lib_read_dir,,platform,,SR2 changed; SR1 0f38:61ab lib_read_dir
+func,1a21:652a,pic_load,,platform,,SR2 changed; SR1 0f38:62ba pic_load
+func,1a21:67e8,pic_free,,platform,,SR2 changed; SR1 0f38:655e pic_free
+func,1a21:683a,pic_decode,,platform,,SR2 changed; SR1 0f38:65ae pic_decode
+func,1a21:6ac6,pic_info,,video,,SR2 changed; SR1 0f38:67ff pic_info
+func,1a21:6b04,pic_get,,video,,SR2 changed; SR1 0f38:683e pic_get
+func,1a21:6b50,pic_park_list,,platform,,SR2 changed; SR1 0f38:6887 pic_park_list
+func,1a21:6b80,pic_load_list,,platform,,SR2 changed; SR1 0f38:68ca pic_load_list
+func,1a21:6bc0,pic_free_list,,platform,,SR2 changed; SR1 0f38:6915 pic_free_list
+func,1a21:6be0,lib_open_all,,platform,,SR2 changed; SR1 0f38:6943 lib_open_all
+func,1a21:6e6a,hot_data_load,void far (void),game_flow,,changed; SR1 0f38:6b79; 9 blocks + text pool
+func,1a21:7052,data_disk_check,char far (void),game_flow,,changed; SR1 data_disk
+func,1a21:70fc,hall_scramble,void near (void),game_flow,,changed; SR1 0f38:6ccf
+func,1a21:710c,hall_unscramble,void near (void),game_flow,,changed; SR1 0f38:6cec
+func,1a21:711c,hall_load,void far (void),game_flow,,changed; SR1 0f38:6d09
+func,1a21:71cc,hall_save,void far (void),game_flow,,changed; SR1 0f38:6dd2
+func,1a21:7304,shp_read_block_a,"near void far*(int id,void far *dst)",race_render,,new; claimed from platform
+func,1a21:7446,shp_read_block_b,"near void far*(int i,void far *dst)",race_render,,new; claimed from platform
+func,1a21:75ea,shp_load_set,far void(),race_render,,new; claimed from platform
+func,1a21:769c,mouse_reset,,platform,,SR2 changed; = SR1 0f38:799a mouse_reset
+func,1a21:76d6,mouse_buttons,,platform,,SR2 changed; = SR1 0f38:79d7 mouse_buttons
+func,1a21:7708,mouse_motion,,platform,,SR2 changed; = SR1 0f38:7a14 mouse_motion
+func,1a21:7738,mouse_poll,,platform,,SR2 changed; = SR1 0f38:7a47 mouse_poll
+func,1a21:77f4,race_run,far int(void),race,,changed; SR1 0f38:7b22
+func,1a21:7f5c,ega_blit_4planes,,video,,SR2 changed; = SR1 0f38:8126 ega_blit_4planes
+func,1a21:7fc6,ega_vram_cache_strips,,video,,SR2 changed; = SR1 0f38:819a ega_vram_cache_strips
+func,1a21:80ec,strip_cache_ram,,video,,"SR2 changed; SR1 0f38:8336 (unnamed); non-VGA strip cache, not ported (VGA only)"
+func,1a21:8268,pump_overlay,"void(int x,int y0,int w,int h,FarPtr dst,int idx)",garage,,SR2 changed; SR1 0f38:872e pump_overlay (calls 0.50); spec: changed
+func,1a21:831c,car_strip_setup,"void(FarPtr strip,FarPtr *bgsrc,int smoke_pic,FarPtr *bg,int top,int h,u16 *ov)",garage,,SR2 changed; SR1 0f38:84be car_strip_setup (loose 0.63); spec: changed
+func,1a21:8546,car_compose,"void(FarPtr *frames,int model,int flags,int driver,int *tyre_pics,int smoke,int n)",garage,,SR2 changed; SR1 0f38:8866 car_compose (order 0.38); spec: changed
+func,1a21:89fa,car_draw,"void(int mode,int model,uint flags,int driver,int y,int *tyre_pics)",garage,,SR2 changed; SR1 0f38:8e48 car_draw (loose 0.65); spec: changed
+func,1a21:9216,walker_anim,"void(FarPtr pic,int sx,int sy,int w,int h,int dx,int y,int base,int unused)",garage,,SR2 changed; SR1 0f38:975b walker_anim (order 0.40); spec: changed
+func,1a21:92f2,carhop_frames,"void(FarPtr *frames,int mode)",garage,,SR2 changed; SR1 0f38:985c carhop_frames (order 0.40); spec: changed
+func,1a21:939a,carhop_strip,void(FarPtr *d),garage,,SR2 changed; SR1 0f38:990f carhop_strip (loose 0.60); spec: changed
+func,1a21:945a,carhop_anim,"void(int mode,int opp)",garage,,SR2 changed; SR1 0f38:99d9 carhop_anim (loose 0.67); spec: changed
+func,1a21:98e2,town_bg_save,void(void),garage,,SR2 changed; SR1 0f38:9e5d town_bg_save (loose 1.00); spec: changed
+func,1a21:9940,arena_clear,,platform,,SR2 changed; SR1 0f38:9ebc arena_clear
+func,1a21:995c,arena_init,,platform,,SR2 changed; SR1 0f38:9ee9 arena_init
+func,1a21:99b0,arena_free_all,far void (void),platform,,SR2 new (matcher paired it with SR1 arena_low_shrink); frees both arenas at exit
+func,1a21:99d2,arena_alloc,,platform,,SR2 changed; SR1 0f38:9f2c arena_alloc
+func,1a21:9a68,arena_bitmap_alloc,,video,,SR2 changed; SR1 0f38:9fce arena_bitmap_alloc
+func,1a21:9b0e,race_view_reset,far void(void),race,,new
+func,1a21:9b26,arena_release_levels,void(void),garage,,SR2 new; spec: new
+func,1a21:9b40,arena_free_low,void(int n),garage,,SR2 new; spec: new
+func,1a21:9b56,arena_free_high,void(int n),garage,,SR2 new; spec: new
+func,1a21:9b96,heap_free,far int(void),race_render,,new: bytes between high and low mark stacks (platform)
+func,1a21:9bac,bitmap_bytes,"far int(int w,int h,unsigned flags)",race_render,,new: size arena_bitmap_alloc would take (platform/video)
+func,1a21:9bec,rect_intersect,,video,,SR2 changed; = SR1 0f38:a0fa rect_intersect
+func,1a21:9c74,rect_clip_to_view,,video,,SR2 changed; = SR1 0f38:a198 rect_clip_to_view
+func,1a21:9ccc,rect_clip_make,,video,,SR2 changed; = SR1 0f38:a1ee rect_clip_make
+func,1a21:9d38,sprite_scene_setup,,video,,SR2 changed; SR1 0f38:a273 sprite_scene_setup
+func,1a21:9f42,rect_subtract_edge,,video,,SR2 changed; SR1 0f38:a4b9 rect_subtract_edge
+func,1a21:a016,anim_ring_reverse,void(ANIM*),garage,,SR2 changed; SR1 0f38:a5a5 anim_ring_reverse (order 0.40); spec: = SR1 with DS remap
+func,1a21:a0d4,anim_phase_set,"void(ANIM*,int i,int count,int dx,int dy)",garage,,SR2 changed; SR1 0f38:a65d anim_phase_set (order 0.41); spec: = SR1 with DS remap
+func,1a21:a11e,anim_phases,"void(ANIM*,int mode,int d1,int d2,int d3,int dist,int p1,int p2)",garage,,SR2 changed; SR1 0f38:a6ad anim_phases (order 0.39); spec: = SR1 with DS remap
+func,1a21:a25e,anim_script,"void(ANIM*,int mode,int dist)",garage,,SR2 changed; SR1 0f38:a7ee anim_script (order 0.40); spec: = SR1 with DS remap
+func,1a21:a2f2,slide_sprite_generic,"far void (int top, int bottom, int x, int from, int to, Desc far *sprite, ...)",video,,"SR2 changed; SR1 0f38:a87e (unnamed); CGA/Tandy slot 11, not ported (VGA only)"
+func,1a21:a4bc,sprite_anim_advance,,video,,SR2 changed; SR1 0f38:aa37 sprite_anim_advance
+func,1a21:a528,sprite_hspan_clip,,video,,SR2 changed; SR1 0f38:aac2 sprite_hspan_clip
+func,1a21:a59c,bitmap_copy_into,,video,,SR2 changed; = SR1 0f38:ab50 bitmap_copy_into
+func,1a21:a624,bitmap_opaque_extent,,video,,SR2 changed; = SR1 0f38:abc2 bitmap_opaque_extent
+func,1a21:a6e8,bitmap_visible_width,far int(Pic far *p),race_render,,"width minus transparent right margin (mask), / DS:AD22"
+func,1a21:a758,bitmap_make_shifted,,video,,SR2 changed; = SR1 0f38:acbf bitmap_make_shifted
+func,1a21:a9ac,bitmap_blit_masked_shift,,video,,SR2 changed; = SR1 0f38:af50 bitmap_blit_masked_shift
+func,1a21:ab52,bitmap_composite_behind,,video,,SR2 changed; = SR1 0f38:b0f2 bitmap_composite_behind
+func,1a21:ad48,bitmap_blit_at,"far void (Desc far *dst, Desc far *src, int x, int y, int flags)",video,,SR2 changed; = SR1 0f38:b31f bitmap_blit_at
+func,1a21:ad92,pic_blit_at,,video,,SR2 changed; SR1 0f38:b360 pic_blit_at
+func,1a21:ade2,bitmap_blit_masked_at,"far void (Desc far *dst, Desc far *src, int x, int y, int flags)",video,,SR2 new (masked variant of bitmap_blit_at)
+func,1a21:ae2c,pic_draw_masked,,video,,SR2 changed; = SR1 0f38:b3b4 pic_draw_masked
+func,1a21:ae94,mask_and_rect,,video,,SR2 changed; = SR1 0f38:b41b mask_and_rect
+func,1a21:af7a,far_memcpy,,video,,SR2 changed; = SR1 0f38:b502 far_memcpy
+func,1a21:af96,bitmap_extract,,video,,SR2 changed; = SR1 0f38:b51e bitmap_extract
+func,1a21:b028,page_copy_rect,"far void (Desc far *src, Desc far *dst, int x0, int y0, int x1, int y1)",video,,SR2 changed; SR1 0f38:b5aa page_copy_rect (S3.7)
+func,1a21:b09e,bitmap_clear,far void (Desc far *d),video,,SR2 new
+func,1a21:b0f6,pic_get_padded,"far Desc far * (int id, int pool)",video,,SR2 new
+func,1a21:b16e,tc_wheel_strip,FarPtr(int wheel_x),garage,,SR2 changed; SR1 0f38:b632 tc_wheel_strip (loose 0.70); spec: changed
+func,1a21:b358,tc_wheel_swap,"void(int x,int *old_pics,int *new_pics)",garage,,SR2 changed; SR1 0f38:b82c tc_wheel_swap (order 0.40); spec: changed
+func,1a21:b9bc,tire_change_anim,"void(int *old_pics,int *new_pics)",garage,,SR2 changed; SR1 0f38:be93 tire_change_anim (loose 0.60); spec: changed
+func,26b3:000c,pic_unpack,,video,,SR2 changed; SR1 0e92:0006 pic_unpack
+func,26c0:0002,tdy_draw_cursor,,video,,not ported (VGA only)
+func,26c0:00c1,cga_draw_cursor,,video,,not ported (VGA only)
+func,26c0:0175,ega_draw_cursor,,video,,SR2 same; SR1 0e6c:0175 ega_draw_cursor
+func,2719:000a,cga_helper_000a,,video,,not ported (VGA only)
+func,2719:003a,cga_helper_003a,,video,,not ported (VGA only)
+func,2719:00c2,cga_helper_00c2,,video,,not ported (VGA only)
+func,2719:01a6,cga_install_vectors,,video,,not ported (VGA only)
+func,2719:01b8,cga_draw_text,,video,,not ported (VGA only)
+func,2719:0700,cga_recolour_rect,,video,,not ported (VGA only)
+func,2719:0d02,cga_copy_page,,video,,not ported (VGA only)
+func,2719:0d58,cga_blinds,,video,,not ported (VGA only)
+func,2719:0e58,cga_helper_0e58,,video,,not ported (VGA only)
+func,2719:0e7a,cga_pal_black,,video,,not ported (VGA only)
+func,2719:0ea2,cga_pal_normal,,video,,not ported (VGA only)
+func,2719:0eca,cga_helper_0eca,,video,,not ported (VGA only)
+func,2719:0fbb,cga_helper_0fbb,,video,,not ported (VGA only)
+func,2719:1092,cga_blit_masked,,video,,not ported (VGA only)
+func,2719:115e,cga_helper_115e,,video,,not ported (VGA only)
+func,2719:11fe,cga_blit,,video,,not ported (VGA only)
+func,2719:1384,cga_helper_1384,,video,,not ported (VGA only)
+func,2719:138c,cga_helper_138c,,video,,not ported (VGA only)
+func,2719:13e6,cga_helper_13e6,,video,,not ported (VGA only)
+func,2719:14a8,cga_helper_14a8,,video,,not ported (VGA only)
+func,2719:1566,cga_blit_shifted,,video,,not ported (VGA only)
+func,2719:1702,cga_helper_1702,,video,,not ported (VGA only)
+func,2719:176c,cga_helper_176c,,video,,not ported (VGA only)
+func,2719:17ca,cga_anim_step,,video,,not ported (VGA only)
+func,2719:1c38,cga_pixel_addr,,video,,not ported (VGA only)
+func,2719:1c60,cga_set_colour,,video,,not ported (VGA only)
+func,2719:1c7c,cga_line,,video,,not ported (VGA only)
+func,2719:1f19,cga_hspan,,video,,not ported (VGA only)
+func,2719:2040,cga_fill_rows,,video,,not ported (VGA only)
+func,2719:20bd,cga_helper_20bd,,video,,not ported (VGA only)
+func,2925:000e,tournament_pick_field,void near (void),game_flow,,new; 9 nearest-speed unbeaten opponents -> DS:90CA; task-assigned (race vote)
+func,2925:00fa,tournament_seed,void near (void),game_flow,,new; dial-in times + sort; task-assigned (race vote)
+func,2925:01fa,tournament_next_round,void near (void),game_flow,,new; bracket pairing per round; task-assigned (race vote)
+func,2925:0522,panel_frame_draw,"void near (bitmap *dst, bitmap *border)",game_flow,,new; bevel frame for photo/face
+func,2925:0812,bitmap_remap_colors,"void near (bitmap *b, int f1, uint t1, int f2, uint t2)",game_flow,,new; EGA plane colour remap
+func,2925:0a0c,tournament_screen_build,void near (int with_photo),game_flow,,new
+func,2925:0c4c,clip_rect_split,"int near (rect *clip, rect *r, rect *o1, rect *o2)",game_flow,,new
+func,2925:0d02,panel_wipe,"void near (uint mode, bitmap *b, int x, int y, rect *clip)",game_flow,,new; 4 slide-in effects
+func,2925:12f2,tournament_round_header,void near (void),game_flow,,new; 'ROUND n' + opponent + dial-in difference
+func,2925:13d0,tournament_entrants_list,void near (void),game_flow,,new; 10 names + 'Prepare to set your breakout time'
+func,2925:14b6,tournament_standings,void near (int *ids),game_flow,,new; FINAL STANDINGS table
+func,2925:1642,tournament_intro_screen,void near (void),game_flow,,new
+func,2925:16c8,tournament_round_screen,void near (void),game_flow,,new
+func,2925:1786,tournament_finish,void near (void),game_flow,,"new; placings, prize 150/100/50, standings"
+func,2925:193e,event17_leave,void near (int last_result),game_flow,,new; drive back
+func,2925:1970,event17_run,void far (void),game_flow,,"new; Grudge Night, game_loop code 17; task-assigned (race vote)"
+func,2925:1ab8,gas_hotspots_clear,void near (void),game_flow,,new; SR1 gas_hotspots_clear b456
+func,2925:1ad2,gas_hotspot_enable,void near (int code),game_flow,,new; SR1 gas_hotspots_apply b425 (guess)
+func,2925:1af0,gas_hotspot_set,"void near (int code, int x, int y, int w, int h)",game_flow,,new; SR1 gas_hotspot_set b49c
+func,2925:1b28,gas_hotspots_a,void near (void),game_flow,,new; SR1 gas_hotspots_a b4de
+func,2925:1b84,gas_hotspots_b,void near (void),game_flow,,new; SR1 gas_hotspots_b b525
+func,2925:1bba,gas_hotspots_c,void near (int pump),game_flow,,new; SR1 gas_hotspots_c/d b552/b59b
+func,2925:1c06,gas_hotspots_none,void near (void),game_flow,,new; SR1 gas_hotspots_none b617
+func,2925:1c10,pump_dial_anim,void far (void),game_flow,,new
+func,2925:1cae,pump_strip_draw,"void far (void *page, int k)",game_flow,,new; also called by tdy/ega anim code
+func,2925:1d00,nozzle_draw,"void near (void *P, int pic)",game_flow,,new
+func,2925:1e08,counters_draw,void far (int pump),game_flow,,new; LED gallons / dollars
+func,2925:1f38,gas_leave,void near (void *P),game_flow,,new
+func,2925:20be,fuel_sound,"void far (int pump, int op)",game_flow,,new
+func,2925:2104,event15_run,void far (void),game_flow,,"new; gas station, game_loop code 15; task-assigned (race vote)"
+func,2925:2714,end_data_load,void near (void),game_flow,,new; loads SR2_end
+func,2925:27da,ending_anim,void far (void),game_flow,,new; SR2_end script player
+func,2925:2b26,under_car_slide_in,void(void),garage,,"SR2 new; spec: new; claimed from module vote ""video"""
+func,2925:2e60,under_car_draw,void(void),garage,,"SR2 new; spec: new; claimed from module vote ""video"""
+func,2925:2ff8,under_car_part_pic,"void(int cat,int type)",garage,,"SR2 new; spec: new; claimed from module vote ""video"""
+func,2925:3174,under_car_menu,int(void),garage,,"SR2 new; spec: new; claimed from module vote ""video"""
+func,2c57:0002,song_select,"void far (u16 song,u16 loop_tbl,u16 vib_tbl)",sound,,SR1 0f38:6f0a rewritten; speaker only
+func,2c57:00b8,vib_set,"void far (int row,int period,int depth,int step)",sound,,"SR1 0f38:6fbd; dead, no callers"
+func,2c57:00f6,music_mute,void far (int mute),sound,,SR1 0f38:7001 recompiled; speaker slot 22
+func,2c57:0140,spk_set_vib_amount,void far (u16),sound,,SR2 new; dead
+func,2c57:014c,spk_set_engine_note,"void far (u16 amount,u16 div)",sound,,SR2 new; dead; partner of note-6000 override
+func,2c57:016a,spk_set_vib_step,void far (u16),sound,,SR2 new; dead
+func,2c57:017a,spk_set_vib_row_period,"void far (u16 row,u16 period)",sound,,SR2 new; dead
+func,2c57:0194,spk_set_note_div,void far (u16),sound,,SR2 new; dead
+func,2c57:01a2,sound_stop,void far (void),sound,,SR2 new; speaker slots 20 and 21
+func,2c57:01ae,snd_calibrate_delay,int far (int n),sound,,SR1 0f38:703e recompiled; DS:58E2->742A
+func,2c57:0234,spk_set_hz,void far (long hz),sound,,SR1 0f38:70d5 recompiled
+func,2c57:025c,fx_tone,"void far (long hz,u16 d)",sound,,SR1 0f38:714c recompiled
+func,2c57:0278,fx_burst,"void far (int lo,int hi,u16 d,int n)",sound,,SR1 0f38:7169 recompiled
+func,2c57:02b8,fx_sweep_down,"void far (int from,int to,int step,u16 d)",sound,,SR1 0f38:71b2 recompiled
+func,2c57:02e6,fx_warble,"void far (int c,int dev,int step,u16 d,int n)",sound,,SR1 0f38:71e4 recompiled
+func,2c57:0374,pwm_up,void far (...),sound,,SR1 0f38:7292 recompiled; dead
+func,2c57:03de,pwm_down,void far (...),sound,,SR1 0f38:7306 recompiled; dead
+func,2c57:0448,ramp_fill,int far (...),sound,,SR1 0f38:737a recompiled; dead
+func,2c57:048e,pwm_swell,void far (...),sound,,SR1 0f38:73ed recompiled; dead
+func,2c57:0506,fx_noise,"void far (int range,int ormask,int n)",sound,,= SR1 0f38:7464; index class new; gate off via slot 23
+func,2c57:0544,fx_noise_down,"void far (int a,int b,int sub,int step,int n)",sound,,= SR1 0f38:74b0
+func,2c57:0578,fx_noise_up,"void far (int a,int b,int sub,int step,int n)",sound,,= SR1 0f38:74fc
+func,2c57:05ac,spk_vec_off,void far (void),sound,,"SR1 spk_off 0f38:713d; speaker slot 23; port61&=FC, DS:3BD6=0"
+func,2c57:05ba,spk_vec_on,void far (void),sound,,"speaker slot 24; port61|=3, DS:3BD6=1; unlike SR1 spk_on no 25 kHz"
+func,2c57:05c8,speaker_sound_init,void far (void),sound,,"SR2 new; copies DS:530A to BB8C, calibrates delay"
+func,2c57:0608,spk_loop_putt,void far (int on),sound,,speaker slot 0; song 5544
+func,2c57:0634,spk_slot_nop,void far (void),sound,,speaker slot 1 (retf)
+func,2c57:0636,spk_loop_hum100,void far (int on),sound,,speaker slot 3; song 5524; no caller
+func,2c57:0662,spk_loop_hum150,void far (int on),sound,,speaker slot 2; song 5534
+func,2c57:068e,spk_loop_tick,void far (int on),sound,,speaker slot 4; song 5490
+func,2c57:06ba,spk_loop_blips,void far (int on),sound,,speaker slot 7; song 54BC
+func,2c57:06e6,spk_loop_pulse,void far (int on),sound,,speaker slot 6; song 5500
+func,2c57:0712,spk_loop_spray,void far (int on),sound,,speaker slot 5; song 5570
+func,2c57:073e,spk_loop_wrench,void far (int on),sound,,speaker slot 10; song 54DC
+func,2c57:076a,spk_bg_tune,void far (void),sound,,speaker slot 18
+func,2c57:0780,spk_jingle_tune,void far (void),sound,,speaker slot 19; song 6E48
+func,2c57:0796,siren_set,void far (int on),sound,,= SR1 0f38:7728; speaker slot 11; DS:72E2
+func,2c57:07a6,fx_click,void far (void),sound,,= SR1 0f38:77ba; speaker slot 12
+func,2c57:07d2,fx_chirp_hi,void far (void),sound,,= SR1 0f38:77e1; speaker slot 13
+func,2c57:080a,fx_chirp_lo,void far (void),sound,,= SR1 0f38:7817; speaker slot 14
+func,2c57:0836,fx_clank,void far (void),sound,,= SR1 0f38:7841; speaker slot 8
+func,2c57:085c,fx_clank2,void far (void),sound,,= SR1 0f38:7841 (second copy); speaker slot 9
+func,2c57:0882,fx_crash,void far (void),sound,,SR1 0f38:7863 recompiled; speaker slot 15
+func,2c57:0930,fx_hit,void far (void),sound,,= SR1 0f38:790f; speaker slot 16
+func,2c57:09a0,fx_thud,void far (void),sound,,= SR1 0f38:7973; speaker slot 17
+func,2c57:09ca,mus_file_load,"void far (const char *name,int slot)",sound,,SR2 new; loads a .MUS file into descriptor/data slot
+func,2c57:0aa2,snd_bank_and_intro_load,void far (void),sound,,SR2 new; MSR.SND + MSRBEG.MUS
+func,2c57:0ade,mus_songs_load,void far (void),sound,,SR2 new; MSR2/MSR24/MSR21/PAUSE .MUS
+func,2c57:0b2c,adlib_engine_on,void far (int on),sound,,AdLib engine drone voice 3
+func,2c57:0ba6,adlib_engine_set,"void far (u16 bend,u16 vol)",sound,,engine drone pitch/volume
+func,2c57:0bd2,adlib_engine2_on,void far (int on),sound,,second drone voice 4 (tune screen)
+func,2c57:0c5c,adlib_engine2_set,"void far (u16 bend,u16 vol)",sound,,second drone pitch/volume
+func,2c57:0c88,adlib_fx_putt,void far (int on),sound,,AdLib slot 0
+func,2c57:0cd8,adlib_fx_tyre,void far (int on),sound,,AdLib slot 1; sets DS:72EE
+func,2c57:0d2c,adlib_fx_hum,void far (int on),sound,,AdLib slot 3; no caller
+func,2c57:0d7c,adlib_fx_tick,void far (int on),sound,,AdLib slot 4
+func,2c57:0dcc,adlib_fx_spray,void far (int on),sound,,AdLib slot 2
+func,2c57:0e1c,adlib_fx_lugnut,void far (int on),sound,,AdLib slot 7; timbre turn1
+func,2c57:0e6c,adlib_fx_clank,void far (void),sound,,AdLib slot 8; timbre hitcar
+func,2c57:0ea4,adlib_fx_clank2,void far (void),sound,,AdLib slot 9; timbre hitcar
+func,2c57:0edc,adlib_fx_bolt,void far (int on),sound,,AdLib slot 5
+func,2c57:0f2c,adlib_fx_airwrench,void far (int on),sound,,AdLib slot 6
+func,2c57:0f7c,adlib_fx_slide,void far (int on),sound,,AdLib slot 10
+func,2c57:0fcc,adlib_fx_siren,void far (int on),sound,,AdLib slot 11; timbre police
+func,2c57:1050,adlib_siren_bend,void far (int x),sound,,"siren pitch step, bend 0x1FFF*x+0x2000"
+func,2c57:1072,adlib_fx_piano_a,void far (void),sound,,dead; timbre piano1 note 3Ch
+func,2c57:10b6,adlib_fx_piano_b,void far (void),sound,,dead; timbre piano1 note 43h
+func,2c57:10fa,adlib_fx_click,void far (void),sound,,AdLib slot 12; timbre piano1
+func,2c57:113e,adlib_fx_chirp_hi,void far (void),sound,,"AdLib slot 13; timbre turn, random note"
+func,2c57:118e,adlib_fx_chirp_lo,void far (void),sound,,AdLib slot 14; timbre turn
+func,2c57:11c6,adlib_fx_crash,void far (void),sound,,AdLib slot 15; hitcar+crash
+func,2c57:1246,adlib_fx_hit,void far (void),sound,,"AdLib slot 16; hitcar+turn, restarts engine drone"
+func,2c57:12e0,adlib_fx_thud,void far (void),sound,,AdLib slot 17; timbre turn1
+func,2c57:1318,adlib_music_list_a,void far (void),sound,,AdLib slot 18; song list DS:73A0
+func,2c57:1356,adlib_music_list_b,void far (void),sound,,AdLib slot 19; song list DS:73B0
+func,2c57:1394,adlib_garage_timbres_load,void far (void),sound,,loads paint (v4) and part (v5)
+func,2c57:13c4,adlib_slot_nop,void far (void),sound,,AdLib slot 22 (retf)
+func,2c57:13c6,adlib_music_stop_slot,void far (void),sound,,AdLib slot 20
+func,2c57:13cc,adlib_music_shutdown,void far (void),sound,,AdLib slot 21
+func,2c57:13d8,adlib_sound_init,void far (void),sound,,"SR2 new; copies DS:73C2 to BB8C, starts timer, loads bank"
+func,2c57:1406,delay,void far (u16 n),sound,,SR1 2196:0002 same; DS:58E2->742A
+func,2c57:1421,pulse3_play,void far (u16 *list),sound,,SR1 2196:001d; dead
+func,2c57:14aa,snd_bank_load,u16 *far (const char *name),sound,,"opens MSR.SND, returns 6-byte block"
+func,2c57:151b,snd_bank_init,int far (u16 *blk),sound,,reads whole MSR.SND into memory
+func,2c57:15c9,snd_timbre_lookup,"int far (name,idx*,out56,blk)",sound,,"wrapper, checks loaded flag"
+func,2c57:15fb,snd_timbre_find,"int far (name,idx*,out56,blk)",sound,,by name or index
+func,2c57:16c6,adlib_delay_init,void far (void),sound,,"DS:788C=3, DS:788E=12"
+func,2c57:16e1,adlib_write,"void far (u8 reg,u8 val)",sound,,OPL register write via DS:7830
+func,2c57:1733,adlib_detect,int far (void),sound,,standard timer-status detection
+func,2c57:17ef,adlib_voice_clear,void far (int v),sound,,"A0+v,B0+v = 0"
+func,2c57:1825,adlib_set_freq,"void far (int v,int note,int key)",sound,,writes A0/B0
+func,2c57:18c4,adlib_slot_wave_write,void far (int slot),sound,,reg E0+off
+func,2c57:1914,adlib_bd_write,void far (void),sound,,reg BD
+func,2c57:195d,adlib_slot_reg20,void far (int slot),sound,,reg 20+off
+func,2c57:19d0,adlib_slot_reg80,void far (int slot),sound,,reg 80+off
+func,2c57:1a1a,adlib_slot_reg60,void far (int slot),sound,,reg 60+off
+func,2c57:1a64,adlib_slot_regC0,void far (int slot),sound,,"reg C0+voice, modulator slots only"
+func,2c57:1abb,adlib_reg08_write,void far (void),sound,,reg 08
+func,2c57:1ae2,adlib_slot_level_write,void far (int slot),sound,,"reg 40+off, carrier volume formula"
+func,2c57:1b6a,adlib_slot_write_all,void far (int slot),sound,,all registers of one operator
+func,2c57:1bc5,adlib_slot_param_apply,"void far (int slot,int param)",sound,,dead; jump table
+func,2c57:1c6c,adlib_slot_load,"void far (int slot,u16 *words13,int wave)",sound,,"store parameters, write registers"
+func,2c57:1cc7,adlib_slot_load_bytes,void far (...),sound,,dead
+func,2c57:1d0c,adlib_slot_set_param,"void far (int slot,int param,int val)",sound,,dead
+func,2c57:1d40,adlib_bend_calc,"void far (int v,u16 bend)",sound,,half tones + fnum row for a bend value
+func,2c57:1e1f,adlib_calc_prem_fnum,"long far (int num,int den)",sound,,F-number base value
+func,2c57:1e8e,adlib_fnum_row,"void far (u16 *row,int num,int den)",sound,,one 12-entry fnum row
+func,2c57:1f06,adlib_tables_init,void far (void),sound,,"fnum table, note/octave tables, per-voice state"
+func,2c57:1fae,adlib_relvol_init,void far (void),sound,,rel_vol[18]=7F
+func,2c57:1fd6,adlib_voice_off,void far (int v),sound,,key off
+func,2c57:2024,adlib_note_on,"void far (int v,int note)",sound,,"key on, rhythm-mode aware"
+func,2c57:20cf,adlib_pitch_bend,"void far (int v,u16 bend)",sound,,
+func,2c57:2128,adlib_set_volume,"void far (int v,u16 vol,int store)",sound,,carrier level
+func,2c57:21b1,adlib_vec_off,void far (void),sound,,AdLib slot 23
+func,2c57:21f0,adlib_vec_on,void far (void),sound,,AdLib slot 24
+func,2c57:22bc,adlib_voice_timbre,"void far (int v,u8 *buf56)",sound,,apply a 56-byte timbre to a voice
+func,2c57:237f,adlib_set_depths,"void far (u8 am,u8 vib,u8 notesel)",sound,,"only called with 0,0,0"
+func,2c57:23aa,adlib_set_bend_range,void far (u16 range),sound,,clamp 1..12
+func,2c57:23e3,adlib_wave_select,void far (int on),sound,,reg 01 and E0 regs
+func,2c57:2439,adlib_set_perc_mode,void far (u8 mode),sound,,rhythm mode + tom/snare presets
+func,2c57:24ad,adlib_reset,void far (void),sound,,chip + driver state reset
+func,2c57:2514,adlib_set_port,void far (u16 port),sound,,then adlib_reset
+func,2c57:252e,mus_timer_remove_wrap,void far (void),sound,,calls 2f1b:00a7
+func,2c57:2542,mus_set_tempo,"void far (u16 tempo,u16 tick_beat)",sound,,PIT divisor from tempo
+func,2c57:25aa,mus_stop,void far (void),sound,,"stop song, voices off, divisor 4000h"
+func,2c57:25f0,mus_resume,void far (void),sound,,resume at saved position
+func,2c57:2677,mus_wait_end,void far (void),sound,,dead
+func,2c57:26b9,adlib_music_init,void far (void),sound,,"port 388, reset, hook INT 8"
+func,2c57:26d9,mus_play,"void far (u16 desc,far ptr,u16 bank)",sound,,start a song
+func,2c57:27a0,mus_set_bank,"void far (u16 desc,u16 bank)",sound,,set current descriptor and bank
+func,2c57:27e5,adlib_play_timbre,"void far (int v,int vol,const char *name)",sound,,load a named timbre into a voice
+func,2c57:2837,mus_skip_unknown,void far (void),sound,,resync after an unknown status byte
+func,2c57:2875,mus_tick,int far (void),sound,,MIDI-like interpreter; returns ticks to next call
+func,2f1b:0027,pit_set_divisor,void far (AX=div),sound,,register call
+func,2f1b:0036,irq_flag_set,void far (int on),sound,,dead cli/sti
+func,2f1b:0045,mus_timer_set_divisor,void far (u16 div),sound,,sets cs:[8] and PIT ch0
+func,2f1b:0069,mus_timer_install,void far (void),sound,,hooks INT 8
+func,2f1b:00a7,mus_timer_remove,void far (void),sound,,"restores BIOS INT 8, 18.2 Hz"
+func,2f1b:00bc,mus_set_countdown,void far (u16 n),sound,,cs:[24]=n
+func,2f1b:00cb,mus_timer_isr,void interrupt (void),sound,,INT 8 handler while AdLib is active
+func,2f32:0002,ega_wait_vretrace,,video,,SR2 same; = SR1 21a0:0006 ega_wait_vretrace
+func,2f32:0010,ega_set_split,,video,,SR2 same; = SR1 21a0:0014 ega_set_split
+func,2f32:00a8,tdy_helper_00a8,,video,,not ported (VGA only)
+func,2f32:019d,tdy_helper_019d,,video,,not ported (VGA only)
+func,2f32:022a,tdy_helper_022a,,video,,not ported (VGA only)
+func,2f32:0364,tdy_blit_masked,,video,,not ported (VGA only)
+func,2f32:04a2,tdy_blit,,video,,not ported (VGA only)
+func,2f32:0672,tdy_helper_0672,,video,,not ported (VGA only)
+func,2f32:0700,tdy_helper_0700,,video,,not ported (VGA only)
+func,2f32:0788,tdy_blit_shifted,,video,,not ported (VGA only)
+func,2f32:0906,tdy_install_vectors,,video,,not ported (VGA only)
+func,2f32:0918,tdy_draw_text,,video,,not ported (VGA only)
+func,2f32:09da,tdy_recolour_rect,,video,,not ported (VGA only)
+func,2f32:0b80,tdy_copy_page,,video,,not ported (VGA only)
+func,2f32:0b9c,tdy_blinds,,video,,not ported (VGA only)
+func,2f32:0c56,tdy_helper_0c56,,video,,not ported (VGA only)
+func,2f32:0cbe,tdy_anim_step,,video,,not ported (VGA only)
+func,2f32:111c,ega_install_vectors,,video,,SR2 changed; = SR1 21a0:1128 ega_install_vectors
+func,2f32:112e,ega_draw_text,,video,,SR2 changed; = SR1 21a0:113a ega_draw_text
+func,2f32:1571,ega_recolour_rect,,video,,SR2 changed; = SR1 21a0:1508 ega_recolour_rect
+func,2f32:17a4,ega_copy_page,,video,,SR2 changed; = SR1 21a0:16dc ega_copy_page
+func,2f32:17f5,ega_blinds,,video,,SR2 changed; = SR1 21a0:1722 ega_blinds
+func,2f32:1932,ega_set_colour,far void (int colour),video,,SR2 new
+func,2f32:1956,ega_show_page,,video,,SR2 changed; = SR1 21a0:182e ega_show_page
+func,2f32:198a,ega_blit,,video,,SR2 changed; = SR1 21a0:1862 ega_blit
+func,2f32:1bf6,ega_sprite_over_bg,,video,,SR2 changed; = SR1 21a0:1ae9 ega_sprite_over_bg
+func,2f32:1dd8,ega_blit_masked,,video,,SR2 changed; = SR1 21a0:1cd5 ega_blit_masked
+func,2f32:1f32,ega_save_rect,,video,,SR2 changed; = SR1 21a0:1e2d ega_save_rect
+func,2f32:1fbf,shift_row,,video,,SR2 changed; SR1 21a0:1ea2 shift_row
+func,2f32:2068,ega_put_shifted_row,,video,,SR2 changed; SR1 21a0:1f8d ega_put_shifted_row
+func,2f32:230f,ega_blit_shifted,,video,,SR2 changed; SR1 21a0:223b ega_blit_shifted
+func,2f32:2540,ega_line,,video,,SR2 same; = SR1 21a0:23bc ega_line
+func,2f32:26b2,ega_pixel_addr,,video,,SR2 changed; = SR1 21a0:252e ega_pixel_addr
+func,2f32:26ec,anim_restore_rect,,video,,SR2 changed; SR1 21a0:2568 anim_restore_rect
+func,2f32:2754,ega_anim_step,,video,,SR2 changed; SR1 21a0:25d9 ega_anim_step
+func,2f32:2ab2,ega_slide_sprite,,video,,SR2 changed; SR1 21a0:28ec ega_slide_sprite
+func,320d:0004,far_memmem,,platform,,SR2 changed; = SR1 2460:0002 far_memmem
+func,3210:0000,tdy_pic_helper_0000,,video,,not ported (VGA only)
+func,3210:005a,tdy_pic_unpack_a,,video,,not ported (VGA only)
+func,3210:0120,tdy_pic_unpack_b,,video,,not ported (VGA only)
+func,3210:01ab,tdy_pic_helper_01ab,,video,,not ported (VGA only)
+func,3210:01f4,tdy_pic_helper_01f4,,video,,not ported (VGA only)
+func,3210:023c,tdy_pic_make_mask,,video,,not ported (VGA only)
+func,3236:000c,tdy_pixel_addr,,video,,not ported (VGA only)
+func,3236:0038,tdy_line,,video,,not ported (VGA only)
+func,3236:025f,tdy_hspan,,video,,not ported (VGA only)
+func,3236:0307,tdy_fill_rows,,video,,not ported (VGA only)
+func,3236:0371,tdy_set_colour,,video,,not ported (VGA only)
+func,326e:000a,tdy_blit_helper_000a,,video,,not ported (VGA only)
+func,326e:00d3,tdy_blit_helper_00d3,,video,,not ported (VGA only)
+func,3288:000c,tdy_blit_helper_000c,,video,,not ported (VGA only)
+func,3288:004f,tdy_blit_helper_004f,,video,,not ported (VGA only)
+func,3298:0000,ega_latch_copy,,video,,SR2 same; = SR1 24e7:0008 ega_latch_copy
+func,3298:0083,ega_latch_copy_to40,,video,,SR2 changed; = SR1 24e7:008b ega_latch_copy_to40
+func,32a5:0002,rows_composite,,video,,SR2 changed; = SR1 24f4:000a rows_composite
+func,3345:000c,rows_mask_or,,video,,SR2 changed; = SR1 2595:0004 rows_mask_or
+func,33e5:0002,rows_mask_blend,,video,,SR2 same; = SR1 2634:000a rows_mask_blend
+func,33e5:00b9,make_mask_plane,,video,,SR2 changed; = SR1 2634:00c1 make_mask_plane
+func,33f6:0000,poly_pixel_addr,"near asm (BX = x, AX = y) -> BX, ES, CL, AH",video,,SR2 new
+func,33f8:0060,poly_edge_setup,near asm (DI = Edge*),video,,SR2 new
+func,33f8:0100,poly_edge_advance,near asm (DI = Edge*) -> CF,video,,SR2 new
+func,33f8:014a,poly_next_vertex,near asm (SI = vertex ptr) -> SI,video,,SR2 new
+func,33f8:0157,poly_prev_vertex,near asm (SI = vertex ptr) -> SI,video,,SR2 new
+func,33f8:0164,poly_span_fill,"near asm (SI, DI = Edge*)",video,,SR2 new
+func,33f8:01ca,poly_fill,"far void (Point near *pts, int n, int fill_colour, int edge_colour)  /* driver slot 18, [DS:A0F6] */",video,,SR2 new
+func,3422:009e,cga_poly_edge_setup,,video,,not ported (VGA only)
+func,3422:013e,cga_poly_edge_advance,,video,,not ported (VGA only)
+func,3422:01aa,cga_poly_next_vertex,,video,,not ported (VGA only)
+func,3422:01b7,cga_poly_prev_vertex,,video,,not ported (VGA only)
+func,3422:01c4,cga_poly_span_fill,,video,,not ported (VGA only)
+func,3422:025d,cga_poly_fill,,video,,not ported (VGA only)
+func,3458:00a6,tdy_poly_edge_setup,,video,,not ported (VGA only)
+func,3458:0146,tdy_poly_edge_advance,,video,,not ported (VGA only)
+func,3458:01a0,tdy_poly_next_vertex,,video,,not ported (VGA only)
+func,3458:01ad,tdy_poly_prev_vertex,,video,,not ported (VGA only)
+func,3458:0228,tdy_poly_fill,,video,,not ported (VGA only)
+func,3488:000e,pixel_decimate_planes,"far void (src far, int wb, int h, dst far, u8 row_pat, u8 col_pat, u8 bits)",video,,SR2 new
+func,3488:00bf,cga_pixel_decimate_planes,,video,,not ported (VGA only)
+func,3488:01f3,tdy_pixel_decimate_planes,,video,,not ported (VGA only)
+func,34b0:0018,_astart,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:001e
+func,34b0:0110,_cinit,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:00e4
+func,34b0:01d5,exit,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:01dc,_exit,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:01e4,_cexit,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:01ee,_c_exit,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0258,_ctermsub,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:0206
+func,34b0:0285,_initterm,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:0233
+func,34b0:0298,_FF_MSGBANNER,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0246
+func,34b0:02c0,_chkstk,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0270
+func,34b0:02e4,_nullcheck,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0294
+func,34b0:0308,_setargv,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:02ba
+func,34b0:049a,_setenvp,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:044c
+func,34b0:0518,_NMSG_TEXT,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:04ba
+func,34b0:0543,_NMSG_WRITE,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:04e5
+func,34b0:057a,_myalloc,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0510
+func,34b0:05c2,_maperror,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0572
+func,34b0:05c8,_dosmaperr,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0578
+func,34b0:05f6,fwrite,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:06fc,_flsbuf,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:07e0,_getbuf,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0824,_stbuf,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0897,_ftbuf,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:08d6,fflush,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:0a0e
+func,34b0:0952,_flushall,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:09ae,_output,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0db9,_output_getint,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0dc1,_output_getlong,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0dcd,_output_getarg,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0dea,_output_putc,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0e14,_output_pad,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0e32,_output_write,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0e4e,_output_cltoa,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0e86,lseek,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:136e
+func,34b0:0f00,_open_stub,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:0f1a,open,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:10ab,_nop_stub,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:10bc,read,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:11a6,write,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:13e8
+func,34b0:125a,_write_chunk,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1490
+func,34b0:12e6,stackavail,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:1512
+func,34b0:12fa,_nmalloc_stub,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1300,_heap_mark_free,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1321,_nmalloc,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:134a,_ffree,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:135d,_fmalloc,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:13da,_heap_init_seg,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:140e,_heap_link_seg,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1444,_heap_search,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:14c0,_heap_grow,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:154c,_heap_resize_seg,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:159d,_heap_find_end,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:15be,_heap_new_seg,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1602,strlen,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:18b2
+func,34b0:161e,strncpy,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:18ce
+func,34b0:1646,strncmp,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:18f6
+func,34b0:1680,atoi,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1684,atoi_nul,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1688,atol,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:197c
+func,34b0:16dc,itoa,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:19d0
+func,34b0:16f8,ltoa_stub,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:19ec
+func,34b0:1702,getenv,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1a78
+func,34b0:1762,kbhit,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1788,getch,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1b82
+func,34b0:17b0,int86,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1b9a
+func,34b0:1830,puts,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1c1a
+func,34b0:18aa,sprintf,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1c8e
+func,34b0:1904,cprintf,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:192c,_cprint,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1d37,_cprint_getint,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1d3f,_cprint_getlong,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1d4b,_cprint_getarg,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1d68,_cprint_putc,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1d7f,_cprint_pad,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1d9d,_cprint_write,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1db9,_cprint_cltoa,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1df0,int86x,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1ce8
+func,34b0:1e86,intdos,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1d7e
+func,34b0:1ece,movedata,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:1dc8
+func,34b0:1eec,segread,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1de6
+func,34b0:1f04,putch,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:1f22,time,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:1dfc
+func,34b0:1f76,__tzset_once,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1e50
+func,34b0:1f88,tzset,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1e60
+func,34b0:2030,_isindst,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1f1a
+func,34b0:20fa,_loctotime,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:1fe4
+func,34b0:21fc,strrchr,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:2106
+func,34b0:2226,stricmp,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:2130
+func,34b0:2268,strcspn,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:2172
+func,34b0:22c2,memmove,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:21cc
+func,34b0:230a,memcpy,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2240
+func,34b0:2396,srand,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:23a8,rand,,platform,,MSC 6.0 runtime; SR2 new
+func,34b0:23d0,remove,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:22de
+func,34b0:23de,_bios_equiplist,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:22ec
+func,34b0:23e2,_dos_close,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:22f0
+func,34b0:23f0,_dos_creatnew_stub,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:22fe
+func,34b0:23f7,_dos_creat,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2305
+func,34b0:241a,_dos_getvect,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:231e
+func,34b0:242c,_dos_open,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:2330
+func,34b0:2444,_dos_read,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2348
+func,34b0:244b,_dos_write,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:234f
+func,34b0:2474,_dos_setvect,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:236c
+func,34b0:248a,_dos_getdrive,,platform,,MSC 6.0 runtime; SR2 same; SR1 1e16:2382
+func,34b0:249e,_harderr,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2396
+func,34b0:24ed,_hardresume,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:23e3
+func,34b0:24f6,_aFldiv,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:23ec
+func,34b0:2590,_aFlmul,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:2488
+func,34b0:25c2,_aFlrem,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:24bc
+func,34b0:2662,_aFaldiv,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:307e
+func,34b0:2682,_aFalmul,,platform,,MSC 6.0 runtime; SR2 changed; SR1 1e16:31a8
+func,371c:0000,page0_desc,data,platform,,"data, not code"
+func,371c:0012,page1_desc_static,data,platform,,"data, not code"
+func,371c:0024,page2_desc_static,data,platform,,"data, not code"
+func,3720:0000,page3_desc,data,platform,,"data, not code"
+func,3722:0000,scratch_pad,data,platform,,"data, not code"
+func,3722:0002,scratch_desc,data,platform,,"data, not code"
+func,3723:0000,race_page_desc,data,platform,,"data, not code"
+global,DS:004E,snd_state,u16,sound,,"0 off,1 init,2 song started"
+global,DS:0050,snd_device,u16,sound,,"0 AdLib,1 speaker,666 unset"
+global,DS:0113,recommended_text,char[],platform,,"""Recommended mode: #"""
+global,DS:0127,video_menu_title,char[],platform,,"""STREET ROD II:  Video Options"" + 2 newlines (text menu strings `0127 / 0147 / 016F`, menu line table `DS:01A2..01AC`); SR1 DS:019B .."
+global,DS:01FC,ega_present,u16,platform,,"EGA/VGA card found by `ega_vga_detect` (1 = EGA BIOS answered, 2 = colour CRTC only); SR1 DS:0250"
+global,DS:01FE,ega_lowres_sw,u16,platform,,EGA info CL says switches 1/14 (set -> `ega_present = 1`); SR1 DS:0252
+global,DS:0200,g_vga,u16,platform,,1 = VGA (EGA driver with VGA split-screen); set by `video_detect_menu`/`driver_select`; SR1 DS:0254
+global,DS:0202,str_Tandy,char[],platform,,"""Tandy"" (BIOS ROM signature, `0208` = ""TANDY""); SR1 DS:0256"
+global,DS:020E,mouse_enabled,u16,platform,,0 = `nomouse` switch (see `main`); SR1 DS:0262
+global,DS:0210,no_ega_park,u16,platform,,1 = `nouemem` switch: `pic_park_list` does nothing; SR1 DS:0280
+global,DS:11EA,msg_table,6 bytes per id,game_flow,MSG_TABLE,"message table {box, line1, line2}"
+global,DS:1504,sin_table,u8[91],race_render,,sin 0..90 deg x255
+global,DS:1BC6,game_over,u16,game_flow,end_flags,SR1 0282
+global,DS:1BC8,location,i16,game_flow,event_id,"SR1 0284; 1 garage, 2 Burger's, 3 gas, 4 Grudge Night, 6 jail"
+global,DS:1BCC,anim_w,u16,video,,sprite w/h cache of `sprite_anim_advance` (`1BCE` = h); SR1 DS:0288 / 028A
+global,DS:1BD0,LOC_ROWS,i16[7],garage,,SR1 0298
+global,DS:1BDE,LOC_YOFF,i16[7],garage,,SR1 02A6
+global,DS:1BEC,LOC_COLOUR,i16[7],garage,,SR1 02B4
+global,DS:1BFA,LOC_COLOUR_EGA,i16[7],garage,,SR1 02C2
+global,DS:1C08,g_anim_yoff,i16,video,,sprite height reduction used by the animation code; SR1 DS:02D0
+global,DS:1C3A,needle_colour,i16,race,,SR1 DS:02D2
+global,DS:1C48,g_saved_back,far Desc*,video,,"pages remembered by `gfx_screen_mode(0)` (`1C48` back, `1C4C` front); SR1 DS:02E6 / 02EA"
+global,DS:1CB2,wheel_pic_cache,i16,race,,new
+global,DS:1D02,wait_last,u32,platform,,`wait_ticks` completion time of the previous call (DS:1D02/1D04)
+global,DS:1D06,scheme_ega,u8[],video,,colour scheme table (5 bytes per scheme) for EGA/VGA; `DS:1D56` = CGA table; SR1 DS:03A0 / 03F0
+global,DS:1DA6,pal_live,u8[17],video,,"live palette register table (16 + overscan); loaded by `pal_load`, applied by `pal_normal`; SR1 DS:0440"
+global,DS:1DB8,pal_black_tab,u8[17],video,,all zero; SR1 DS:0452
+global,DS:1DC8,pal_game,u8[17],video,,game palette `00 00 08 07 0F 07 09 0B 03 02 04 0C 05 0A 06 0E 00` (= SR1 `DS:0440`); `DS:1E2E` copy; SR1 DS:0440
+global,DS:1DDA,pal_menu,u8[17],video,,palette `00 00 08 0D 0F 07 00 00 01 02 09 0C 05 0A 06 0E 00` used by menus/garage/jail (`pal_load(0x1DDA)`)
+global,DS:1DEC,pal_identity2,u8[17],video,,identity with register 10 = 0 (`FUN_0001_a51c`)
+global,DS:1DFE,pal_alt,u8[17],video,,alternate palette `09 01 08 00 0F 07 0B 03 0E 02 04 0C 0D 0A 06 0E 00` (swapped by `pal_shadow_swap`); SR1 DS:0462
+global,DS:1E1E,gear_labels,near*[],video,,gear label string pointers (`gear_label`); SR1 DS:0482
+global,DS:1E40,pic_origin_x,i16,video,,"`show_picture_at` origin x, `1E42` y, `1E44` clip/clear height (200); SR1 DS:04BE / 04C0 / 04C2"
+global,DS:1E46,MSG_BOXES,BOX[3],garage,,18-byte box records
+global,DS:1E7C,msg_saved_bg,FarPtr,garage,,open box background
+global,DS:1EC8,page_first_row,i16,garage,,classified page
+global,DS:1ECA,page_last_row,i16,garage,,
+global,DS:1ECC,page_list,int*,garage,,=DS:9F2C
+global,DS:1ECE,page_paper,FarPtr,garage,,paper picture 0x3F5
+global,DS:1ED2,page_redraw,u8,garage,,
+global,DS:1F3A,wait_until,u32,game_flow,,SR1 05CC
+global,DS:1F3E,wait_any_key,u16,game_flow,,SR1 05D0
+global,DS:1F40,last_key,u16,game_flow,,SR1 05D2
+global,DS:1F4A,msg_ticks,i16,game_flow,,SR1 05DC (0x15E)
+global,DS:1F4C,click_returns,u16,game_flow,,SR1 05DE
+global,DS:1F50,mouse_dx,i16,platform,,scaled mouse delta x (`mouse_poll`); SR1 DS:05E2
+global,DS:1F52,mouse_dy,i16,platform,,scaled mouse delta y; SR1 DS:05E4
+global,DS:1F54,mouse_acc_x,i16,platform,,mickey accumulator x; SR1 DS:05E6
+global,DS:1F56,mouse_acc_y,i16,platform,,mickey accumulator y; SR1 DS:05E8
+global,DS:1F58,mouse_shift_x,u16,platform,,mickey -> pixel shift x; SR1 DS:05EA
+global,DS:1F5A,mouse_shift_y,u16,platform,,mickey -> pixel shift y (changed by `race_isr_enter/leave`); SR1 DS:05EC
+global,DS:1F5C,mouse_left,u16,platform,,left button (INT 33h AX=3); SR1 DS:05EE
+global,DS:1F5E,mouse_right,u16,platform,,right button; SR1 DS:05F0
+global,DS:1F60,mouse_present,u8,platform,,non-zero when a mouse driver answered (`input_poll_any` polls it)
+global,DS:1F66,ticks,u32,game_flow,,SR1 05F8
+global,DS:1F6A,game_clock,u32,game_flow,,SR1 05FC
+global,DS:1F6E,rt_ticks,u32,game_flow,tick_clock,SR1 0600
+global,DS:1F72,rt_base,u32,game_flow,clock_origin,SR1 0604
+global,DS:1FBE,kbd_saved_pairs,u8[],platform,,"saved `{scan, old key}` pairs of the per-screen key remap, 0-terminated (`DS:1FBE` = first scan code, 0 = no remap); SR1 DS:0650 (+ flag DS:064E)"
+global,DS:1FFC,in_challenge_race,i16,race,,new
+global,DS:2002,vib_countdown,u16,sound,,speaker vibrato countdown (SR1 06E2)
+global,DS:2004,siren_count,u16,sound,,SR1 06E4
+global,DS:200A,squeal_phase,u8,sound,,SR1 06EA
+global,DS:2018,bay_animate,u8,garage,,SR1 06FC
+global,DS:201A,TRANS_BOLT_Y,i16[2],garage,,SR1 06FE
+global,DS:201E,ENGINE_SEAT,i16[3][2],garage,,SR1 0702
+global,DS:202A,ENGINE_BOLT,i16[3][2],garage,,SR1 070E
+global,DS:2036,CONNECTOR_POS,i16[3][2],garage,,SR1 071A
+global,DS:204E,CARB_SEAT,i16[13][2],garage,,ctx 4..16; SR1 0742
+global,DS:2082,CARB_BOLT_OFS,i16[3][2],garage,,SR1 076A
+global,DS:208A,CTX_SLOT,u8[],garage,,bay context -> slot (index = ctx); SR1 077E
+global,DS:2092,BOLT_RECTS,Rect[4],garage,,20 bytes per tightness
+global,DS:209C,FIRST_CARB_CTX,u8[9],garage,,first carburettor layout code per manifold grade; SR1 078C
+global,DS:20EA,demo_target_x,i16,game_flow,,"-1 clicked, -2 choose next"
+global,DS:20EC,bob_races_started,i16,race,,new
+global,DS:20EE,demo_garage_codes,u16[17],game_flow,,shuffle bag codes
+global,DS:2110,demo_used,u16[17],game_flow,,garage shuffle bag flags
+global,DS:2132,demo_bag_left,u16,game_flow,,17
+global,DS:220A,garage_title,char[44],garage,,SR1 29FF
+global,DS:22EA,save_name_edit,char[16],game_flow,,SR1 2A2E
+global,DS:22FA,lbl_squelch,char[],sound,,Squelch it !
+global,DS:2308,lbl_tunes,char[],sound,,Catch some tunes
+global,DS:3AD8,SCREENS,UIEL*[36],garage,,screen element arrays
+global,DS:3B20,joy_x,i16[4],platform,,"joystick centre / axis words (`joy_read`, calibration); SR1 DS:4718"
+global,DS:3B24,joy_buttons,u8,platform,,"joystick buttons (bits 4-5 of port 201h, inverted); SR1 DS:471C"
+global,DS:3B25,joy_present,u8,platform,,joystick detected / enabled; SR1 DS:471D
+global,DS:3B32,cursor_x,i16,platform,,pointer x (0..319); SR1 DS:472A
+global,DS:3B34,cursor_y,i16,platform,,pointer y (0..199); SR1 DS:472C
+global,DS:3B36,kbd_dir_x,i8,platform,,"sum of held direction keys, x; SR1 DS:472E"
+global,DS:3B37,kbd_dir_y,i8,platform,,"sum of held direction keys, y; SR1 DS:472F"
+global,DS:3B38,kbd_last_dir,i8[2],platform,,last direction pair; SR1 DS:4730
+global,DS:3B39,kbd_dir_aux,u8,platform,,cleared by `kbd_remap_restore`; SR1 DS:4731
+global,DS:3B3A,click_held,u8,platform,,"bit 0 key, bit 1 joystick, bit 2 mouse button held; SR1 DS:4732"
+global,DS:3B3B,cursor_visible,i8,platform,,pointer show/hide nesting counter (`cursor_ctl`); SR1 DS:4733
+global,DS:3B3E,click_code,u8,platform,,"pending primary click code (1 mouse, 0x1F key, joy buttons); SR1 DS:4736"
+global,DS:3B3F,click2_code,u8,platform,,pending secondary click code (0x1E); SR1 DS:4737
+global,DS:3B40,click_x,i16,platform,,position of the pending click; SR1 DS:4738
+global,DS:3B42,click_y,i16,platform,,; SR1 DS:473A
+global,DS:3B44,click2_x,i16,platform,,position of the secondary click; SR1 DS:473C
+global,DS:3B46,click2_y,i16,platform,,; SR1 DS:473E
+global,DS:3B48,kbd_dir_lock,i16,platform,,interrupt-side lock byte (only cleared by the ISR in SR2); SR1 DS:4740
+global,DS:3B4A,cursor_hot_x,u16,platform,,pointer hot spot x (set by `cursor_ctl`); SR1 DS:4742
+global,DS:3B4C,cursor_hot_y,u16,platform,,pointer hot spot y; SR1 DS:4744
+global,DS:3B4E,race_saved_cursor_x,i16,platform,,saved pointer position (`cursor_init` clears); SR1 DS:4746
+global,DS:3B50,race_saved_cursor_y,i16,platform,,; SR1 DS:4748
+global,DS:3B6E,kbd_xlat,u8[0x57],platform,,"scan code -> key code table (patched per screen); `+0x33/+0x34` = `,` `.` entries toggled by `kbd_text_mode_on/off`; SR1 DS:4766"
+global,DS:3BD4,click_edge,u8,platform,,set with every primary click key press; SR1 DS:47CD
+global,DS:3BD5,sound_on,u8,platform,snd_enabled,toggled by Ctrl (scan 1Dh); SR1 DS:47CE
+global,DS:3BD6,sound_gate,u8,platform,snd_gate,sound routines run only when non-zero; SR1 DS:47CF
+global,DS:3BD7,key,u8,platform,,"the one-byte key ""queue"" (`key_read` read-and-clear); SR1 DS:47D0"
+global,DS:3BDC,old_int9,far ptr,platform,,previous INT 9 vector (`kbd_install`); SR1 DS:47D4/47D6
+global,DS:3BE0,kbd_held_flags_a,u8[16],platform,,cleared by `kbd_remap_restore`; SR1 DS:47D8
+global,DS:3BF0,kbd_held_flags,u8[],platform,,"held flags of the direction keys, indexed by (-k); also `joy_saved_sp` (word at `DS:3BF0`); SR1 DS:47E8"
+global,DS:3BF2,bios_mode_vars,u8[4],platform,,dead code (`bios_mode_*_set/apply`); SR1 DS:47EA..47ED
+global,DS:3BF6,click_seen,u16,platform,,"""any click / Esc"" flag set by `kbd_isr`, `input_poll_any`, polled by wait loops; SR1 DS:47EE"
+global,DS:4502,PARTS,PARTDEF[64],garage,,"part catalogue, 10 bytes; SR1 4806"
+global,DS:478C,INIT_WEAR,i16[8],garage,,SR1 4966
+global,DS:479C,counters,6 x u16,game_flow,races_total,"SR1 4970; 479C races, 47A0 road wins, 47A2 drag wins, 47A4 Grudge Night wins"
+global,DS:479E,drag_wins,i16,race,,SR1 DS:4972
+global,DS:47A0,mulholland_wins,i16,race,,SR1 DS:4974
+global,DS:47A2,aqueduct_wins,i16,race,,new
+global,DS:47A4,grudge_wins,i16,race,,new
+global,DS:47A6,king_stage,i16,race,,SR1 DS:4976
+global,DS:47A8,MANIFOLD_FITS,u8[3][9],garage,,SR1 4978
+global,DS:47C4,CARB_FITS,u8[9][3],garage,,SR1 4988
+global,DS:47E0,BAY_PICS,i16[5][9],garage,,SR1 4998
+global,DS:47F2,bay_manifold0_pic,i16,garage,,runtime 0x429/0x42A (BAY_PICS[1][0])
+global,DS:483A,TRANS_PICS,i16[4],garage,,SR1 49D2
+global,DS:4846,status_label_text,char[],platform,,status label string used by `gfx_screen_mode(3)`; SR1 DS:49DE
+global,DS:4878,protection_table,24 x 4,game_flow,,"entries {n,page,line,letter}"
+global,DS:4912,g_vram_pool_used,u16[4],platform,,"bytes used in each of the four VRAM picture-cache pools; base far pointer `DS:490E:4910` (A000:0000), pools start at +0x7D00; SR1 DS:4C18 / 4C14"
+global,DS:491A,title_pics,u16[4],game_flow,,SR1 4C20
+global,DS:4922,resident_pics,u16[176],game_flow,,SR1 4C28
+global,DS:4B50,lib1_handle,u16,platform,,LIB1 file handle (0 = closed); SR1 DS:4ED8
+global,DS:4B52,lib2_handle,u16,platform,,LIB2 file handle; SR1 DS:4EDA
+global,DS:4B54,lib3_handle,u16,platform,,**LIB3 file handle (new)**
+global,DS:4B56,lib_names,char*[6],platform,,"name pointers `?:lib1`, `?:lib1c`, `?:lib2`, `?:lib2c`, `?:lib3`, `?:lib3c`; SR1 DS:4EDC..4EE2 (4 names)"
+global,DS:4B62,crit_err_off,u16,platform,,non-zero -> `crit_err_handler` returns at once; only ever cleared (by `lib_open_all`)
+global,DS:4B66,msg_insert_disk,char*,platform,,"""Insert disk ? into drive ?"" (`[0xC]` disk number char, `[0x19]` drive letter patched); SR1 DS:4EE4"
+global,DS:4B68,msg_copy_files,char*,platform,,"""Copy all files to current directory"""
+global,DS:4B6A,msg_bad_format,char*,platform,,"""Bad file format""; SR1 DS:4EE8"
+global,DS:4B6C,msg_not_found,char*,platform,,"""File not found: "" (+ name copied to offset 0x10 by `file_not_found`); SR1 DS:4EEC"
+global,DS:4B70,msg_no_memory,char*,platform,,"""Not enough memory to run Street Rod !""; SR1 DS:4BEE"
+global,DS:4B72,run_counts,u8[16],platform,,`pic_unpack` run lengths of the 16 tokens; SR1 DS:4EEE
+global,DS:4B82,run_values,u8[16],platform,,`pic_unpack` run values (00 or FF); SR1 DS:4EFE
+global,DS:4BBE,shp_handle,u16,platform,,`sr2_shp` file handle (0 = not open)
+global,DS:4BC0,shp_name,char[],platform,,"""?:sr2_shp"" (drive letter patched by `shp_load_set`)"
+global,DS:4BD6,shp_ids_mode0,s16[],race_render,,set ids mode 0 (-1 term)
+global,DS:4BEE,shp_ids_mode1,s16[],race_render,,set ids mode 1
+global,DS:4C16,shp_ids_mode2_4,s16[],race_render,,set ids modes 2/4
+global,DS:4C30,shp_ids_mode16,s16[],race_render,,set ids mode 0x10
+global,DS:4C54,switch_old,CAR*,garage,,SR1 4F46
+global,DS:4C56,switch_new,CAR*,garage,,SR1 4F48
+global,DS:4C58,game_over_cache_flag,u16,game_flow,,SR1 4F4A
+global,DS:4C5A,NEWS_PICS,i16[12],garage,,headline photos by week
+global,DS:4D1E,PAINT,u8[6][3],garage,,SR1 50C2
+global,DS:4D30,TYRE_PICS,i16[3][4],garage,,SR1 5030
+global,DS:4D48,CAL_X0,i16,garage,,33
+global,DS:4D4A,CAL_Y0,i16[4],garage,,
+global,DS:4D52,CAL_ROW0,i16[4],garage,,
+global,DS:4D8A,blank_title,char[32],garage,,SR1 5094
+global,DS:4E54,CARINFO_INDENT,i16[10],garage,,SR1 50CE
+global,DS:4E6E,CARBS_PER_MANIFOLD,i16[9],garage,,SR1 5126
+global,DS:4E80,BOLTS_PER_LAYER,i16[6],garage,,SR1 5130
+global,DS:4E8C,BOLT_CTX,i16[7],garage,,SR1 5184
+global,DS:4E9A,BOLT_SIDE,i16[7],garage,,SR1 5198
+global,DS:4EA8,LAYER_CAT,i16[5],garage,,SR1 513C
+global,DS:4EB4,BAY_LAYOUT,i16[9][3],garage,,SR1 5148
+global,DS:4F1C,TIMING_FLASH,i8[][10],garage,,ignition flash pattern (index ign*5+k)
+global,DS:4FB6,tourn_prizes,u16[3],game_flow,,"150,100,50"
+global,DS:502E,carhop_gate,i16,race,,new
+global,DS:5034,last_pick,i16,race,,SR1 DS:51F8
+global,DS:5070,CARHOP_COLS,rec14[7],garage,,Bobs background columns; SR1 533E
+global,DS:50CC,tiles6,u16[12],video,,"6 tile pairs `{x, w}` for event 6 animations; `DS:50E4` = 3 pairs for event 15; SR1 DS:539A"
+global,DS:50F2,PUMP_X,i16[2],garage,,
+global,DS:50F8,PUMP_W,i16[6],garage,,
+global,DS:5104,PUMP_SX,i16[6],garage,,
+global,DS:5148,stats_done,i16,race,,SR1 DS:53E6
+global,DS:523C,ai_steps_done,i16,race,,SR1 DS:54D0
+global,DS:523E,ai_yield_toggle,i16,race,,SR1 DS:54D2
+global,DS:5240,holeshot_decided,i16,race,,new
+global,DS:52FE,music_cur,u16,sound,,near ptr to active SongState18 (SR1 58D2)
+global,DS:5300,music_mode,u16,sound,,"1 bg tune,2 loop/tune screen (SR1 58D4)"
+global,DS:5302,music_hold,u16,sound,,"duration freeze flag, new"
+global,DS:5304,music_on,u16,game_flow,music_enabled,SR1 58D0
+global,DS:5306,music_enabled_saved,s16,sound,,SR1 58D6
+global,DS:5308,music_muted,u16,sound,,SR1 58D8
+global,DS:530A,spk_vec_init,far*[25],sound,,speaker slot table
+global,DS:536E,vib_wave,s16[3][8],sound,,SR1 57F6
+global,DS:539E,vib_rec,s16[12][5],sound,,SR1 5826
+global,DS:540C,bg_loop_tbl,s16[15],sound,,SR1 5858 (+1)
+global,DS:542A,jingle_loop_tbl,s16[2],sound,,"{3,-1}"
+global,DS:542E,fx_loop_tbl,s16[2],sound,,"{1,-1}"
+global,DS:5432,bg_vib_tbl,s16[27],sound,,SR1 5882
+global,DS:5468,fx_vib_tbls,s16[],sound,,5468..548E small index tables
+global,DS:5490,spk_loop_songs,u16[],sound,,5490..5593 loop songs
+global,DS:5594,spk_bg_song,u16[],sound,,background tune 5594..6E47
+global,DS:6E48,spk_jingle_song,u16[],sound,,jingle 6E48..72DF
+global,DS:72E0,squeal,u16,race,squeal_on,SR1 DS:58DA
+global,DS:72E2,siren_on,u16,sound,,SR1 58DC
+global,DS:72EC,adlib_vol_enable,u16,sound,,constant 1
+global,DS:72EE,tyre_noise_on,u16,sound,,AdLib tyre noise keyed
+global,DS:72F0,name_msr_snd,char[],sound,,msr.snd; song names 72F8..7328
+global,DS:7334,timbre_names,char[],sound,,SFX timbre names 7334..73BC
+global,DS:73A0,song_list_a,s16[8],sound,,"1,1,5,2,5,3,3,-1"
+global,DS:73B0,song_list_b,s16[3],sound,,"4,4,-2"
+global,DS:73C2,adlib_vec_init,far*[25],sound,,AdLib slot table
+global,DS:7426,pulse3_ptr,u16,sound,,dead
+global,DS:7428,pulse3_delay,u16,sound,,dead
+global,DS:742A,delay_scale,u16,sound,,SR1 58E2
+global,DS:782C,perc_mask,u8[11],sound,,voice 6..10 masks; ISR stack top
+global,DS:7830,opl_port,u16,sound,,0x388
+global,DS:7838,voice_slot_tab,u8[28],sound,,voice->operator slots
+global,DS:7854,slot_reg_off,u8[18],sound,,operator register offsets
+global,DS:7866,slot_is_carrier,u8[18],sound,,carrier flags
+global,DS:7878,slot_voice,u8[18],sound,,operator -> voice
+global,DS:788A,mus_playing,u8,sound,,song running
+global,DS:788C,io_delay_index,u16,sound,,3
+global,DS:788E,io_delay_data,u16,sound,,12
+global,DS:7890,voice_vol_cache,u16[11],sound,,write-only
+global,DS:78AA,bend_cache_v,s32,sound,,init 0000FFFF
+global,DS:78AE,empty_name,char[],sound,,empty name for index lookups
+global,DS:78AF,fmt_timbre_nf,char[],sound,,format: Timbre not found: %d
+global,DS:78E0,hood_pics,"{u16 id,x,y}[6]",race_render,,hood overlay per dash type
+global,DS:7906,car_strip,FarPtr,garage,,car_draw strip bitmap; SR1 5A0A
+global,DS:7916,car_pass,i16,garage,king_no_time,two-pass state; SR1 5A24
+global,DS:7918,CARHOP_FRAMES,rec6[2],garage,,SR1 5A26
+global,DS:79E0,arena2_used,u16,platform,,bytes already used in arena 2 by `arena_bitmap_alloc(pool -1)`
+global,DS:79E6,JACK_PICS,i16[3],garage,,SR1 5AAA
+global,DS:7A40,vec_cga,far ptr[20],video,,CGA/Hercules driver template; SR1 DS:5B04
+global,DS:7ADC,vec_tandy,far ptr[20],video,,Tandy driver template; SR1 DS:5B8A
+global,DS:7B38,vec_ega,far ptr[20],video,,EGA/VGA driver template; SR1 DS:5BD0
+global,DS:7B88,g_blinds_rows,u16[5],video,,`ega_blinds` pass offsets `0 50 A0 28 78`; SR1 DS:5C0C
+global,DS:7B91,g_lmask,u8[9],video,,left masks `00 80 C0 E0 F0 F8 FC FE FF`; `DS:7B99` = right-mask view; SR1 DS:5C15
+global,DS:7B9C,fall_dir,s16,race_render,,Mulholland fall-off request
+global,DS:7B9E,nudge_right_latch,u16,race_render,,SR1 5E10
+global,DS:7BA0,nudge_left_latch,u16,race_render,,SR1 5E12
+global,DS:7BA2,on_shoulder,u16,race_render,,SR1 5E0E
+global,DS:7C1C,hill_profile_17,s16[17],race_render,,SR1 5C98
+global,DS:7C3E,course_layouts,s16[10][13],race_render,,SR1 5CBC
+global,DS:7D42,course_height_deltas,s16[61],race_render,,HGT delta per 10 segs from 0x17C
+global,DS:7DDA,page1_desc,Pic18,race_render,,SR1 5DAC
+global,DS:7DEC,page2_desc,Pic18,race_render,,SR1 5DDC
+global,DS:7DFE,road_param,u16,game_flow,course_layout,SR1 5E0C
+global,DS:7E02,back_page,s16,race_render,,SR1 5E3E
+global,DS:7E04,shown_page,s16,race_render,,SR1 5E40
+global,DS:7E06,view_copy_rect,Rect,race_render,,SR1 5E42
+global,DS:7E12,clip_xmin,s16,race_render,,SR1 5E4E
+global,DS:7E14,clip_ymin,s16,race_render,,SR1 5E50
+global,DS:7E16,clip_ymax,s16,race_render,,SR1 5E52
+global,DS:7E18,clip_xmax,s16,race_render,,SR1 5E54
+global,DS:7E1A,sign_sheet_ids,u16[5],race_render,,2047 2033 2032 2034
+global,DS:7E1E,hill_peak_tab,s16[],race_render,,Mulholland hillside peak widths/heights (read up to DS:7E72)
+global,DS:7E52,dash_width,s16[25],race_render,,"dash width per row (front 7E6E=row14, mirror 7E7A=row7) (SR1 5E6A/5E84)"
+global,DS:7E84,dot_lod,LodRec,race_render,,dot shape LOD record
+global,DS:7E94,dot_shape,ShpSet,race_render,,"{1, far DS:7E84} (SR1 60A0)"
+global,DS:7E9A,bush_group_dx,s16[13][2],race_render,,bush group spacing
+global,DS:7ECE,bush_group_hw,s16[13][2],race_render,,bush group h/w
+global,DS:7F02,sign_sizes,"{s16 srcx,w,h}[7]",race_render,,SR1 5E9C
+global,DS:7FBE,rot_angles,i16[7],race_render,,-45 -30 -15 0 15 30 45
+global,DS:7FCE,aq_bounce_flag,u16,race_render,,set by a1c0
+global,DS:7FD0,tree_lamp_dx,s16[3],race_render,,start tree lamp x
+global,DS:7FD6,tree_lamp_w,s16[3],race_render,,start tree lamp w
+global,DS:7FDC,tree_lamp_h,s16[9],race_render,,start tree lamp h
+global,DS:7FEE,tree_lamp_sy,s16[9],race_render,,start tree lamp srcy
+global,DS:8000,tree_lamp_dy,s16[9],race_render,,start tree lamp dsty
+global,DS:8012,ai_side,i16,race,,SR1 DS:54D4
+global,DS:8014,ai_curve_braked,i16,race,,SR1 DS:54D6
+global,DS:809A,aq_obstacle_latch,i16,race,,new
+global,DS:809C,alongside_count,i16,race,,SR1 DS:54D8
+global,DS:809E,ai_brake,i16,race,,SR1 DS:54DA
+global,DS:80A0,rot_into_scratch,i16,race_render,,rot_alloc builds into DS:AB24
+global,DS:80A2,shp_directory,u32+u16+u16[26],platform,shp_dir,"`SR2_SHP` directory, 26 x 8 bytes `{u32 offset, u16 size, u16 0}`"
+global,DS:8172,shp_a_ptrs,far ptr[23],platform,shp_sets_a,destination pointers of the format-A shape sets (index = set id)
+global,DS:81CE,shp_b_ptrs,far ptr[3],platform,shp_sets_b,destination pointers of the format-B shape sets (index relative to `DS:81DA`)
+global,DS:81DA,shp_b_first,u16,platform,,first format-B set id (23); `DS:81DC` = count (3)
+global,DS:81DC,shp_b_count,s16,race_render,,3
+global,DS:822A,UNDERCAR_PICS,i16[7],garage,,"exhaust manifold {1203,1204}, muffler {1205,1206}, differential {1200..1202}"
+global,DS:849E,amblksiz,u16,platform,,"C heap growth chunk (set 0x800 by `mem_pools_init`, 0x400 by `_myalloc`); SR1 DS:64A6"
+global,DS:86E2,picdir_seg,u16,platform,,segment of the picture directory (0x3726); entries of 0x22 bytes; SR1 DS:691C (seg 389B)
+global,DS:86EA,g_font_seg,u16,video,,font segment (26E6); glyph `c` at offset `c*9 - 0x11A`; SR1 DS:691A (seg 0E9F)
+global,DS:86EC,seg3726_words,u16[19],race_render,,86EC..8710 and 871E = 0x3726 (SR1 6A2C..)
+global,DS:8806,speedo_cx,i16,race,,new
+global,DS:8808,speedo_cy,i16,race,,new
+global,DS:880E,tach_cx,i16,race,,new
+global,DS:8810,tach_cy,i16,race,,new
+global,DS:8816,shifter_rec,near*,race,,new
+global,DS:8818,shifter_knob_cache,i16,race,,new
+global,DS:881A,msg_box_rec,BOX*,garage,,
+global,DS:8842,hall_new_score,i16,game_flow,,SR1 6C5E
+global,DS:8844,dgroup_seg,u16,platform,,DGROUP segment value (`get_ds`); `far_alloc` rejects blocks in it; SR1 DS:6C60
+global,DS:8846,cur_drive,u16,platform,,"DOS drive at start-up (1 = A:, 3 = C:); SR1 DS:6C68"
+global,DS:8848,cur_lib_count,u16*,platform,,pointer to the entry count of the current library (`DS:B8CA / B8D6 / B8DA`); SR1 DS:6C6A
+global,DS:884A,cur_lib_handle,u16*,platform,,pointer to the handle of the current library; SR1 DS:6C6C
+global,DS:884C,cur_lib_name,char*,platform,,pointer to the path of the current library; SR1 DS:6C6E
+global,DS:884E,prev_lib_handle,u16*,platform,,handle pointer of the previously selected library (closed on a switch); SR1 DS:6C70
+global,DS:8E3C,rot_shrink_masks,u8[18][22],race_render,,SR2_DATA block 7: 7 angles x 3 shrink masks + pad
+global,DS:8FC8,slot_labels,15 x 16,game_flow,,SR1 4618
+global,DS:90B8,slot_present,u8[15],game_flow,,SR1 4FC2; 0xFF = absent
+global,DS:90C8,tourn_opp,i16,game_flow,grudge_opp_entry,opponent index this round
+global,DS:90CA,tourn_table,10 x 6,game_flow,grudge_field,"{id,state,time}"
+global,DS:9106,tourn_player,i16,game_flow,grudge_player_entry,player index
+global,DS:9118,bracket_p_state,i16,race,,new
+global,DS:911A,bracket_p_time,u32,race,,new
+global,DS:911E,bracket_o_state,i16,race,,new
+global,DS:9120,bracket_o_time,u32,race,,new
+global,DS:9124,cruise_gain,i16,race,,SR1 DS:6C82
+global,DS:9126,carhop_state,i16,race,,SR1 DS:6C84
+global,DS:9128,cand_count,i16,race,,SR1 DS:6C86
+global,DS:912A,cand,i16[21],race,,SR1 DS:6C8A
+global,DS:9154,bob_first_visit,i16,race,,SR1 DS:6CA2
+global,DS:9156,gas_nozzle_spots,i16,race,,new
+global,DS:9158,gas_pump_spots,i16,race,,new
+global,DS:915A,gas_meter_pic,far*,race,,new
+global,DS:915E,gas_meter_shown,u16,race,,new
+global,DS:9160,gas_meter_count,u16,race,,new
+global,DS:9162,am_depth,u8,sound,,BD bit 7
+global,DS:9163,perc_mode,u8,sound,,rhythm mode
+global,DS:9164,half_tab,s16[11],sound,,per voice half-tone offset
+global,DS:917A,note_sel,u8,sound,,reg 08 bit 6
+global,DS:917C,bend_step,s16,sound,,range*25
+global,DS:917E,note_in_oct,u8[96],sound,,i%12
+global,DS:91DE,wave_sel_en,u16,sound,,20h when enabled
+global,DS:91E0,oct_tab,u8[96],sound,,i/12
+global,DS:9240,vib_depth,u8,sound,,BD bit 6
+global,DS:9242,row_ptr,u16[11],sound,,fnum row per voice
+global,DS:9258,drum_bits,u8,sound,,BD bits 0-4
+global,DS:925A,last_note,u8[11],sound,,last raw note per voice
+global,DS:9266,slot_param,u8[18][14],sound,,operator parameters
+global,DS:9362,fnum_tab,u16[25][12],sound,,F-number table
+global,DS:95BA,bend_range,u16,sound,,1..12
+global,DS:95BC,key_flag,u8[11],sound,,last key flag per voice
+global,DS:95C8,rel_vol,u8[18],sound,,operator relative volume
+global,DS:95DA,bend_cache_row,u16,sound,,cached fnum row
+global,DS:95DC,bend_cache_half,u16,sound,,cached half tones
+global,DS:95F2,arena1,far ptr,platform,,65000-byte work arena 1; SR1 DS:6CD0
+global,DS:96A8,build_yaw,s16,race_render,,SR1 6DFE
+global,DS:96AA,build_seg,s16,race_render,,SR1 6E00
+global,DS:96AC,build_yaw_step,s16,race_render,,"5 slow / 6, plus n (SR1 6E02)"
+global,DS:96AE,billboard_pics,Pic far*[2],race_render,,2049 2050
+global,DS:96B6,rp_xl,s16*,race_render,,XL[p] row pointer (SR1 6E08)
+global,DS:96B8,rp_xol,s16*,race_render,,XOL[p] (SR1 6E0A)
+global,DS:96BA,rp_ye,s16*,race_render,,YE[p] (SR1 6E0C)
+global,DS:96BC,rp_xor,s16*,race_render,,XOR[p] (SR1 6E0E)
+global,DS:96BE,rq_xl,s16*,race_render,,XL[q] (SR1 6E10)
+global,DS:96C0,rq_xol,s16*,race_render,,XOL[q] (SR1 6E12)
+global,DS:96C2,rq_ye,s16*,race_render,,YE[q] (SR1 6E14)
+global,DS:96C4,rq_xor,s16*,race_render,,XOR[q] (SR1 6E16)
+global,DS:96C6,rp_xfl,s16*,race_render,,far-left x [p]
+global,DS:96C8,rp_xfr,s16*,race_render,,far-right x [p]
+global,DS:96CA,rq_xfr,s16*,race_render,,far-right x [q]
+global,DS:96CC,rq_yt1,s16*,race_render,,left terrain y [q]
+global,DS:96CE,rp_xr,s16*,race_render,,XR[p] (SR1 6E18)
+global,DS:96D0,rp_y,s16*,race_render,,Y[p] (SR1 6E1A)
+global,DS:96D2,rp_y79e,s16*,race_render,,y at world height 0x79E [p]
+global,DS:96D4,rq_xr,s16*,race_render,,XR[q] (SR1 6E1C)
+global,DS:96D6,rq_y79e,s16*,race_render,,y at world height 0x79E [q]
+global,DS:96D8,rq_y,s16*,race_render,,Y[q] (SR1 6E1E)
+global,DS:96DA,rp_yt1,s16*,race_render,,left terrain y [p]
+global,DS:96DC,rp_yt2,s16*,race_render,,right terrain y [p]
+global,DS:96DE,rq_yt2,s16*,race_render,,right terrain y [q]
+global,DS:96E0,rq_xfl,s16*,race_render,,far-left x [q]
+global,DS:96E2,left_ptr,far u16*,race_render,,&L of the row (SR1 6E20)
+global,DS:96E6,right_ptr,far u16*,race_render,,&R of the row (SR1 6E24)
+global,DS:96EA,x6_ptr,far s16*,race_render,,&X6 obstacle lateral position of the row
+global,DS:96EE,dash_ptr,s16*,race_render,,&dash_width[row] (SR1 6E28)
+global,DS:96F0,centre_ptr,far u16*,race_render,,&C of the row (SR1 8B82)
+global,DS:96F4,rail_phase_seg,s16,race_render,,start_seg or first rail-start segment; phase of rail posts / wall colours
+global,DS:96F6,aq_flag_ptr,far ptr,race_render,,"segment flags, row k at -2k (3726:4E62 front, reversed copy mirror)"
+global,DS:96FA,aq_star_scroll,i16,race_render,,(heading*2)%320
+global,DS:96FC,tree_lamp_right,s16,race_render,,lamp state 0..2 / -1
+global,DS:96FE,tree_lamp_left,s16,race_render,,lamp state 0..2 / -1
+global,DS:9700,opp_skill,i16,race,,SR1 DS:6CB4
+global,DS:9702,opp_lat_target,i16,race,,SR1 DS:6CB6
+global,DS:9704,opp_band_tmp,i16,race,,SR1 DS:6CB8
+global,DS:9706,opp_shift_rpm,i16,race,,SR1 DS:6CBA
+global,DS:9708,rot_saved,i16[4],race_render,,saved A540 A7A8 A7CC BA90
+global,DS:9730,demo,u16,game_flow,demo_flag,SR1 0610
+global,DS:9732,aq_rot_floor_lx,i16[15],race_render,,"rotated floor-left x, reversed (y at 9760)"
+global,DS:9754,seg_lane_ptr,far s16*,race_render,,&LANE[seg] (3726:665A)
+global,DS:975E,ground_top_y,s16,race_render,,top row of the ground fill (SR1 6E04)
+global,DS:977E,strip_descs,u8[18*n],video,,car strip descriptors (non-VGA); SR1 DS:6E68
+global,DS:9856,top_band_row,s16,race_render,,highest road row drawn (SR1 6E06)
+global,DS:985C,ai_edge_left,s16,race_render,,SR1 70C0
+global,DS:985E,aq_def_floor_h,i16,race_render,,"channel deformation for next projection (also A2B8,A7A6,A5FA,9A5A,9B14)"
+global,DS:9860,floppy_drives,u16,platform,,number of usable floppy drives (1 or 2) from `lib_open_all`
+global,DS:9862,opp_variant,i16,race_render,,last bank variant
+global,DS:986A,aq_dy,i16,race_render,,projection dy (BA8E = dx)
+global,DS:986C,title_resident,u16,game_flow,,SR1 70E2
+global,DS:986E,mus_ptr,far*,sound,,MUS read pointer
+global,DS:9872,MODEL_HOTSPOTS,u8[22][20],garage,,SR1 70E4
+global,DS:9A2A,start_obj_sizes,Pic far*[4],race_render,,4 distance sizes of a start object
+global,DS:9A3A,vib_enabled,u16,sound,,SR1 72EC
+global,DS:9A3C,seg_left_ptr,far u16*,race_render,,SR1 72EE
+global,DS:9A40,start_panel_pic,Pic far*,race_render,,DS:B7B2 picture
+global,DS:9A44,aq_flags_ptr,far u16*,race_render,,&AQ[seg] / &AQM[0x171-seg]
+global,DS:9A48,opp_contact,i16,race_render,,rear-end contact (SR1 72F2)
+global,DS:9A4A,gas_pump_save_a,far*[2],race,,new
+global,DS:9A52,pic_pillar,Pic far*,race_render,,LIB3 #2003 (SR1 72F4)
+global,DS:9A56,view_bounce_y,s16,race_render,,added by road_proj_y
+global,DS:9A5C,row_xl,s16[15],race_render,,SR1 72F8
+global,DS:9A7E,mus_running_status,u8,sound,,MUS running status
+global,DS:9A80,opp_sprite_prev,i16,race_render,,previous sprite (SR1 6E2A)
+global,DS:9A82,g_page,far Desc*[4],video,,"page table: `9A82` page 0, `9A86` page 1, `9A8A` page 2, `9A8E` page 3; SR1 DS:7316..7322"
+global,DS:9A92,mirror_row_seg,s16,race_render,,seg-row of the mirror row being drawn
+global,DS:9A94,police_sprites,Pic far*[13],race_render,,police levels 0..12 (SR1 7526)
+global,DS:9AC8,aq_car_xl,i16,race_render,,player car left world x (9A58 right)
+global,DS:9ACA,police_seg,i16,race,,SR1 DS:755A
+global,DS:9ACC,gas_pump_save_b,far*[2],race,,new
+global,DS:9AD8,seg_yaw_ptr,far s16*,race_render,,SR1 7560
+global,DS:9ADC,tourn_opp_dialin,i16,game_flow,opp_dialin,
+global,DS:9ADE,avg_speed,i16,race,,SR1 DS:7644
+global,DS:9AE0,hall_count,i16,game_flow,,SR1 7646
+global,DS:9AE2,start_seg,i16,race,,new
+global,DS:9AE4,list_start,u16,sound,,playlist start
+global,DS:9AE6,list_cur,u16,sound,,playlist cursor
+global,DS:9AE8,list_single,u16,sound,,never nonzero
+global,DS:9B08,engine_vib_amount,u16,sound,,dead helper
+global,DS:9B0A,opp_model,i16,race,,SR1 DS:7648
+global,DS:9B0C,rooftops_pic,Pic far*,race_render,,2004 (stale after release)
+global,DS:9B10,seg_bank_l_ptr,far s16*,race_render,,&BL[seg] (3726:5146)
+global,DS:9B3E,tourn_alive,i16,game_flow,player_won,1 alive / qualified
+global,DS:9B40,garage_block,0x80 bytes,game_flow,ad_week,NEW saved block (ad list etc.; garage spec)
+global,DS:9B42,ad_ids,u8[26],garage,,"ids, 0xFF end, 0x80 sold"
+global,DS:9B5C,ad_cool,u8[42],garage,,per-id counters
+global,DS:9B86,ad_pool,u16,garage,,ids with counter 0
+global,DS:9B88,ad_part_row,u16,garage,,first part row
+global,DS:9B8A,ad_price,u16[27],garage,,price per car row
+global,DS:9BC0,draw_off,u16,race_render,g_draw_off,SR1 767C
+global,DS:9BC2,page0_ptr,far Pic*,race_render,,SR1 7678
+global,DS:9BC6,aq_rot_top_lx,i16[15],race_render,,"rotated wall-top-left x, reversed (y at 9CFC)"
+global,DS:9BE4,horizon_pic,Pic far*,race_render,,2055 or 2056
+global,DS:9BE8,mus_size_words,u16[6],sound,,data size low word per song slot
+global,DS:9BF4,MODEL_LAYOUT,u8[22][12],garage,,SR1 7682
+global,DS:9D1A,scene_sprites,sprite rec[],video,,12-byte sprite records of the scene; SR1 DS:77BA
+global,DS:9DAA,fx_song,SongState18,sound,,SR1 79C6
+global,DS:9DC2,draw_seg,u16,race_render,g_draw_seg,SR1 787A
+global,DS:9DC4,tires_blown,u8,race,,SR1 DS:787C
+global,DS:9DC6,SCHEME,ptr,garage,g_scheme,"colour scheme records, 5 bytes"
+global,DS:9DC8,seg_hgt_ptr,far s16*,race_render,,SR1 7880
+global,DS:9DCC,has_clock,i16,race,,SR1 DS:58E6
+global,DS:9DCE,aq_rot_top_rx,i16[15],race_render,,"rotated wall-top-right x, reversed (y at 9F0E)"
+global,DS:9DEC,bg_song,SongState18,sound,,SR1 79AA
+global,DS:9E04,rot_side,Pic far*,race_render,,mode 8 side view
+global,DS:9E08,anchor_x,s8[13][7],race_render,,sprite anchor x per level/angle
+global,DS:9E64,rot_r34,Pic far*,race_render,,mode 8 rear 3/4
+global,DS:9E6C,arena2,far ptr,platform,,**second arena (new)**: `DS:A9D6` bytes (45000 VGA); `arena_bitmap_alloc(-1)` and shape sets
+global,DS:9E70,rot_enable,u16,race_render,,plot_points rotation on
+global,DS:9E72,rot_rear,Pic far*[7],race_render,,rear at 7 angles
+global,DS:9E8E,seg_bank_r_ptr,far s16*,race_render,,&BR[seg] (3726:5902)
+global,DS:9E94,anchor_y,s8[13][7],race_render,,sprite anchor y from bottom per level/angle
+global,DS:9EF0,row_y,s16[15],race_render,,SR1 7884
+global,DS:9F2C,ad_lines,i16[],garage,,"[0] row count, [i] text lines"
+global,DS:A0AE,drv_vec,far ptr[20],video,,"**driver vector table, 20 slots** (see below); `A0CE` = slot 8, `A0DE` = slot 12, `A0F6` = slot 18; SR1 DS:78A2 (15 slots)"
+global,DS:A0FE,arena_top,u16,platform,,end of the top (mode 3) region of arena 1 (65000); SR1 DS:78DE
+global,DS:A100,player_phys,phys_t,race,,SR1 DS:78E0
+global,DS:A1C0,bet_kind,i16,race,,SR1 DS:79A2
+global,DS:A1C2,bet_amount,i16,race,,SR1 DS:79A4
+global,DS:A1C4,race_state,i16,race,,SR1 DS:79A6
+global,DS:A1C6,rot_rear5,Pic far*[7],race_render,,level-5 at 7 angles
+global,DS:A1E4,opp_phys,phys_t,race,,SR1 DS:79E2
+global,DS:A2A8,opp_green,i16,race,,new
+global,DS:A2AA,track_end,i16,race,,SR1 DS:6CAA
+global,DS:A2B0,opp_v80,i16,race,,SR1 DS:6CB0
+global,DS:A2B4,start_light_pos,s16,race_render,,SR1 7AAE (now +4/frame)
+global,DS:A2B6,aq_car_sxl,i16,race_render,,car left screen x at z=4 (A55A right)
+global,DS:A2BA,g_ptr_save,far Desc*,video,,pointer save-under descriptor (`A2BA`); cursor state block `A2BA..A2E0`; SR1 DS:7AEC
+global,DS:A2D8,cursor_state,i8,video,,"0 off, 1 on, <0 restoring; SR1 DS:7B0A"
+global,DS:A2E2,row_xr,s16[15],race_render,,SR1 7ACE (shared front/mirror)
+global,DS:A300,row_yeye,s16[15],race_render,,SR1 7AB0
+global,DS:A31E,arena_low_depth,u16,platform,,depth of the low stack (mode 1); SR1 DS:7B14
+global,DS:A320,rot_front,Pic far*[7],race_render,,front at 7 angles
+global,DS:A33C,opp_v70,i16,race,,SR1 DS:6CB2
+global,DS:A33E,lat_last_opp_step,i16,race,,new
+global,DS:A540,rot_sin,s16,race_render,,sin x256
+global,DS:A542,forsale_head,u16,garage,,SR1 7D16
+global,DS:A544,scene_ptr,Anim*,video,,sprite scene header (`sprite_scene_setup` return) with fields `A546..A556`; SR1 DS:7D18
+global,DS:A558,ai_edge_right,s16,race_render,,SR1 7D2E
+global,DS:A55C,opp_bank,i16,race_render,,opponent bank angle (degrees)
+global,DS:A55E,seg,s16,race_render,,current segment (SR1 7D30)
+global,DS:A560,substep,s16,race_render,seg_frac64,0..63 (SR1 7D32 0..7)
+global,DS:A562,step_per_frame,s16,race_render,seg_step,SR1 7D34 x8
+global,DS:A564,cam_x,s16,race_render,lat,SR1 7D36
+global,DS:A566,cam_y,s16,race_render,,SR1 7D38
+global,DS:A568,cam_unused,s16,race_render,,SR1 7D3A
+global,DS:A56A,heading,s16,race_render,,SR1 7D3C
+global,DS:A56C,cur_height,s16,race_render,,SR1 7D3E
+global,DS:A56E,vs_king,i16,race,,SR1 DS:7D40
+global,DS:A5A8,row_ybank_l,s16[15],race_render,,y of 0x7D0-BL
+global,DS:A5F8,opp_slack,i16,race,,SR1 DS:6CAE
+global,DS:A5FC,page_nodes,PageNode[2],video,,animation page ring (16-byte nodes); SR1 DS:7D42
+global,DS:A61C,list_entries,u16[16],game_flow,list_text,SR1 49E0
+global,DS:A79E,seg_centre_ptr,far u16*,race_render,,SR1 7D62
+global,DS:A7A2,start_lights,i16,race,,SR1 DS:7D66
+global,DS:A7A4,front_row_seg,s16,race_render,,seg+row of the front row being drawn
+global,DS:A7A8,rot_cx,s16,race_render,,rotation centre x
+global,DS:A7AA,opp_model_ptr,near*,race,,SR1 DS:7D7A
+global,DS:A7AC,start_active,i16,race_render,,start panel active
+global,DS:A7AE,row_ybank_r,s16[15],race_render,,y of 0x7D0-BR
+global,DS:A7CC,rot_cy,s16,race_render,,rotation centre y
+global,DS:A7CE,mus_elapsed,u32,sound,,never read
+global,DS:A7D2,aq_hit_bits,u16,race_render,,"1/4 wall openings, 0x20/0x40 floor obstacles"
+global,DS:A7D4,opp_sprite,i16,race_render,,current opponent sprite (SR1 7D7C)
+global,DS:A7D8,arena_top_index,u16,platform,,"index of the top stack (mode 2), starts 0x3C; SR1 DS:7D80"
+global,DS:A7DA,edge_left,s16,race_render,,SR1 7D82
+global,DS:A7DC,vel_cache,u8[11],sound,,last note-on velocity per voice
+global,DS:A7EA,row_ykerb,s16[15],race_render,,y of world 0x79E
+global,DS:A80A,opp_rec,near*,race,,SR1 DS:7D84
+global,DS:A80C,MODELS,MODEL[22],garage,,SR1 7D86
+global,DS:A9C4,engine_note_div,u16,sound,,dead
+global,DS:A9C6,opp_seg,i16,race,,SR1 DS:7E8A
+global,DS:A9C8,opp_seg_frac64,i16,race,,SR1 DS:7E8C
+global,DS:A9CA,opp_seg_step,i16,race,,SR1 DS:7E8E
+global,DS:A9CC,opp_lat,i16,race,,SR1 DS:7E90
+global,DS:A9D6,arena2_size,u16,platform,,size of arena 2 (45000 / 62800 / 40000)
+global,DS:A9D8,save_name,char[16],game_flow,,header +00; slot label (SR1 7E9A was the only name)
+global,DS:A9E8,player_name,char[16],game_flow,,header +10; driver name (SR1 7E9A)
+global,DS:A9F8,road_seed,u32,game_flow,race_road_seed,header +20; NEW
+global,DS:A9FC,money,i32,game_flow,,header +24; SR1 7EAA
+global,DS:AA00,skill_a,u8,game_flow,player_win_rating,header +28; NEW 1..8
+global,DS:AA01,skill_b,u8,game_flow,player_holeshot_rating,header +29; NEW 1..8
+global,DS:AA02,cur_car,u16,game_flow,,header +2A; SR1 7EB0
+global,DS:AA04,car_list,u16,game_flow,other_cars,header +2C; SR1 7EB2
+global,DS:AA06,car_freelist,u16,game_flow,car_free_list,header +2E; SR1 7EB4
+global,DS:AA08,car_count,i16,game_flow,cars_used,header +30; SR1 7EB6
+global,DS:AA0A,spare_parts,u16,game_flow,spares,header +32; SR1 7EB8
+global,DS:AA0C,part_freelist,u16,game_flow,part_free_list,header +34; SR1 7EBA
+global,DS:AA0E,part_count,i16,game_flow,parts_used,header +36; SR1 7EBC; limit 0xB5
+global,DS:AA10,start_flag,u16,game_flow,holeshot,"runtime; set by race code, steers skill_b in Grudge Night"
+global,DS:AA9C,aq_saved_floor_h,i16,race_render,,"this frame's deformation copy (also B8BE,BB8A,B8E6)"
+global,DS:AA9E,opp_sprite_sets,Row[6] (14 bytes),race_render,,"SR2_DATA block 8: {side,r34,rear ids; recA,recB ptrs; front id; recC ptr}"
+global,DS:AAF8,opp_last_sx,i16,race_render,,last opponent screen x
+global,DS:AAFA,police_sprite_set,near Row*,race_render,,= 0xAAE4 (row 5)
+global,DS:AB00,opp_index,i16,race,,SR1 DS:7F82
+global,DS:AB02,opp_present,i16,race,,SR1 DS:7F86
+global,DS:AB24,start_pic2,Pic far*,race_render,,2068/2071/extract of 2069; rotator scratch when DS:80A0
+global,DS:AB28,dash_overlay_idx,i16,race_render,dash_type,block 2 byte 1 of the player model
+global,DS:AB2A,bank_block,u16*,sound,,MSR.SND control block
+global,DS:AB2C,police_state,i16,race,,SR1 DS:7F88
+global,DS:AB2E,row_xol,s16[15],race_render,,SR1 7F8A
+global,DS:AB5E,row_xor,s16[15],race_render,,SR1 7FD8
+global,DS:AB7E,people,22 x 0x12,game_flow,PEOPLE,SR1 7FF8
+global,DS:AD03,king_ready,u8,race,,SR1 DS:817D
+global,DS:AD0C,page1_ptr,far Pic*,race_render,race_front,SR1 8188
+global,DS:AD10,g_front,far Desc*,video,,"visible page descriptor (DS:AD10 off, AD12 seg); SR1 DS:822A"
+global,DS:AD14,g_back,far Desc*,video,,"back page descriptor drawn into (AD14, AD16); SR1 DS:822E"
+global,DS:AD18,bay_bitmap,FarPtr,garage,g_aux_a,SR1 8232
+global,DS:AD1A,g_aux_b,u16,video,,cleared by `gfx_init`; SR1 DS:8234
+global,DS:AD1C,driver_id,i16,video,,"-2 EGA/VGA, -4 Hercules, -6 Tandy (CGA: type byte FDh in the page descriptor, id stays whatever `driver_select` set); SR1 DS:8236"
+global,DS:AD1E,g_nplanes,u16,video,,"4 on EGA/VGA, 1 on CGA/Herc/Tandy; SR1 DS:8238"
+global,DS:AD20,g_px_shift,u16,video,,pixel -> byte shift (3 on EGA/VGA); SR1 DS:823A
+global,DS:AD22,g_px_factor,u16,video,,"1 (EGA/VGA), 2 (CGA), 4 (Tandy); SR1 DS:823C"
+global,DS:AD24,g_x_align,i16,video,,x alignment mask: 0xFFF8 on EGA/VGA; SR1 DS:823E
+global,DS:AD26,g_mirror,u16,video,,1 = also copy drawing from the back page to the front page (double buffering); SR1 DS:8240
+global,DS:AD28,g_text_fg,u8,video,,text foreground (scheme colours); `AD29` = background; SR1 DS:8242 / 8243
+global,DS:AD2A,g_fill_col,u8,video,,fill colour; `AD2B` = line colour; SR1 DS:8244 / 8245
+global,DS:AD2C,g_frame_style,u8,video,,"0 none, 1 single, 2 double, 3 solid; SR1 DS:8246"
+global,DS:AD2D,ui_level,u8,platform,g_ui_level,2 = after `cursor_init` (SR1: used by menus); SR1 DS:8247
+global,DS:AD2E,g_overscan,u8,video,,overscan (border) register value for `ega_set_palette`; SR1 DS:8248
+global,DS:AD2F,g_pal_visible,u8,video,,"0 after `pal_black`, 1 after `pal_normal`; SR1 DS:8249"
+global,DS:AD32,g_text_end_x,i16,video,,end x of the last `draw_text` (AD34 = y); SR1 DS:824C / 824E
+global,DS:AD36,status_w,u16,video,,"status line parameters set by `status_init` (AD36 = 0x58, AD38 = y + 1, AD3A = 0xA0, AD3C, AD3E); SR1 DS:8254.. 8258"
+global,DS:AD40,ui_colours,u16[12],video,,**new**: UI palette indices set by `gfx_init` (`AD40` .. `AD56`; see `gfx_init`); SR1 DS:8266 / 8268 / 7644..
+global,DS:AD58,view_rect_ptr,u16*,video,,pointer to the view rect; `AD5C/AD5E/AD60` its corner coordinates (`rect_clip_to_view`); SR1 DS:825A..8262
+global,DS:AD5C,car_x,i16,garage,,SR1 825E
+global,DS:AD5E,car_y,i16,garage,,SR1 8260
+global,DS:AD60,car_h,i16,garage,,SR1 8262
+global,DS:AD62,gascap_x,i16,garage,,SR1 826E
+global,DS:AD64,gascap_y,i16,garage,,SR1 8270
+global,DS:AD66,bet_button,i16,race,,SR1 DS:8278
+global,DS:AD68,aq_shape_variant,i16,race_render,,SR2_SHP format-B variant 0..6
+global,DS:AD6C,tourn_round,i16,game_flow,grudge_round,"-1 qualifier, 0..3"
+global,DS:AD6E,garage_car_pic,i16,garage,opp_car_pic,SR1 827A
+global,DS:AD70,garage_car_colour,i16,garage,opp_paint,SR1 827C
+global,DS:AD72,garage_car_tyre,i16,garage,opp_tyre_grade,SR1 827E
+global,DS:AD74,garage_car_driver,i16,garage,opp_face,SR1 8280
+global,DS:AD76,garage_car_model,i16,garage,,SR1 8282
+global,DS:AD78,garage_car_flags,u16,garage,,SR1 8284
+global,DS:AD7A,trans_pic,i16,garage,,SR1 8286
+global,DS:AD84,bay_slot_pic,i16[5],garage,,SR1 8290
+global,DS:AD8E,bay_bolt_pic,i16[6],garage,,tightness; SR1 829A
+global,DS:AD9A,bay_connector_pic,i16,garage,,SR1 82AC
+global,DS:AD9C,bay_ctx,i16,garage,,SR1 82AE
+global,DS:ADA0,bay_side,i16,garage,,SR1 82B2
+global,DS:ADA2,page2_ptr,far Pic*,race_render,race_back,SR1 82B4
+global,DS:ADA6,aq_trough_near_y,i16,race_render,,9EF0[0] (B162 = far y)
+global,DS:ADA8,tourn_dialin,i16,game_flow,player_dialin,player dial-in
+global,DS:ADAE,distance,i32,race,,SR1 DS:82BC
+global,DS:ADB2,row_xfar_l,s16[15],race_render,,x of -(w-0x177)*4
+global,DS:ADD0,wheel_shown,i16,race,,SR1 DS:82C2
+global,DS:ADD2,vib_rec_ptr,u16,sound,,SR1 82C4
+global,DS:ADD4,obstacle14_hit,s16,race_render,,-1/0/+1 shape-0x14 obstacle in row 1 over wheels
+global,DS:ADD6,road_mode,u16,platform,race_kind,"shape-set list selector (0, 1, 2, 4, 8, 0x10)"
+global,DS:ADD8,slow_machine,u16,platform,,1 when `cpu_speed < 4`; SR1 DS:82C6
+global,DS:ADDA,pct_covered,i16,race,,SR1 DS:82C8
+global,DS:ADDC,hall,10 x 23,game_flow,,SR1 82CA
+global,DS:AEC2,car_pool,16 x 0x2A,game_flow,,SR1 83B0
+global,DS:B164,gear_label_cache,i16,race,,SR1 DS:8630
+global,DS:B168,player_ahead,i16,race,,SR1 DS:8632
+global,DS:B16A,seg_right_ptr,far u16*,race_render,,SR1 8634
+global,DS:B16E,aq_trough_near_xl,i16,race_render,,trough left edge at nearest row (B872 right)
+global,DS:B170,aq_rot_floor_rx,i16[15],race_render,,"rotated floor-right x, reversed (y at B1A0)"
+global,DS:B18E,timerun_ref_steps,i16,race,,new
+global,DS:B190,aq_roll_abs,i16,race_render,,abs(roll)
+global,DS:B192,mus_desc,u16,sound,,current song descriptor
+global,DS:B194,aq_rows,s16,race_render,,14 front / 7 mirror for a094/9ce8
+global,DS:B196,demo_target_y,i16,game_flow,,
+global,DS:B198,opp_pic,far ptr,race_render,,sprite drawn last
+global,DS:B19C,ai_recentre,i16,race,,SR1 DS:8648
+global,DS:B19E,mus_delay,u16,sound,,current delay
+global,DS:B1BE,part_pool,0xBE x 8,game_flow,,SR1 866A
+global,DS:B7AE,racing,u8,video,,non-zero while a race / event screen is active (redirects the pointer to the race pages); SR1 DS:8ACA
+global,DS:B7B0,aq_pitch,i16,race_render,,roll-rate pitch subtracted from projection dy
+global,DS:B7B2,start_panel_id,u16,race_render,start_panel,2067 / 2069 / 2070
+global,DS:B7B4,cpu_speed,u16,platform,,"`cpu_speed_calibrate` result (polls per 55 ms tick / 950, minimum 1); SR1 DS:8ACC"
+global,DS:B7B6,opp_sprites,Pic far*[13],race_render,,opponent sprite levels 0..12 (SR1 8ACE)
+global,DS:B7EA,aq_trough_far_xl,i16,race_render,,trough left edge at farthest row (B8D8 right)
+global,DS:B7EC,arena_w,u16[],platform,,arena allocation table W (W[0x3C] = `DS:B864`); SR1 DS:8B02
+global,DS:B864,arena_w_top,u16,platform,,W[0x3C]; SR1 DS:8B7A
+global,DS:B86E,bank_handle,u16,sound,,bank block used by timbre lookups
+global,DS:B870,vib_amount,u16,sound,,SR1 6C52
+global,DS:B874,ui_stack,i16[],garage,,screen stack
+global,DS:B87C,ui_depth,i16,garage,gfx_aux,
+global,DS:B888,ui_row0,UIEL*,garage,,first list row element
+global,DS:B88A,ui_rows,i16,garage,,
+global,DS:B88E,ui_sel,i16,garage,,selected list row (0-based)
+global,DS:B890,ui_field,UIEL*,garage,,title/edit element
+global,DS:B894,ui_cur,UIEL*,garage,,
+global,DS:B898,ui_hover,i16,garage,,
+global,DS:B89A,gas_pump_sheet,far*,race,,new
+global,DS:B89E,row_xfar_r,s16[15],race_render,,x of (w+0x339)*4
+global,DS:B8BC,wall_hit_shift,s16,race_render,,view shift during wall bounce
+global,DS:B8C0,opp_alongside,i16,race_render,,alongside flag (SR1 8BC2)
+global,DS:B8C2,tourn_time,i16,game_flow,race_time10,tenths of a second
+global,DS:B8C6,opp_last_d,i16,race_render,,last opponent distance (1/64 seg)
+global,DS:B8C8,aq_wall_hit,s16,race_render,,Aqueduct wall side +-1
+global,DS:B8CA,lib1_count,u16,platform,,LIB1 picture count (4); SR1 DS:8BC8
+global,DS:B8CC,pic_hood,Pic far*,race_render,,hood overlay picture (SR1 8BCA)
+global,DS:B8D0,sw_demo,u16,game_flow,,SR1 8BCE
+global,DS:B8D2,edge_right,s16,race_render,,SR1 8BD0
+global,DS:B8D6,lib2_count,u16,platform,,LIB2 picture count (0xD4); SR1 DS:8DD2
+global,DS:B8DA,lib3_count,u16,platform,,"**LIB3 picture count (0x53, new)**"
+global,DS:B8DE,lib1_path,char*,platform,,pointer to the LIB1 path string (`?:lib1` / `?:lib1c`); SR1 DS:8DD4
+global,DS:B8E2,lib2_path,char*,platform,,LIB2 path string; SR1 DS:8DD6
+global,DS:B8E4,opp_vmax,i16,race,,SR1 DS:6CAC
+global,DS:B8E8,lib3_path,char*,platform,,**LIB3 path string (new)**
+global,DS:B8EA,mus_desc_tab,u8[6][70],sound,,song headers
+global,DS:BA90,rot_cos,s16,race_render,,cos x256
+global,DS:BA92,rot_tmp_live,i16,race_render,,ad40 temp shrink pending pop
+global,DS:BA94,mus_data_tab,far*[6],sound,,song data
+global,DS:BAAC,MODEL_OVERLAYS,OVERLAY[22],garage,,SR1 8DF0
+global,DS:BB88,rock_hit,s16,race_render,,-1/0/+1 rock in row 1 over left/right wheels (Mulholland)
+global,DS:BB8C,snd_vec,far*[25],sound,,active slot table
+global,DS:BC4C,arena_perm,u16,platform,,permanent bump pointer of arena 1; SR1 DS:8F00
