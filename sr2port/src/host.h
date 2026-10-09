@@ -21,7 +21,7 @@ void host_set_pit_divisor(u16 divisor);
 /* Source of the displayed image: fills a w x h XRGB8888 frame and returns true if it changed since the
  * last call. Installed by the EGA/VGA model (platform/ega.c, 320x200 16 colours). Shown with 4:3
  * aspect. */
-#define HOST_FRAME_MAX_W 320
+#define HOST_FRAME_MAX_W 640         /* PORT: the 80x25 text mode of the start-up menus (platform/textmode.c) */
 #define HOST_FRAME_MAX_H 200
 void host_set_frame_source(bool (*compose)(u32 *xrgb), int w, int h);
 

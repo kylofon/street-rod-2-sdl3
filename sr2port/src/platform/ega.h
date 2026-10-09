@@ -18,6 +18,7 @@
 #define EGA_BYTES_PER_LINE 40
 
 void ega_init(void);                         /* installs the frame source, clears the planes */
+void ega_show(void);                         /* makes the planes the displayed frame source (after text mode) */
 u8  *ega_plane(int plane);                   /* plane 0..3, EGA_PLANE_SIZE bytes (vga.c, compose) */
 
 void ega_set_start(u16 offset);              /* CRTC start address (bytes) */

@@ -41,13 +41,18 @@ static bool compose(u32 *xrgb)
     return true;
 }
 
+void ega_show(void)
+{
+    dirty = true;
+    host_set_frame_source(compose, 320, 200);
+}
+
 void ega_init(void)
 {
     memset(planes, 0, sizeof planes);
     start_addr = 0;
     line_compare = 200;
-    dirty = true;
-    host_set_frame_source(compose, 320, 200);
+    ega_show();
 }
 
 u8 *ega_plane(int plane) { return planes[plane & 3]; }

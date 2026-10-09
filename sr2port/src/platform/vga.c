@@ -36,7 +36,7 @@ void vga_mode_0d(void)
     memcpy(vga.crtc, crtc_mode_0d, sizeof vga.crtc);
     for (int i = 0; i < 17; i++) ega_set_palette_reg(i, pal[i]);
     crtc_apply();
-    ega_touch();
+    ega_show();                              /* PORT: leaves the text mode of the start-up menus */
 }
 
 void vga_out(u16 port, u8 v)

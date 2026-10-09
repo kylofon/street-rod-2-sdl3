@@ -24,10 +24,12 @@ src/game/         game.h, game_main.c = placeholder (LIB1 #0); real game code ar
 third_party/nuked-opl3/   Nuked-OPL3 (LGPL-2.1+, LICENSE), compiled as library nuked_opl3, unused until S5.4
 ```
 
-What was **dropped** from SR1's srport (it references SR1 addresses; port it again from the deltas, S5.x):
-`platform/{startup,timer,kbd,input,dos,memory,drv_ega,blit,anim_rect,gfx,screen}.c`, `platform.h`,
-`video.h`, `modules.*`, `sound/`, `game/*`, `launcher/`, `tools/snd_dump.c`. Take them from
-`../../StreetRod/srport/src/` (copy with the shell, then edit) when the owning subtask starts.
+S5.1 (platform + video) added: `src/platform/{startup,timer,kbd,input,dos,memory,drv_ega,blit,anim_rect,gfx,
+screen,lib,textmode}.c`, `platform.h`, `video.h`, `ds_extra.h` (DGROUP offsets that `symbols.h` lacks or names
+differently), `modules.h/.c` (hooks into race / sound / game_flow, all stand-ins for now) and
+`game/flow_stub.c` (the few game_flow functions the start-up chain needs: `rnd`, `input_reset`,
+`wait_click_or_key`, `title_sequence`, empty `hot_data_load` / `hall_load`; S5.2 replaces the file).
+Not yet taken from SR1 (their owners come later): `sound/` (S5.4), `game/*` (S5.2, S5.3), `launcher/`.
 
 Build (MSYS2 mingw64 SDL3, as SR1; put `C:\msys64\mingw64\bin` on PATH or the compiler test fails):
 `cmake -S sr2port -B sr2port/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc`.
@@ -108,4 +110,13 @@ arena). Spec: `../port/spec/race_render.md` 1.1; formats in `../FORMATS.md`.
 ## Faithful only
 
 No enhancements (resolution, widescreen, new options): add an idea as a row to PLAN.md "Enhanced backlog".
-The port's own additions are marked `PORT:` in the code and listed here when they exist (none yet).
+The port's own additions are marked `PORT:` in the code. Larger ones:
+
+* `platform/textmode.c`: the 80x25 text mode of the two start-up menus (video options, sound options) is drawn
+  with the game's own 8x8 font into a 640x200 frame (`HOST_FRAME_MAX_W` is 640); keys come from the XT stream.
+  The detection (VGA assumed, EGA runs as VGA, CGA / Hercules / Tandy refuse) replaces the BIOS probes.
+* `platform/dos.c`: the far heap is not the MSC 6.0 allocator; each `_fmalloc` is its own DOS block in `mem[]`
+  (the game cannot observe the difference); `_dosmaperr` stores errno = DOS code.
+* `modules.c`: function-pointer hooks for the sound ISR parts, the race physics step and `fatal_message`.
+* `game/flow_stub.c`: everything game_flow-owned that the start-up chain calls, plus an idle loop with the
+  pointer movement of `ui_wait` so the pointer / mouse / keyboard ISR model can be tried.

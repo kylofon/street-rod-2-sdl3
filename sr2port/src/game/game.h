@@ -1,8 +1,5 @@
 #pragma once
-/* The game proper. Phase 4 placeholder: game_main shows LIB1 picture #0 (S4.1); the real
- * game_loop (SR2 main, 0001:xxxx) arrives with S5.x. */
-#include "types.h"
-
-int game_main(void);
-/* --run-ms N (developer aid): leave game_main after N ms; 0 = run until the window is closed. */
-extern int game_run_ms;
+/* The game entry: main.c calls game_main(argc, argv) after the host and the display model are up.
+ * game_flow (S5.2) owns it; until then game/flow_stub.c stops after the title. */
+extern int game_run_ms;           /* developer aid: --run-ms N, 0 = run until the window is closed */
+int game_main(int argc, char **argv);

@@ -6,7 +6,7 @@
  *   --fullscreen  start in full screen (Alt+Enter switches)
  *   --check       load and verify the original executable, print a summary and exit (no window)
  *   --run-ms N    developer aid: exit after N ms (headless snapshot runs)
- *   the original's command-line switches are passed on as they are: 1, nomouse, demo, nouemem
+ *   the original's command-line switches are passed on as they are: 1, nomouse, demo, nouemem, e c v h t (force EGA / CGA / VGA / Hercules / Tandy: skips the video menu)
  */
 #define SDL_MAIN_HANDLED
 #include <SDL3/SDL.h>
@@ -23,7 +23,7 @@
 static int usage(const char *prog)
 {
     fprintf(stderr, "usage: %s [--game-dir DIR] [--scale N] [--fullscreen] [--check] [--run-ms N] "
-                    "[1] [nomouse] [demo] [nouemem]\n", prog);
+                    "[1] [nomouse] [demo] [nouemem] [e|c|v|h|t]\n", prog);
     return 2;
 }
 
@@ -41,6 +41,9 @@ static void find_exe(const char *dir, char *path, size_t n)
 int main(int argc, char **argv)
 {
     const char *dir = "Game";
+    char *game_argv[64];
+    int game_argc = 0;
+    game_argv[game_argc++] = argv[0];
     int scale = 3;
     bool check = false, fullscreen = false;
     for (int i = 1; i < argc; i++) {
@@ -51,7 +54,7 @@ int main(int argc, char **argv)
         else if (!strcmp(a, "--fullscreen")) fullscreen = true;
         else if (!strcmp(a, "--check")) check = true;
         else if (a[0] == '-' && a[1] == '-') return usage(argv[0]);
-        /* PORT: the original's switches (1, nomouse, demo, nouemem) are parsed by the game start-up (S5.1) */
+        else if (game_argc < 63) game_argv[game_argc++] = argv[i];   /* a switch of SR.EXE */
     }
 
     char exe_path[1024], err[256];
@@ -68,7 +71,6 @@ int main(int argc, char **argv)
 
     if (!host_init(dir, scale, fullscreen)) return 1;
     ega_init();                     /* 16-colour planar display: frame source, planes */
-    int rc = game_main();
-    host_shutdown();
-    return rc;
+    game_argv[game_argc] = NULL;
+    return game_main(game_argc, game_argv);     /* the original's switches (1, nomouse, demo, nouemem, e c v h t) are read there */
 }
