@@ -78,6 +78,24 @@ static void slot_not_ported(void)
     host_fatal("driver slot not ported yet (race_render / polygon fill, S5.3)");
 }
 
+/* 0dcb:0006 plot_points_ega (slot 19): plots n points {x, y} (x + xoff; y is not offset) with set/reset colour into the planar
+ * page buf (40 bytes a row); points outside the clip box DS:7E12..7E18 are skipped. PORT: race_render owns it (S5.3) but the
+ * gas station LEDs (2925:1e08) need it; the rotation about the centre (DS:9E70 != 0, road renderer only) is not ported yet. */
+void plot_points_ega(FarPtr buf, s16 xoff, const s16 *pts, s16 n, s16 colour)
+{
+    outw(0x3CE, (u16)((u8)colour << 8 | 0));
+    outw(0x3CE, 0x0F01);
+    outw(0x3CE, (u16)((DSW(DS_g_gc3) & 0xFF00) | 3));
+    for (s16 i = 0; i < n; i++) {
+        s16 x = (s16)(xoff + pts[2 * i]), y = pts[2 * i + 1];
+        if (x < DSS(DS_clip_xmin) || x > DSS(DS_clip_xmax) || y < DSS(DS_clip_ymin) || y > DSS(DS_clip_ymax)) continue;
+        u16 o = (u16)(buf.off + (u16)y * 0x28 + ((u16)x >> 3));
+        outw(0x3CE, (u16)((u8)(0x80 >> (x & 7)) << 8 | 8));
+        vwr(buf.seg, o, vrd(buf.seg, o));
+    }
+    outw(0x3CE, 0xFF08);
+}
+
 /* The 20 targets of the EGA template DS:7B38 (checked against the loaded image: the far pointers stored
  * there are exactly these addresses). */
 void video_register_codeptrs(void)
@@ -101,7 +119,7 @@ void video_register_codeptrs(void)
     codeptr_register(FN_pic_rotate_planar,(CodeFn)slot_not_ported);    /* slot 16 0dcb:bd12 (S5.3) */
     codeptr_register(FN_ega_set_colour,   (CodeFn)ega_set_colour);     /* slot 17 2f32:1932 */
     codeptr_register(FN_poly_fill,        (CodeFn)slot_not_ported);    /* slot 18 33f8:01ca (S5.3) */
-    codeptr_register(FN_plot_points_ega,  (CodeFn)slot_not_ported);    /* slot 19 0dcb:0006 (S5.3) */
+    codeptr_register(FN_plot_points_ega,  (CodeFn)plot_points_ega);    /* slot 19 0dcb:0006 */
 }
 
 /* ============================================================= CRTC, retrace waits (§4.3) */

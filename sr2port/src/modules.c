@@ -1,6 +1,8 @@
 /* Wiring of the cross-subsystem hooks (modules.h). Each stand-in below is replaced by the ported
  * function once its subsystem lands: e.g.  modules.snd_timer_tick = snd_timer_tick;  */
 #include "modules.h"
+#include "game/ui.h"
+#include "game/events.h"
 
 #include <stdio.h>
 
@@ -11,14 +13,6 @@ Modules modules;
 static void nop(void) {}
 static void nop_u8(u8 v) { (void)v; }
 static void nop_s16(s16 v) { (void)v; }
-static void nop_page(FarPtr p, s16 i) { (void)p; (void)i; }
-
-/* 1a21:204c draws a message box and waits for a key. PORT: until game_flow (S5.2) is ported the stand-in
- * only reports the text on stderr (every caller leaves through platform_exit right after). */
-static void fatal_message_stub(const char *s)
-{
-    fprintf(stderr, "message: %s\n", s);
-}
 
 void modules_init(void)
 {
@@ -34,7 +28,7 @@ void modules_init(void)
     modules.snd_init = nop_s16;
     modules.mus_songs_load = nop;
 
-    modules.event15_overlay = nop_page;           /* garage / race */
+    modules.event15_overlay = pump_strip_draw;     /* 2925:1cae */
 
-    modules.fatal_message = fatal_message_stub;   /* S5.2 */
+    ui_register_hooks();                          /* fatal_message 1a21:204c */
 }
