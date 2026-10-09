@@ -34,7 +34,7 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 ## Status
 
 - **Done:** S0.1 (repo), S1.1–S1.4 (unpacked, indexed, matched with SR1, Ghidra: `port/RE_GUIDE.md` §1–2); S1.5 (what changed, `RE_GUIDE.md` §3); S2.3, S2.5 (`FORMATS.md`); S2.1, S2.2, S2.4 waiting for your U5 checks. Phase 3: all delta specs (`port/spec/*.md`, 913/913 functions, `tools/sr2_coverage.py`).
-- **Next:** S4.1 (Sonnet), phase 4 skeleton. Your tasks: **User to-do** above.
+- **Next:** S5.1 (Sonnet), platform + video deltas. Your tasks: **User to-do** above.
 - Escalation rule: a subtask that fails twice on Sonnet → new Opus session with a 5-line note
   (symptom, file, what was tried). Never carry an old transcript over.
 
@@ -139,8 +139,12 @@ Notes:
 ### Phase 4 — `sr2port/` skeleton
 | Id | Task | Model | Size |
 |---|---|---|---|
-| S4.1 | `git -C ../StreetRod archive v0.1.0 srport` → `sr2port/` (no build dirs, no launcher); rename targets to `sr2port`; loader unpacks SR2's exe (S1.1 result); code pointers re-based on SR2 addresses; placeholder `game_main` shows `LIB1` #0; headless check runs | S | M |
-| S4.2 | Generated `symbols.h` from `port/symbols.csv` (`tools/gen_symbols.py`), module headers (`gen_module_headers.py`), `sr2port/PORTING.md` deltas | H | S |
+| S4.1 | `git -C ../StreetRod archive v0.1.0 srport` → `sr2port/` (no build dirs, no launcher); rename targets to `sr2port`; loader unpacks SR2's exe (S1.1 result); code pointers re-based on SR2 addresses; placeholder `game_main` shows `LIB1` #0; headless check runs | S | done 2026-10-09 |
+| S4.2 | Generated `symbols.h` from `port/symbols.csv` (`tools/gen_symbols.py`), module headers (`gen_module_headers.py`), `sr2port/PORTING.md` deltas | H | done 2026-10-09 |
+
+Notes:
+- S4.1: `sr2port/` from SR1 `v0.1.0` (host, mem, codeptr, EGA/VGA model); SR1 game/platform modules dropped (they use SR1 addresses) and re-copied per S5 subtask. New `platform/lib.c` (28-byte LIB records, unpack escape), placeholder `game_main` (LIB1 #0). Build: `cmake -S sr2port -B sr2port/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc` with `C:\msys64\mingw64in` on PATH; 0 warnings; `sr2port --check`; headless `SDL_VIDEO_DRIVER=dummy SR_SNAPSHOT_DIR=work/s41snap sr2port --run-ms 600` → BMP snapshots. Nuked-OPL3 in `third_party/` (unused yet).
+- S4.2: `tools/gen_symbols.py` (SR1 version) → `sr2port/src/symbols.h` (913 FN_, 654 DS_); no module-header generator; `sr2port/PORTING.md`.
 
 ### Phase 5 — Port the deltas, module by module
 Same functions keep the SR1 code (re-pointed at SR2 data addresses); changed/new ones are ported from
