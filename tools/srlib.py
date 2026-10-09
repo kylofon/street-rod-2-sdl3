@@ -14,9 +14,9 @@ Packing (unpacker 0e92:0006, input = data[1:size]):
 16-colour pictures are planar: 4 planes one after the other (plane 0 = blue bit ... 3 = intensity),
 each height rows of width/8 bytes, MSB = leftmost pixel. CGA pictures: 2 bits per pixel, linear.
 
-usage: srlib.py Game/LIB2 work/lib2 [--palette game|credits|ega]   -> PNG per picture + contact sheet
-  game (default): the EGA palette registers at DS:0440 of work/SR_unp.exe (title, garage ...),
-  credits: DS:02D4, ega: the BIOS default. Register values index the 16 IRGB colours (the game
+usage: srlib.py Game/LIB2 work/lib2 [--palette game|DSOFF|ega]   -> PNG per picture + contact sheet
+  game (default): the EGA palette registers at DS:1DC8 of work/SR2_unp.exe (SR1: DS:0440),
+  DSOFF: another palette in DGROUP (hex), ega: the BIOS default. Register values index the 16 IRGB colours (the game
   sets them through INT 10h AX=1002h with bit 4 added for 8..15, i.e. the 200-line CGA colours).
   Car pictures use per-car palettes (garage spec), so their colours may still be off.
 """
@@ -31,23 +31,37 @@ EGA16 = [(0, 0, 0), (0, 0, 170), (0, 170, 0), (0, 170, 170), (170, 0, 0), (170, 
 CGA4 = [(0, 0, 0), (85, 255, 255), (255, 85, 255), (255, 255, 255)]
 
 
-def game_palette(ds_off, exe='work/SR_unp.exe'):
+def game_palette(ds_off, exe='work/SR2_unp.exe', dgroup=0x3E080):
+    # SR2: DGROUP 3E08; the SR1 game palette (SR1 DS:0440) is at DS:1DC8 (and DS:1E2E);
+    # the SR1 credits palette (DS:02D4) does not occur in SR2.
     d = open(exe, 'rb').read()
     img = d[struct.unpack_from('<H', d, 8)[0] * 16:]
-    regs = img[0x3E960 + ds_off:0x3E960 + ds_off + 16]
+    regs = img[dgroup + ds_off:dgroup + ds_off + 16]
     return [EGA16[r & 15] for r in regs]
 
 
 def read_lib(path):
+    """SR1 records: 30 bytes (above). SR2 records: 28 bytes, read by lib_read_dir 1a21:6432:
+    u16 width, u16 height, u8 depth (4 = 16 colours, 2 = CGA), u8 masked, u8 tokens[16],
+    u32 offset, u16 size; raw size = width*height*depth/8."""
     d = open(path, 'rb').read()
     n = struct.unpack_from('<H', d, 0)[0]
-    base = 2 + n * 30
+    rec = 30
+    if d[2 + n * 30:3 + n * 30] != b'\xBC' and d[2 + n * 28:3 + n * 28] == b'\xBC':
+        rec = 28
+    base = 2 + n * rec
     out = []
     for i in range(n):
-        p = 2 + i * 30
-        w, h, raw, masked = struct.unpack_from('<HHHB', d, p)
-        tokens = d[p + 7:p + 23]
-        off, size = struct.unpack_from('<IH', d, p + 24)
+        p = 2 + i * rec
+        if rec == 30:
+            w, h, raw, masked = struct.unpack_from('<HHHB', d, p)
+            tokens = d[p + 7:p + 23]
+            off, size = struct.unpack_from('<IH', d, p + 24)
+        else:
+            w, h, depth, masked = struct.unpack_from('<HHBB', d, p)
+            raw = w * h * depth // 8
+            tokens = d[p + 6:p + 22]
+            off, size = struct.unpack_from('<IH', d, p + 22)
         out.append(dict(index=i, w=w, h=h, raw=raw, masked=masked, tokens=tokens,
                         data=d[base + off:base + off + size + 1]))
     return out
@@ -107,8 +121,8 @@ def main():
     pics = read_lib(src)
     cga = src.upper().endswith('C')
     pal = CGA4 if cga else EGA16
-    if pal_name in ('game', 'credits') and not cga:
-        pal = game_palette(0x0440 if pal_name == 'game' else 0x02D4)
+    if pal_name != 'ega' and not cga:
+        pal = game_palette(0x1DC8 if pal_name == 'game' else int(pal_name, 16))   # or a DS offset in hex
     sheet = []
     for p in pics:
         pix = unpack(p['data'], p['tokens'], p['raw'])

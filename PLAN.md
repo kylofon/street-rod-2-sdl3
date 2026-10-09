@@ -24,12 +24,14 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 | U1 | Manual PDF → `docs\manual.pdf` (+ `pdftotext`), see U1 below | all | 10 min |
 | U2 | DOSBox-X reference setup, see U2 below | U3, U5 | 15 min |
 | U3 | Reference captures, see U3 below | S2.x checks | 30 min |
+| U5 | Look at `work\lib1\_sheet.png`, `work\lib2\_sheet.png`, `work\lib3\_sheet.png`: pictures intact? colours right for title/garage screens? (car pictures may use other palettes) | S2.1 | 5 min |
+| U5 | Listen to `work\sound\msrbeg.wav` (title) and `msr2.wav` against the game in DOSBox (or `title.dro`): instruments, tempo, drums OK? | S2.4 | 5 min |
 | U7 | Decisions (defaults apply if unanswered), see U7 below | plan | 5 min |
 
 ## Status
 
-- **Done:** S0.1 (repo), S1.1–S1.3 (unpacked, indexed, matched with SR1: `port/RE_GUIDE.md` §1–2).
-- **Next:** S1.4 (Haiku). Your tasks: **User to-do** above.
+- **Done:** S0.1 (repo), S1.1–S1.4 (unpacked, indexed, matched with SR1, Ghidra: `port/RE_GUIDE.md` §1–2); S2.1 and S2.4 decoded, waiting for your U5 checks (`FORMATS.md`).
+- **Next:** S1.5 (Sonnet), then S2.2, S2.3. Your tasks: **User to-do** above.
 - Escalation rule: a subtask that fails twice on Sonnet → new Opus session with a 5-line note
   (symptom, file, what was tried). Never carry an old transcript over.
 
@@ -90,20 +92,25 @@ Model: H = Haiku, S = Sonnet, O = Opus. Last column: size (S/M/L) until done, th
 | S1.1 | `tools/survey.py` on `SR.EXE` → `work/survey.txt`; identify the packer (try `tools/unexepack.py` first, else `unlzexe.py`/a new unpacker) → `work/SR2_unp.exe`, entry, relocs, DGROUP; summary into `RE_GUIDE.md` §1 | H | done 2026-10-09 |
 | S1.2 | Indexer `tools/sr2index.py` from `srindex.py`: segments, functions, DGROUP, strings, ints, ports → `port/sr2_functions.csv/.json` | S | done 2026-10-09 |
 | S1.3 | **SR1 match**: `tools/sr2match.py` (code, strings, DGROUP globals, call graph, link order) → `port/sr2_sr1_matches.csv` with class `same` / `changed` / `new`; SR1 names carried over → `port/symbols.csv`; counts per SR1 module into `RE_GUIDE.md` §2 | O | done 2026-10-09 |
-| S1.4 | Ghidra: adapt `tools/ghidra/sr2_*.sh` (from the F117 scripts), `SetDS` + `ApplySymbols` + `DecompileAll` headless in the background → `port/decomp/` (ignored); print only counts | H | S |
+| S1.4 | Ghidra: adapt `tools/ghidra/sr2_*.sh` (from the F117 scripts), `SetDS` + `ApplySymbols` + `DecompileAll` headless in the background → `port/decomp/` (ignored); print only counts | H | done 2026-10-09 |
 | S1.5 | Map of what changed (also: SR2 seeds for `sr2index.py` — handlers, graphics vectors; MSC 6 runtime names via `apmatch.py`): segment map, main state machine vs SR1, file loading (`LIB3`, `SR2_*`), sound-device dispatch (AdLib / Tandy / speaker), copy protection, switches → `RE_GUIDE.md` §3; module of every `changed`/`new` function (`tools/assign_modules.py`) | S | M |
 
 Notes:
+- S1.4: `bash tools/ghidra/sr2_ghidra.sh` (`decompile` = skip the import): 855 functions decompiled, 0 failed; pcode warnings in 2a21:4806, 3c57:1bc5/2875, 471c:0000/0012, 4722:0000 (Ghidra segments). Output `port/decomp/sr2.c`, `sr2_ds.c`, `sr2_globals_xref.txt`.
 - S1.3: MSC 6 rebuild means few byte-identical functions (56 `same`); `tdmatch.py` alone found 115. ~95 % of evidence-bearing pairs are callee-consistent; treat `order`/`calls` matches as strong hints, confirm in the specs.
 
 ### Phase 2 — File formats (output: `FORMATS.md`, decoders in `tools/`, PNG/WAV in `work/`)
 | Id | Task | Model | Size |
 |---|---|---|---|
-| S2.1 | `LIB1`/`LIB2`/`LIB3` through `tools/srlib.py` (extend for differences) → PNG + contact sheets; **U5 check** | S | S |
+| S2.1 | `LIB1`/`LIB2`/`LIB3` through `tools/srlib.py` (extend for differences) → PNG + contact sheets; **U5 check** | S | U5 pending |
 | S2.2 | `SR2_SHP` → PNG frames + contact sheet; **U5 check** against U3 captures | S | M |
 | S2.3 | `SR2_DATA`, `SR2_END`, exe tables (cars, parts, opponents, town, texts) via `tools/srtables.py` adapted → `FORMATS.md` | S | M |
-| S2.4 | Sound: `MSR.SND` bank + `.MUS` songs (AdLib Visual Composer formats), the game's AdLib driver/tempo, render via Nuked-OPL3 (`../F117-2/third_party/nuked-opl3`) → `work/sound/*.wav`; speaker-music deltas vs SR1 (`tools/srsnd.py`); **U5 listen** | S | M |
+| S2.4 | Sound: `MSR.SND` bank + `.MUS` songs (AdLib Visual Composer formats), the game's AdLib driver/tempo, render via Nuked-OPL3 (`../F117-2/third_party/nuked-opl3`) → `work/sound/*.wav`; speaker-music deltas vs SR1 (`tools/srsnd.py`); **U5 listen** | S | U5 pending |
 | S2.5 | Save games → `FORMATS.md` (diff against SR1's) | H | S |
+
+Notes:
+- S2.1: SR2 directory records are 28 bytes (FORMATS.md); LIB1 4, LIB2 212, LIB3 83 pictures, CGA variants too.
+- S2.4: `tools/sr2snd.py` (Ad Lib toolkit player re-implemented); speaker-music deltas still open (S3.2). The bank also carries AdLib sound effects.
 
 ### Phase 3 — Delta specs (output: `port/spec/<module>.md`, gate: `tools/spec_coverage.py` 100 %)
 SR1 modules and specs (`../StreetRod/port/spec/`) are the base. Per module: `same` functions get a
