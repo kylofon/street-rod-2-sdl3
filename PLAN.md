@@ -28,8 +28,8 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 
 ## Status
 
-- **Done:** S0.1 (repo).
-- **Next:** S1.1 (Haiku). Your tasks: **User to-do** above.
+- **Done:** S0.1 (repo), S1.1–S1.3 (unpacked, indexed, matched with SR1: `port/RE_GUIDE.md` §1–2).
+- **Next:** S1.4 (Haiku). Your tasks: **User to-do** above.
 - Escalation rule: a subtask that fails twice on Sonnet → new Opus session with a 5-line note
   (symptom, file, what was tried). Never carry an old transcript over.
 
@@ -60,7 +60,7 @@ junction to `C:\Coding\TestDrive1987\_tools` (Ghidra, JDK). Previous engine: `..
 
 | File(s) | Size | Notes |
 |---|---|---|
-| `SR.EXE` | 264 468 | MZ, 0 header relocs, CS:IP 3F08:0010, 32-paragraph header → packed (SR1 was EXEPACK; the "Packed file is corrupt" string is absent here, so S1.1 checks the stub). "MS Run-Time Library - Copyright (c) 1990" → **MSC 6.0** (SR1: MSC 5.1), so runtime functions will not byte-match SR1; game code should. Same video menu as SR1 (CGA / EGA / VGA 320×200×16 / Hercules / Tandy), new "STREET ROD II: Sound Options" menu (AdLib, Tandy, speaker). Switches seen: `nomouse`, demo mode |
+| `SR.EXE` | 264 468 | EXEPACK as SR1 (`tools/unexepack.py` → 288 912 bytes, entry 34b0:0018, 2721 relocs, DGROUP 3E08; 34 code segments, 863 functions). "MS Run-Time Library - Copyright (c) 1990" → **MSC 6.0** (SR1: MSC 5.1), so runtime functions will not byte-match SR1; game code shares the source (S1.3: 491 of SR1's 769 functions found). Same video menu as SR1 (CGA / EGA / VGA 320×200×16 / Hercules / Tandy), new "STREET ROD II: Sound Options" menu (AdLib, Tandy, speaker). Switches seen: `nomouse`, demo mode |
 | `LIB1`, `LIB2` (+`C`) | 43 K / 306 K (21 K / 268 K) | picture libraries, SR1 family (`tools/srlib.py`); `C` = 2-bit CGA variants |
 | `LIB3`, `LIB3C` | 144 K / 113 K | **new** third picture library (SR1 had two) |
 | `SR2_SHP` | 42 742 | ? shapes (sprites / road objects), read with a "Data disk read fail" check |
@@ -87,11 +87,14 @@ Model: H = Haiku, S = Sonnet, O = Opus. Last column: size (S/M/L) until done, th
 ### Phase 1 — Executable map (output: `port/RE_GUIDE.md`, `port/sr2_functions.csv`, `port/symbols.csv`)
 | Id | Task | Model | Size |
 |---|---|---|---|
-| S1.1 | `tools/survey.py` on `SR.EXE` → `work/survey.txt`; identify the packer (try `tools/unexepack.py` first, else `unlzexe.py`/a new unpacker) → `work/SR2_unp.exe`, entry, relocs, DGROUP; summary into `RE_GUIDE.md` §1 | H | S |
-| S1.2 | Indexer `tools/sr2index.py` from `srindex.py`: segments, functions, DGROUP, strings, ints, ports → `port/sr2_functions.csv/.json` | S | M |
-| S1.3 | **SR1 match**: `tools/tdmatch.py` (and `apmatch.py` for MSC 6.0 runtime) against `../StreetRod/port/sr_functions.json` → `port/sr2_sr1_matches.csv` with class `same` / `changed` / `new`; SR1 names (`../StreetRod/port/symbols.csv`) carried over → `port/symbols.csv`; counts per SR1 module into `RE_GUIDE.md` §2 | S | M |
+| S1.1 | `tools/survey.py` on `SR.EXE` → `work/survey.txt`; identify the packer (try `tools/unexepack.py` first, else `unlzexe.py`/a new unpacker) → `work/SR2_unp.exe`, entry, relocs, DGROUP; summary into `RE_GUIDE.md` §1 | H | done 2026-10-09 |
+| S1.2 | Indexer `tools/sr2index.py` from `srindex.py`: segments, functions, DGROUP, strings, ints, ports → `port/sr2_functions.csv/.json` | S | done 2026-10-09 |
+| S1.3 | **SR1 match**: `tools/sr2match.py` (code, strings, DGROUP globals, call graph, link order) → `port/sr2_sr1_matches.csv` with class `same` / `changed` / `new`; SR1 names carried over → `port/symbols.csv`; counts per SR1 module into `RE_GUIDE.md` §2 | O | done 2026-10-09 |
 | S1.4 | Ghidra: adapt `tools/ghidra/sr2_*.sh` (from the F117 scripts), `SetDS` + `ApplySymbols` + `DecompileAll` headless in the background → `port/decomp/` (ignored); print only counts | H | S |
-| S1.5 | Map of what changed: segment map, main state machine vs SR1, file loading (`LIB3`, `SR2_*`), sound-device dispatch (AdLib / Tandy / speaker), copy protection, switches → `RE_GUIDE.md` §3; module of every `changed`/`new` function (`tools/assign_modules.py`) | S | M |
+| S1.5 | Map of what changed (also: SR2 seeds for `sr2index.py` — handlers, graphics vectors; MSC 6 runtime names via `apmatch.py`): segment map, main state machine vs SR1, file loading (`LIB3`, `SR2_*`), sound-device dispatch (AdLib / Tandy / speaker), copy protection, switches → `RE_GUIDE.md` §3; module of every `changed`/`new` function (`tools/assign_modules.py`) | S | M |
+
+Notes:
+- S1.3: MSC 6 rebuild means few byte-identical functions (56 `same`); `tdmatch.py` alone found 115. ~95 % of evidence-bearing pairs are callee-consistent; treat `order`/`calls` matches as strong hints, confirm in the specs.
 
 ### Phase 2 — File formats (output: `FORMATS.md`, decoders in `tools/`, PNG/WAV in `work/`)
 | Id | Task | Model | Size |

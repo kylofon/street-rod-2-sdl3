@@ -12,8 +12,8 @@ offset = SSSS*16 + OOOO, and Ghidra (loaded at 1000:0000) shows segment SSSS+100
 DS-relative memory operands are recorded as DGROUP offsets (functions that load DS themselves are
 flagged `sets_ds`, their operands may refer to another segment).
 
-usage: srindex.py work/SR_unp.exe port/sr [gaps]
-       writes port/sr_functions.json, port/sr_functions.csv, port/sr_starts.txt (image
+usage: sr2index.py work/SR2_unp.exe port/sr2 [gaps]
+       writes port/sr2_functions.json, port/sr2_functions.csv, port/sr2_starts.txt (image
        offsets, for tools/ghidra/DecompileAll.java) and prints the segment map; `gaps` also lists
        code bytes no instruction covers.
 """
@@ -35,7 +35,9 @@ img = d[hdr:]
 entry = entry_cs * 16 + entry_ip
 
 # MSC 5 startup: mov ah,30h / int 21h / cmp al,2 / jae +2 / int 20h / mov di,DGROUP
-m = re.match(rb'\xb4\x30\xcd\x21\x3c\x02\x73\x02\xcd\x20\xbf(..)', img[entry:entry + 13], re.S)
+m = (re.match(rb'\xb4\x30\xcd\x21\x3c\x02\x73\x02\xcd\x20\xbf(..)', img[entry:entry + 13], re.S) or
+     # MSC 6: ... jae +5 / xor ax,ax / push es / push ax / retf / mov di,DGROUP
+     re.match(rb'\xb4\x30\xcd\x21\x3c\x02\x73\x05\x33\xc0\x06\x50\xcb\xbf(..)', img[entry:entry + 16], re.S))
 DGROUP = struct.unpack('<H', m.group(1))[0]
 DS_BASE = DGROUP * 16
 
@@ -96,22 +98,19 @@ PTR_TABLES = [
 ]
 # Interrupt handlers installed with _dos_setvect / INT 21h AH=25h (found by hand, RE_GUIDE.md).
 HANDLERS = [
-    0x02c42,    # 0000:2c42 keyboard INT 9 (0000:2dc3)
-    0x01fe2,    # 0000:1fe2 timer INT 8, PIT divisor 4000h = 72.8 Hz (0000:1111)
-    0x0238c,    # 0000:238c timer INT 8 while a sound plays (0000:1aad / 0000:1b27)
-    0x0105b,    # 0000:105b critical error INT 24h (0000:1111)
+    # SR2: filled in S1.5 (SR1 equivalents via port/sr2_sr1_matches.csv)
 ]
 seeds.update(HANDLERS)
 # Far code pointers kept in DGROUP tables (relocated seg:off pairs): the graphics driver vector
 # sources copied to DS:78A2 (platform.md 2.8, video.md 4.1): (table, entries).
-FAR_TABLES = [(0x5BD0, 15), (0x5B04, 15), (0x5B8A, 15)]
+FAR_TABLES = []   # SR2: filled in S1.5 (SR1: DS:5BD0, 5B04, 5B8A)
 for tbl, n in FAR_TABLES:
     for k in range(n):
         o, sg = struct.unpack_from('<HH', img, DS_BASE + tbl + 4 * k)
         if (o or sg) and sg * 16 + o < DS_BASE:
             seeds.add(sg * 16 + o)
 # Far code pointers loaded as immediates that the automatic scan misses (video.md, Index additions).
-seeds.update([0x2595 * 16 + 0x0004, 0x2634 * 16 + 0x000a])
+seeds.update([])   # SR2: filled in S1.5 (SR1: 2595:0004, 2634:000a)
 for sg, tbl, n, where in PTR_TABLES:
     base = DS_BASE if where == 'ds' else sg * 16
     for k in range(n):
