@@ -48,6 +48,7 @@ static void debug_prepare(bool with_car)
         if (DSS(DS_driver_id) == -2) pic_park_list(DS_RESIDENT_PICS);
     }
     pic_load_list(DS_RESIDENT_PICS, 1);
+    if (getenv("SR_DEBUG_PROT")) { copy_protection(); cursor_ctl(-4); }   /* the protection screen first; as title_and_setup */
     cursor_ctl(-2);
     new_game();
     strcpy(ds_str(DS_player_name), "Tester");

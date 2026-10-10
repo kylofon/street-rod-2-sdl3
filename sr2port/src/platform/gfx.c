@@ -142,7 +142,7 @@ u16 gfx_screen_mode(s16 n)
         ds_far_wr(DS_g_back, sa);
         DSW(DS_g_mirror) = 0;
         status_init(DSS(DS_driver_id) == -2 ? 0x5A : 0xBE);
-        if (DSB(DS_racing) != 0) status_label(ds_str(DS_status_label_text));
+        if (DSB(DS_racing) != 0) status_label(ds_str(DSW(DS_status_label_text)));   /* a near pointer (push [4846]), not a char[] */
         return 0;
     }
     default:

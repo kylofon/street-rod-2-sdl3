@@ -3,6 +3,8 @@
  * 0001:0628, the CPU speed class - platform.md "Start-up", game_flow.md main, sound.md 0001:01ea. */
 #include "platform/platform.h"
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "host.h"
@@ -159,7 +161,7 @@ void platform_main_init(int argc, char **argv)
     DSB(DS_ui_level) = 0;
     /* PORT: 0001:070c cpu_speed_calibrate (loop count during one BIOS tick) -> a fixed fast class. */
     DSW(DS_cpu_speed) = SR_CPU_SPEED;
-    s16 disks = 2, forced = 0;
+    s16 disks = 2, forced = 0, forced_snd = -1;   /* PORT: launcher: forced_snd 0 = AdLib, 1 = PC speaker */
     DSW(DS_sw_demo) = 0;
     DSW(DS_auto_drive) = 0;
     DSW(DS_mouse_enabled) = 1;
@@ -174,9 +176,12 @@ void platform_main_init(int argc, char **argv)
         else if (stricmp_eq(a, ds_str(DS_SW_H))) forced = 4;                 /* Hercules */
         else if (stricmp_eq(a, ds_str(DS_SW_V))) forced = 3;                 /* VGA */
         else if (stricmp_eq(a, ds_str(DS_SW_T))) forced = 5;                 /* Tandy */
+        else if (stricmp_eq(a, "adlib")) forced_snd = 0;                    /* PORT: launcher: skips the sound options menu */
+        else if (stricmp_eq(a, "speaker")) forced_snd = 1;                  /* PORT: launcher: PC speaker ("Normal") */
     }
     s16 mode = video_detect_menu(forced);
-    s16 snd = adlib_detect() != 0 ? sound_options_menu() : 1;
+    s16 snd = forced_snd >= 0 ? forced_snd : adlib_detect() != 0 ? sound_options_menu() : 1;   /* PORT: launcher: forced_snd */
+    if (getenv("SR_TRACE")) fprintf(stderr, "trace: startup video mode %d (%s) sound %d (%s)\n", mode, forced ? "switch" : "menu", snd, forced_snd >= 0 ? "switch" : "menu");   /* PORT: developer aid */
     /* DS:0050 stays 666 until the sound init below (the timer ISR and platform_install test it) */
     mem_pools_init();
     driver_select(mode);

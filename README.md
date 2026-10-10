@@ -9,6 +9,17 @@ time.
 Status and plan: [PLAN.md](PLAN.md) (as a page: `python tools/plan_site.py`, then open
 `site/index.html`). Agent rules: [CLAUDE.md](CLAUDE.md).
 
+## Running
+
+Build (MSYS2 mingw64, see `sr2port/PORTING.md`), put the installed game in `Game\`, then either start
+the launcher, **`Street Rod 2.exe`** (built beside `sr2port.exe` when wxWidgets 3.2 is installed: game folder,
+graphics, sound AdLib / Normal, the game's switches, window size, full screen), or run the port directly:
+
+```text
+sr2port.exe --game-dir Game v adlib      (v = VGA, adlib or speaker = sound; no menus)
+sr2port.exe --game-dir Game              (the original's text menus for video and sound)
+```
+
 ## Layout
 
 ```text

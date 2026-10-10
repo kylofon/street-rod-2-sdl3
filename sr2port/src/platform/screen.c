@@ -4,6 +4,8 @@
  *
  * "page B" = DS:AD14 (back, drawn into), "page A" = DS:AD10 (visible). HIDE = cursor_ctl(-3),
  * SHOW = cursor_ctl(-1), MIRROR(x0, y0, x1, y1) = if (DS:AD26) page_copy_rect(B, A, ...). */
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "platform/platform.h"
@@ -126,6 +128,8 @@ void status_init(s16 y)
 void status_print(s16 x, const char *s, s16 w)
 {
     u8 saved[5];
+    if (getenv("SR_TRACE") && strchr(getenv("SR_TRACE"), 's'))      /* PORT: developer aid: the status strip text */
+        fprintf(stderr, "trace: status_print x=%d \"%s\"\n", x, s);
     memcpy(saved, mp(DGROUP, DS_g_text_fg), 5);
     status_colours();
     if (w == 0) w = DSS(DS_status_width);

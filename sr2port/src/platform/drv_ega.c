@@ -9,6 +9,10 @@
  *
  * PORT: the Tandy half of segment 21a0 (00ac-0d62, install 0952) is not ported: the port is the VGA
  * path (DS:AD1C = -2, DS:0200 = 1). */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "codeptr.h"
 #include "host.h"
 #include "modules.h"
@@ -45,7 +49,13 @@ typedef void (*FnSetColour)(s16);
 u16  drv_blit(FarPtr src, FarPtr dst, const Rect *r, u8 flags) { return ((FnBlit)drv_slot(0))(src, dst, r, flags); }
 void drv_blit_shifted(FarPtr src, FarPtr dst, const Rect *r) { ((FnBlitShifted)drv_slot(1))(src, dst, r); }
 s16  drv_blit_masked(FarPtr src, FarPtr dst, const Rect *r, s16 mode) { return ((FnBlitMasked)drv_slot(2))(src, dst, r, mode); }
-void drv_draw_text(FarPtr d, s16 x, s16 y, const char *s) { ((FnDrawText)drv_slot(3))(d, x, y, s); }
+void drv_draw_text(FarPtr d, s16 x, s16 y, const char *s)
+{
+    static int trace = -1;
+    if (trace < 0) { const char *t = getenv("SR_TRACE"); trace = (t && strchr(t, 't')) ? 1 : 0; }
+    if (trace) fprintf(stderr, "trace: draw_text x=%d y=%d \"%s\"\n", x, y, s);   /* PORT: developer aid */
+    ((FnDrawText)drv_slot(3))(d, x, y, s);
+}
 void drv_draw_cursor(FarPtr img, FarPtr mask, FarPtr save, FarPtr scr, s16 xb, s16 y, s16 wb, s16 rows)
 {
     ((FnDrawCursor)drv_slot(4))(img, mask, save, scr, xb, y, wb, rows);

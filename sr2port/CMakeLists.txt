@@ -32,4 +32,34 @@ if(WIN32)
     add_custom_command(TARGET sr2port POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_RUNTIME_DLLS:sr2port> $<TARGET_FILE_DIR:sr2port>
         COMMAND_EXPAND_LISTS)
+    # And what those load in turn (MSYS2's SDL3.dll needs libiconv-2.dll), so the game starts outside
+    # the MSYS2 shell, e.g. from the launcher.
+    get_filename_component(SR2_DLL_DIR "${CMAKE_C_COMPILER}" DIRECTORY)
+    add_custom_command(TARGET sr2port POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -DEXE=$<TARGET_FILE:sr2port> "-DSEARCH=${SR2_DLL_DIR}"
+                -DCMAKE_OBJDUMP=${CMAKE_OBJDUMP} -P ${CMAKE_CURRENT_SOURCE_DIR}/launcher/copy_dlls.cmake)
+endif()
+
+# The launcher ("Street Rod 2"): the game folder, graphics and sound, the game's own switches and the
+# window options; built beside sr2port.exe. Needs wxWidgets 3.2 (MSYS2: mingw-w64-x86_64-wxwidgets3.2-msw)
+# and a C++17 compiler. ON/OFF forces it; by default it is built when wxWidgets 3.2 is found.
+set(SR2_LAUNCHER "AUTO" CACHE STRING "Build the launcher, Street Rod 2.exe (wxWidgets): AUTO, ON or OFF")
+set_property(CACHE SR2_LAUNCHER PROPERTY STRINGS AUTO ON OFF)
+if(SR2_LAUNCHER STREQUAL "AUTO")
+    find_package(wxWidgets 3.2 CONFIG QUIET COMPONENTS core base)
+    if(NOT wxWidgets_FOUND)
+        find_package(wxWidgets 3.2 QUIET COMPONENTS core base)
+    endif()
+    if(wxWidgets_FOUND)
+        enable_language(CXX)
+        set(SR2_BUILD_LAUNCHER ON)
+    else()
+        message(STATUS "wxWidgets 3.2 not found: the launcher is not built (-DSR2_LAUNCHER=ON to require it)")
+    endif()
+elseif(SR2_LAUNCHER)
+    enable_language(CXX)
+    set(SR2_BUILD_LAUNCHER ON)
+endif()
+if(SR2_BUILD_LAUNCHER)
+    add_subdirectory(launcher)
 endif()

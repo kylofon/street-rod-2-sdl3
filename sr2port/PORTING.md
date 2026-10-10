@@ -130,6 +130,20 @@ arena). Spec: `../port/spec/race_render.md` 1.1; formats in `../FORMATS.md`.
 No enhancements (resolution, widescreen, new options): add an idea as a row to PLAN.md "Enhanced backlog".
 The port's own additions are marked `PORT:` in the code. Larger ones:
 
+* Launcher (S5.6): `launcher/` is the SR1 port's wxWidgets launcher adapted to SR2 (copied, never edited there). It
+  starts `sr2port --game-dir D --scale N [--fullscreen] {c|e|v|h|t} {adlib|speaker} [nomouse] [demo] [nouemem]`.
+  The video switch is the original's (skips the video menu: CGA, Hercules and Tandy are listed but disabled, EGA runs as
+  VGA). `adlib` / `speaker` are port switches (`platform/startup.c`, `/* PORT: launcher */`): they give the answer of the
+  sound options menu (0 AdLib, 1 "Normal" = PC speaker, the value `modules.snd_init` gets) without showing the menu.
+  Without them the original text menus run (faithful). Build: `-DSR2_LAUNCHER=AUTO|ON|OFF` (AUTO, the default, builds it
+  when wxWidgets 3.2 is found; MSYS2: `pacman -S mingw-w64-x86_64-wxwidgets3.2-msw`; ON needs g++ via `-DCMAKE_CXX_COMPILER=g++`
+  if the C++ compiler is not found). Output `Street Rod 2.exe` beside `sr2port.exe`; settings in `%APPDATA%\Street Rod 2\settings.ini`.
+  `"Street Rod 2.exe" --print-command` prints the command line the saved settings would run and exits (no window).
+* Developer traces: `SR_TRACE=s` prints every `status_print`, `SR_TRACE=t` every `drv_draw_text`, `SR_TRACE=1` the start-up choices;
+  `SR_DEBUG_PROT=1` (with `SR_DEBUG_RACE`) shows the protection screen first, as the normal game does.
+* Bug fixed in S5.6: `gfx_screen_mode(3)` (1a21:1048) pushes the word at DS:4846 (`push [4846]`), a near pointer to the
+  race label " Gear: ", but the port passed DS:4846 itself as a string, so races drew the bytes at 4847 (the protection
+  format "<What`is`the`%d ...") at the left of the status strip.
 * `platform/textmode.c`: the 80x25 text mode of the two start-up menus (video options, sound options) is drawn
   with the game's own 8x8 font into a 640x200 frame (`HOST_FRAME_MAX_W` is 640); keys come from the XT stream.
   The detection (VGA assumed, EGA runs as VGA, CGA / Hercules / Tandy refuse) replaces the BIOS probes.

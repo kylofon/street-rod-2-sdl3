@@ -34,6 +34,7 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 | U6 | Playtest races (VGA, sound 2): Burger's → "Challenge" → Drag race / Mulholland drive / Aqueduct race (also try climbing the Aqueduct walls); Grudge Night = garage code 17 on Wednesdays. Shortcut: `set SR_DEBUG_RACE=drag` (or mulholland, aqueduct, grudge, cruise, bob) before starting. Road, cockpit, opponent, speeds and results like DOSBox? | S5.3 | 20 min |
 | U5 | Listen: `work\s54	itle_adlib.wav`, `title_speaker.wav`, `race_adlib.wav`, `race_speaker.wav` (port output) against DOSBox: title music instruments/drums/tempo, engine drone rising with revs, speaker tune. In the game also: siren, crash, garage clanks/wrench (AdLib). | S5.4 | 10 min |
 | U6 | Playtest endings and rare screens: `set SR_DEBUG_END=king` (ending animation, hall of fame + name entry), `summer`, `broke` ("outta dough"); `set SR_DEBUG_RACE=jail`; gas-station fueling clicks. Compare with DOSBox where you can. | S5.5 | 15 min |
+| U6 | Launcher: start `sr2portuild\Street Rod 2.exe`, pick VGA + AdLib (or Normal), Play: game starts without the text menus? In a real Bob's race the bottom strip shows " Gear: " (no protection text)? | S5.6 | 5 min |
 | U7 | Decisions (defaults apply if unanswered), see U7 below | plan | 5 min |
 
 ## Status
@@ -161,7 +162,7 @@ the delta spec. Each row ends with a **U6 playtest** request.
 | S5.3 | race + race_render deltas, `SR2_SHP` | O | U6 pending |
 | S5.4 | sound: AdLib `.MUS` player on Nuked-OPL3 (`third_party/` from F117-2), sound options menu, speaker deltas | S | U5/U6 pending |
 | S5.5 | endings, demo mode; headless demo chain through every screen | S | done 2026-10-10 |
-| S5.6 | U6 bug batch (repeat as needed) | S | M |
+| S5.6 | U6 bug batch (repeat as needed) | S | batch 1 done, more U6 open |
 
 Notes:
 - S5.1: platform 56 + video 81 functions ported (+ title_sequence, pools_init, rnd, input helpers from game_flow); stubs in `game/flow_stub.c` and sound hooks in `modules.c`. PORT: text menus drawn in an 80×25 text mode (frame up to 640 wide, game font), far heap = one block per `_fmalloc`, EGA runs as VGA, CGA/Hercules/Tandy refused. Untested yet: ega_anim_step, ega_slide_sprite, ega_blit_shifted, cursor race branch, status_print/money_add. Spec fixes found: step table at DS:3B54/3B5A, DS:1BCC/1BCE is a far pointer.
@@ -169,6 +170,7 @@ Notes:
 - S5.3 (in progress, 2026-10-09): ~75/84 race + ~90/134 race_render functions in `sr2port/src/game/race_*.c`; driver slots 13–15, 18, 19; road modes 0, 1, 2/4, 0x10 work headless (drag lost/home, Mulholland won/home, Grudge time run + 2 rounds, cruise arrives, 700 s demo without fatal). 2026-10-10: Aqueduct (mode 8) ported in `race_aq.c` incl. slot 16 rotation; all five race kinds run headless (Aqueduct won/lost/wall crash), 300 s demo without fatal. Dev aid `SR_DEBUG_RACE=<mode>`. Spec errors: bracket start 7 ticks per tenth (not 13); crash_show plain blit; clock hands 9/16; tires_replace reads list[1] and writes DS:0000 (original bug).
 - S5.4 (2026-10-10): `sr2port/src/sound/` (spk.c, adlib.c, mus.c, adfx.c): 25-slot table, speaker sequencer, AdLib driver + MUS playlists + music ISR (game tick 68.6 Hz during music, U7 #6), effects; Nuked-OPL3 mixed in host.c at 49716 Hz; dev aid `SR_AUDIO_WAV=path`; `tools/wav_rms.py`; `tools/sr2snd.py` follows sound.md §7. Fixed on the way: reject beep is slot 12 (not 15) in ui_edit.c; race ISR enter/leave sound globals; DS:0050 stays 666 until sound init. Open: title music stops after the first song (~136 s gap reproduced, `PORT: verify U5`).
 - S5.5 (2026-10-10): `tools/sr2_smoke.py` (15 headless paths on copies of Game/ in work/s55game, all ok: title→classifieds, 420 s demo, garage tour, save→load, jail, all race kinds, King/summer/broke endings); dev aids `SR_DEBUG_END=king|summer|broke|garage`, `SR_DEBUG_HOURS`, `SR_DEBUG_GAS`, `SR_DEBUG_RACE=jail`. Fix: jail decoration loop drew an 8th garbage entry. Disassembly cross-checks (objects, mirror bands, town walls, bob_hotspots, ending) match. Spec error: no msg 0x44 after the ending.
+- S5.6 batch 1 (2026-10-10): race status strip showed the raw protection format — `gfx_screen_mode(3)` passed DS:4846 instead of the string it points to (" Gear: "); fixed, platform.md corrected. Launcher `Street Rod 2.exe` (from SR1, settings in %APPDATA%\Street Rod 2, `--print-command`); port switches `adlib`/`speaker` (`/* PORT: launcher */`); traces `SR_TRACE=s|t`, `SR_DEBUG_PROT=1`. Smoke test 15/15 ok.
 
 ### Phase 6 — Release
 | Id | Task | Model | Size |
@@ -274,6 +276,7 @@ Several bugs in one message; one session then fixes them in a batch.
 6. **Game tick while AdLib music plays**: the original runs the game ISR at 68.6 Hz (tempo 120) / 60 Hz (tempo 60) instead of 72.8 Hz, because the music ISR chains it with the remainder discarded (sound.md §9). Reproduce it (faithful)? Default: yes.
 
 ## Decisions
+- 2026-10-10 (user): launcher in the faithful repo, like the SR1 port: video and sound choices move into it (`sr2port/launcher`, `-DSR2_LAUNCHER=AUTO|ON|OFF`, wxWidgets 3.2); `sr2port` without the new `adlib`/`speaker` switches keeps the original text menus.
 (Settled answers from U7 go here, dated.)
 
 ## TODO (parked)

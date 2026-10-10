@@ -104,7 +104,7 @@ DGROUP is `3E08` in SR2 (SR1 `3E96`). `DS:xxxx` = image `0x3E080 + xxxx`. "SR1 e
 | `DS:3BF0` | u8[] | `kbd_held_flags` | held flags of the direction keys, indexed by (-k); also `joy_saved_sp` (word at `DS:3BF0`) | `DS:47E8` |
 | `DS:3BF2` | u8[4] | `bios_mode_vars` | dead code (`bios_mode_*_set/apply`) | `DS:47EA..47ED` |
 | `DS:3BF6` | u16 | `click_seen` | "any click / Esc" flag set by `kbd_isr`, `input_poll_any`, polled by wait loops | `DS:47EE` |
-| `DS:4846` | char[] | `status_label_text` | status label string used by `gfx_screen_mode(3)` | `DS:49DE` |
+| `DS:4846` | near* (-> " Gear: ") | `status_label_text` | status label string used by `gfx_screen_mode(3)` | `DS:49DE` |
 | `DS:4912` | u16[4] | `g_vram_pool_used` | bytes used in each of the four VRAM picture-cache pools; base far pointer `DS:490E:4910` (A000:0000), pools start at +0x7D00 | `DS:4C18 / 4C14` |
 | `DS:4B50` | u16 | `lib1_handle` | LIB1 file handle (0 = closed) | `DS:4ED8` |
 | `DS:4B52` | u16 | `lib2_handle` | LIB2 file handle | `DS:4EDA` |

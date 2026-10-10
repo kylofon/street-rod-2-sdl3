@@ -6,6 +6,7 @@
  *   --fullscreen  start in full screen (Alt+Enter switches)
  *   --check       load and verify the original executable, print a summary and exit (no window)
  *   --run-ms N    developer aid: exit after N ms (headless snapshot runs)
+ *   adlib | speaker  PORT (launcher): choose the sound card and skip the sound options menu
  *   the original's command-line switches are passed on as they are: 1, nomouse, demo, nouemem, e c v h t (force EGA / CGA / VGA / Hercules / Tandy: skips the video menu)
  */
 #define SDL_MAIN_HANDLED
