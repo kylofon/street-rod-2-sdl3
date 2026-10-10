@@ -31,13 +31,13 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 | U5 | DOSBox: at the copy-protection question, cancel instead of answering. Does the game crash/hang? (game_flow.md) | S3.3 | 2 min |
 | U6 | Playtest the start-up: build (`cmake --build sr2port/build`), then in `C:\Coding\StreetRod2` run `sr2portuild\sr2port.exe --game-dir Game`, pick 3 (VGA) and 2 (Normal). Video/sound menus, "presents", title, credits look and time like DOSBox? Ends on a black screen with pointer (placeholder). | S5.1 | 5 min |
 | U6 | Playtest outside races (races are stubs and always "lost"): new game, protection screen, newspaper, buy a car from the classifieds, garage: hood/engine bay, Under the Car, paint, tires, transmission, car info, auto parts; gas station (pump/nozzle/LEDs); save, quit, load again; also try the `demo` switch. Report differences from DOSBox (U6 format). | S5.2 | 20 min |
-| U6 | Playtest races (VGA, sound 2): Burger's → "Challenge" → Drag race / Mulholland drive (not Aqueduct yet); Grudge Night = garage code 17 on Wednesdays. Shortcut: `set SR_DEBUG_RACE=drag` (or mulholland, grudge, cruise, bob) before starting. Road, cockpit, opponent, speeds and results like DOSBox? | S5.3 | 20 min |
+| U6 | Playtest races (VGA, sound 2): Burger's → "Challenge" → Drag race / Mulholland drive / Aqueduct race (also try climbing the Aqueduct walls); Grudge Night = garage code 17 on Wednesdays. Shortcut: `set SR_DEBUG_RACE=drag` (or mulholland, aqueduct, grudge, cruise, bob) before starting. Road, cockpit, opponent, speeds and results like DOSBox? | S5.3 | 20 min |
 | U7 | Decisions (defaults apply if unanswered), see U7 below | plan | 5 min |
 
 ## Status
 
 - **Done:** S0.1 (repo), S1.1–S1.4 (unpacked, indexed, matched with SR1, Ghidra: `port/RE_GUIDE.md` §1–2); S1.5 (what changed, `RE_GUIDE.md` §3); S2.3, S2.5 (`FORMATS.md`); S2.1, S2.2, S2.4 waiting for your U5 checks. Phase 3: all delta specs (`port/spec/*.md`, 913/913 functions, `tools/sr2_coverage.py`).
-- **Next:** S5.3 continued (Opus): Aqueduct race (road mode 8) — start from `sr2port/S5.3_HANDOFF.md` ("left, in order"). Then S5.4 sound. The Aqueduct race currently crashes when started (stub); the other race kinds run headless. Your tasks: **User to-do** above.
+- **Next:** S5.4 (Sonnet), sound. Then S5.5 (endings, demo chain) and S5.6 (U6 bug batch; also the disassembly cross-checks listed in `sr2port/S5.3_HANDOFF.md`).
 - Escalation rule: a subtask that fails twice on Sonnet → new Opus session with a 5-line note
   (symptom, file, what was tried). Never carry an old transcript over.
 
@@ -156,7 +156,7 @@ the delta spec. Each row ends with a **U6 playtest** request.
 |---|---|---|---|
 | S5.1 | platform + video deltas → title and menus (**first visible milestone**) | S | U6 pending |
 | S5.2 | game_flow + garage deltas, `LIB3`, save/load | S | U6 pending |
-| S5.3 | race + race_render deltas, `SR2_SHP` | O | in progress (parts 1–2 done) |
+| S5.3 | race + race_render deltas, `SR2_SHP` | O | U6 pending |
 | S5.4 | sound: AdLib `.MUS` player on Nuked-OPL3 (`third_party/` from F117-2), sound options menu, speaker deltas | S | M |
 | S5.5 | endings, demo mode; headless demo chain through every screen | S | M |
 | S5.6 | U6 bug batch (repeat as needed) | S | M |
@@ -164,7 +164,7 @@ the delta spec. Each row ends with a **U6 playtest** request.
 Notes:
 - S5.1: platform 56 + video 81 functions ported (+ title_sequence, pools_init, rnd, input helpers from game_flow); stubs in `game/flow_stub.c` and sound hooks in `modules.c`. PORT: text menus drawn in an 80×25 text mode (frame up to 640 wide, game font), far heap = one block per `_fmalloc`, EGA runs as VGA, CGA/Hercules/Tandy refused. Untested yet: ega_anim_step, ega_slide_sprite, ega_blit_shifted, cursor race branch, status_print/money_add. Spec fixes found: step table at DS:3B54/3B5A, DS:1BCC/1BCE is a far pointer.
 - S5.2: game_flow (~85 functions with the UI toolkit) and garage (~75) ported in `sr2port/src/game/` (flow_*, ui_*, garage_*, event15/17); races stubbed in `race_stub.c` (`/* PORT: S5.3 stub */`), sound no-ops in `snd.h`/`ds_screens.h`. Dev aids: `SR_SEED=n`, `SR_TRACE=1|2`. Save file 708 bytes = FORMATS.md layout. Demo runs through every garage code for 580 s. Open: tires / sell parts open a message box instead of a list in the scripted run; spec fixes: walker_anim 8 args, DS:1F3E/1F40, panel_wipe arena_pop(1) for even modes.
-- S5.3 (in progress, 2026-10-09): ~75/84 race + ~90/134 race_render functions in `sr2port/src/game/race_*.c`; driver slots 13–15, 18, 19; road modes 0, 1, 2/4, 0x10 work headless (drag lost/home, Mulholland won/home, Grudge time run + 2 rounds, cruise arrives, 700 s demo without fatal). Stubbed: Aqueduct (mode 8) renderer, rotated sprites, slot 16 (`race_aq.c`). Dev aid `SR_DEBUG_RACE=<mode>`. Spec errors: bracket start 7 ticks per tenth (not 13); crash_show plain blit; clock hands 9/16; tires_replace reads list[1] and writes DS:0000 (original bug).
+- S5.3 (in progress, 2026-10-09): ~75/84 race + ~90/134 race_render functions in `sr2port/src/game/race_*.c`; driver slots 13–15, 18, 19; road modes 0, 1, 2/4, 0x10 work headless (drag lost/home, Mulholland won/home, Grudge time run + 2 rounds, cruise arrives, 700 s demo without fatal). 2026-10-10: Aqueduct (mode 8) ported in `race_aq.c` incl. slot 16 rotation; all five race kinds run headless (Aqueduct won/lost/wall crash), 300 s demo without fatal. Dev aid `SR_DEBUG_RACE=<mode>`. Spec errors: bracket start 7 ticks per tenth (not 13); crash_show plain blit; clock hands 9/16; tires_replace reads list[1] and writes DS:0000 (original bug).
 
 ### Phase 6 — Release
 | Id | Task | Model | Size |

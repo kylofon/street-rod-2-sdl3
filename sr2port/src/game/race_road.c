@@ -966,7 +966,7 @@ static void road_draw_hood_overlay(void)
 }
 
 /* 0dcb:57a6 mirror_draw_backdrop */
-static void mirror_draw_backdrop(void)
+void mirror_draw_backdrop(void)
 {
     Rect r = { 0x10, 2, 0x108, 0x66, 0x110, 0x12 };
     drv_blit(ds_far(DS_page2_ptr), back_page(), &r, 1);
@@ -990,7 +990,7 @@ static void road_draw_barrier_walls(s16 phase_seg, s16 n, s16 row)
 }
 
 /* 0dcb:5a2c mirror_finish: frame lines, mirror centre -> page 0 */
-static void mirror_finish(void)
+void mirror_finish(void)
 {
     clip_set_view();
     road_vline(2, 0xF0, 0x16, 0x2A);

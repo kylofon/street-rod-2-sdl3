@@ -552,7 +552,7 @@ s16 bitmap_visible_width(FarPtr p)
 }
 
 /* 0dcb:b7da popcount8 */
-static s16 popcount8(u8 m)
+s16 popcount8(u8 m)
 {
     s16 n = 0;
     for (int i = 0; i < 8; i++) { if (m & 0x80) n++; m = (u8)(m << 1); }

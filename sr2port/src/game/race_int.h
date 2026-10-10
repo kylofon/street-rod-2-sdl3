@@ -197,6 +197,7 @@ FarPtr drv_shrink(FarPtr pic, u8 mask);                      /* slot 15 [A0EA] *
 FarPtr drv_rotate(FarPtr pic, s16 angle, s16 mode, s8 *ax, s8 *ay, s16 pivot);   /* slot 16 [A0EE] */
 void drv_plot_points(FarPtr page, s16 xoff, u16 pts, s16 n, s16 colour);         /* slot 19 [A0FA] */
 s16  bitmap_visible_width(FarPtr p);                         /* 1a21:a6e8 */
+s16  popcount8(u8 m);                                        /* 0dcb:b7da */
 void race_gfx_register(void);                                /* driver slot targets */
 
 /* race_track.c */
@@ -231,6 +232,8 @@ void scenery_draw_shape(s16 x, s16 y, s16 depth, s16 side, s16 type, s16 noclamp
 void road_poly_fill(const s16 *pts12, s16 n, s16 colour);    /* 0dcb:58f4 */
 void road_fall_off_edge(s16 dir);                            /* 0dcb:7da2 */
 FarPtr back_page(void);                                      /* DS:7E02 == 1 ? page 1 : page 2 */
+void mirror_draw_backdrop(void);                             /* 0dcb:57a6 */
+void mirror_finish(void);                                    /* 0dcb:5a2c */
 
 /* race_opp.c */
 void opponent_draw(void);                                    /* 0dcb:af98 */
