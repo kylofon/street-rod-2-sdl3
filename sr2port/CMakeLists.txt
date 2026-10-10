@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Port of Street Rod 2's SR.EXE, VGA 16-colour mode (0Dh). AdLib sound (S5.4) runs on Nuked-OPL3. CGA / Tandy / Hercules are parked.
-set(SR2PORT_VERSION 0.0.1)
+set(SR2PORT_VERSION 0.1.0)
 
 find_package(SDL3 REQUIRED CONFIG)
 

@@ -35,12 +35,13 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 | U5 | Listen: `work\s54	itle_adlib.wav`, `title_speaker.wav`, `race_adlib.wav`, `race_speaker.wav` (port output) against DOSBox: title music instruments/drums/tempo, engine drone rising with revs, speaker tune. In the game also: siren, crash, garage clanks/wrench (AdLib). | S5.4 | 10 min |
 | U6 | Playtest endings and rare screens: `set SR_DEBUG_END=king` (ending animation, hall of fame + name entry), `summer`, `broke` ("outta dough"); `set SR_DEBUG_RACE=jail`; gas-station fueling clicks. Compare with DOSBox where you can. | S5.5 | 15 min |
 | U6 | Launcher: start `sr2portuild\Street Rod 2.exe`, pick VGA + AdLib (or Normal), Play: game starts without the text menus? In a real Bob's race the bottom strip shows " Gear: " (no protection text)? Launcher now follows AotP Enhanced (menu bar File/Game settings/About, Keys page, Preferences > Always on top): layout and greyed-out modes OK? | S5.6 | 5 min |
+| U6 | Playtest the release zip `release\sr2port-v0.1.0-win64.zip`: unzip to a new folder, put your installed game in `Game\` next to the exes, start `Street Rod 2.exe`, Play. Then tell me whether to publish (S6.2: GitHub repo `street-rod-2-sdl3` + release v0.1.0). | S6.1 | 15 min |
 | U7 | Decisions (defaults apply if unanswered), see U7 below | plan | 5 min |
 
 ## Status
 
 - **Done:** S0.1 (repo), S1.1–S1.4 (unpacked, indexed, matched with SR1, Ghidra: `port/RE_GUIDE.md` §1–2); S1.5 (what changed, `RE_GUIDE.md` §3); S2.3, S2.5 (`FORMATS.md`); S2.1, S2.2, S2.4 waiting for your U5 checks. Phase 3: all delta specs (`port/spec/*.md`, 913/913 functions, `tools/sr2_coverage.py`).
-- **Next:** your U5/U6 playtests (User to-do) → S5.6 (Sonnet) fixes them in a batch → S6.1 packaging. Headless smoke test of the whole game: `python tools/sr2_smoke.py` (15 paths, all ok).
+- **Next:** your playtests (User to-do), incl. the v0.1.0 zip → S5.6 fix batch(es) → S6.2 publish (needs your approval).
 - Escalation rule: a subtask that fails twice on Sonnet → new Opus session with a 5-line note
   (symptom, file, what was tried). Never carry an old transcript over.
 
@@ -175,8 +176,11 @@ Notes:
 ### Phase 6 — Release
 | Id | Task | Model | Size |
 |---|---|---|---|
-| S6.1 | Packaging script (from `../StreetRod`), README, CHANGELOG, v0.1.0 zip; **U6 playtest** of the zip | H | M |
+| S6.1 | Packaging script (from `../StreetRod`), README, CHANGELOG, v0.1.0 zip; **U6 playtest** of the zip | H | U6 pending |
 | S6.2 | Publish: GitHub repo `street-rod-2-sdl3` + release (user approves), release-notes link in README | H | S |
+
+Notes:
+- S6.1 (2026-10-10): `sr2port/tools/package_release.py` → `release/sr2port-v0.1.0-win64.zip` (10.9 MB, 43 entries: sr2port.exe, Street Rod 2.exe, 19 DLLs from the objdump import closure, player README `sr2port/dist/README.md`, LICENSE, licenses/), `release/RELEASE_NOTES.md`, `SHA256SUMS.txt` (573a222a…); CHANGELOG.md; version 0.1.0. Unzipped run without msys64 on PATH: ok. No tag/remote yet.
 
 When S6.2 is done and the playtest passed, the faithful port is finished: the "Enhanced backlog" below
 becomes the plan of a new `Street Rod 2 Enhanced` repo (`C:\Coding\StreetRod2Enhanced`, game-port-setup

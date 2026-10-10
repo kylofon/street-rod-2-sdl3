@@ -1,0 +1,54 @@
+Third-party components shipped with sr2port and its launcher
+
+sr2port.exe (the game) and Street Rod 2.exe (the launcher) are MIT licensed, see ../LICENSE.
+Their source: https://github.com/kylofon/street-rod-2-sdl3
+
+sr2port.exe contains the Nuked-OPL3 emulator (the AdLib chip), LGPL 2.1 or later, see
+Nuked-OPL3-LICENSE.txt. Source: https://github.com/nukeykt/Nuked-OPL3 (opl3.c, opl3.h, unmodified).
+
+All DLLs below are unmodified builds from MSYS2 (https://packages.msys2.org, mingw64 repository);
+their sources are available from the MSYS2 package pages and the upstream projects named here. You
+may replace any of them with your own build.
+
+---- Used by sr2port.exe (the game)
+
+SDL3.dll        SDL 3.4.16 (mingw-w64-x86_64-sdl3 3.4.16-1)
+                zlib license, see SDL3-LICENSE.txt. https://libsdl.org
+
+libiconv-2.dll  GNU libiconv 1.19 (mingw-w64-x86_64-libiconv 1.19-1), needed by SDL3.dll
+                GNU LGPL 2.1 or later, see libiconv-COPYING.LIB.txt.
+                Source: https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.19.tar.gz
+
+---- Used by Street Rod 2.exe (the launcher)
+
+wxbase32u_gcc_custom.dll, wxmsw32u_core_gcc_custom.dll
+                wxWidgets 3.2.11 (mingw-w64-x86_64-wxwidgets3.2-common-libs / -msw-libs 3.2.11-1)
+                wxWindows Library Licence 3.1, see wxWidgets-licence.txt. https://www.wxwidgets.org
+
+libstdc++-6.dll, libgcc_s_seh-1.dll
+                GCC 16.2.0 runtime libraries (mingw-w64-x86_64-gcc-libs 16.2.0-3), needed by wxWidgets
+                GNU GPL 3 with the GCC Runtime Library Exception, see gcc-libs-COPYING3.txt and
+                gcc-libs-COPYING.RUNTIME.txt. https://gcc.gnu.org
+
+libwinpthread-1.dll
+                mingw-w64 winpthreads (mingw-w64-x86_64-libwinpthread 14.0.0), see libwinpthread-COPYING.txt
+
+The image libraries below are loaded by wxWidgets (libtiff by the wxWidgets core DLL, the rest by
+libtiff or wxWidgets); the launcher shows no images from them.
+
+libpng16-16.dll   libpng 1.6.58 (mingw-w64-x86_64-libpng), libpng license, see libpng-LICENSE.txt
+libjpeg-8.dll     libjpeg-turbo 3.2.0 (mingw-w64-x86_64-libjpeg-turbo), IJG / BSD, see libjpeg-turbo-LICENSE.md
+libtiff-6.dll     libtiff 4.7.2 (mingw-w64-x86_64-libtiff), libtiff license, see libtiff-LICENSE.md
+libwebp-7.dll, libsharpyuv-0.dll
+                  libwebp 1.6.0 (mingw-w64-x86_64-libwebp), BSD, see libwebp-COPYING.txt
+libLerc.dll       LERC 4.1.1 (mingw-w64-x86_64-lerc), Apache 2.0, see lerc-LICENSE.txt
+libdeflate.dll    libdeflate 1.26 (mingw-w64-x86_64-libdeflate), MIT, see libdeflate-COPYING.txt
+libzstd.dll       Zstandard 1.5.7 (mingw-w64-x86_64-zstd), BSD, see zstd-LICENSE.txt
+liblzma-5.dll     XZ Utils 5.8.4 (mingw-w64-x86_64-xz), 0BSD, see xz-COPYING.txt and xz-COPYING.0BSD.txt
+zlib1.dll         zlib 1.3.2 (mingw-w64-x86_64-zlib), zlib license, see zlib-LICENSE.txt
+libpcre2-16-0.dll PCRE2 10.48 (mingw-w64-x86_64-pcre2), BSD, see pcre2-LICENCE.md
+libjbig-0.dll     JBIG-KIT 2.1 (mingw-w64-x86_64-jbigkit 2.1-6), GNU GPL 2 or later, see jbigkit-COPYING.txt.
+                  Unmodified. Source: https://www.cl.cam.ac.uk/~mgk25/jbigkit/download/jbigkit-2.1.tar.gz
+                  and the MSYS2 package's source (https://packages.msys2.org/base/mingw-w64-jbigkit).
+
+Street Rod 2 is (c) California Dreams / Logical Design Works. None of its files are included.
