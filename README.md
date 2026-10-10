@@ -11,6 +11,9 @@ Status and plan: [PLAN.md](PLAN.md) (as a page: `python tools/plan_site.py`, the
 
 ## Running
 
+Download: [v0.1.0 for Windows x64](https://github.com/kylofon/street-rod-2-sdl3/releases/tag/v0.1.0) (needs your own copy of the game).
+
+
 Build (MSYS2 mingw64, see `sr2port/PORTING.md`), put the installed game in `Game\`, then either start
 the launcher, **`Street Rod 2.exe`** (built beside `sr2port.exe` when wxWidgets 3.2 is installed: game folder,
 graphics, sound AdLib / Normal, the game's switches, window size, full screen), or run the port directly:
