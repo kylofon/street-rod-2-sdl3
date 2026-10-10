@@ -18,3 +18,4 @@ void track_build_course(s16 arg);
 /* DEVELOPER AID (game/race_debug.c): SR_DEBUG_RACE=drag|mulholland|aqueduct|grudge|cruise|bob runs that drive straight
  * after the platform start-up and exits; returns false (doing nothing) when the variable is not set. */
 bool race_debug_main(void);
+bool end_debug_main(void);   /* SR_DEBUG_END=king|summer|broke|garage (race_debug.c) */

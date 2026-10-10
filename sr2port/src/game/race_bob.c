@@ -465,7 +465,7 @@ s16 jail(void)
     drv_blit(bars, g_back(), &r, 1);
     r.h = (s16)(desc_h(bars) - 5); r.sy = 5; r.dy = (s16)(0xBE - r.h);
     drv_blit(bars, g_back(), &r, 1);
-    for (u16 e = 0x506A; e < 0x50D2; e = (u16)(e + 14)) {
+    for (u16 e = 0x506A; e < 0x50CC; e = (u16)(e + 14)) {   /* 7 entries; the original's si = e + 6 runs while si < 0x50D2 after the step */
         Rect d = { DSS((u16)(e + 6)), DSS((u16)(e + 8)), DSS((u16)(e + 2)), DSS((u16)(e + 4)), DSS((u16)(e + 10)), DSS((u16)(e + 12)) };
         drv_blit(ds_far(DSW(e)), g_back(), &d, 1);
     }

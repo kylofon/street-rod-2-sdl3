@@ -33,12 +33,13 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 | U6 | Playtest outside races (races are stubs and always "lost"): new game, protection screen, newspaper, buy a car from the classifieds, garage: hood/engine bay, Under the Car, paint, tires, transmission, car info, auto parts; gas station (pump/nozzle/LEDs); save, quit, load again; also try the `demo` switch. Report differences from DOSBox (U6 format). | S5.2 | 20 min |
 | U6 | Playtest races (VGA, sound 2): Burger's → "Challenge" → Drag race / Mulholland drive / Aqueduct race (also try climbing the Aqueduct walls); Grudge Night = garage code 17 on Wednesdays. Shortcut: `set SR_DEBUG_RACE=drag` (or mulholland, aqueduct, grudge, cruise, bob) before starting. Road, cockpit, opponent, speeds and results like DOSBox? | S5.3 | 20 min |
 | U5 | Listen: `work\s54	itle_adlib.wav`, `title_speaker.wav`, `race_adlib.wav`, `race_speaker.wav` (port output) against DOSBox: title music instruments/drums/tempo, engine drone rising with revs, speaker tune. In the game also: siren, crash, garage clanks/wrench (AdLib). | S5.4 | 10 min |
+| U6 | Playtest endings and rare screens: `set SR_DEBUG_END=king` (ending animation, hall of fame + name entry), `summer`, `broke` ("outta dough"); `set SR_DEBUG_RACE=jail`; gas-station fueling clicks. Compare with DOSBox where you can. | S5.5 | 15 min |
 | U7 | Decisions (defaults apply if unanswered), see U7 below | plan | 5 min |
 
 ## Status
 
 - **Done:** S0.1 (repo), S1.1–S1.4 (unpacked, indexed, matched with SR1, Ghidra: `port/RE_GUIDE.md` §1–2); S1.5 (what changed, `RE_GUIDE.md` §3); S2.3, S2.5 (`FORMATS.md`); S2.1, S2.2, S2.4 waiting for your U5 checks. Phase 3: all delta specs (`port/spec/*.md`, 913/913 functions, `tools/sr2_coverage.py`).
-- **Next:** S5.5 (Sonnet), endings + demo chain. Then (endings, demo chain) and S5.6 (U6 bug batch; also the disassembly cross-checks listed in `sr2port/S5.3_HANDOFF.md`).
+- **Next:** your U5/U6 playtests (User to-do) → S5.6 (Sonnet) fixes them in a batch → S6.1 packaging. Headless smoke test of the whole game: `python tools/sr2_smoke.py` (15 paths, all ok).
 - Escalation rule: a subtask that fails twice on Sonnet → new Opus session with a 5-line note
   (symptom, file, what was tried). Never carry an old transcript over.
 
@@ -159,7 +160,7 @@ the delta spec. Each row ends with a **U6 playtest** request.
 | S5.2 | game_flow + garage deltas, `LIB3`, save/load | S | U6 pending |
 | S5.3 | race + race_render deltas, `SR2_SHP` | O | U6 pending |
 | S5.4 | sound: AdLib `.MUS` player on Nuked-OPL3 (`third_party/` from F117-2), sound options menu, speaker deltas | S | U5/U6 pending |
-| S5.5 | endings, demo mode; headless demo chain through every screen | S | M |
+| S5.5 | endings, demo mode; headless demo chain through every screen | S | done 2026-10-10 |
 | S5.6 | U6 bug batch (repeat as needed) | S | M |
 
 Notes:
@@ -167,6 +168,7 @@ Notes:
 - S5.2: game_flow (~85 functions with the UI toolkit) and garage (~75) ported in `sr2port/src/game/` (flow_*, ui_*, garage_*, event15/17); races stubbed in `race_stub.c` (`/* PORT: S5.3 stub */`), sound no-ops in `snd.h`/`ds_screens.h`. Dev aids: `SR_SEED=n`, `SR_TRACE=1|2`. Save file 708 bytes = FORMATS.md layout. Demo runs through every garage code for 580 s. Open: tires / sell parts open a message box instead of a list in the scripted run; spec fixes: walker_anim 8 args, DS:1F3E/1F40, panel_wipe arena_pop(1) for even modes.
 - S5.3 (in progress, 2026-10-09): ~75/84 race + ~90/134 race_render functions in `sr2port/src/game/race_*.c`; driver slots 13–15, 18, 19; road modes 0, 1, 2/4, 0x10 work headless (drag lost/home, Mulholland won/home, Grudge time run + 2 rounds, cruise arrives, 700 s demo without fatal). 2026-10-10: Aqueduct (mode 8) ported in `race_aq.c` incl. slot 16 rotation; all five race kinds run headless (Aqueduct won/lost/wall crash), 300 s demo without fatal. Dev aid `SR_DEBUG_RACE=<mode>`. Spec errors: bracket start 7 ticks per tenth (not 13); crash_show plain blit; clock hands 9/16; tires_replace reads list[1] and writes DS:0000 (original bug).
 - S5.4 (2026-10-10): `sr2port/src/sound/` (spk.c, adlib.c, mus.c, adfx.c): 25-slot table, speaker sequencer, AdLib driver + MUS playlists + music ISR (game tick 68.6 Hz during music, U7 #6), effects; Nuked-OPL3 mixed in host.c at 49716 Hz; dev aid `SR_AUDIO_WAV=path`; `tools/wav_rms.py`; `tools/sr2snd.py` follows sound.md §7. Fixed on the way: reject beep is slot 12 (not 15) in ui_edit.c; race ISR enter/leave sound globals; DS:0050 stays 666 until sound init. Open: title music stops after the first song (~136 s gap reproduced, `PORT: verify U5`).
+- S5.5 (2026-10-10): `tools/sr2_smoke.py` (15 headless paths on copies of Game/ in work/s55game, all ok: title→classifieds, 420 s demo, garage tour, save→load, jail, all race kinds, King/summer/broke endings); dev aids `SR_DEBUG_END=king|summer|broke|garage`, `SR_DEBUG_HOURS`, `SR_DEBUG_GAS`, `SR_DEBUG_RACE=jail`. Fix: jail decoration loop drew an 8th garbage entry. Disassembly cross-checks (objects, mirror bands, town walls, bob_hotspots, ending) match. Spec error: no msg 0x44 after the ending.
 
 ### Phase 6 — Release
 | Id | Task | Model | Size |

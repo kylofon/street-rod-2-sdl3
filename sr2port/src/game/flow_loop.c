@@ -28,9 +28,11 @@ int game_run_ms;                                  /* developer aid (main.c --run
 void game_loop(void)
 {
     s16 again = 1;
-    s16 code = title_and_setup();
-    s16 prev, redraw, r;
+    bool end_debug = end_debug_main();                /* PORT: developer aid SR_DEBUG_END (game/race_debug.c) */
+    s16 code = end_debug ? 0 : title_and_setup();
+    s16 prev = 0, redraw, r;
 
+    if (end_debug) goto garage_start;
 new_or_load:
     do {
         prev = code;
@@ -42,6 +44,7 @@ new_or_load:
         }
         if (code == -0x29A) { code = -1; again = 1; }
     } while (code != 0 && again);
+garage_start:
     status_label(ds_str(DSW(DS_money_label)));                    /* "Bankroll:" and the money */
     redraw = 1;
     if (prev == -1 && DSS(DS_car_count) < 16 && DSS(DS_part_count) < PART_LIMIT) newspaper_front();
