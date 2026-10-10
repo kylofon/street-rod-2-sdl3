@@ -4,15 +4,14 @@ project(sr2port C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-# Port of Street Rod 2's SR.EXE, VGA 16-colour mode (0Dh). AdLib sound arrives with S5.4 (Nuked-OPL3
-# is compiled in already). CGA / Tandy / Hercules are parked.
+# Port of Street Rod 2's SR.EXE, VGA 16-colour mode (0Dh). AdLib sound (S5.4) runs on Nuked-OPL3. CGA / Tandy / Hercules are parked.
 set(SR2PORT_VERSION 0.0.1)
 
 find_package(SDL3 REQUIRED CONFIG)
 
 file(GLOB_RECURSE SR_SOURCES CONFIGURE_DEPENDS src/*.c)
 
-# Nuked-OPL3 (LGPL-2.1+, third_party/nuked-opl3/LICENSE); unused until the sound subtask.
+# Nuked-OPL3 (LGPL-2.1+, third_party/nuked-opl3/LICENSE); the AdLib chip (host.c).
 add_library(nuked_opl3 STATIC third_party/nuked-opl3/opl3.c)
 target_include_directories(nuked_opl3 PUBLIC third_party/nuked-opl3)
 

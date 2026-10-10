@@ -61,7 +61,7 @@ void edit_key(void)
         if (key > 0x5A) return;
         if (DSS(DS_edit_len) == 0 && key == 0x20) return;
         if (DSB(DS_edit_numeric) != 0 && (key < 0x30 || key > 0x39)) {
-            sound_vec(15);                                 /* beep */
+            sound_vec(12);                                 /* beep (slot 12, 1a21:5db7; was 15 = the crash) */
             return;
         }
     }
@@ -89,7 +89,7 @@ void edit_key(void)
         DSS(DS_edit_cx) = DSS(DS_g_text_end_x);
         done = true;
     }
-    if (!done) sound_vec(15);                              /* full, or nothing to delete */
+    if (!done) sound_vec(12);                              /* full, or nothing to delete (1a21:5e9c) */
     DSB(DS_g_line_col) = DSB(DS_g_text_fg);                /* draw the caret again */
     vline(g_back(), DSS(DS_edit_cx), DSS(DS_edit_cy), 8);
     DSB(DS_edit_caret_on) = 1;
@@ -148,7 +148,7 @@ s16 edit_run(s16 x, s16 y, char *buf, s16 maxlen)
                 if (key == 0x4F) r = -0x18;
                 break;
             }
-            sound_vec(15);                                 /* empty numeric field */
+            sound_vec(12);                                 /* empty numeric field (1a21:6020) */
         } else if (key != 0) {
             edit_key();
         }

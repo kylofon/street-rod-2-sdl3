@@ -4,30 +4,26 @@
 #include "game/ui.h"
 #include "game/events.h"
 #include "game/race.h"
+#include "sound/sound.h"
 
 #include <stdio.h>
 
 Modules modules;
 
-/* ---- stand-ins (PORT: temporary, until the owning subsystem is ported) */
-
-static void nop(void) {}
-static void nop_u8(u8 v) { (void)v; }
-static void nop_s16(s16 v) { (void)v; }
-
 void modules_init(void)
 {
     race_register_hooks();                        /* race_phys_step (race_isr from 0001:28fa) */
 
-    modules.snd_state_init = nop;                 /* S5.4 */
-    modules.adlib_timbres_load = nop;
-    modules.snd_timer_tick = nop;
-    modules.snd_race_tick = nop_u8;
-    modules.snd_race_enter = nop;
-    modules.snd_race_leave = nop;
-    modules.snd_exit = nop;
-    modules.snd_init = nop_s16;
-    modules.mus_songs_load = nop;
+    snd_register_codeptrs();                      /* the 50 slot routines of DS:530A / DS:73C2 (S5.4) */
+    modules.snd_state_init = snd_state_init;
+    modules.adlib_timbres_load = snd_adlib_timbres_load;
+    modules.snd_timer_tick = snd_timer_tick;
+    modules.snd_race_tick = snd_race_tick;
+    modules.snd_race_enter = snd_race_enter;
+    modules.snd_race_leave = snd_race_leave;
+    modules.snd_exit = snd_exit;
+    modules.snd_init = snd_init;
+    modules.mus_songs_load = snd_mus_songs_load;
 
     modules.event15_overlay = pump_strip_draw;     /* 2925:1cae */
 

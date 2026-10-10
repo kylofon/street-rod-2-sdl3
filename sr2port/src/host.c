@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define AUDIO_RATE 44100
+#include "opl3.h"
+
+#define AUDIO_RATE 49716          /* PORT: the OPL2 sample rate (14.318 MHz / 288), so Nuked-OPL3 runs unresampled */
 #define SPEAKER_AMPLITUDE 5000
 
 static SDL_Window *window;
@@ -136,8 +138,8 @@ void host_set_pit_divisor(u16 divisor)
  * and a one-pole low-pass (~10 kHz). Samples are rendered lazily: up to the stamp of each write, and
  * up to each tick boundary (so the device gets one tick of audio per tick, behind the timeline). */
 
-#define HP_R  0.99715       /* 1 - 2*pi*20/44100: ~20 Hz DC blocker */
-#define LP_A  0.7603        /* 1 - exp(-2*pi*10000/44100): ~10 kHz one-pole low-pass */
+#define HP_R  0.99747       /* 1 - 2*pi*20/49716: ~20 Hz DC blocker */
+#define LP_A  0.7175        /* 1 - exp(-2*pi*10000/49716): ~10 kHz one-pole low-pass */
 #define SPEAKER_GAIN (SPEAKER_AMPLITUDE * 2.0)   /* a full square swings +-SPEAKER_AMPLITUDE */
 #define AUDIO_MAX_QUEUED  (AUDIO_RATE / 4)       /* samples; beyond that output is dropped */
 #define AUDIO_LEAD_IN     (AUDIO_RATE / 25)      /* 40 ms of silence after an underrun */
@@ -160,6 +162,8 @@ static s16 r_buf[2048];
 static int r_n;
 static FILE *dump_f;
 static u32 dump_samples;
+static opl3_chip opl;                   /* AdLib (sound.md): Nuked-OPL3, mono = left channel (OPL2 mode) */
+static bool opl_on;
 
 static u32 half_period(u32 count, bool high)
 {
@@ -211,6 +215,11 @@ static void emit_sample(double x)
     hp_y1 = y;
     lp_z += LP_A * (y - lp_z);
     double s = lp_z * SPEAKER_GAIN;
+    if (opl_on) {                                   /* PORT: one OPL sample per output sample (same rate) */
+        int16_t o[2];
+        OPL3_Generate(&opl, o);
+        s += o[0];
+    }
     r_buf[r_n++] = (s16)(s > 32767 ? 32767 : s < -32767 ? -32767 : s);
     if (r_n == (int)SDL_arraysize(r_buf)) audio_flush();
 }
@@ -283,6 +292,21 @@ void host_port61(u8 value)
 
 u8 host_port61_get(void) { return port61; }
 
+/* PORT: the AdLib chip. A register write is stamped at the emulated time of the writer, like the speaker
+ * ports: audio is rendered up to it first, so music is sample-accurate to the PIT timeline. */
+void host_opl_enable(bool on)
+{
+    if (on && !opl_on) OPL3_Reset(&opl, AUDIO_RATE);
+    opl_on = on;
+}
+
+void host_opl_write(u8 reg, u8 value)
+{
+    if (!opl_on) return;
+    render_to(tl_now);
+    OPL3_WriteReg(&opl, reg, value);
+}
+
 void host_speaker(u16 divisor, bool on)
 {
     host_pit2_divisor(divisor);
@@ -338,7 +362,8 @@ static void audio_dump_close(void)
 
 static void audio_dump_from_env(void)
 {
-    const char *path = SDL_getenv("SR_AUDIO_DUMP");
+    const char *path = SDL_getenv("SR_AUDIO_WAV");      /* PORT: dev aid, same as SR_AUDIO_DUMP */
+    if (!path || !*path) path = SDL_getenv("SR_AUDIO_DUMP");
     if (path && *path && !host_audio_dump_begin(path)) fprintf(stderr, "cannot write %s\n", path);
 }
 

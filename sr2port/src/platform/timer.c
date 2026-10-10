@@ -13,6 +13,7 @@
 #include "host.h"
 #include "modules.h"
 #include "platform/video.h"
+#include "sound/sound.h"
 
 /* ------------------------------------------------------------------------------------------------ */
 /* The BIOS INT 8 handler the game chains to every 4th tick (DS:A2AC).                              */
@@ -122,7 +123,7 @@ s16 sign(s16 v)
  * the race module of SR2 (S5.3); kept here with the ISRs as in the SR1 port. */
 void race_isr_enter(void)
 {
-    host_set_tick_handler(race_isr);              /* _dos_setvect(8, 0001:2622) */
+    snd_int8_set(race_isr);                       /* _dos_setvect(8, 0001:2622); with AdLib music: the chained ISR */
     if (DSW(DS_demo) == 0 && DSB(DS_mouse_present)) {
         mouse_poll();
         DSW(DS_mouse_acc_y) = 0;
@@ -140,7 +141,7 @@ void race_isr_enter(void)
 
 void race_isr_leave(void)
 {
-    host_set_tick_handler(timer_isr);             /* _dos_setvect(8, 0001:2246) */
+    snd_int8_set(timer_isr);                      /* _dos_setvect(8, 0001:2246) */
     modules.snd_race_leave();
     if (DSW(DS_demo) == 0 && DSB(DS_mouse_present)) {
         mouse_poll();
@@ -212,7 +213,7 @@ void platform_install(void)
     host_set_pit_divisor(0x4000);
     ds_far_wr(DS_old_int8, far_make(0xF000, 0xFEA5));   /* PORT: the BIOS INT 8 entry, never called */
     DSB(DS_isr_installing) = 0;
-    host_set_tick_handler(timer_isr);
+    snd_int8_set(timer_isr);
     /* sti */
     if (DSW(DS_snd_device) == 0) modules.adlib_timbres_load();     /* 2c57:1394 (S5.4) */
     kbd_install();
@@ -225,7 +226,7 @@ void platform_install(void)
 /* 0001:189e timer_restore */
 void timer_restore(void)
 {
-    host_set_tick_handler(NULL);                  /* PIT 0 back to 18.2 Hz, old INT 8 */
+    snd_int8_set(NULL);                           /* PIT 0 back to 18.2 Hz, old INT 8 */
     host_set_pit_divisor(0);
     kbd_restore();
     DSW(DS_timer_on) = 0;

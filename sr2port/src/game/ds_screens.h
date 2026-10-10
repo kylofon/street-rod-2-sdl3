@@ -56,10 +56,5 @@ static inline s16 gs_list_box(s16 screen, s16 sel, const s8 *wear, s16 n)
 /* ---- functions of other modules the garage screens call (identical prototypes may be repeated) */
 s16  car_max_speed(s16 model);                    /* 0001:c6f6 (race): -1 = the current car */
 
-/* ---- sound stand-ins (S5.4): the original calls 2c57:0b2c / 0bd2 (AdLib engine tone) and writes the PIT (speaker) */
-#ifndef snd_adlib_engine
-#define snd_adlib_engine(on) ((void)(on))
-#endif
-#ifndef snd_ignition_tone
-#define snd_ignition_tone(car) ((void)(car))
-#endif
+/* sound: snd_adlib_engine / snd_ignition_tone are in game/snd.h (src/sound/) */
+#include "game/snd.h"

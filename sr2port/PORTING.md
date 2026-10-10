@@ -29,7 +29,7 @@ screen,lib,textmode}.c`, `platform.h`, `video.h`, `ds_extra.h` (DGROUP offsets t
 differently), `modules.h/.c` (hooks into race / sound / game_flow, all stand-ins for now) and
 `game/flow_stub.c` (the few game_flow functions the start-up chain needs: `rnd`, `input_reset`,
 `wait_click_or_key`, `title_sequence`, empty `hot_data_load` / `hall_load`; S5.2 replaces the file).
-Not yet taken from SR1 (their owners come later): `sound/` (S5.4), `game/*` (S5.2, S5.3), `launcher/`.
+Not taken from SR1: `launcher/`. `sound/` was ported in S5.4, `game/*` in S5.2 / S5.3.
 
 Build (MSYS2 mingw64 SDL3, as SR1; put `C:\msys64\mingw64\bin` on PATH or the compiler test fails):
 `cmake -S sr2port -B sr2port/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc`.
@@ -81,6 +81,24 @@ mode, tick 240) played by `mus_tick`; Nuked-OPL3 renders the register writes (`t
 shows the offline use). Music timer ISR `mus_timer_isr` 2f1b:00cb owns INT 8 while a song plays and chains
 the game tick (68.6 Hz at tempo 120, 60 Hz at tempo 60): the host timer must model that. No Tandy/PCjr sound.
 Spec: `../port/spec/sound.md`.
+
+**S5.4 (src/sound/, `sound/sound.h` is the API, `game/snd.h` the include of the game code):** `slots.c` the table
+`sound_vec(k, arg)` (= `(*DS:BB8C[k])(arg)`, far pointers resolved through `codeptr`; every slot routine is registered by
+`snd_register_codeptrs`), music_stop / resume, the sound parts of `timer_isr` / `race_isr` / `race_isr_enter` / `race_isr_leave`
+(`modules.snd_*` hooks); `spk.c` speaker (SR1 effects + table-driven sequencer, song data stays in DGROUP); `adlib.c` OPL2 driver;
+`mus.c` MSR.SND bank, `.MUS` interpreter `mus_tick`, playlists and the music ISR; `adfx.c` AdLib effects and engine drone.
+PORT notes: the AdLib driver state (operator parameters, F-number rows, caches) is C state of `adlib.c`, the bank and songs are C
+buffers; `adlib_detect` always succeeds so the sound menu is offered as with a card; the speaker busy-loop effects use the SR1
+timing constants. `host_opl_write` is stamped on the emulated timeline and the OPL3 chip is rendered in the same audio callback
+(output rate 49716 Hz = the OPL2 rate). Dev aid: `SR_AUDIO_WAV=file.wav` (alias of SR_AUDIO_DUMP) writes the mixed mono output.
+* **Game tick under AdLib music (U7 item 6, faithful):** the music ISR (`mus.c: mus_timer_isr`) owns the host tick at the song's
+  rate (D = 0x1234DC / (tick_beat * tempo / 60) = 2485 at tempo 120) and calls the game ISR when its 0x4000 accumulator is <= 0,
+  remainder discarded: 68.6 Hz at tempo 120, 60 Hz at tempo 60 (72.8 Hz when no song plays). `platform/timer.c` therefore sets
+  its ISR with `snd_int8_set` (chained pointer while the music ISR is installed), not `host_set_tick_handler`.
+* **Playlist stall (PORT: verify U5):** when a song ends the next song's first delay (0) is returned raw, the countdown wraps and the
+  next `mus_tick` runs 65 536 interrupts later (136 s at 480 Hz), as the code does (sound.md 7.2 item 3).
+* Fixed in game code: the text-edit reject beep called slot 15 (the crash) instead of slot 12 (`ui_edit.c`);
+  `race_isr_enter/leave` now set / clear DS:A2B2, 1F7C, 1F78, 72E2, 72E0, 7BA2 as the original (in `snd_race_enter/leave`).
 
 ## Road modes (`DS:ADD6`)
 

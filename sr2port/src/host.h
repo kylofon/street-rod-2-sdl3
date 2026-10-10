@@ -76,6 +76,11 @@ bool host_joy_read(s16 *x, s16 *y, u8 *buttons);
 void host_pit2_divisor(u16 divisor);        /* out 42h lo, hi (0 = 65536) */
 void host_port61(u8 value);                 /* out 61h */
 u8   host_port61_get(void);                 /* in 61h: the last value written */
+/* ---- AdLib (OPL2, port 388h/389h): Nuked-OPL3 mixed into the same audio stream, one chip sample per output
+ * sample (49716 Hz). host_opl_write is stamped at the emulated time of the caller (tick or busy wait).
+ * SR_AUDIO_WAV=file.wav (or SR_AUDIO_DUMP) writes the mixed output (mono s16) to a WAV file. */
+void host_opl_enable(bool on);              /* adlib_sound_init: reset the chip and start rendering it */
+void host_opl_write(u8 reg, u8 value);
 /* The original's busy loops (0f38 delay 2196:0002 and the code around it): advances the emulated
  * timeline, running the tick handler for every tick boundary crossed (after pacing to that tick's
  * real time and handling window events), and returns when real time has caught up with the
@@ -87,7 +92,7 @@ void host_speaker(u16 divisor, bool on);
 
 /* Developer aids for offline rendering (tools/snd_dump.c): with realtime off, busy waits never wait
  * for real time; host_run_tick_now() runs the next timer tick at once (handler + audio). A WAV dump
- * receives every rendered sample (44.1 kHz mono s16), with or without an audio device; the
+ * receives every rendered sample (49.7 kHz mono s16), with or without an audio device; the
  * environment variable SR_AUDIO_DUMP=file.wav starts one in host_init. */
 void host_set_realtime(bool on);
 void host_run_tick_now(void);

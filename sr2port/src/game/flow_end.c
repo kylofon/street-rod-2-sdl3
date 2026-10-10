@@ -9,6 +9,7 @@
 #include "game/records.h"
 #include "game/ui.h"
 #include "modules.h"
+#include "game/snd.h"
 #include "platform/platform.h"
 #include "platform/video.h"
 
@@ -177,10 +178,10 @@ void ending_trigger(void)
     DSW(DS_pic_rows) = h;
     drv_pal_normal();
     wait_ticks(0x2EE);                                /* 750 ticks, input skips */
-    /* sound_vec(19)() — the ending music (DS:BBD8, S5.4) */
+    sound_vec(19);                                    /* the ending music (list B on AdLib) */
     ending_anim();
     arena_clear();
-    /* sound_vec(18)() — the title music (DS:BBD4, S5.4) */
+    sound_vec(18);                                    /* the title music again */
 }
 
 /* 2925:2714 end_data_load: the two SR2_end tables go behind the shape-set data in arena 2 */

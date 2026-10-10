@@ -37,7 +37,7 @@ static s16 video_menu(s16 rec)
 }
 
 /* 0001:01ea sound_options_menu (sound.md): text screen; returns 0 = AdLib, 1 = PC speaker ("Normal"); any
- * other key = AdLib. */
+ * other key = AdLib. PORT: shown as with a card, because adlib_detect always succeeds (Nuked-OPL3). */
 static s16 sound_options_menu(void)
 {
     char buf[0x40];
@@ -177,7 +177,7 @@ void platform_main_init(int argc, char **argv)
     }
     s16 mode = video_detect_menu(forced);
     s16 snd = adlib_detect() != 0 ? sound_options_menu() : 1;
-    DSW(DS_snd_device) = (u16)snd;                /* PORT: sound init (S5.4) keeps it: 0 AdLib, 1 speaker */
+    /* DS:0050 stays 666 until the sound init below (the timer ISR and platform_install test it) */
     mem_pools_init();
     driver_select(mode);
     video_mode_init(mode);

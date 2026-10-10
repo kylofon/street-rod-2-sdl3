@@ -18,8 +18,8 @@
 
 #define MODE DSS(DS_road_mode)
 
-/* 0001:2164 music_resume_if_on (sound) */
-static void music_resume_if_on(void) {}                         /* PORT: S5.4 stub (sound) */
+#include "game/snd.h"
+#define music_resume_if_on music_resume_after_race               /* 0001:2164 */
 
 /* 0001:ac68 tires_replace: blown tyres off; a spare set or plain tyres for $50. Returns the unpaid part. */
 s16 tires_replace(void)
