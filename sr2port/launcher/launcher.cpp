@@ -5,13 +5,17 @@
 #include <wx/button.h>
 #include <wx/checkbox.h>
 #include <wx/choice.h>
+#include <wx/dialog.h>
 #include <wx/dirdlg.h>
 #include <wx/filedlg.h>
 #include <wx/filename.h>
 #include <wx/hyperlink.h>
 #include <wx/radiobox.h>
+#include <wx/menu.h>
 #include <wx/msgdlg.h>
+#include <wx/panel.h>
 #include <wx/settings.h>
+#include <wx/simplebook.h>
 #include <wx/sizer.h>
 #include <wx/statbmp.h>
 #include <wx/statbox.h>
@@ -35,7 +39,10 @@ const char* const WEBSITE = "https://kkania.com";
 const char* const SUPPORT = "https://buymeacoffee.com/krzysztofkania";
 const char* const SECTION = SETTINGS_SECTION;
 
-const int MIN_SCALE = 1, MAX_SCALE = 6, DEFAULT_SCALE = 3;
+const int MIN_SCALE = 1, MAX_SCALE = 6;
+const int ID_KEYS = wxID_HIGHEST + 1, ID_ABOUT = wxID_HIGHEST + 2;
+// The book's pages.
+const int PAGE_MAIN = 0, PAGE_KEYS = 1;
 
 #ifdef __WXMSW__
 HRESULT CALLBACK AboutCallback(HWND hwnd, UINT msg, WPARAM, LPARAM lp, LONG_PTR) {
@@ -79,21 +86,72 @@ wxString SavesText(int n) {
 
 }  // namespace
 
-LauncherDialog::LauncherDialog()
-    : wxDialog(nullptr, wxID_ANY, APP_TITLE, wxDefaultPosition, wxDefaultSize,
-               wxDEFAULT_DIALOG_STYLE | wxMINIMIZE_BOX) {
+LauncherFrame::LauncherFrame()
+    : wxFrame(nullptr, wxID_ANY, APP_TITLE, wxDefaultPosition, wxDefaultSize,
+              wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX)) {
     SetIcons(AppIcons());
+    topmost_ = settings::GetInt("Preferences", "AlwaysOnTop", 0) != 0;
+    if (topmost_) SetWindowStyleFlag(GetWindowStyleFlag() | wxSTAY_ON_TOP);
+
+    // The launcher and, in its place while it is open, the Keys page (PAGE_*).
+    book_ = new wxSimplebook(this);
+    book_->AddPage(CreateMainPage(book_), "Game");
+    book_->AddPage(CreateKeysPage(book_), "Keys");
+    auto* all = new wxBoxSizer(wxVERTICAL);
+    all->Add(book_, 1, wxEXPAND);
+    SetSizer(all);
+    CreateMenus();
+
+    // Settings from the last run (validated by OptionsFromSettings).
+    const GameOptions saved = OptionsFromSettings();
+    const wxString dir = settings::GetString(SECTION, "GameFolder", "");
+    const wxString program = settings::GetString(SECTION, "Program", "");
+    folder_->ChangeValue(dir.empty() ? DefaultGameDir() : dir);
+    program_->ChangeValue(program.empty() ? DefaultProgram() : program);
+    graphics_->SetSelection(static_cast<int>(saved.graphics));
+    sound_->SetSelection(saved.sound == Sound::Normal ? 1 : 0);
+    demo_->SetValue(saved.demo);
+    noMouse_->SetValue(saved.noMouse);
+    noUemem_->SetValue(saved.noUemem);
+    scale_->SetSelection(saved.scale - MIN_SCALE);
+    fullscreen_->SetValue(saved.fullscreen);
+    loading_ = false;
+    UpdateState();
+
+    Bind(wxEVT_ACTIVATE, [this](wxActivateEvent& event) {
+        if (event.GetActive()) UpdateState();  // files may have been copied in, games saved meanwhile
+        event.Skip();
+    });
+    Bind(wxEVT_CLOSE_WINDOW, [this](wxCloseEvent&) {
+        Save();
+        Destroy();
+    });
+    // Esc leaves the Keys page.
+    Bind(wxEVT_CHAR_HOOK, [this](wxKeyEvent& event) {
+        if (event.GetKeyCode() == WXK_ESCAPE && book_->GetSelection() == PAGE_KEYS)
+            CloseKeys();
+        else
+            event.Skip();
+    });
+
+    FitPage();
+    if (!settings::RestoreWindowPosition(SECTION, this)) Centre();
+}
+
+wxWindow* LauncherFrame::CreateMainPage(wxWindow* parent) {
+    auto* page = new wxPanel(parent);
     const int margin = FromDIP(12), gap = FromDIP(8), small = FromDIP(4);
 
     // Game files
-    auto* filesBox = new wxStaticBoxSizer(wxVERTICAL, this, "Game files");
+    auto* filesBox = new wxStaticBoxSizer(wxVERTICAL, page, "Game files");
     wxWindow* fb = filesBox->GetStaticBox();
     auto* filesGrid = new wxFlexGridSizer(2, gap, gap);
     filesGrid->AddGrowableCol(1);
     wxButton* browseFolder = nullptr;
     wxButton* browseProgram = nullptr;
     folder_ = PathRow(fb, filesGrid, "&Folder:",
-                      "The folder with the original game's files (SR.EXE, LIB1, LIB2, LIB3 ...).", &browseFolder);
+                      "The folder with the original game's files (SR.EXE, LIB1, LIB2, LIB3 and SR2_DATA).",
+                      &browseFolder);
     program_ = PathRow(fb, filesGrid, "&Program:", "sr2port, the game.", &browseProgram);
     auto* statusRow = new wxBoxSizer(wxHORIZONTAL);
     statusIcon_ = new wxStaticBitmap(fb, wxID_ANY, wxArtProvider::GetBitmapBundle(wxART_WARNING, wxART_MENU));
@@ -101,7 +159,10 @@ LauncherDialog::LauncherDialog()
     statusRow->Add(statusIcon_, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, small);
     statusRow->Add(statusNote_, 1, wxALIGN_CENTER_VERTICAL);
     filesBox->Add(filesGrid, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, gap);
-    filesBox->Add(statusRow, 0, wxEXPAND | wxALL, gap);
+    filesBox->Add(statusRow, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, gap);
+    filesBox->Add(GreyText(fb, "The game saves its games (HOTROD0..14.SAV) in this folder,\n"
+                               "so it must be writable (not under Program Files)."),
+                  0, wxALL, gap);
     folder_->Bind(wxEVT_TEXT, [this](wxCommandEvent&) {
         if (!loading_) UpdateState();
     });
@@ -112,16 +173,16 @@ LauncherDialog::LauncherDialog()
     browseProgram->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { BrowseProgram(); });
 
     // Graphics and sound: the original's video menu and sound options menu, answered here so that
-    // sr2port skips both text screens. CGA, Hercules and Tandy are listed as in the original, but the
-    // port has no driver for them; EGA runs through the same driver as VGA.
-    auto* startBox = new wxStaticBoxSizer(wxVERTICAL, this, "Graphics and sound");
+    // sr2port skips both text screens. CGA, Hercules and Tandy are listed as in the original but greyed
+    // out: the port has no driver for them; EGA runs through the same driver as VGA.
+    auto* startBox = new wxStaticBoxSizer(wxHORIZONTAL, page, "Graphics and sound");
     wxWindow* sb = startBox->GetStaticBox();
     wxArrayString gfx;
-    gfx.Add("&CGA (not in the port)");
-    gfx.Add("&EGA (runs as VGA)");
+    gfx.Add("&CGA (not supported by the port)");
+    gfx.Add("&EGA (shown as VGA)");
     gfx.Add("&VGA");
-    gfx.Add("&Hercules (not in the port)");
-    gfx.Add("&Tandy (not in the port)");
+    gfx.Add("&Hercules (not supported by the port)");
+    gfx.Add("&Tandy (not supported by the port)");
     graphics_ = new wxRadioBox(sb, wxID_ANY, "Video", wxDefaultPosition, wxDefaultSize, gfx, 1, wxRA_SPECIFY_COLS);
     for (int n = 0; n < 5; ++n) graphics_->Enable(n, GraphicsSupported(static_cast<Graphics>(n)));
     graphics_->SetToolTip("The original's video menu. The port draws the VGA 16-colour screen.");
@@ -130,24 +191,11 @@ LauncherDialog::LauncherDialog()
     snd.Add("&Normal (PC speaker)");
     sound_ = new wxRadioBox(sb, wxID_ANY, "Sound", wxDefaultPosition, wxDefaultSize, snd, 1, wxRA_SPECIFY_COLS);
     sound_->SetToolTip("The original's sound options menu: AdLib (emulated) or the PC speaker.");
-    startBox->Add(graphics_, 0, wxEXPAND | wxALL, gap);
-    startBox->Add(sound_, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, gap);
+    startBox->Add(graphics_, 1, wxEXPAND | wxALL, gap);
+    startBox->Add(sound_, 1, wxEXPAND | wxTOP | wxRIGHT | wxBOTTOM, gap);
 
-    // Switches
-    auto* switchBox = new wxStaticBoxSizer(wxVERTICAL, this, "The game's own switches");
-    wxWindow* wb = switchBox->GetStaticBox();
-    demo_ = new wxCheckBox(wb, wxID_ANY, "&Demo: the game plays itself (Esc ends it)");
-    demo_->SetToolTip("The original's \"demo\" switch: a self-running game.");
-    noMouse_ = new wxCheckBox(wb, wxID_ANY, "&No mouse (keyboard and joystick only)");
-    noMouse_->SetToolTip("The original's \"nomouse\" switch.");
-    noUemem_ = new wxCheckBox(wb, wxID_ANY, "No &upper memory (nouemem)");
-    noUemem_->SetToolTip("The original's \"nouemem\" switch: the pictures aren't parked in upper/expanded memory.");
-    switchBox->Add(demo_, 0, wxALL, gap);
-    switchBox->Add(noMouse_, 0, wxLEFT | wxRIGHT | wxBOTTOM, gap);
-    switchBox->Add(noUemem_, 0, wxLEFT | wxRIGHT | wxBOTTOM, gap);
-
-    // Options
-    auto* optionsBox = new wxStaticBoxSizer(wxVERTICAL, this, "Options");
+    // Options: the window, and the game's own switches
+    auto* optionsBox = new wxStaticBoxSizer(wxVERTICAL, page, "Options");
     wxWindow* ob = optionsBox->GetStaticBox();
     auto* grid = new wxFlexGridSizer(2, gap, gap);
     grid->Add(new wxStaticText(ob, wxID_ANY, "&Window size:"), 0, wxALIGN_CENTER_VERTICAL);
@@ -157,10 +205,46 @@ LauncherDialog::LauncherDialog()
     grid->Add(scale_, 0, wxALIGN_CENTER_VERTICAL);
     optionsBox->Add(grid, 0, wxLEFT | wxRIGHT | wxTOP, gap);
     fullscreen_ = new wxCheckBox(ob, wxID_ANY, "Start in f&ull screen (Alt+Enter switches)");
-    optionsBox->Add(fullscreen_, 0, wxALL, gap);
+    optionsBox->Add(fullscreen_, 0, wxLEFT | wxRIGHT | wxTOP, gap);
+    demo_ = new wxCheckBox(ob, wxID_ANY, "&Demo: the game plays itself (Esc ends it)");
+    demo_->SetToolTip("The original's \"demo\" switch: a self-running game.");
+    noMouse_ = new wxCheckBox(ob, wxID_ANY, "No &mouse (keyboard and joystick only)");
+    noMouse_->SetToolTip("The original's \"nomouse\" switch.");
+    noUemem_ = new wxCheckBox(ob, wxID_ANY, "No &upper memory (nouemem)");
+    noUemem_->SetToolTip("The original's \"nouemem\" switch: the pictures aren't parked in upper/expanded memory.");
+    optionsBox->Add(demo_, 0, wxLEFT | wxRIGHT | wxTOP, gap);
+    optionsBox->Add(noMouse_, 0, wxLEFT | wxRIGHT | wxTOP, gap);
+    optionsBox->Add(noUemem_, 0, wxALL, gap);
 
-    // Keys
-    auto* keysBox = new wxStaticBoxSizer(wxVERTICAL, this, "Keys in the game");
+    // Buttons
+    auto* buttons = new wxBoxSizer(wxHORIZONTAL);
+    play_ = new wxButton(page, wxID_ANY, "&Play");
+    auto* close = new wxButton(page, wxID_CLOSE, "Close");
+    buttons->AddStretchSpacer();
+    buttons->Add(play_, 0, wxRIGHT, gap);
+    buttons->Add(close);
+    play_->SetDefault();
+    play_->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { Play(); });
+    close->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { Close(); });
+
+    auto* all = new wxBoxSizer(wxVERTICAL);
+    all->Add(filesBox, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, margin);
+    all->Add(startBox, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, margin);
+    all->Add(optionsBox, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, margin);
+    all->Add(buttons, 0, wxEXPAND | wxALL, margin);
+    page->SetSizer(all);
+    return page;
+}
+
+wxWindow* LauncherFrame::CreateKeysPage(wxWindow* parent) {
+    auto* page = new wxPanel(parent);
+    const int margin = FromDIP(12), gap = FromDIP(8), small = FromDIP(4);
+
+    auto* heading = new wxStaticText(page, wxID_ANY, "Keys in the game");
+    heading->SetFont(GetFont().Bold().Scaled(1.2f));
+    auto* intro = GreyText(page, "A reminder; the game's keys can't be changed.");
+
+    auto* keysBox = new wxStaticBoxSizer(wxVERTICAL, page, "Keys");
     wxWindow* kb = keysBox->GetStaticBox();
     auto* keys = new wxFlexGridSizer(2, small, FromDIP(16));
     const char* const KEYS[][2] = {
@@ -184,66 +268,107 @@ LauncherDialog::LauncherDialog()
     }
     keysBox->Add(keys, 0, wxALL, gap);
 
-    // Buttons
     auto* buttons = new wxBoxSizer(wxHORIZONTAL);
-    auto* about = new wxButton(this, wxID_ABOUT, "&About");
-    play_ = new wxButton(this, wxID_ANY, "&Play");
-    auto* close = new wxButton(this, wxID_CLOSE, "Close");
-    buttons->Add(about);
+    auto* back = new wxButton(page, wxID_OK, "&Back");
+    back->SetDefault();
     buttons->AddStretchSpacer();
-    buttons->Add(play_, 0, wxRIGHT, gap);
-    buttons->Add(close);
-    play_->SetDefault();
-    SetEscapeId(wxID_CLOSE);
-    about->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { About(); });
-    play_->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { Play(); });
-    close->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { Close(); });
+    buttons->Add(back);
+    back->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) { CloseKeys(); });
 
-    // Two columns: the files, the start and the options on the left, the keys on the right.
-    auto* left = new wxBoxSizer(wxVERTICAL);
-    left->Add(filesBox, 0, wxEXPAND);
-    left->Add(startBox, 0, wxEXPAND | wxTOP, margin);
-    left->Add(switchBox, 0, wxEXPAND | wxTOP, margin);
-    left->Add(optionsBox, 1, wxEXPAND | wxTOP, margin);
-    auto* columns = new wxBoxSizer(wxHORIZONTAL);
-    columns->Add(left, 0, wxEXPAND);
-    columns->Add(keysBox, 0, wxEXPAND | wxLEFT, margin);
     auto* all = new wxBoxSizer(wxVERTICAL);
-    all->Add(columns, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, margin);
+    all->Add(heading, 0, wxLEFT | wxRIGHT | wxTOP, margin);
+    all->Add(intro, 0, wxLEFT | wxRIGHT | wxTOP, small);
+    all->Add(keysBox, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, margin);
     all->Add(buttons, 0, wxEXPAND | wxALL, margin);
-    SetSizer(all);
-
-    // Settings from the last run.
-    wxString dir = settings::GetString(SECTION, "GameFolder", "");
-    wxString program = settings::GetString(SECTION, "Program", "");
-    folder_->ChangeValue(dir.empty() ? DefaultGameDir() : dir);
-    program_->ChangeValue(program.empty() ? DefaultProgram() : program);
-    const GameOptions saved = OptionsFromSettings();
-    graphics_->SetSelection(static_cast<int>(saved.graphics));
-    sound_->SetSelection(saved.sound == Sound::Normal ? 1 : 0);
-    demo_->SetValue(saved.demo);
-    noMouse_->SetValue(saved.noMouse);
-    noUemem_->SetValue(saved.noUemem);
-    scale_->SetSelection(
-        wxMax(MIN_SCALE, wxMin(MAX_SCALE, settings::GetInt(SECTION, "Scale", DEFAULT_SCALE))) - MIN_SCALE);
-    fullscreen_->SetValue(settings::GetInt(SECTION, "Fullscreen", 0) != 0);
-    loading_ = false;
-    UpdateState();
-
-    Bind(wxEVT_ACTIVATE, [this](wxActivateEvent& event) {
-        if (event.GetActive()) UpdateState();  // files may have been copied in, games saved meanwhile
-        event.Skip();
-    });
-    Bind(wxEVT_CLOSE_WINDOW, [this](wxCloseEvent&) {
-        Save();
-        Destroy();
-    });
-
-    Fit();
-    if (!settings::RestoreWindowPosition(SECTION, this)) Centre();
+    page->SetSizer(all);
+    return page;
 }
 
-void LauncherDialog::UpdateState() {
+void LauncherFrame::CreateMenus() {
+    auto* file = new wxMenu;
+    file->Append(wxID_PREFERENCES, wxString::FromUTF8("&Preferences…"));
+    file->AppendSeparator();
+    file->Append(wxID_EXIT, "E&xit\tAlt+F4");
+    auto* settingsMenu = new wxMenu;
+    settingsMenu->Append(ID_KEYS, wxString::FromUTF8("&Keys in the game…"));
+
+    auto* bar = new wxMenuBar;
+    bar->Append(file, "&File");
+    bar->Append(settingsMenu, "&Game settings");
+#ifndef __WXMSW__
+    auto* about = new wxMenu;
+    about->Append(ID_ABOUT, wxString::FromUTF8("&About ") + APP_TITLE + wxString::FromUTF8("…"));
+    bar->Append(about, "A&bout");
+#endif
+    SetMenuBar(bar);
+#ifdef __WXMSW__
+    // A top-level About item that acts straight away, which wxWidgets menus
+    // can't express; MSWWindowProc handles its command.
+    const HMENU native = static_cast<HMENU>(bar->GetHMenu());
+    AppendMenuW(native, MF_STRING, ID_ABOUT, L"A&bout");
+    DrawMenuBar(static_cast<HWND>(GetHWND()));
+#endif
+
+    Bind(wxEVT_MENU, [this](wxCommandEvent&) { Close(); }, wxID_EXIT);
+    Bind(wxEVT_MENU, [this](wxCommandEvent&) { Preferences(); }, wxID_PREFERENCES);
+    Bind(wxEVT_MENU, [this](wxCommandEvent&) { OpenKeys(); }, ID_KEYS);
+    Bind(wxEVT_MENU, [this](wxCommandEvent&) { About(); }, ID_ABOUT);
+}
+
+#ifdef __WXMSW__
+WXLRESULT LauncherFrame::MSWWindowProc(WXUINT msg, WXWPARAM wParam, WXLPARAM lParam) {
+    if (msg == WM_COMMAND && LOWORD(wParam) == ID_ABOUT && lParam == 0) {
+        CallAfter([this] { About(); });
+        return 0;
+    }
+    return wxFrame::MSWWindowProc(msg, wParam, lParam);
+}
+#endif
+
+void LauncherFrame::FitPage() { SetClientSize(book_->GetCurrentPage()->GetBestSize()); }
+
+void LauncherFrame::OpenKeys() {
+    if (book_->GetSelection() == PAGE_KEYS) return;
+    book_->ChangeSelection(PAGE_KEYS);
+    FitPage();
+    GetMenuBar()->Enable(ID_KEYS, false);
+    SetDefaultItem(book_->GetPage(PAGE_KEYS)->FindWindow(wxID_OK));
+}
+
+void LauncherFrame::CloseKeys() {
+    book_->ChangeSelection(PAGE_MAIN);
+    FitPage();
+    GetMenuBar()->Enable(ID_KEYS, true);
+    SetDefaultItem(play_);
+    play_->SetFocus();
+}
+
+void LauncherFrame::Preferences() {
+    wxDialog dialog(this, wxID_ANY, "Preferences");
+    auto* all = new wxBoxSizer(wxVERTICAL);
+    auto* topmost = new wxCheckBox(&dialog, wxID_ANY, "Always on &top");
+    topmost->SetValue(topmost_);
+    topmost->SetToolTip("Keep the launcher above other windows.");
+    all->Add(topmost, 0, wxALL, dialog.FromDIP(12));
+    all->Add(dialog.CreateStdDialogButtonSizer(wxOK | wxCANCEL), 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM,
+             dialog.FromDIP(12));
+    dialog.SetSizerAndFit(all);
+    dialog.SetMinSize(wxSize(dialog.FromDIP(300), -1));
+    dialog.Fit();
+    dialog.CentreOnParent();
+    topmost->SetFocus();
+    if (dialog.ShowModal() != wxID_OK) return;
+    if (topmost->GetValue() != topmost_) SetTopmost(topmost->GetValue());
+}
+
+void LauncherFrame::SetTopmost(bool on) {
+    topmost_ = on;
+    const long style = GetWindowStyleFlag();
+    SetWindowStyleFlag(on ? style | wxSTAY_ON_TOP : style & ~wxSTAY_ON_TOP);
+    settings::SetInt("Preferences", "AlwaysOnTop", on ? 1 : 0);
+}
+
+void LauncherFrame::UpdateState() {
     const wxString dir = folder_->GetValue(), program = program_->GetValue();
     game_ = ReadGameFolder(dir);
     const bool haveProgram = wxFileName::FileExists(program);
@@ -259,17 +384,16 @@ void LauncherDialog::UpdateState() {
     statusIcon_->Show(!ok);
     statusNote_->SetLabel(note);
     play_->Enable(ok);
-    Layout();
-    Fit();
+    play_->GetParent()->Layout();
 }
 
-void LauncherDialog::BrowseFolder() {
+void LauncherFrame::BrowseFolder() {
     wxDirDialog dialog(this, "Choose the folder with the game's files", folder_->GetValue(),
                        wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
     if (dialog.ShowModal() == wxID_OK) folder_->SetValue(dialog.GetPath());  // raises wxEVT_TEXT
 }
 
-void LauncherDialog::BrowseProgram() {
+void LauncherFrame::BrowseProgram() {
     wxFileName current(program_->GetValue());
 #ifdef __WXMSW__
     const char* const filter = "Programs (*.exe)|*.exe|All files (*.*)|*.*";
@@ -281,7 +405,7 @@ void LauncherDialog::BrowseProgram() {
     if (dialog.ShowModal() == wxID_OK) program_->SetValue(dialog.GetPath());  // raises wxEVT_TEXT
 }
 
-void LauncherDialog::Play() {
+void LauncherFrame::Play() {
     Save();
     GameOptions options;
     options.program = wxFileName(program_->GetValue()).GetFullPath();
@@ -297,7 +421,7 @@ void LauncherDialog::Play() {
     if (!LaunchGame(options, error)) wxMessageBox(error, APP_TITLE, wxOK | wxICON_ERROR, this);
 }
 
-void LauncherDialog::Save() {
+void LauncherFrame::Save() {
     // A folder or program left at its default is stored empty, so it follows the launcher if it moves.
     const wxString dir = folder_->GetValue(), program = program_->GetValue();
     settings::SetString(SECTION, "GameFolder",
@@ -314,7 +438,7 @@ void LauncherDialog::Save() {
     settings::SaveWindowPosition(SECTION, this);
 }
 
-void LauncherDialog::About() {
+void LauncherFrame::About() {
     const wxString title = wxString("About ") + APP_TITLE;
     const wxString heading = wxString(APP_TITLE) + " " + APP_VERSION_TEXT;
     const wxString blurb = "Starts sr2port, the SDL3 port of Street Rod 2: The Next Generation (California Dreams, 1991).";

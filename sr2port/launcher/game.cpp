@@ -21,9 +21,9 @@ bool FilePresent(const wxString& dir, const wxString& name) {
     return false;
 }
 
-// The first file the port needs that `dir` lacks (SR.EXE, LIB1, LIB2, LIB3).
+// The first file the port needs that `dir` lacks (SR.EXE, LIB1, LIB2, LIB3, SR2_DATA).
 wxString Missing(const wxString& dir) {
-    for (const char* name : {"SR.EXE", "LIB1", "LIB2", "LIB3"})
+    for (const char* name : {"SR.EXE", "LIB1", "LIB2", "LIB3", "SR2_DATA"})
         if (!FilePresent(dir, name)) return name;
     return wxString();
 }

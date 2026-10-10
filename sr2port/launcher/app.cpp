@@ -22,9 +22,9 @@ public:
                 std::exit(0);
             }
         if (!wxApp::OnInit()) return false;
-        auto* dialog = new LauncherDialog;
-        SetTopWindow(dialog);
-        dialog->Show();
+        auto* frame = new LauncherFrame;
+        SetTopWindow(frame);
+        frame->Show();
         return true;
     }
 };
