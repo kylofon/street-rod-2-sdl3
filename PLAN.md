@@ -35,13 +35,13 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 | U5 | Listen: `work\s54	itle_adlib.wav`, `title_speaker.wav`, `race_adlib.wav`, `race_speaker.wav` (port output) against DOSBox: title music instruments/drums/tempo, engine drone rising with revs, speaker tune. In the game also: siren, crash, garage clanks/wrench (AdLib). | S5.4 | 10 min |
 | U6 | Playtest endings and rare screens: `set SR_DEBUG_END=king` (ending animation, hall of fame + name entry), `summer`, `broke` ("outta dough"); `set SR_DEBUG_RACE=jail`; gas-station fueling clicks. Compare with DOSBox where you can. | S5.5 | 15 min |
 | U6 | Launcher: start `sr2portuild\Street Rod 2.exe`, pick VGA + AdLib (or Normal), Play: game starts without the text menus? In a real Bob's race the bottom strip shows " Gear: " (no protection text)? Launcher now follows AotP Enhanced (menu bar File/Game settings/About, Keys page, Preferences > Always on top): layout and greyed-out modes OK? | S5.6 | 5 min |
-| U6 | Playtest the release zip `release\sr2port-v0.1.0-win64.zip`: unzip to a new folder, put your installed game in `Game\` next to the exes, start `Street Rod 2.exe`, Play. Then tell me whether to publish (S6.2: GitHub repo `street-rod-2-sdl3` + release v0.1.0). | S6.1 | 15 min |
+| U6 | Playtest the release zip `release\sr2port-v0.1.0-win64.zip`: unzip to a new folder, put your installed game in `Game\` next to the exes, start `Street Rod 2.exe`, Play. (Published 2026-10-10; bugs found go into a v0.1.x patch.) | S6.1 | 15 min |
 | U7 | Decisions (defaults apply if unanswered), see U7 below | plan | 5 min |
 
 ## Status
 
 - **Done:** S0.1 (repo), S1.1–S1.4 (unpacked, indexed, matched with SR1, Ghidra: `port/RE_GUIDE.md` §1–2); S1.5 (what changed, `RE_GUIDE.md` §3); S2.3, S2.5 (`FORMATS.md`); S2.1, S2.2, S2.4 waiting for your U5 checks. Phase 3: all delta specs (`port/spec/*.md`, 913/913 functions, `tools/sr2_coverage.py`).
-- **Next:** your playtests (User to-do), incl. the v0.1.0 zip → S5.6 fix batch(es) → S6.2 publish (needs your approval).
+- **Next:** v0.1.0 is published (https://github.com/kylofon/street-rod-2-sdl3/releases/tag/v0.1.0). Your playtests (User to-do) → S5.6 fix batch(es) → v0.1.x patch release. When the playtests pass, the faithful port is finished and the Enhanced repo can start (game-port-setup mode B).
 - Escalation rule: a subtask that fails twice on Sonnet → new Opus session with a 5-line note
   (symptom, file, what was tried). Never carry an old transcript over.
 
@@ -176,8 +176,8 @@ Notes:
 ### Phase 6 — Release
 | Id | Task | Model | Size |
 |---|---|---|---|
-| S6.1 | Packaging script (from `../StreetRod`), README, CHANGELOG, v0.1.0 zip; **U6 playtest** of the zip | H | U6 pending |
-| S6.2 | Publish: GitHub repo `street-rod-2-sdl3` + release (user approves), release-notes link in README | H | S |
+| S6.1 | Packaging script (from `../StreetRod`), README, CHANGELOG, v0.1.0 zip; **U6 playtest** of the zip | H | done 2026-10-10 (zip U6 open) |
+| S6.2 | Publish: GitHub repo `street-rod-2-sdl3` + release (user approves), release-notes link in README | H | done 2026-10-10 |
 
 Notes:
 - S6.1 (2026-10-10): `sr2port/tools/package_release.py` → `release/sr2port-v0.1.0-win64.zip` (10.9 MB, 43 entries: sr2port.exe, Street Rod 2.exe, 19 DLLs from the objdump import closure, player README `sr2port/dist/README.md`, LICENSE, licenses/), `release/RELEASE_NOTES.md`, `SHA256SUMS.txt` (573a222a…); CHANGELOG.md; version 0.1.0. Unzipped run without msys64 on PATH: ok. No tag/remote yet.
@@ -276,7 +276,7 @@ Several bugs in one message; one session then fixes them in a batch.
 3. **Copy protection**: S1.5 found the manual-word question never checks the answer (always passes). Keep the question screen as in the original, or skip it? Default: keep (faithful).
 4. **Shared code**: copy `srport` code into `sr2port` (independent repo, fixes ported by hand) rather
    than a shared library with SR1. Default: copy.
-5. **GitHub**: create a remote when you want one; default: local only until the S6.2 release.
+5. **GitHub**: published 2026-10-10 as https://github.com/kylofon/street-rod-2-sdl3 (public), release v0.1.0.
 6. **Game tick while AdLib music plays**: the original runs the game ISR at 68.6 Hz (tempo 120) / 60 Hz (tempo 60) instead of 72.8 Hz, because the music ISR chains it with the remainder discarded (sound.md §9). Reproduce it (faithful)? Default: yes.
 
 ## Decisions
