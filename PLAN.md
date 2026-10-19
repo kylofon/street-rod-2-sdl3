@@ -21,22 +21,6 @@ remove it when it is done; subtasks marked `U<n> pending` are added automaticall
 
 | Task | What to do | For | Time |
 |---|---|---|---|
-| U1 | Manual PDF → `docs\manual.pdf` (+ `pdftotext`), see U1 below | all | 10 min |
-| U2 | DOSBox-X reference setup, see U2 below | U3, U5 | 15 min |
-| U3 | Reference captures, see U3 below | S2.x checks | 30 min |
-| U5 | Look at `work\lib1\_sheet.png`, `work\lib2\_sheet.png`, `work\lib3\_sheet.png`: pictures intact? colours right for title/garage screens? (car pictures may use other palettes) | S2.1 | 5 min |
-| U5 | Look at `work\shp\_sheet.png` (road shapes, 7 distance levels per row) and `work\shp\23_B.png`..`25_B.png`: plausible objects, colours, nothing mirrored oddly? | S2.2 | 5 min |
-| U5 | Listen to `work\sound\msrbeg.wav` (title) and `msr2.wav` against the game in DOSBox (or `title.dro`): instruments, tempo, drums OK? | S2.4 | 5 min |
-| U5 | DOSBox, AdLib: let the title music play > 3 min. Does a long silence (~2 min) follow the first song before the next starts? (sound.md §9) | S3.2 | 5 min |
-| U5 | DOSBox: at the copy-protection question, cancel instead of answering. Does the game crash/hang? (game_flow.md) | S3.3 | 2 min |
-| U6 | Playtest the start-up: build (`cmake --build sr2port/build`), then in `C:\Coding\StreetRod2` run `sr2portuild\sr2port.exe --game-dir Game`, pick 3 (VGA) and 2 (Normal). Video/sound menus, "presents", title, credits look and time like DOSBox? Ends on a black screen with pointer (placeholder). | S5.1 | 5 min |
-| U6 | Playtest outside races (races are stubs and always "lost"): new game, protection screen, newspaper, buy a car from the classifieds, garage: hood/engine bay, Under the Car, paint, tires, transmission, car info, auto parts; gas station (pump/nozzle/LEDs); save, quit, load again; also try the `demo` switch. Report differences from DOSBox (U6 format). | S5.2 | 20 min |
-| U6 | Playtest races (VGA, sound 2): Burger's → "Challenge" → Drag race / Mulholland drive / Aqueduct race (also try climbing the Aqueduct walls); Grudge Night = garage code 17 on Wednesdays. Shortcut: `set SR_DEBUG_RACE=drag` (or mulholland, aqueduct, grudge, cruise, bob) before starting. Road, cockpit, opponent, speeds and results like DOSBox? | S5.3 | 20 min |
-| U5 | Listen: `work\s54	itle_adlib.wav`, `title_speaker.wav`, `race_adlib.wav`, `race_speaker.wav` (port output) against DOSBox: title music instruments/drums/tempo, engine drone rising with revs, speaker tune. In the game also: siren, crash, garage clanks/wrench (AdLib). | S5.4 | 10 min |
-| U6 | Playtest endings and rare screens: `set SR_DEBUG_END=king` (ending animation, hall of fame + name entry), `summer`, `broke` ("outta dough"); `set SR_DEBUG_RACE=jail`; gas-station fueling clicks. Compare with DOSBox where you can. | S5.5 | 15 min |
-| U6 | Launcher: start `sr2portuild\Street Rod 2.exe`, pick VGA + AdLib (or Normal), Play: game starts without the text menus? In a real Bob's race the bottom strip shows " Gear: " (no protection text)? Launcher now follows AotP Enhanced (menu bar File/Game settings/About, Keys page, Preferences > Always on top): layout and greyed-out modes OK? | S5.6 | 5 min |
-| U6 | Playtest the release zip `release\sr2port-v0.1.0-win64.zip`: unzip to a new folder, put your installed game in `Game\` next to the exes, start `Street Rod 2.exe`, Play. (Published 2026-10-10; bugs found go into a v0.1.x patch.) | S6.1 | 15 min |
-| U7 | Decisions (defaults apply if unanswered), see U7 below | plan | 5 min |
 
 ## Status
 
@@ -89,7 +73,7 @@ SR1 (car-key colour question) — S1.5 confirms.
 ## Subtasks
 
 Model: H = Haiku, S = Sonnet, O = Opus. Last column: size (S/M/L) until done, then the status
-(`done YYYY-MM-DD`, `U5 pending`). Notes go in a "Notes:" list under a table, never between rows.
+(`done YYYY-MM-DD`, `U5 OK 2026-10-19`). Notes go in a "Notes:" list under a table, never between rows.
 
 ### Phase 0 — Repository
 | Id | Task | Model | Size |
@@ -113,10 +97,10 @@ Notes:
 ### Phase 2 — File formats (output: `FORMATS.md`, decoders in `tools/`, PNG/WAV in `work/`)
 | Id | Task | Model | Size |
 |---|---|---|---|
-| S2.1 | `LIB1`/`LIB2`/`LIB3` through `tools/srlib.py` (extend for differences) → PNG + contact sheets; **U5 check** | S | U5 pending |
-| S2.2 | `SR2_SHP` → PNG frames + contact sheet; **U5 check** against U3 captures | S | U5 pending |
+| S2.1 | `LIB1`/`LIB2`/`LIB3` through `tools/srlib.py` (extend for differences) → PNG + contact sheets; **U5 check** | S | U5 OK 2026-10-19 |
+| S2.2 | `SR2_SHP` → PNG frames + contact sheet; **U5 check** against U3 captures | S | U5 OK 2026-10-19 |
 | S2.3 | `SR2_DATA`, `SR2_END`, exe tables (cars, parts, opponents, town, texts) via `tools/srtables.py` adapted → `FORMATS.md` | S | done 2026-10-09 |
-| S2.4 | Sound: `MSR.SND` bank + `.MUS` songs (AdLib Visual Composer formats), the game's AdLib driver/tempo, render via Nuked-OPL3 (`../F117-2/third_party/nuked-opl3`) → `work/sound/*.wav`; speaker-music deltas vs SR1 (`tools/srsnd.py`); **U5 listen** | S | U5 pending |
+| S2.4 | Sound: `MSR.SND` bank + `.MUS` songs (AdLib Visual Composer formats), the game's AdLib driver/tempo, render via Nuked-OPL3 (`../F117-2/third_party/nuked-opl3`) → `work/sound/*.wav`; speaker-music deltas vs SR1 (`tools/srsnd.py`); **U5 listen** | S | U5 OK 2026-10-19 |
 | S2.5 | Save games → `FORMATS.md` (diff against SR1's) | H | done 2026-10-09 |
 
 Notes:
@@ -158,10 +142,10 @@ Same functions keep the SR1 code (re-pointed at SR2 data addresses); changed/new
 the delta spec. Each row ends with a **U6 playtest** request.
 | Id | Task | Model | Size |
 |---|---|---|---|
-| S5.1 | platform + video deltas → title and menus (**first visible milestone**) | S | U6 pending |
-| S5.2 | game_flow + garage deltas, `LIB3`, save/load | S | U6 pending |
-| S5.3 | race + race_render deltas, `SR2_SHP` | O | U6 pending |
-| S5.4 | sound: AdLib `.MUS` player on Nuked-OPL3 (`third_party/` from F117-2), sound options menu, speaker deltas | S | U5/U6 pending |
+| S5.1 | platform + video deltas → title and menus (**first visible milestone**) | S | U6 OK 2026-10-19 |
+| S5.2 | game_flow + garage deltas, `LIB3`, save/load | S | U6 OK 2026-10-19 |
+| S5.3 | race + race_render deltas, `SR2_SHP` | O | U6 OK 2026-10-19 |
+| S5.4 | sound: AdLib `.MUS` player on Nuked-OPL3 (`third_party/` from F117-2), sound options menu, speaker deltas | S | U5/U6 OK 2026-10-19 |
 | S5.5 | endings, demo mode; headless demo chain through every screen | S | done 2026-10-10 |
 | S5.6 | U6 bug batch (repeat as needed) | S | batch 1 done, more U6 open |
 
